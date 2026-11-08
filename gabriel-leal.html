@@ -106,6 +106,39 @@
       margin: 0 0 18px;
     }
 
+    .spotify-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 28px 0 34px;
+    }
+
+    .spotify-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      color: #fff;
+      background: #1DB954;
+      border: 1px solid #1DB954;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .spotify-button:hover {
+      background: #169c45;
+      transform: translateY(-2px);
+    }
+
+    .spotify-button .spotify-mark {
+      font-size: 16px;
+      line-height: 1;
+    }
+
     .gabriel-highlight {
       padding: 35px;
       margin: 35px 0;
@@ -365,6 +398,12 @@
       <strong>Bem Mais Que o Sol</strong> e <strong>Ladeira Abaixo</strong>,
       além de outras faixas que não chegaram a ser lançadas.
     </p>
+    <div class="spotify-links" aria-label="Ouça as músicas no Spotify">
+      <a class="spotify-button" href="https://open.spotify.com/intl-pt/track/6drOqTa8NGOrIu3TsmaW65?si=0a76994000724566" target="_blank" rel="noopener noreferrer">
+        <span class="spotify-mark" aria-hidden="true">●</span>
+        OUVIR BEM MAIS QUE O SOL NO SPOTIFY
+      </a>
+    </div>
     <p>
       Posteriormente, direcionou seu trabalho para a música cristã e buscou unir
       sua identidade musical à fé. Desse processo surgiu

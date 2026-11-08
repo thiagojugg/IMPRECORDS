@@ -7,12 +7,28 @@
       "description": "",
       "priceInCents": 11990,
       "requiresShipping": true,
-      "images": ["assets/camiseta-1.png", "assets/camiseta-2.png", "assets/camiseta-3.png"],
+      "images": [
+        "assets/camiseta-1.png",
+        "assets/camiseta-2.png",
+        "assets/camiseta-3.png"
+      ],
       "variants": [
-        {"size": "P", "stock": 0},
-        {"size": "M", "stock": 0},
-        {"size": "G", "stock": 0},
-        {"size": "GG", "stock": 0}
+        {
+          "size": "P",
+          "stock": 0
+        },
+        {
+          "size": "M",
+          "stock": 0
+        },
+        {
+          "size": "G",
+          "stock": 0
+        },
+        {
+          "size": "GG",
+          "stock": 0
+        }
       ],
       "allowBackorders": false
     },
@@ -22,8 +38,42 @@
       "description": "Preset vocal desenvolvido pelo artista Twiz com plugins nativos do FL Studio. Uma configuração de efeitos para aprimorar o tratamento da voz e servir como ponto de partida para suas produções. Ajuste os parâmetros conforme sua gravação e o estilo que deseja alcançar. Produto digital. Requer FL Studio e os plugins utilizados no preset.",
       "priceInCents": 2490,
       "requiresShipping": false,
-      "images": ["assets/preset-twiz.png"],
-      "variants": [{"title": "Default Title", "stock": 0}],
+      "images": [
+        "assets/preset-twiz.png"
+      ],
+      "variants": [
+        {
+          "title": "Default Title",
+          "stock": 0
+        }
+      ],
+      "allowBackorders": false
+    },
+    {
+      "id": "camiseta-imp-em-breve",
+      "name": "EM BREVE",
+      "description": "",
+      "priceInCents": 11990,
+      "requiresShipping": true,
+      "images": [],
+      "variants": [
+        {
+          "size": "P",
+          "stock": 0
+        },
+        {
+          "size": "M",
+          "stock": 0
+        },
+        {
+          "size": "G",
+          "stock": 0
+        },
+        {
+          "size": "GG",
+          "stock": 0
+        }
+      ],
       "allowBackorders": false
     }
   ]

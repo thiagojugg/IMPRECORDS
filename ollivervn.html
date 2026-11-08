@@ -87,14 +87,14 @@
 
     .olliver-releases {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-top: 35px;
     }
 
     .olliver-release {
-      min-height: 150px;
-      padding: 25px;
+      min-height: 310px;
+      padding: 14px;
       background: #111;
       border: 1px solid var(--line);
       display: flex;
@@ -108,6 +108,16 @@
       transform: translateY(-3px);
     }
 
+    .olliver-release-embed {
+      display: block;
+      width: 100%;
+      height: 152px;
+      border: 0;
+      border-radius: 8px;
+      margin-bottom: 18px;
+      background: #181818;
+    }
+
     .olliver-release span {
       color: #888;
       font-size: 10px;
@@ -117,8 +127,9 @@
 
     .olliver-release h3 {
       color: #fff;
-      font: clamp(23px, 3vw, 35px)/1 var(--font-display);
-      margin: 12px 0;
+      font: clamp(22px, 2.8vw, 32px)/1 var(--font-display);
+      overflow-wrap: anywhere;
+      margin: 22px 0 10px;
     }
 
     .olliver-release a {
@@ -230,6 +241,14 @@
 
       .olliver-releases {
         grid-template-columns: 1fr;
+      }
+
+      .olliver-release {
+        min-height: 0;
+      }
+
+      .olliver-release-embed {
+        height: 152px;
       }
 
       .olliver-social a {
@@ -431,6 +450,12 @@
     <div class="olliver-releases">
 
       <article class="olliver-release">
+        <iframe class="olliver-release-embed"
+          src="https://open.spotify.com/embed/album/0k3c6UHZiY7QOKznPgoO8t?utm_source=generator&theme=0"
+          title="Ouvir PLUG NINE MIND no Spotify"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen></iframe>
         <div>
           <span>LANÇAMENTO · 2024</span>
           <h3>PLUG NINE MIND</h3>
@@ -442,6 +467,12 @@
       </article>
 
       <article class="olliver-release">
+        <iframe class="olliver-release-embed"
+          src="https://open.spotify.com/embed/album/6gVCOmuvvywg0wY45052AI?utm_source=generator&theme=0"
+          title="Ouvir BPM no Spotify"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen></iframe>
         <div>
           <span>LANÇAMENTO · 2025</span>
           <h3>BPM</h3>
@@ -453,6 +484,12 @@
       </article>
 
       <article class="olliver-release">
+        <iframe class="olliver-release-embed"
+          src="https://open.spotify.com/embed/album/0l6gAgSv0toaDH14bB0Ucb?utm_source=generator&theme=0"
+          title="Ouvir GOIÁS no Spotify"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen></iframe>
         <div>
           <span>LANÇAMENTO · 2026</span>
           <h3>GOIÁS</h3>
@@ -464,6 +501,12 @@
       </article>
 
       <article class="olliver-release">
+        <iframe class="olliver-release-embed"
+          src="https://open.spotify.com/embed/album/7uuqyADwZ1zRr98WafHKFP?utm_source=generator&theme=0"
+          title="Ouvir SUJO no Spotify"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen></iframe>
         <div>
           <span>LANÇAMENTO · 2026</span>
           <h3>SUJO</h3>
@@ -475,6 +518,12 @@
       </article>
 
       <article class="olliver-release">
+        <iframe class="olliver-release-embed"
+          src="https://open.spotify.com/embed/album/3ksCi56GieHQWQS5BXLCve?utm_source=generator&theme=0"
+          title="Ouvir ANARQUIA no Spotify"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen></iframe>
         <div>
           <span>LANÇAMENTO · 2026</span>
           <h3>ANARQUIA</h3>

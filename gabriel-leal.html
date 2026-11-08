@@ -17,27 +17,58 @@
     }
 
     .gabriel-hero {
-      min-height: 480px;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      min-height: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding: 40px;
+      overflow: hidden;
+      isolation: isolate;
       background: #111;
       border: 1px solid var(--line);
       margin-bottom: 70px;
     }
 
+    .gabriel-hero-image {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .gabriel-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0,0,0,.12) 15%, rgba(0,0,0,.78) 100%);
+    }
+
     .gabriel-hero h1 {
-      font: clamp(65px, 13vw, 150px)/.85 var(--font-display);
+      font: clamp(42px, 10vw, 150px)/.85 var(--font-display);
       letter-spacing: -.07em;
       margin: 0;
+      color: #fff;
     }
 
     .gabriel-hero p {
-      color: #aaa;
+      color: #eee;
       font-size: 10px;
       letter-spacing: .2em;
       margin-top: 25px;
+    }
+
+    .gabriel-hero .eyebrow,
+    .gabriel-hero h1,
+    .gabriel-hero p {
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 18px rgba(0,0,0,.45);
     }
 
     .gabriel-photo {
@@ -331,14 +362,11 @@
   <a class="text-link" href="./artistas.html">← VOLTAR A ARTISTAS</a>
 
   <section class="gabriel-hero">
+    <img class="gabriel-hero-image" src="./assets/gabriel-principal.jpg" alt="Fotografia oficial de Gabriel Leal">
     <span class="eyebrow">IMP RECORDS / ARTISTA</span>
     <h1>GABRIEL LEAL</h1>
     <p>MÚSICA · FÉ · PRODUÇÃO · PROPÓSITO</p>
   </section>
-
-  <div class="gabriel-photo gabriel-photo-image">
-    <img src="./assets/gabriel-principal.jpg" alt="Fotografia oficial de Gabriel Leal">
-  </div>
 
   <section class="gabriel-section">
     <span class="number">01 / ORIGENS</span>

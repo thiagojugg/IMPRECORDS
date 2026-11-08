@@ -1,124 +1,632 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LOOKBOOK DROP GENGAR | IMP RECORDS ©</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#090909;color:#f5f5f2;font-family:Arial,sans-serif}a{color:inherit;text-underline-offset:4px}header{padding:24px 5vw;border-bottom:1px solid #333;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}header>a{font-weight:900;font-size:28px;text-decoration:none}nav{display:flex;flex-wrap:wrap;gap:22px}nav a{font-size:11px;font-weight:bold;text-decoration:none}main{max-width:1100px;margin:auto;padding:55px 5vw 80px}.back{display:inline-block;margin-bottom:32px;font-size:11px}h1{font-size:clamp(32px,5vw,60px);line-height:1.05;letter-spacing:-.04em}article{max-width:780px}article h1{color:#bbb;font-size:clamp(28px,4vw,44px)}h3{margin-top:28px;font-size:17px}p{font-size:14px;line-height:1.9;color:#bbb}img{max-width:100%;height:auto;display:block;border-radius:3px}hr{border:0;border-top:1px solid #444;margin:35px 0}footer{padding:28px 5vw;border-top:1px solid #333;color:#999;font-size:11px}@media(max-width:650px){header{gap:18px}nav{gap:16px;width:100%}main{padding-top:32px}h3{font-size:15px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>LOOKBOOK DROP GENGAR | IMP RECORDS ©</title>
+
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .header-inner > .wordmark {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .header-inner > .desktop-nav {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .header-inner > .header-actions {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .menu-toggle,
+    .mobile-menu {
+      display: none;
+    }
+
+    a[aria-current="page"] {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+
+    .lookbook-back {
+      display: inline-block;
+      margin-bottom: 32px;
+    }
+
+    .lookbook-content {
+      max-width: 780px;
+    }
+
+    .lookbook-content h2 {
+      margin: 0 0 30px;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.04em;
+      color: #bbb;
+    }
+
+    .lookbook-content h3 {
+      margin-top: 28px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .lookbook-content p {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .lookbook-content img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .lookbook-content a {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      overflow-wrap: anywhere;
+    }
+
+    .lookbook-content hr {
+      margin: 35px 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 900px) {
+      .desktop-nav {
+        display: none !important;
+      }
+
+      .header-inner > .menu-toggle {
+        display: flex;
+        grid-column: 1;
+        grid-row: 1;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: start;
+        gap: 5px;
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #fff;
+      }
+
+      .header-inner > .wordmark {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .mobile-menu:not([hidden]) {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 18px 5vw 24px;
+        background: #090909;
+      }
+
+      .mobile-menu a {
+        padding: 14px 0;
+        font-family: var(--font-display);
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .lookbook-content p {
+        font-size: 13px;
+      }
+
+      .lookbook-content h3 {
+        font-size: 14px;
+      }
+
+      .footer-bottom {
+        flex-wrap: wrap;
+        line-height: 1.8;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<a href="./" aria-label="Página inicial">IMP®</a>
-<nav aria-label="Navegação principal">
-<a href="./?categoria=vestuario">VESTUÁRIO</a>
-<a href="./?categoria=presets">PRESETS</a>
-<a href="./?categoria=galeria">GALERIA</a>
-<a href="./?categoria=manifesto">MANIFESTO</a>
-<a href="./?categoria=bag">BAG (0)</a>
-</nav>
-</header>
-<main>
-<a class="back" href="./?categoria=galeria">← VOLTAR À GALERIA</a>
-<h1>LOOKBOOK DROP GENGAR</h1>
-<article>
-<h1><span>IMP NA RUA</span></h1>
-<h3><span>PESSOAS REAIS. CULTURA AUTÊNTICA.</span></h3>
-<p><span>Nossa identidade ganha vida em quem veste a nossa marca.</span></p>
-<p><span>Conheça pessoas que representam a IMP RECORDS, expressando sua personalidade, seu estilo e sua conexão com a cultura urbana.</span><span></span></p>
-<hr>
-  <h3><strong>NOV/2026 — DESTAQUE IMP</strong></h3>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-<p>Foto recebida via Instagram, enviada pela Isabele!</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <button
+        class="icon-button menu-toggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+      </button>
 
-<div>
-  <img
-    src="./assets/FOTO-ISA.PNG"
-    alt="Isabele vestindo IMP RECORDS"
-    loading="lazy"
-    style="display: block; max-width: 100%; height: auto;"
-  >
-</div>
+      <a class="wordmark" href="./" aria-label="IMP Records, início">
+        IMP<span>®</span>
+      </a>
 
-<p>
-  <strong>
-    📸
-    <a
-      href="https://www.instagram.com/xbellps"
-      target="_blank"
-      rel="noopener noreferrer"
-    >@xbellps</a>
-  </strong>
-</p>
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="./?categoria=vestuario">VESTUÁRIO</a>
+        <a href="./?categoria=presets">PRESETS</a>
+        <a href="./?categoria=galeria" aria-current="page">GALERIA</a>
+        <a href="./?categoria=manifesto">MANIFESTO</a>
+      </nav>
 
-<p>
-  <strong>
-    Foto tirada em:
-    <a
-      href="https://www.google.com/maps/search/?api=1&amp;query=São+Luís+Maranhão+Brasil"
-      target="_blank"
-      rel="noopener noreferrer"
-    >São Luís, Maranhão, Brasil</a> 📍
-  </strong>
-</p>
+      <div class="header-actions">
+        <a class="cart-link" href="./?categoria=bag">
+          BAG <span>(0)</span>
+        </a>
+      </div>
+    </div>
 
-<p>Vestindo IMP RECORDS®</p>
+    <nav
+      class="mobile-menu"
+      id="mobile-menu"
+      aria-label="Menu móvel"
+      hidden
+    >
+      <a href="./?categoria=vestuario">VESTUÁRIO</a>
+      <a href="./?categoria=presets">PRESETS</a>
+      <a href="./?categoria=galeria" aria-current="page">GALERIA</a>
+      <a href="./?categoria=manifesto">MANIFESTO</a>
+    </nav>
+  </header>
 
-<hr>
-<h3><strong>DEZ/2024 — DESTAQUE IMP</strong></h3>
-<p>Foto recebida via Instagram, enviada pela Kouth!</p>
-<div style="text-align: left;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3519_480x480.heic?v=1794093167" alt="" style="float: none;"></div>
-<p><strong>📸 <a href="https://www.instagram.com/prodkouth">@prodkouth</a></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/centro+sao+paulo/data=!4m2!3m1!1s0x94ce5853d96a1441:0xebba5cad95ff31bb?sa=X&amp;ved=1t:155783&amp;ictx=111">Centro, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<hr>
-<h3><strong>DEZ/2024 — DESTAQUE IMP</strong></h3>
-<p>Foto recebida via Instagram, enviada pelo Twiz!</p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3521_480x480.png?v=1794088292" alt="" style="float: none;"></div>
-<p><strong>📸 <a href="https://www.instagram.com/eutwiz">@eutwiz</a></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<hr>
-<h3><strong>AGO/2024 — DESTAQUE IMP</strong></h3>
-<p>Foto recebida via WhatsApp, enviada pelo Matheus!</p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3518_480x480.png?v=1794087588" alt="" style="float: none;"></div>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<hr>
-<h3><strong>JUL/2024 — DESTAQUE IMP</strong></h3>
-<p>Foto recebida via Instagram, enviada pelo Ryan!</p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3517_480x480.png?v=1794087216" alt="" style="float: none;"></div>
-<p><strong><span>📸 <a href="https://www.instagram.com/r74n__gsj">@r74n__gsj</a></span></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<hr>
-<h3><strong>JUL/2024 — DESTAQUE IMP</strong></h3>
-<p>Foto recebida via Instagram, enviada pela Eloa!</p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3516_480x480.png?v=1794086856" alt="" style="margin-bottom: 16px; float: none;"></div>
-<p><strong><span>📸 <a href="https://www.instagram.com/_44souzza_">@_44souzza_</a></span></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<hr>
-<h3><span>JUL/2024 — DESTAQUE IMP</span></h3>
-<p><span>Foto recebida via Instagram, enviada pelo Lucas!</span></p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3515_1_480x480.png?v=1794085663" style="margin-bottom: 16px; float: none;"></div>
-<p><strong><span>📸 <a href="https://www.instagram.com/lucas.sx_ds">@lucas.sx_ds</a></span></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<div><hr></div>
-<h3><span>JUL/2024 — DESTAQUE IMP</span></h3>
-<p><span>Foto recebida via Instagram, enviada pela Kamili!</span></p>
-<div style="text-align: start;"><img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3512_480x480.png?v=1794084552" alt="" style="float: none;"></div>
-<p><strong><span>📸 <a href="https://www.instagram.com/kmillimariaa__">@kmillimariaa__</a></span></strong></p>
-<p><strong><span>Foto tirada em: <a href="https://www.google.com/maps/place/maua+sp/data=!4m2!3m1!1s0x94ce69549e48e43f:0xe210627a68fc88df?sa=X&amp;ved=1t:155783&amp;ictx=111">Mauá, São Paulo, Brasil</a> 📍 </span></strong></p>
-<p><span>Vestindo IMP RECORDS®</span></p>
-<div><hr></div>
-<p><strong><span>IMP RECORDS® — FEITO NO MARANHÃO.</span></strong></p>
-<p><span>Cultura independente. Identidade própria. Influência sem fronteiras.</span></p>
-</article>
-</main>
-<footer>© 2020/<span id="ano">2026</span> IMP RECORDS. Todos os direitos reservados.</footer>
-<script>document.getElementById('ano').textContent=new Date().getFullYear();</script>
+  <main id="main" class="section-wrap standard-page">
+    <a class="text-link lookbook-back" href="./?categoria=galeria">
+      ← VOLTAR À GALERIA
+    </a>
+
+    <h1>LOOKBOOK DROP GENGAR</h1>
+
+    <article class="lookbook-content">
+      <h2>IMP NA RUA</h2>
+
+      <h3>PESSOAS REAIS. CULTURA AUTÊNTICA.</h3>
+
+      <p>
+        Nossa identidade ganha vida em quem veste a nossa marca.
+      </p>
+
+      <p>
+        Conheça pessoas que representam a IMP RECORDS, expressando
+        sua personalidade, seu estilo e sua conexão com a cultura urbana.
+      </p>
+
+      <hr>
+
+      <section aria-labelledby="destaque-isabele">
+        <h3 id="destaque-isabele">NOV/2026 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pela Isabele!</p>
+
+        <img
+          src="./assets/FOTO-ISA.PNG.jpeg"
+          alt="Isabele vestindo IMP RECORDS"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/xbellps"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@xbellps</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=São+Luís+Maranhão+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >São Luís, Maranhão, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-kouth">
+        <h3 id="destaque-kouth">DEZ/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pela Kouth!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3519_480x480.heic?v=1794093167"
+          alt="Foto enviada pela Kouth"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/prodkouth"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@prodkouth</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Centro+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Centro, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-twiz">
+        <h3 id="destaque-twiz">DEZ/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pelo Twiz!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3521_480x480.png?v=1794088292"
+          alt="Foto enviada pelo Twiz"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/eutwiz"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@eutwiz</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-matheus">
+        <h3 id="destaque-matheus">AGO/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via WhatsApp, enviada pelo Matheus!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3518_480x480.png?v=1794087588"
+          alt="Foto enviada pelo Matheus"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-ryan">
+        <h3 id="destaque-ryan">JUL/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pelo Ryan!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3517_480x480.png?v=1794087216"
+          alt="Foto enviada pelo Ryan"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/r74n__gsj"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@r74n__gsj</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-eloa">
+        <h3 id="destaque-eloa">JUL/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pela Eloa!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3516_480x480.png?v=1794086856"
+          alt="Foto enviada pela Eloa"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/_44souzza_"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@_44souzza_</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-lucas">
+        <h3 id="destaque-lucas">JUL/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pelo Lucas!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3515_1_480x480.png?v=1794085663"
+          alt="Foto enviada pelo Lucas"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/lucas.sx_ds"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@lucas.sx_ds</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <section aria-labelledby="destaque-kamili">
+        <h3 id="destaque-kamili">JUL/2024 — DESTAQUE IMP</h3>
+
+        <p>Foto recebida via Instagram, enviada pela Kamili!</p>
+
+        <img
+          src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3512_480x480.png?v=1794084552"
+          alt="Foto enviada pela Kamili"
+          loading="lazy"
+        >
+
+        <p>
+          <strong>
+            📸
+            <a
+              href="https://www.instagram.com/kmillimariaa__"
+              target="_blank"
+              rel="noopener noreferrer"
+            >@kmillimariaa__</a>
+          </strong>
+        </p>
+
+        <p>
+          <strong>
+            Foto tirada em:
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Mauá+São+Paulo+Brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Mauá, São Paulo, Brasil</a> 📍
+          </strong>
+        </p>
+
+        <p>Vestindo IMP RECORDS®</p>
+      </section>
+
+      <hr>
+
+      <p><strong>IMP RECORDS® — FEITO NO MARANHÃO.</strong></p>
+
+      <p>
+        Cultura independente. Identidade própria.
+        Influência sem fronteiras.
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="./">
+          IMP RECORDS<span>®</span>
+        </a>
+
+        <p>Feito para quem vive a própria frequência.</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="./?categoria=vestuario">Vestuário</a>
+        <a href="./?categoria=presets">Presets</a>
+        <a href="./?categoria=galeria">Galeria</a>
+        <a href="./?categoria=manifesto">Manifesto</a>
+        <a href="./?categoria=bag">Carrinho</a>
+      </nav>
+
+      <div class="newsletter">
+        <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
+        <p>Acompanhe os lançamentos da IMP.</p>
+
+        <div class="footer-links">
+          <a
+            href="https://www.instagram.com/imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram ↗
+          </a>
+
+          <a
+            href="https://www.youtube.com/@imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+        © 2020/<span id="copyright-ano">2026</span> IMP RECORDS.
+        Todos os direitos reservados.
+      </span>
+
+      <span>MADE FOR THE CULTURE.</span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      document.getElementById("copyright-ano").textContent =
+        new Date().getFullYear();
+
+      const botao = document.querySelector(".menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+
+      if (!botao || !menu) return;
+
+      function fecharMenu() {
+        menu.hidden = true;
+        botao.setAttribute("aria-expanded", "false");
+        botao.setAttribute("aria-label", "Abrir menu");
+      }
+
+      botao.addEventListener("click", () => {
+        const aberto =
+          botao.getAttribute("aria-expanded") === "true";
+
+        menu.hidden = aberto;
+        botao.setAttribute("aria-expanded", String(!aberto));
+
+        botao.setAttribute(
+          "aria-label",
+          aberto ? "Abrir menu" : "Fechar menu"
+        );
+      });
+
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", fecharMenu);
+      });
+
+      document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape" && !menu.hidden) {
+          fecharMenu();
+          botao.focus();
+        }
+      });
+
+      document.addEventListener("click", evento => {
+        if (
+          !menu.hidden &&
+          !menu.contains(evento.target) &&
+          !botao.contains(evento.target)
+        ) {
+          fecharMenu();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) fecharMenu();
+      });
+    })();
+  </script>
 </body>
 </html>

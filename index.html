@@ -563,7 +563,10 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 IMP RECORDS.</span>
+      <span>
+  © 2020/<span id="copyright-ano"></span> IMP RECORDS.
+  Todos os direitos reservados.
+</span>
       <span>MADE FOR THE CULTURE.</span>
     </div>
   </footer>
@@ -1199,6 +1202,10 @@
       elemento.remove();
     }
   });
+</script>
+  <script>
+  document.getElementById("copyright-ano").textContent =
+    new Date().getFullYear();
 </script>
 </body>
 </html>

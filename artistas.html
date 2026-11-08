@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistas | IMP RECORDS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #080808;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 25px 8%;
+            border-bottom: 1px solid #222;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        main {
+            padding: 70px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .titulo h1 {
+            font-size: clamp(38px, 7vw, 75px);
+            letter-spacing: 8px;
+            font-weight: 900;
+        }
+
+        .titulo p {
+            color: #888;
+            margin-top: 12px;
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        .artistas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .artista {
+            background: #111;
+            border: 1px solid #252525;
+            text-align: center;
+            padding: 55px 15px;
+            transition: .3s;
+        }
+
+        .artista:hover {
+            transform: translateY(-7px);
+            border-color: #777;
+        }
+
+        .artista h2 {
+            font-size: 25px;
+            letter-spacing: 3px;
+        }
+
+        .artista span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-top: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 650px) {
+            .artistas {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html">← VOLTAR PARA A IMP RECORDS</a>
+    </header>
+
+    <main>
+        <section class="titulo">
+            <h1>ARTISTAS</h1>
+            <p>IMP RECORDS — STREET DIVISION</p>
+        </section>
+
+        <section class="artistas">
+
+            <article class="artista">
+                <h2>TWIZ</h2>
+                <span>ARTISTA IMP RECORDS</span>
+            </article>
+
+            <article class="artista">
+                <h2>OLLIVERVN</h2>
+                <span>ARTISTA IMP RECORDS</span>
+            </article>
+
+            <article class="artista">
+                <h2>LOWEST</h2>
+                <span>ARTISTA IMP RECORDS</span>
+            </article>
+
+        </section>
+    </main>
+
+    <footer>
+        © IMP RECORDS — TODOS OS DIREITOS RESERVADOS
+    </footer>
+
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -98,11 +97,49 @@
 
     .twiz-end {
       text-align: center;
-      padding: 40px 0;
+      padding: 40px 0 25px;
     }
 
     .twiz-end h2 {
       font: clamp(40px, 8vw, 90px)/.95 var(--font-display);
+    }
+
+    .twiz-social {
+      display: flex;
+      justify-content: center;
+      padding: 25px 0 55px;
+    }
+
+    .twiz-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 25px;
+      border: 1px solid #777;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      transition: .3s;
+    }
+
+    .twiz-social-link:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .twiz-social-link svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     @media(max-width:650px) {
@@ -265,6 +302,23 @@
     <h2>ESSA É A<br>ORIGEM DE TWIZ.</h2>
     <p>UMA HISTÓRIA QUE AINDA ESTÁ SENDO ESCRITA.</p>
     <p class="eyebrow">IMP RECORDS © 2026</p>
+  </section>
+
+  <section class="twiz-social" aria-label="Instagram do artista">
+    <a
+      class="twiz-social-link"
+      href="https://www.instagram.com/eutwiz/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Acessar Instagram de Twiz, @eutwiz"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
+      </svg>
+      <span>INSTAGRAM · @EUTWIZ</span>
+    </a>
   </section>
 
 </main>

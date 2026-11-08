@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Divisões | IMP RECORDS</title>
+
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+
+  <style>
+    .divisions-page {
+      min-height: 65vh;
+      padding-top: 90px;
+    }
+
+    .divisions-intro {
+      padding-bottom: 45px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 40px;
+    }
+
+    .divisions-intro h1 {
+      font: clamp(48px, 8vw, 100px)/.95 var(--font-display);
+      letter-spacing: -.06em;
+      margin: 0;
+    }
+
+    .divisions-intro p {
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      margin: 18px 0 0;
+    }
+
+    .divisions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .division-card {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      background: #111;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .division-card:hover {
+      border-color: #888;
+      transform: translateY(-3px);
+    }
+
+    .division-image {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      background: #191919;
+    }
+
+    .division-content {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .division-content h2 {
+      font: clamp(25px, 3vw, 40px)/1 var(--font-display);
+      letter-spacing: -.05em;
+      margin: 0;
+    }
+
+    .division-content p {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 15px 0 22px;
+      max-width: 550px;
+    }
+
+    .division-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .division-links a {
+      color: var(--white);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 5px;
+      transition: .3s;
+    }
+
+    .division-links a:hover {
+      color: var(--gray);
+      border-color: var(--white);
+    }
+
+    @media (max-width: 650px) {
+      .divisions-page {
+        padding-top: 65px;
+      }
+
+      .division-card {
+        grid-template-columns: 1fr;
+      }
+
+      .division-image {
+        height: 230px;
+      }
+
+      .division-content {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="./" aria-label="IMP Records, início">
+        IMP<span>®</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="./?categoria=vestuario">VESTUÁRIO</a>
+        <a href="./?categoria=presets">PRESETS</a>
+        <a href="./?categoria=galeria">GALERIA</a>
+        <a href="./artistas.html">ARTISTAS</a>
+        <a href="./divisoes.html" aria-current="page">DIVISÕES</a>
+        <a href="./?categoria=manifesto">MANIFESTO</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="cart-link" href="./?categoria=bag">BAG <span>(0)</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="section-wrap divisions-page">
+    <a class="text-link category-back" href="./">
+      ← VOLTAR AO INÍCIO
+    </a>
+
+    <section class="divisions-intro">
+      <p class="eyebrow">IMP RECORDS / OUR UNIVERSE</p>
+      <h1>DIVISÕES</h1>
+      <p>CONHEÇA OS PROJETOS QUE FAZEM PARTE DO NOSSO UNIVERSO.</p>
+    </section>
+
+    <section class="divisions-grid">
+
+      <!-- IMP ROOTS -->
+      <article class="division-card">
+        <img
+          class="division-image"
+          src="./assets/imp-roots.jpg"
+          alt="Identidade visual da IMP Roots"
+        >
+
+        <div class="division-content">
+          <h2>IMP ROOTS</h2>
+
+          <p>
+            Um espaço dedicado à música, cultura e expressão artística.
+            A IMP Roots representa uma das divisões criativas da
+            IMP RECORDS.
+          </p>
+
+          <div class="division-links">
+            <!-- Substitua os links pelos endereços oficiais -->
+            <a href="#" aria-disabled="true">SPOTIFY</a>
+            <a href="#" aria-disabled="true">YOUTUBE</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- MUNDO TINDIM -->
+      <article class="division-card">
+        <img
+          class="division-image"
+          src="./assets/mundo-tindim.jpg"
+          alt="Identidade visual do Mundo Tindim"
+        >
+
+        <div class="division-content">
+          <h2>MUNDO TINDIM</h2>
+
+          <p>
+            Um universo de música, diversão e criatividade para o
+            público infantil. Canções e experiências criadas para
+            transformar momentos em diversão.
+          </p>
+
+          <div class="division-links">
+            <!-- Substitua os links pelos endereços oficiais -->
+            <a href="#" aria-disabled="true">SPOTIFY</a>
+            <a href="#" aria-disabled="true">YOUTUBE</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- GLORIFY -->
+      <article class="division-card">
+        <img
+          class="division-image"
+          src="./assets/glorify.jpg"
+          alt="Identidade visual da Glorify"
+        >
+
+        <div class="division-content">
+          <h2>GLORIFY</h2>
+
+          <p>
+            Um projeto dedicado à fé, à palavra de Deus e à criação
+            de conteúdos que inspiram, edificam e levam mensagens
+            de esperança através da comunicação.
+          </p>
+
+          <div class="division-links">
+            <!-- Substitua os links pelos endereços oficiais -->
+            <a href="#" aria-disabled="true">SPOTIFY</a>
+            <a href="#" aria-disabled="true">YOUTUBE</a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+</body>
+</html>

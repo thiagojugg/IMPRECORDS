@@ -2,7 +2,8 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>IMP Records | Street Division</title>
 
   <link rel="stylesheet" href="./assets/base.css">
@@ -11,6 +12,39 @@
   <style>
     [hidden] {
       display: none !important;
+    }
+
+    .header-inner > .wordmark {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .header-inner > .desktop-nav {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .header-inner > .header-actions {
+      grid-column: 3;
+      grid-row: 1;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    a[aria-current="page"] {
+      text-decoration: underline;
+      text-underline-offset: 6px;
     }
 
     .category-back {
@@ -24,11 +58,6 @@
       margin: 0;
     }
 
-    a[aria-current="page"] {
-      text-decoration: underline;
-      text-underline-offset: 6px;
-    }
-
     .manifesto-content {
       max-width: 760px;
       color: #ccc;
@@ -37,10 +66,10 @@
     }
 
     .manifesto-content h2 {
-      color: #fff;
       font-family: var(--font-display);
       font-size: clamp(24px, 4vw, 38px);
       line-height: 1.2;
+      color: #fff;
       margin: 36px 0 24px;
     }
 
@@ -69,6 +98,59 @@
     .lookbook-entry .text-link {
       display: inline-block;
       margin-top: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner > .menu-toggle {
+        grid-column: 1;
+        grid-row: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: start;
+        gap: 5px;
+        min-width: 44px;
+        min-height: 44px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #fff;
+      }
+
+      .header-inner > .wordmark {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .header-inner > .header-actions {
+        grid-column: 3;
+        grid-row: 1;
+      }
+
+      .desktop-nav {
+        display: none !important;
+      }
+
+      .mobile-menu:not([hidden]) {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 18px 5vw 24px;
+        background: #090909;
+        border-top: 1px solid rgba(255, 255, 255, .18);
+      }
+
+      .mobile-menu a {
+        display: block;
+        padding: 14px 0;
+        color: #fff;
+        font-family: var(--font-display);
+        font-size: 22px;
+        line-height: 1.3;
+      }
     }
 
     @media (max-width: 650px) {
@@ -103,15 +185,17 @@
         <span></span>
       </button>
 
-      <a class="wordmark" href="./" aria-label="IMP Records">
+      <a class="wordmark" href="./" aria-label="IMP Records, início">
         IMP<span>®</span>
       </a>
+
       <nav class="desktop-nav" aria-label="Navegação principal">
         <a href="./?categoria=vestuario">VESTUÁRIO</a>
         <a href="./?categoria=presets">PRESETS</a>
         <a href="./?categoria=galeria">GALERIA</a>
         <a href="./?categoria=manifesto">MANIFESTO</a>
       </nav>
+
       <div class="header-actions">
         <a class="cart-link" href="./#bag">
           BAG <span>(0)</span>
@@ -122,8 +206,8 @@
     <nav
       class="mobile-menu"
       id="mobile-menu"
-      hidden
       aria-label="Menu móvel"
+      hidden
     >
       <a href="./?categoria=vestuario">VESTUÁRIO</a>
       <a href="./?categoria=presets">PRESETS</a>
@@ -166,10 +250,7 @@
         <h1>DROP “GENGAR”</h1>
         <p class="hero-copy">Produto indisponível no momento.</p>
 
-        <a
-          class="button button-light"
-          href="./?categoria=vestuario"
-        >
+        <a class="button button-light" href="./?categoria=vestuario">
           EXPLORAR DROP <span>↗</span>
         </a>
       </div>
@@ -186,7 +267,9 @@
           <h2>MAIS VENDIDOS</h2>
         </div>
 
-        <a class="text-link" href="#gengar">VER PRODUTO ↗</a>
+        <a class="text-link" href="#gengar-detalhes">
+          VER PRODUTO ↗
+        </a>
       </div>
 
       <div class="product-grid">
@@ -209,6 +292,7 @@
                   Camiseta IMP Gengar Oversized - Black Edition
                 </h3>
               </div>
+
               <p class="product-price">R$ 119,90</p>
             </div>
           </a>
@@ -239,9 +323,9 @@
           </details>
 
           <button
+            class="button button-outline stock-button"
             type="button"
             disabled
-            class="button button-outline stock-button"
           >
             ESGOTADO
           </button>
@@ -275,22 +359,26 @@
                 <p class="product-vendor">IMP RECORDS</p>
                 <h3 class="product-title">Preset Vocal do Twiz</h3>
               </div>
+
               <p class="product-price">R$ 24,90</p>
             </div>
           </a>
 
           <details class="catalog-details" id="preset-detalhes">
             <summary>SOBRE O PRESET</summary>
+
             <p>
               Preset vocal desenvolvido pelo artista Twiz com plugins
               nativos do FL Studio. Uma configuração de efeitos para
               aprimorar o tratamento da voz e servir como ponto de
               partida para suas produções.
             </p>
+
             <p>
               Ajuste os parâmetros conforme sua gravação e o estilo
               que deseja alcançar.
             </p>
+
             <p>
               Produto digital. Requer FL Studio e os plugins
               utilizados no preset.
@@ -298,9 +386,9 @@
           </details>
 
           <button
+            class="button button-outline stock-button"
             type="button"
             disabled
-            class="button button-outline stock-button"
           >
             INDISPONÍVEL
           </button>
@@ -308,12 +396,7 @@
       </div>
     </section>
 
-    <!-- Estas áreas aparecem somente quando acessadas pelo menu. -->
-    <section
-      class="section-wrap standard-page"
-      id="galeria"
-      hidden
-    >
+    <section class="section-wrap standard-page" id="galeria" hidden>
       <div class="section-heading">
         <div>
           <p class="eyebrow">IMP RECORDS / CULTURA EM IMAGENS</p>
@@ -324,10 +407,8 @@
       <article class="lookbook-entry">
         <h2>LOOKBOOK DROP GENGAR</h2>
         <p>Um espaço para o ensaio do Drop Gengar.</p>
-        <a
-          class="text-link"
-          href="./?categoria=lookbook-gengar"
-        >
+
+        <a class="text-link" href="./?categoria=lookbook-gengar">
           VER LOOKBOOK DROP GENGAR ↗
         </a>
       </article>
@@ -349,7 +430,7 @@
         <p>As fotos deste ensaio ainda não foram adicionadas.</p>
       </div>
 
-      <!-- Adicione as fotos do lookbook aqui quando estiverem prontas. -->
+      <!-- Adicione aqui as fotos do lookbook quando estiverem prontas. -->
 
       <p>
         <a class="text-link" href="./?categoria=galeria">
@@ -358,11 +439,7 @@
       </p>
     </section>
 
-    <section
-      class="section-wrap standard-page"
-      id="manifesto"
-      hidden
-    >
+    <section class="section-wrap standard-page" id="manifesto" hidden>
       <div class="section-heading">
         <div>
           <p class="eyebrow">IMP RECORDS®</p>
@@ -434,9 +511,191 @@
     <section class="section-wrap bag-section" id="bag">
       <p class="eyebrow">SUA BAG (0)</p>
       <h2>Seu carrinho está vazio.</h2>
+
       <p>
         Os produtos estão indisponíveis no momento. Compras e
-        pagamentos
-``` [!Loading](#)
+        pagamentos ainda não estão habilitados neste site.
+      </p>
 
-[sidekick-reference-anchor]: <#>
+      <a class="text-link" href="./?categoria=vestuario">
+        EXPLORAR CATÁLOGO ↗
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo" href="./">
+          IMP RECORDS<span>®</span>
+        </a>
+        <p>Feito para quem vive a própria frequência.</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="./?categoria=vestuario">Vestuário</a>
+        <a href="./?categoria=presets">Presets</a>
+        <a href="./?categoria=galeria">Galeria</a>
+        <a href="./?categoria=manifesto">Manifesto</a>
+        <a href="./#bag">Carrinho</a>
+      </nav>
+
+      <div class="newsletter">
+        <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
+        <p>Acompanhe os lançamentos da IMP.</p>
+
+        <div class="footer-links">
+          <a
+            href="https://www.instagram.com/imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram ↗
+          </a>
+
+          <a
+            href="https://www.youtube.com/@imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 IMP RECORDS.</span>
+      <span>MADE FOR THE CULTURE.</span>
+    </div>
+  </footer>
+
+  <script>
+    /* Menu do celular e tablet. Não depende de assets/menu.js. */
+    (() => {
+      const botao = document.querySelector(".menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+
+      if (!botao || !menu) return;
+
+      const fecharMenu = () => {
+        menu.hidden = true;
+        botao.setAttribute("aria-expanded", "false");
+        botao.setAttribute("aria-label", "Abrir menu");
+      };
+
+      botao.addEventListener("click", () => {
+        const aberto = botao.getAttribute("aria-expanded") === "true";
+
+        menu.hidden = aberto;
+        botao.setAttribute("aria-expanded", String(!aberto));
+        botao.setAttribute(
+          "aria-label",
+          aberto ? "Abrir menu" : "Fechar menu"
+        );
+      });
+
+      menu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", fecharMenu);
+      });
+
+      document.addEventListener("keydown", evento => {
+        if (evento.key === "Escape" && !menu.hidden) {
+          fecharMenu();
+          botao.focus();
+        }
+      });
+
+      document.addEventListener("click", evento => {
+        if (
+          !menu.hidden &&
+          !menu.contains(evento.target) &&
+          !botao.contains(evento.target)
+        ) {
+          fecharMenu();
+        }
+      });
+
+      window.matchMedia("(min-width: 901px)").addEventListener(
+        "change",
+        evento => {
+          if (evento.matches) fecharMenu();
+        }
+      );
+    })();
+
+    /* Navegação das categorias. */
+    (() => {
+      const categorias = {
+        "vestuario": "VESTUÁRIO",
+        "presets": "PRESETS",
+        "galeria": "GALERIA",
+        "manifesto": "MANIFESTO",
+        "lookbook-gengar": "LOOKBOOK DROP GENGAR"
+      };
+
+      const categoria = new URLSearchParams(
+        window.location.search
+      ).get("categoria");
+
+      if (!Object.prototype.hasOwnProperty.call(
+        categorias, categoria
+      )) return;
+
+      const main = document.getElementById("main");
+      const secao = document.getElementById(categoria);
+
+      if (!main || !secao || secao.parentElement !== main) return;
+
+      Array.from(main.children).forEach(elemento => {
+        if (elemento !== secao) elemento.remove();
+      });
+
+      secao.hidden = false;
+
+      const titulo = categorias[categoria];
+      const heading = secao.querySelector(".section-heading h2");
+
+      if (heading) {
+        const novoTitulo = document.createElement("h1");
+        novoTitulo.className = "category-title";
+        novoTitulo.textContent = titulo;
+        heading.replaceWith(novoTitulo);
+      }
+
+      document.title = titulo + " | IMP Records";
+
+      const menuAtual = categoria === "lookbook-gengar"
+        ? "galeria"
+        : categoria;
+
+      document.querySelectorAll(
+        'header a[href="./?categoria=' + menuAtual + '"]'
+      ).forEach(link => {
+        link.setAttribute("aria-current", "page");
+      });
+
+      const voltar = document.createElement("a");
+      voltar.href = "./";
+      voltar.className = "text-link category-back";
+      voltar.textContent = "← VOLTAR AO INÍCIO";
+      secao.prepend(voltar);
+    })();
+
+    /* Abre os detalhes quando a foto ou o link do produto é clicado. */
+    document.querySelectorAll(
+      'a[href="#gengar-detalhes"], a[href="#preset-detalhes"]'
+    ).forEach(link => {
+      link.addEventListener("click", () => {
+        const destino = document.getElementById(
+          link.getAttribute("href").slice(1)
+        );
+
+        if (destino && destino.tagName === "DETAILS") {
+          destino.open = true;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

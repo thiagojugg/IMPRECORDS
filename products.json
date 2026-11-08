@@ -1,0 +1,30 @@
+{
+  "currency": "BRL",
+  "products": [
+    {
+      "id": "camiseta-imp-gengar-oversized-black-edition",
+      "name": "Camiseta IMP Gengar Oversized - Black Edition",
+      "description": "",
+      "priceInCents": 11990,
+      "requiresShipping": true,
+      "images": ["assets/camiseta-1.png", "assets/camiseta-2.png", "assets/camiseta-3.png"],
+      "variants": [
+        {"size": "P", "stock": 0},
+        {"size": "M", "stock": 0},
+        {"size": "G", "stock": 0},
+        {"size": "GG", "stock": 0}
+      ],
+      "allowBackorders": false
+    },
+    {
+      "id": "preset-vocal-do-twiz",
+      "name": "Preset Vocal do Twiz",
+      "description": "Preset vocal desenvolvido pelo artista Twiz com plugins nativos do FL Studio. Uma configuração de efeitos para aprimorar o tratamento da voz e servir como ponto de partida para suas produções. Ajuste os parâmetros conforme sua gravação e o estilo que deseja alcançar. Produto digital. Requer FL Studio e os plugins utilizados no preset.",
+      "priceInCents": 2490,
+      "requiresShipping": false,
+      "images": ["assets/preset-twiz.png"],
+      "variants": [{"title": "Default Title", "stock": 0}],
+      "allowBackorders": false
+    }
+  ]
+}

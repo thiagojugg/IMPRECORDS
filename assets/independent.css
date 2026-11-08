@@ -33,3 +33,16 @@
 .product-card-link:hover .product-image img.preset-twiz-image {
   transform: scale(1.12);
 }
+
+
+/* Enquadramento da imagem do preset KINGDOM 808 — Gabriel Leal */
+.product-image img.preset-gabriel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.12);
+}
+.product-card-link:hover .product-image img.preset-gabriel-image {
+  transform: scale(1.16);
+}

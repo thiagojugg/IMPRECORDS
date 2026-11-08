@@ -107,6 +107,9 @@
     .twiz-social {
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
       padding: 25px 0 55px;
     }
 
@@ -142,6 +145,11 @@
       stroke-linejoin: round;
     }
 
+    .twiz-social-link.spotify svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
     @media(max-width:650px) {
       .twiz-hero {
         min-height: 350px;
@@ -150,6 +158,11 @@
 
       .twiz-section {
         padding: 45px 0;
+      }
+
+      .twiz-social-link {
+        width: 100%;
+        max-width: 310px;
       }
     }
   </style>
@@ -304,7 +317,7 @@
     <p class="eyebrow">IMP RECORDS © 2026</p>
   </section>
 
-  <section class="twiz-social" aria-label="Instagram do artista">
+  <section class="twiz-social" aria-label="Redes e plataformas do artista">
     <a
       class="twiz-social-link"
       href="https://www.instagram.com/eutwiz/"
@@ -318,6 +331,20 @@
         <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
       </svg>
       <span>INSTAGRAM · @EUTWIZ</span>
+    </a>
+
+    <a
+      class="twiz-social-link spotify"
+      href="https://open.spotify.com/intl-pt/artist/5q7ElOJZpIriKIyo4u1ryt?si=CgTL6X8wRFazICjQ1-GIKQ"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Acessar perfil de Twiz no Spotify"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M6.5 9.2c3.8-1.1 8.4-.7 11.3 1.1M7.2 12.2c3.2-.9 7-.5 9.6 1M8 15c2.6-.7 5.5-.3 7.8.8" fill="none" stroke="#000" stroke-width="1.7" stroke-linecap="round"></path>
+      </svg>
+      <span>SPOTIFY · TWIZ</span>
     </a>
   </section>
 

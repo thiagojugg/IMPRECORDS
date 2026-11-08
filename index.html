@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="./assets/independent.css">
 
   <style>
+    [hidden] {
+      display: none !important;
+    }
+
     .category-back {
       display: inline-block;
       margin-bottom: 28px;
@@ -25,9 +29,59 @@
       text-underline-offset: 6px;
     }
 
+    .manifesto-content {
+      max-width: 760px;
+      color: #ccc;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .manifesto-content h2 {
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.2;
+      margin: 36px 0 24px;
+    }
+
+    .manifesto-content strong {
+      color: #fff;
+    }
+
+    .lookbook-entry {
+      max-width: 760px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: #111;
+    }
+
+    .lookbook-entry h2 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 36px);
+      margin: 0 0 16px;
+    }
+
+    .lookbook-entry p {
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    .lookbook-entry .text-link {
+      display: inline-block;
+      margin-top: 12px;
+    }
+
     @media (max-width: 650px) {
       .section-heading .category-title {
         font-size: 36px;
+      }
+
+      .manifesto-content {
+        font-size: 14px;
+      }
+
+      .lookbook-entry {
+        padding: 22px;
       }
     }
   </style>
@@ -56,7 +110,8 @@
       <nav class="desktop-nav" aria-label="Navegação principal">
         <a href="./?categoria=vestuario">VESTUÁRIO</a>
         <a href="./?categoria=presets">PRESETS</a>
-        <a href="./#lancamento">LANÇAMENTO</a>
+        <a href="./?categoria=galeria">GALERIA</a>
+        <a href="./?categoria=manifesto">MANIFESTO</a>
       </nav>
 
       <div class="header-actions">
@@ -74,7 +129,8 @@
     >
       <a href="./?categoria=vestuario">VESTUÁRIO</a>
       <a href="./?categoria=presets">PRESETS</a>
-      <a href="./#lancamento">LANÇAMENTO</a>
+      <a href="./?categoria=galeria">GALERIA</a>
+      <a href="./?categoria=manifesto">MANIFESTO</a>
     </nav>
   </header>
 
@@ -185,6 +241,7 @@
           </details>
 
           <button
+            type="button"
             disabled
             class="button button-outline stock-button"
           >
@@ -243,12 +300,114 @@
           </details>
 
           <button
+            type="button"
             disabled
             class="button button-outline stock-button"
           >
             INDISPONÍVEL
           </button>
         </article>
+      </div>
+    </section>
+
+    <!-- Estas áreas aparecem somente quando acessadas pelo menu. -->
+    <section
+      class="section-wrap standard-page"
+      id="galeria"
+      hidden
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">IMP RECORDS / CULTURA EM IMAGENS</p>
+          <h2>GALERIA</h2>
+        </div>
+      </div>
+
+      <article class="lookbook-entry">
+        <h2>LOOKBOOK DROP GENGAR</h2>
+        <p>Um espaço para o ensaio do Drop Gengar.</p>
+        <a
+          class="text-link"
+          href="./?categoria=lookbook-gengar"
+        >
+          VER LOOKBOOK DROP GENGAR ↗
+        </a>
+      </article>
+    </section>
+
+    <section
+      class="section-wrap standard-page"
+      id="lookbook-gengar"
+      hidden
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">GALERIA / DROP GENGAR</p>
+          <h2>LOOKBOOK DROP GENGAR</h2>
+        </div>
+      </div>
+
+      <div class="rte">
+        <p>As fotos deste ensaio ainda não foram adicionadas.</p>
+      </div>
+
+      <!-- Adicione as fotos do lookbook aqui quando estiverem prontas. -->
+
+      <p>
+        <a class="text-link" href="./?categoria=galeria">
+          ← VOLTAR À GALERIA
+        </a>
+      </p>
+    </section>
+
+    <section
+      class="section-wrap standard-page"
+      id="manifesto"
+      hidden
+    >
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">IMP RECORDS®</p>
+          <h2>MANIFESTO</h2>
+        </div>
+      </div>
+
+      <div class="manifesto-content">
+        <h2>É A IMP NO COMANDO!</h2>
+
+        <p>Não nascemos para seguir padrões.</p>
+
+        <p>
+          A IMP RECORDS nasce da conexão entre música, moda e cultura
+          underground. Uma identidade construída na independência,
+          na criatividade e na liberdade de expressão.
+        </p>
+
+        <p>
+          Nossa essência vem das ruas, dos sons, da arte e de uma
+          geração que não tem medo de ser diferente.
+        </p>
+
+        <p>
+          Acreditamos que roupa não é apenas aparência. É identidade.
+          É atitude. É uma forma de mostrar ao mundo quem você é.
+        </p>
+
+        <p>
+          Não seguimos tendências. Criamos nossa própria frequência.
+        </p>
+
+        <p>
+          Nascida no Brasil, diretamente do Maranhão, a IMP carrega
+          uma identidade própria, com influência global e raízes
+          na cultura urbana.
+        </p>
+
+        <h2>WE DON'T FOLLOW. WE CREATE.</h2>
+
+        <p>
+          <strong>IMP RECORDS® — MADE IN MARANHÃO.</strong>
+        </p>
       </div>
     </section>
 
@@ -279,106 +438,7 @@
       <h2>Seu carrinho está vazio.</h2>
       <p>
         Os produtos estão indisponíveis no momento. Compras e
-        pagamentos ainda não estão habilitados neste site.
-      </p>
-      <a class="text-link" href="./?categoria=vestuario">
-        EXPLORAR CATÁLOGO ↗
-      </a>
-    </section>
-  </main>
+        pagamentos
+``` [!Loading](#)
 
-  <footer class="site-footer">
-    <div class="footer-top">
-      <div>
-        <a class="footer-logo" href="./">
-          IMP RECORDS<span>®</span>
-        </a>
-        <p>Feito para quem vive a própria frequência.</p>
-      </div>
-
-      <nav class="footer-links" aria-label="Links do rodapé">
-        <a href="./?categoria=vestuario">Shop</a>
-        <a href="./?categoria=presets">Presets</a>
-        <a href="./#bag">Carrinho</a>
-      </nav>
-
-      <div class="newsletter">
-        <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
-        <p>Acompanhe os lançamentos da IMP.</p>
-
-        <div class="footer-links">
-          <a
-            href="https://www.instagram.com/imp_records"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram ↗
-          </a>
-          <a
-            href="https://www.youtube.com/@imp_records"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            YouTube ↗
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>© 2026 IMP RECORDS.</span>
-      <span>MADE FOR THE CULTURE.</span>
-    </div>
-  </footer>
-
-  <script src="./assets/menu.js"></script>
-
-  <script>
-    (() => {
-      const categoria = new URLSearchParams(
-        window.location.search
-      ).get("categoria");
-
-      /* A página inicial continua completa. */
-      if (!["vestuario", "presets"].includes(categoria)) return;
-
-      const main = document.getElementById("main");
-      const secao = document.getElementById(categoria);
-
-      if (!main || !secao || secao.parentElement !== main) return;
-
-      /* Mantém somente os produtos da categoria escolhida. */
-      Array.from(main.children).forEach(elemento => {
-        if (elemento !== secao) elemento.remove();
-      });
-
-      const titulo = categoria === "vestuario"
-        ? "VESTUÁRIO"
-        : "PRESETS";
-
-      const heading = secao.querySelector(".section-heading h2");
-
-      if (heading) {
-        const novoTitulo = document.createElement("h1");
-        novoTitulo.className = "category-title";
-        novoTitulo.textContent = titulo;
-        heading.replaceWith(novoTitulo);
-      }
-
-      document.title = titulo + " | IMP Records";
-
-      document.querySelectorAll(
-        'a[href="./?categoria=' + categoria + '"]'
-      ).forEach(link => {
-        link.setAttribute("aria-current", "page");
-      });
-
-      const voltar = document.createElement("a");
-      voltar.href = "./";
-      voltar.className = "text-link category-back";
-      voltar.textContent = "← VOLTAR AO INÍCIO";
-      secao.prepend(voltar);
-    })();
-  </script>
-</body>
-</html>
+[sidekick-reference-anchor]: <#>

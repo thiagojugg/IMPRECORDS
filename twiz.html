@@ -83,6 +83,50 @@
       line-height: 1.95;
     }
 
+    .twiz-albums {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .twiz-album {
+      min-height: 190px;
+      padding: 25px;
+      background: #111;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .3s;
+    }
+
+    .twiz-album:hover {
+      border-color: #888;
+      transform: translateY(-3px);
+    }
+
+    .twiz-album span {
+      color: #888;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+
+    .twiz-album h3 {
+      color: #fff;
+      font: clamp(22px, 2.8vw, 32px)/1 var(--font-display);
+      overflow-wrap: anywhere;
+      margin: 22px 0 10px;
+    }
+
+    .twiz-album p {
+      color: #aaa;
+      font-size: 12px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
     .twiz-quote {
       padding: 80px 20px;
       text-align: center;
@@ -158,6 +202,14 @@
 
       .twiz-section {
         padding: 45px 0;
+      }
+
+      .twiz-albums {
+        grid-template-columns: 1fr;
+      }
+
+      .twiz-album {
+        min-height: 150px;
       }
 
       .twiz-social-link {
@@ -273,8 +325,37 @@
     </p>
   </section>
 
+  <section class="twiz-section twiz-works">
+    <span class="number">05 / TRABALHOS CRIADOS</span>
+    <h2>PROJETOS QUE MARCAM CADA FASE.</h2>
+
+    <p>
+      Ao longo de sua caminhada artística, Twiz desenvolveu três projetos
+      em formato de álbum, cada um criado em um momento diferente de sua
+      trajetória e representando uma etapa de sua construção musical.
+    </p>
+
+    <div class="twiz-albums">
+      <article class="twiz-album">
+        <span>ÁLBUM CRIADO · 2020</span>
+        <h3>AINDA SOU O MESMO</h3>
+      </article>
+
+      <article class="twiz-album">
+        <span>ÁLBUM CRIADO · 2025</span>
+        <h3>TWIZ</h3>
+        <p>Um projeto que representa o próprio nome e a identidade artística do artista.</p>
+      </article>
+
+      <article class="twiz-album">
+        <span>ÁLBUM CRIADO · 2026</span>
+        <h3>TODO MUNDO ODEIA O TWIZ</h3>
+      </article>
+    </div>
+  </section>
+
   <section class="twiz-section">
-    <span class="number">05 / TRAJETÓRIA</span>
+    <span class="number">06 / TRAJETÓRIA</span>
     <h2>DESAFIOS E PERSISTÊNCIA.</h2>
 
     <p>
@@ -287,7 +368,7 @@
   </section>
 
   <section class="twiz-section">
-    <span class="number">06 / FUTURO</span>
+    <span class="number">07 / FUTURO</span>
     <h2>UMA HISTÓRIA EM CONSTRUÇÃO.</h2>
 
     <p>

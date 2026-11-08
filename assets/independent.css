@@ -41,8 +41,8 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.30);
+  transform: scale(1.10);
 }
 .product-card-link:hover .product-image img.preset-gabriel-image {
-  transform: scale(1.34);
+  transform: scale(1.12);
 }

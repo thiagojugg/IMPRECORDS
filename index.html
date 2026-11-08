@@ -1185,5 +1185,20 @@
   }, true);
 })();
 </script>
+  <script>
+  document.querySelectorAll("a, button").forEach(elemento => {
+    const texto = elemento.textContent
+      .replace(/\s+/g, " ")
+      .trim()
+      .toUpperCase();
+
+    if (
+      texto.startsWith("EXPLORAR DROP") &&
+      !elemento.closest(".hero")
+    ) {
+      elemento.remove();
+    }
+  });
+</script>
 </body>
 </html>

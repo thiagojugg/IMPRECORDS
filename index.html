@@ -1133,6 +1133,21 @@
         "Produto digital. Requer FL Studio e os plugins utilizados no preset.",
         "Indisponível no momento. Compras e pagamentos não estão habilitados neste site."
       ]
+    },
+
+    gabriel: {
+      nome: "KINGDOM 808",
+      preco: "R$ 24,90",
+      categoria: "presets",
+      status: "ESGOTADO",
+      fotos: [
+        "./assets/preset-gabriel.png"
+      ],
+      descricao: [
+        "KINGDOM 808 — preset desenvolvido pelo produtor Gabriel Leal.",
+        "Produto digital para produtores musicais.",
+        "Esgotado no momento. Compras e pagamentos não estão habilitados neste site."
+      ]
     }
   };
 
@@ -1172,6 +1187,11 @@
         url.searchParams.get("produto") === "twiz"
       ) {
         codigo = "twiz";
+      } else if (
+        url.hash === "#preset-em-breve-detalhes" ||
+        url.searchParams.get("produto") === "gabriel"
+      ) {
+        codigo = "gabriel";
       }
 
       if (!codigo) return;

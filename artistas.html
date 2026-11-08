@@ -1,142 +1,147 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artistas | IMP RECORDS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artistas | IMP RECORDS</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
 
-        body {
-            background: #080808;
-            color: #fff;
-            font-family: Arial, sans-serif;
-        }
+  <style>
+    .artists-page {
+      min-height: 65vh;
+      padding-top: 90px;
+    }
 
-        header {
-            padding: 25px 8%;
-            border-bottom: 1px solid #222;
-        }
+    .artists-intro {
+      padding-bottom: 45px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 40px;
+    }
 
-        header a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            letter-spacing: 2px;
-        }
+    .artists-intro h1 {
+      font: clamp(48px, 8vw, 100px)/.95 var(--font-display);
+      letter-spacing: -.06em;
+      margin: 0;
+    }
 
-        main {
-            padding: 70px 8%;
-        }
+    .artists-intro p {
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      margin: 18px 0 0;
+    }
 
-        .titulo {
-            text-align: center;
-            margin-bottom: 55px;
-        }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
 
-        .titulo h1 {
-            font-size: clamp(38px, 7vw, 75px);
-            letter-spacing: 8px;
-            font-weight: 900;
-        }
+    .artist-card {
+      min-height: 260px;
+      padding: 35px 25px;
+      background: #111;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: .3s;
+    }
 
-        .titulo p {
-            color: #888;
-            margin-top: 12px;
-            letter-spacing: 3px;
-            font-size: 12px;
-        }
+    .artist-card:hover {
+      border-color: #888;
+      transform: translateY(-5px);
+    }
 
-        .artistas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            max-width: 1100px;
-            margin: auto;
-        }
+    .artist-card h2 {
+      font: clamp(25px, 3vw, 40px)/1 var(--font-display);
+      letter-spacing: -.05em;
+      margin: 0;
+    }
 
-        .artista {
-            background: #111;
-            border: 1px solid #252525;
-            text-align: center;
-            padding: 55px 15px;
-            transition: .3s;
-        }
+    .artist-card span {
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      margin-top: 14px;
+    }
 
-        .artista:hover {
-            transform: translateY(-7px);
-            border-color: #777;
-        }
+    @media (max-width: 650px) {
+      .artists-page {
+        padding-top: 65px;
+      }
 
-        .artista h2 {
-            font-size: 25px;
-            letter-spacing: 3px;
-        }
+      .artists-grid {
+        grid-template-columns: 1fr;
+      }
 
-        .artista span {
-            display: block;
-            color: #888;
-            font-size: 11px;
-            letter-spacing: 3px;
-            margin-top: 12px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            font-size: 11px;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 650px) {
-            .artistas {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+      .artist-card {
+        min-height: 190px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-    <header>
-        <a href="index.html">← VOLTAR PARA A IMP RECORDS</a>
-    </header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="./" aria-label="IMP Records, início">
+        IMP<span>®</span>
+      </a>
 
-    <main>
-        <section class="titulo">
-            <h1>ARTISTAS</h1>
-            <p>IMP RECORDS — STREET DIVISION</p>
-        </section>
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="./?categoria=vestuario">VESTUÁRIO</a>
+        <a href="./?categoria=presets">PRESETS</a>
+        <a href="./?categoria=galeria">GALERIA</a>
+        <a href="./artistas.html" aria-current="page">ARTISTAS</a>
+        <a href="./?categoria=manifesto">MANIFESTO</a>
+      </nav>
 
-        <section class="artistas">
+      <div class="header-actions">
+        <a class="cart-link" href="./?categoria=bag">BAG <span>(0)</span></a>
+      </div>
+    </div>
+  </header>
 
-            <article class="artista">
-                <h2>TWIZ</h2>
-                <span>ARTISTA IMP RECORDS</span>
-            </article>
+  <main id="main" class="section-wrap artists-page">
+    <a class="text-link category-back" href="./">← VOLTAR AO INÍCIO</a>
 
-            <article class="artista">
-                <h2>OLLIVERVN</h2>
-                <span>ARTISTA IMP RECORDS</span>
-            </article>
+    <section class="artists-intro">
+      <p class="eyebrow">IMP RECORDS / STREET DIVISION</p>
+      <h1>ARTISTAS</h1>
+      <p>CONHEÇA QUEM FAZ PARTE DA NOSSA FREQUÊNCIA.</p>
+    </section>
 
-            <article class="artista">
-                <h2>LOWEST</h2>
-                <span>ARTISTA IMP RECORDS</span>
-            </article>
+    <section class="artists-grid">
+      <article class="artist-card">
+        <h2>TWIZ</h2>
+        <span>ARTISTA IMP RECORDS</span>
+      </article>
 
-        </section>
-    </main>
+      <article class="artist-card">
+        <h2>OLLIVERVN</h2>
+        <span>ARTISTA IMP RECORDS</span>
+      </article>
 
-    <footer>
-        © IMP RECORDS — TODOS OS DIREITOS RESERVADOS
-    </footer>
+      <article class="artist-card">
+        <h2>LOWEST</h2>
+        <span>ARTISTA IMP RECORDS</span>
+      </article>
+    </section>
+  </main>
 
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span>
+    </div>
+  </footer>
 </body>
 </html>

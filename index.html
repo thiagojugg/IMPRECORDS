@@ -700,5 +700,490 @@
    href="./?categoria=vestuario#gengar-detalhes">
   EXPLORAR DROP <span>↗</span>
 </a>
+  <style>
+  .imp-produto {
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 5vw 80px;
+  }
+
+  .imp-produto-voltar {
+    display: inline-block;
+    margin-bottom: 28px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+  }
+
+  .imp-produto-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+    gap: 6vw;
+    align-items: start;
+  }
+
+  .imp-produto-foto {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: #171717;
+    cursor: zoom-in;
+  }
+
+  .imp-produto-foto img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .imp-produto-extras {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+    align-items: start;
+  }
+
+  .imp-produto-dica {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #aaa;
+  }
+
+  .imp-produto-info {
+    position: sticky;
+    top: 30px;
+  }
+
+  .imp-produto-info h1 {
+    margin: 0 0 22px;
+    font-family: var(--font-display, Impact, sans-serif);
+    font-size: clamp(32px, 4.3vw, 64px);
+    line-height: 1;
+    letter-spacing: -.05em;
+    overflow-wrap: anywhere;
+  }
+
+  .imp-produto-preco {
+    margin: 0 0 32px;
+    font-size: 18px;
+  }
+
+  .imp-produto-info label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+  }
+
+  .imp-produto-info select {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 14px;
+    border: 1px solid #444;
+    background: #111;
+    color: #fff;
+  }
+
+  .imp-produto-status {
+    width: 100%;
+    min-height: 52px;
+    padding: 16px;
+    border: 0;
+    background: #eee;
+    color: #111;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    cursor: not-allowed;
+  }
+
+  .imp-produto-descricao {
+    margin-top: 28px;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .imp-foto-modal {
+    width: min(1100px, 94vw);
+    max-width: 94vw;
+    max-height: 94vh;
+    padding: 0;
+    border: 0;
+    background: #111;
+    color: #fff;
+  }
+
+  .imp-foto-modal::backdrop {
+    background: rgba(0, 0, 0, .92);
+  }
+
+  .imp-foto-modal img {
+    display: block;
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .imp-foto-fechar {
+    display: block;
+    margin: 12px 12px 12px auto;
+    padding: 12px 18px;
+    border: 1px solid #777;
+    background: #111;
+    color: #fff;
+  }
+
+  @media (max-width: 750px) {
+    .imp-produto {
+      padding-top: 25px;
+    }
+
+    .imp-produto-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .imp-produto-info {
+      position: static;
+    }
+
+    .imp-produto-info h1 {
+      font-size: clamp(32px, 8vw, 48px);
+    }
+  }
+</style>
+
+<script>
+(() => {
+  const produtos = {
+    gengar: {
+      nome: "Camiseta IMP Gengar Oversized - Black Edition",
+      preco: "R$ 119,90",
+      categoria: "vestuario",
+      status: "ESGOTADO",
+      fotos: [
+        "./assets/camiseta-1.png",
+        "./assets/camiseta-2.png",
+        "./assets/camiseta-3.png"
+      ],
+      descricao: [
+        "Camiseta IMP Gengar Oversized - Black Edition.",
+        "Produto esgotado no momento. Compras e pagamentos não estão habilitados neste site."
+      ]
+    },
+
+    twiz: {
+      nome: "Preset Vocal do Twiz",
+      preco: "R$ 24,90",
+      categoria: "presets",
+      status: "INDISPONÍVEL",
+      fotos: [
+        "./assets/preset-twiz.png"
+      ],
+      descricao: [
+        "Preset vocal desenvolvido pelo artista Twiz com plugins nativos do FL Studio. Uma configuração de efeitos para aprimorar o tratamento da voz e servir como ponto de partida para suas produções.",
+        "Ajuste os parâmetros conforme sua gravação e o estilo que deseja alcançar.",
+        "Produto digital. Requer FL Studio e os plugins utilizados no preset.",
+        "Indisponível no momento. Compras e pagamentos não estão habilitados neste site."
+      ]
+    }
+  };
+
+  const main = document.getElementById("main");
+  if (!main) return;
+
+  /*
+    Atualiza os links dos produtos e do botão do banner.
+    A categoria continua no endereço para manter
+    compatibilidade com a navegação existente.
+  */
+  function atualizarLinks() {
+    document.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      let url;
+
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (url.origin !== window.location.origin) return;
+
+      const texto = link.textContent.trim().toUpperCase();
+      let codigo = null;
+
+      if (
+        url.hash === "#gengar-detalhes" ||
+        url.hash === "#gengar" ||
+        url.searchParams.get("produto") === "gengar" ||
+        texto.startsWith("EXPLORAR DROP")
+      ) {
+        codigo = "gengar";
+      } else if (
+        url.hash === "#preset-detalhes" ||
+        url.searchParams.get("produto") === "twiz"
+      ) {
+        codigo = "twiz";
+      }
+
+      if (!codigo) return;
+
+      const produto = produtos[codigo];
+
+      link.href =
+        "./?categoria=" + produto.categoria +
+        "&produto=" + codigo;
+    });
+  }
+
+  atualizarLinks();
+
+  /*
+    Um endereço de produto é aberto com carregamento normal.
+    Isso evita conflito com o código das abas já instalado.
+  */
+  document.addEventListener("click", evento => {
+    if (
+      evento.button !== 0 ||
+      evento.ctrlKey ||
+      evento.metaKey ||
+      evento.shiftKey ||
+      evento.altKey
+    ) return;
+
+    const link = evento.target.closest("a[href]");
+    if (!link || link.target === "_blank") return;
+
+    const url = new URL(link.href, window.location.href);
+    if (url.origin !== window.location.origin) return;
+
+    const codigo = url.searchParams.get("produto");
+
+    if (!Object.prototype.hasOwnProperty.call(produtos, codigo)) {
+      return;
+    }
+
+    evento.preventDefault();
+    evento.stopImmediatePropagation();
+    window.location.assign(url.href);
+  }, true);
+
+  /*
+    Após uma troca de categoria, reaplica os links
+    caso a navegação tenha criado algum elemento.
+  */
+  const observador = new MutationObserver(atualizarLinks);
+
+  observador.observe(main, {
+    childList: true,
+    subtree: true
+  });
+
+  const codigo = new URLSearchParams(
+    window.location.search
+  ).get("produto");
+
+  if (!Object.prototype.hasOwnProperty.call(produtos, codigo)) {
+    return;
+  }
+
+  observador.disconnect();
+
+  const produto = produtos[codigo];
+
+  function criar(tag, classe, texto) {
+    const elemento = document.createElement(tag);
+
+    if (classe) elemento.className = classe;
+    if (texto) elemento.textContent = texto;
+
+    return elemento;
+  }
+
+  const pagina = criar("section", "imp-produto");
+
+  const voltar = criar(
+    "a",
+    "imp-produto-voltar",
+    "← VOLTAR AO CATÁLOGO"
+  );
+
+  voltar.href = "./?categoria=" + produto.categoria;
+  pagina.append(voltar);
+
+  const layout = criar("div", "imp-produto-layout");
+  const galeria = criar("div");
+  const extras = criar("div", "imp-produto-extras");
+
+  const modal = criar("dialog", "imp-foto-modal");
+  modal.setAttribute("aria-label", "Foto ampliada do produto");
+
+  const fechar = criar(
+    "button",
+    "imp-foto-fechar",
+    "FECHAR ✕"
+  );
+  fechar.type = "button";
+
+  const fotoAmpliada = criar("img");
+  fotoAmpliada.alt = "";
+
+  modal.append(fechar, fotoAmpliada);
+  document.body.append(modal);
+
+  fechar.addEventListener("click", () => modal.close());
+
+  modal.addEventListener("click", evento => {
+    if (evento.target !== modal) return;
+
+    const area = modal.getBoundingClientRect();
+
+    if (
+      evento.clientX < area.left ||
+      evento.clientX > area.right ||
+      evento.clientY < area.top ||
+      evento.clientY > area.bottom
+    ) {
+      modal.close();
+    }
+  });
+
+  produto.fotos.forEach((src, indice) => {
+    const botao = criar("button", "imp-produto-foto");
+    botao.type = "button";
+
+    botao.setAttribute(
+      "aria-label",
+      "Ampliar foto " + (indice + 1) + " de " + produto.nome
+    );
+
+    const imagem = criar("img");
+    imagem.src = src;
+    imagem.alt = produto.nome + " — foto " + (indice + 1);
+    imagem.loading = indice === 0 ? "eager" : "lazy";
+
+    botao.append(imagem);
+
+    botao.addEventListener("click", () => {
+      fotoAmpliada.src = src;
+      fotoAmpliada.alt = imagem.alt;
+      modal.showModal();
+    });
+
+    if (indice === 0) {
+      galeria.append(botao);
+    } else {
+      extras.append(botao);
+    }
+  });
+
+  if (extras.children.length) galeria.append(extras);
+
+  galeria.append(
+    criar(
+      "p",
+      "imp-produto-dica",
+      "Clique ou toque em uma foto para ampliar."
+    )
+  );
+
+  const info = criar("div", "imp-produto-info");
+
+  info.append(
+    criar("p", "eyebrow", "IMP RECORDS"),
+    criar("h1", "", produto.nome),
+    criar("p", "imp-produto-preco", produto.preco)
+  );
+
+  if (produto.categoria === "vestuario") {
+    const label = criar("label", "", "TAMANHO");
+    label.htmlFor = "imp-produto-tamanho";
+
+    const select = criar("select");
+    select.id = "imp-produto-tamanho";
+
+    ["P", "M", "G", "GG"].forEach(tamanho => {
+      const option = criar(
+        "option",
+        "",
+        tamanho + " — esgotado"
+      );
+      select.append(option);
+    });
+
+    info.append(label, select);
+  }
+
+  const status = criar(
+    "button",
+    "imp-produto-status",
+    produto.status
+  );
+
+  status.type = "button";
+  status.disabled = true;
+
+  const descricao = criar("div", "imp-produto-descricao");
+
+  produto.descricao.forEach(texto => {
+    descricao.append(criar("p", "", texto));
+  });
+
+  info.append(status, descricao);
+  layout.append(galeria, info);
+  pagina.append(layout);
+
+  main.replaceChildren(pagina);
+  document.title = produto.nome + " | IMP Records";
+
+  document.querySelectorAll(
+    'header a[href*="categoria="]'
+  ).forEach(link => {
+    const url = new URL(link.href, window.location.href);
+
+    if (
+      url.searchParams.get("categoria") === produto.categoria
+    ) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+
+  /*
+    Ao sair da página do produto pelas abas, recarrega
+    o catálogo para restaurar suas seções originais.
+  */
+  document.addEventListener("click", evento => {
+    if (
+      evento.button !== 0 ||
+      evento.ctrlKey ||
+      evento.metaKey ||
+      evento.shiftKey ||
+      evento.altKey
+    ) return;
+
+    const link = evento.target.closest("a[href]");
+    if (!link || link.target === "_blank") return;
+
+    const url = new URL(link.href, window.location.href);
+
+    if (
+      url.origin !== window.location.origin ||
+      url.pathname !== window.location.pathname ||
+      url.searchParams.has("produto")
+    ) return;
+
+    evento.preventDefault();
+    evento.stopImmediatePropagation();
+    window.location.assign(url.href);
+  }, true);
+})();
+</script>
 </body>
 </html>

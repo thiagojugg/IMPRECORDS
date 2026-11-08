@@ -505,7 +505,7 @@
       </a>
     </section>
 
-    <section class="section-wrap bag-section" id="bag">
+      <section class="section-wrap bag-section" id="bag" hidden>
       <p class="eyebrow">SUA BAG (0)</p>
       <h2>Seu carrinho está vazio.</h2>
 
@@ -623,13 +623,14 @@
 
     /* Navegação das categorias. */
     (() => {
-      const categorias = {
-        "vestuario": "VESTUÁRIO",
-        "presets": "PRESETS",
-        "galeria": "GALERIA",
-        "manifesto": "MANIFESTO",
-        "lookbook-gengar": "LOOKBOOK DROP GENGAR"
-      };
+        const categorias = {
+    "vestuario": "VESTUÁRIO",
+    "presets": "PRESETS",
+    "galeria": "GALERIA",
+    "manifesto": "MANIFESTO",
+    "lookbook-gengar": "LOOKBOOK DROP GENGAR",
+    "bag": "SUA BAG"
+  };
 
       const categoria = new URLSearchParams(
         window.location.search

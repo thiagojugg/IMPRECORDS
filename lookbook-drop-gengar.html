@@ -639,5 +639,475 @@
       });
     })();
   </script>
+  <style>
+  .imp-curtida-area {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 20px;
+  }
+
+  .imp-curtida {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid #555;
+    border-radius: 30px;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    font: 14px Arial, sans-serif;
+  }
+
+  .imp-curtida[aria-pressed="true"] {
+    border-color: #ff5277;
+    color: #ff5277;
+  }
+
+  .imp-curtida:disabled {
+    opacity: .5;
+    cursor: wait;
+  }
+
+  .imp-curtida:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+
+  .imp-curtida-coracao {
+    font-size: 23px;
+    line-height: 1;
+  }
+
+  .imp-curtida-status {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #aaa;
+  }
+
+  .imp-captcha-modal {
+    width: min(380px, 95vw);
+    max-width: 95vw;
+    padding: 20px;
+    border: 1px solid #555;
+    background: #111;
+    color: #fff;
+  }
+
+  .imp-captcha-modal::backdrop {
+    background: rgba(0, 0, 0, .85);
+  }
+
+  .imp-captcha-modal h2 {
+    margin: 0 0 12px;
+    font: bold 20px Arial, sans-serif;
+  }
+
+  .imp-captcha-modal p {
+    color: #bbb;
+    font: 13px/1.6 Arial, sans-serif;
+  }
+
+  .imp-captcha-fechar {
+    padding: 10px 14px;
+    margin-top: 18px;
+    border: 1px solid #777;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #imp-captcha-container {
+    min-height: 80px;
+    overflow-x: auto;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+(() => {
+  const URL_PROJETO =
+    "https://livbviutessdnblcqyvv.supabase.co";
+
+  const CHAVE_PUBLICA =
+    "sb_publishable_sFAQFrL1A5KIu8XGdLumiw_6PL0lvCr";
+
+  const SITEKEY_HCAPTCHA =
+    "f69a0818-365a-432e-be60-8e760efc9f1c";
+
+  const fotos = [
+    "isabele",
+    "kouth",
+    "twiz",
+    "matheus",
+    "ryan",
+    "eloa",
+    "lucas",
+    "kamili"
+  ];
+
+  if (document.getElementById("imp-captcha-modal")) return;
+
+  if (!window.supabase) {
+    console.error("Não foi possível carregar a conexão das curtidas.");
+    return;
+  }
+
+  const banco = window.supabase.createClient(
+    URL_PROJETO,
+    CHAVE_PUBLICA
+  );
+
+  const controles = new Map();
+  const minhasCurtidas = new Set();
+
+  let usuario = null;
+  let ocupado = false;
+  let atualizando = false;
+  let captchaCarregando = null;
+
+  const modal = document.createElement("dialog");
+  modal.id = "imp-captcha-modal";
+  modal.className = "imp-captcha-modal";
+  modal.setAttribute("aria-labelledby", "imp-captcha-titulo");
+
+  modal.innerHTML = `
+    <h2 id="imp-captcha-titulo">Confirme para curtir</h2>
+    <p>
+      Complete a verificação abaixo para registrar sua curtida.
+    </p>
+    <div id="imp-captcha-container"></div>
+    <button
+      class="imp-captcha-fechar"
+      type="button"
+    >CANCELAR</button>
+  `;
+
+  document.body.append(modal);
+
+  modal.querySelector("button").addEventListener("click", () => {
+    modal.close();
+  });
+
+  function carregarCaptcha() {
+    if (window.hcaptcha) return Promise.resolve();
+
+    if (captchaCarregando) return captchaCarregando;
+
+    captchaCarregando = new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      let encerrado = false;
+
+      const finalizar = erro => {
+        if (encerrado) return;
+        encerrado = true;
+        clearTimeout(limite);
+
+        if (erro) {
+          captchaCarregando = null;
+          script.remove();
+          reject(erro);
+        } else {
+          resolve();
+        }
+      };
+
+      const limite = setTimeout(() => {
+        finalizar(new Error("Tempo de carregamento excedido."));
+      }, 20000);
+
+      window.impHcaptchaPronto = () => finalizar();
+
+      script.src =
+        "https://js.hcaptcha.com/1/api.js" +
+        "?render=explicit&onload=impHcaptchaPronto";
+
+      script.async = true;
+      script.defer = true;
+
+      script.onerror = () => {
+        finalizar(new Error("Falha ao carregar hCaptcha."));
+      };
+
+      document.head.append(script);
+    });
+
+    return captchaCarregando;
+  }
+
+  async function verificarCaptcha() {
+    await carregarCaptcha();
+
+    return new Promise((resolve, reject) => {
+      const container = document.getElementById(
+        "imp-captcha-container"
+      );
+
+      container.replaceChildren();
+
+      let widget = null;
+      let finalizado = false;
+
+      function concluir(erro, token) {
+        if (finalizado) return;
+        finalizado = true;
+
+        modal.removeEventListener("close", cancelar);
+
+        if (widget !== null) {
+          window.hcaptcha.remove(widget);
+        }
+
+        if (modal.open) modal.close();
+
+        if (erro) reject(erro);
+        else resolve(token);
+      }
+
+      function cancelar() {
+        concluir(new Error("Verificação cancelada."));
+      }
+
+      modal.addEventListener("close", cancelar);
+      modal.showModal();
+
+      try {
+        widget = window.hcaptcha.render(container, {
+          sitekey: SITEKEY_HCAPTCHA,
+          theme: "dark",
+
+          callback: token => concluir(null, token),
+
+          "error-callback": () => {
+            concluir(
+              new Error("A verificação falhou. Tente novamente.")
+            );
+          },
+
+          "expired-callback": () => {
+            concluir(
+              new Error("A verificação expirou. Tente novamente.")
+            );
+          }
+        });
+      } catch (erro) {
+        concluir(erro);
+      }
+    });
+  }
+
+  function atualizarCoracoes() {
+    controles.forEach((controle, id) => {
+      const curtida = minhasCurtidas.has(id);
+
+      controle.botao.setAttribute(
+        "aria-pressed",
+        String(curtida)
+      );
+
+      controle.coracao.textContent = curtida ? "♥" : "♡";
+      controle.texto.textContent = curtida ? "Curtido" : "Curtir";
+
+      controle.botao.setAttribute(
+        "aria-label",
+        (curtida ? "Descurtir" : "Curtir") +
+        " foto de " + id
+      );
+    });
+  }
+
+  function bloquear(valor) {
+    controles.forEach(controle => {
+      controle.botao.disabled = valor;
+    });
+  }
+
+  async function lerTotais() {
+    const { data, error } = await banco.rpc(
+      "lookbook_like_counts"
+    );
+
+    if (error) throw error;
+
+    if (!Array.isArray(data)) {
+      throw new Error("Resposta inválida ao consultar curtidas.");
+    }
+
+    const totais = new Map(
+      data.map(item => [item.photo_id, item.total])
+    );
+
+    controles.forEach((controle, id) => {
+      controle.numero.textContent = String(totais.get(id) ?? 0);
+    });
+  }
+
+  async function lerMinhasCurtidas() {
+    if (!usuario) return;
+
+    const { data, error } = await banco
+      .from("lookbook_likes")
+      .select("photo_id")
+      .eq("user_id", usuario.id);
+
+    if (error) throw error;
+
+    minhasCurtidas.clear();
+
+    data.forEach(item => {
+      minhasCurtidas.add(item.photo_id);
+    });
+
+    atualizarCoracoes();
+  }
+
+  async function obterUsuario() {
+    const { data, error } = await banco.auth.getSession();
+
+    if (error) throw error;
+
+    usuario = data.session?.user || null;
+
+    if (!usuario) {
+      const token = await verificarCaptcha();
+
+      const resultado = await banco.auth.signInAnonymously({
+        options: {
+          captchaToken: token
+        }
+      });
+
+      if (resultado.error) throw resultado.error;
+
+      usuario = resultado.data.user;
+    }
+
+    if (!usuario) {
+      throw new Error("Não foi possível iniciar a sessão.");
+    }
+
+    await lerMinhasCurtidas();
+  }
+
+  async function votar(id) {
+    if (ocupado || atualizando) return;
+
+    ocupado = true;
+    bloquear(true);
+
+    const controle = controles.get(id);
+    let gravado = false;
+
+    controles.forEach(item => {
+      item.status.textContent = "";
+    });
+
+    try {
+      controle.status.textContent = "Preparando sua curtida…";
+
+      await obterUsuario();
+
+      const jaCurtiu = minhasCurtidas.has(id);
+
+      if (jaCurtiu) {
+        const { error } = await banco
+          .from("lookbook_likes")
+          .delete()
+          .eq("photo_id", id)
+          .eq("user_id", usuario.id);
+
+        if (error) throw error;
+
+        minhasCurtidas.delete(id);
+      } else {
+        const { error } = await banco
+          .from("lookbook_likes")
+          .insert({
+            photo_id: id,
+            user_id: usuario.id
+          });
+
+        /*
+          Uma curtida já existente não deve ser duplicada,
+          mesmo com duas abas abertas.
+        */
+        if (error && error.code !== "23505") throw error;
+
+        minhasCurtidas.add(id);
+      }
+
+      gravado = true;
+      atualizarCoracoes();
+
+      await lerTotais();
+
+      controle.status.textContent = jaCurtiu
+        ? "Curtida removida."
+        : "Curtida registrada!";
+    } catch (erro) {
+      console.error("Curtidas:", erro.message);
+
+      if (erro.message === "Verificação cancelada.") {
+        controle.status.textContent = "Verificação cancelada.";
+      } else if (gravado) {
+        controle.status.textContent =
+          "Voto salvo, mas o total não atualizou. Recarregue a página.";
+      } else {
+        controle.status.textContent =
+          "Não foi possível confirmar sua curtida. Tente novamente.";
+      }
+    } finally {
+      ocupado = false;
+      bloquear(false);
+    }
+  }
+
+  fotos.forEach(id => {
+    const secao = document.querySelector(
+      '[aria-labelledby="destaque-' + id + '"]'
+    );
+
+    const imagem = secao?.querySelector("img");
+    if (!imagem) return;
+
+    const area = document.createElement("div");
+    area.className = "imp-curtida-area";
+
+    const botao = document.createElement("button");
+    botao.type = "button";
+    botao.className = "imp-curtida";
+    botao.disabled = true;
+    botao.setAttribute("aria-pressed", "false");
+
+    const coracao = document.createElement("span");
+    coracao.className = "imp-curtida-coracao";
+    coracao.textContent = "♡";
+    coracao.setAttribute("aria-hidden", "true");
+
+    const texto = document.createElement("span");
+    texto.textContent = "Curtir";
+
+    const numero = document.createElement("span");
+    numero.textContent = "…";
+
+    const status = document.createElement("span");
+    status.className = "imp-curtida-status";
+    status.setAttribute("role", "status");
+
+    botao.append(coracao, texto, numero);
+    area.append(botao, status);
+
+    imagem.insertAdjacentElement("afterend", area);
+
+    controles.set(id
+``` [!Loading](#)
+
+[sidekick-reference-anchor]: <#>
+
 </body>
 </html>

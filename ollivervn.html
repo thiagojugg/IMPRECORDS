@@ -203,6 +203,27 @@
         padding: 25px;
       }
 
+      /* Ajuste mobile para o nome completo caber no mesmo padrão visual do TWIZ */
+      .olliver-hero h1 {
+        font-size: clamp(38px, 11.5vw, 72px);
+        line-height: .9;
+        letter-spacing: -.075em;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      .olliver-section h2,
+      .olliver-end h2,
+      .olliver-quote h2 {
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+
+      .olliver-release h3 {
+        font-size: clamp(20px, 6vw, 28px);
+        overflow-wrap: anywhere;
+      }
+
       .olliver-section {
         padding: 45px 0;
       }

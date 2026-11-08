@@ -218,7 +218,53 @@
       letter-spacing: -.05em;
     }
 
+    .gabriel-social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 25px 0 55px;
+    }
+
+    .gabriel-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 25px;
+      border: 1px solid #777;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      transition: .3s;
+    }
+
+    .gabriel-social a:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .gabriel-social svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     @media(max-width:650px) {
+      .gabriel-social a {
+        width: 100%;
+        max-width: 310px;
+      }
+
       .gabriel-page {
         padding-top: 55px;
       }
@@ -538,6 +584,16 @@
     <h2>ESSA É A<br>TRAJETÓRIA DE GABRIEL LEAL.</h2>
     <p>UMA HISTÓRIA DE MÚSICA, FÉ E RECOMEÇOS.</p>
     <p class="eyebrow">IMP RECORDS © 2026</p>
+  </section>
+  <section class="gabriel-social" aria-label="Redes sociais do artista">
+    <a href="https://www.instagram.com/g4b.lleall/" target="_blank" rel="noopener noreferrer" aria-label="Acessar Instagram de Gabriel Leal, @g4b.lleall">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
+      </svg>
+      <span>INSTAGRAM · @G4B.LLEALL</span>
+    </a>
   </section>
 </main>
 

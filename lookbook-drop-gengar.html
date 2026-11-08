@@ -1104,10 +1104,69 @@
 
     imagem.insertAdjacentElement("afterend", area);
 
-    controles.set(id
-``` [!Loading](#)
+        controles.set(id, {
+      botao,
+      coracao,
+      texto,
+      numero,
+      status
+    });
 
-[sidekick-reference-anchor]: <#>
+    botao.addEventListener("click", () => votar(id));
+  });
 
+  async function atualizar() {
+    if (ocupado || atualizando) return;
+
+    atualizando = true;
+    bloquear(true);
+
+    try {
+      const { data, error } = await banco.auth.getSession();
+
+      if (error) throw error;
+
+      usuario = data.session?.user || null;
+
+      minhasCurtidas.clear();
+      atualizarCoracoes();
+
+      if (usuario) {
+        await lerMinhasCurtidas();
+      }
+
+      await lerTotais();
+
+      controles.forEach(controle => {
+        controle.status.textContent = "";
+      });
+    } catch (erro) {
+      console.error("Consulta das curtidas:", erro.message);
+
+      controles.forEach(controle => {
+        controle.status.textContent =
+          "Não foi possível atualizar as curtidas agora.";
+      });
+    } finally {
+      atualizando = false;
+      bloquear(false);
+    }
+  }
+
+  atualizar();
+
+  setInterval(() => {
+    if (!document.hidden) {
+      atualizar();
+    }
+  }, 30000);
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      atualizar();
+    }
+  });
+})();
+</script>
 </body>
 </html>

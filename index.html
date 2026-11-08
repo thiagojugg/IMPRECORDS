@@ -78,6 +78,52 @@
       color: #fff;
     }
 
+    .manifesto-social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 25px 0 55px;
+    }
+
+    .manifesto-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 25px;
+      border: 1px solid #777;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      transition: .3s;
+    }
+
+    .manifesto-social-link:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+
+    .manifesto-social-link svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .manifesto-social-link.spotify svg {
+      fill: currentColor;
+      stroke: none;
+    }
+
     .lookbook-entry {
       max-width: 760px;
       padding: 28px;
@@ -161,6 +207,11 @@
 
       .manifesto-content {
         font-size: 14px;
+      }
+
+      .manifesto-social-link {
+        width: 100%;
+        max-width: 310px;
       }
 
       .lookbook-entry {
@@ -569,6 +620,39 @@
         <p><strong>22 DE DEZEMBRO DE 2020.</strong></p>
         <p><strong>ESSA É A ORIGEM DA IMP RECORDS.</strong></p>
       </div>
+
+      <nav class="manifesto-social" aria-label="Redes sociais da IMP RECORDS">
+        <a
+          class="manifesto-social-link"
+          href="https://www.instagram.com/imp_records/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram da IMP RECORDS"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"></circle>
+          </svg>
+          INSTAGRAM · IMP RECORDS
+        </a>
+
+        <a
+          class="manifesto-social-link spotify"
+          href="https://open.spotify.com/intl-pt/artist/0C9yVTjeO33sLgdZaxwk98?si=qXlyJW8BQzG_8Fd97QS74A"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Spotify da IMP RECORDS"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"></path>
+            <path d="M6.5 9.2c3.9-1.2 8.6-.7 11.4 1.1"></path>
+            <path d="M7.2 12.3c3.3-1 7.2-.5 9.7 1"></path>
+            <path d="M8 15.2c2.7-.7 5.7-.3 7.8.9"></path>
+          </svg>
+          SPOTIFY · IMP RECORDS
+        </a>
+      </nav>
     </section>
 
     <section class="section-wrap latest-release" id="lancamento">

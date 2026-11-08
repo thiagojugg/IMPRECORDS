@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conheça a trajetória de Gabriel Leal: música, fé, superação e propósito. Perfil oficial na IMP RECORDS.">
+  <title>GABRIEL LEAL | IMP RECORDS</title>
+
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+
+  <style>
+    .gabriel-page {
+      padding-top: 80px;
+      padding-bottom: 100px;
+    }
+
+    .gabriel-hero {
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      background: #111;
+      border: 1px solid var(--line);
+      margin-bottom: 70px;
+    }
+
+    .gabriel-hero h1 {
+      font: clamp(65px, 13vw, 150px)/.85 var(--font-display);
+      letter-spacing: -.07em;
+      margin: 0;
+    }
+
+    .gabriel-hero p {
+      color: #aaa;
+      font-size: 10px;
+      letter-spacing: .2em;
+      margin-top: 25px;
+    }
+
+    .gabriel-photo {
+      min-height: 360px;
+      margin: 35px 0;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #aaa;
+      background: #151515;
+      border: 1px dashed #555;
+    }
+
+    .gabriel-photo strong {
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .15em;
+    }
+
+    .gabriel-photo p {
+      max-width: 420px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .gabriel-photo-image {
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .gabriel-photo-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .gabriel-section {
+      padding: 65px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .gabriel-section .number {
+      color: #888;
+      font-size: 11px;
+      letter-spacing: .2em;
+    }
+
+    .gabriel-section h2 {
+      font: clamp(35px, 6vw, 70px)/.95 var(--font-display);
+      letter-spacing: -.05em;
+      margin: 20px 0 30px;
+    }
+
+    .gabriel-section p {
+      max-width: 850px;
+      color: #bbb;
+      font-size: 15px;
+      line-height: 1.95;
+      margin: 0 0 18px;
+    }
+
+    .gabriel-highlight {
+      padding: 35px;
+      margin: 35px 0;
+      background: #111;
+      border-left: 2px solid #888;
+    }
+
+    .gabriel-highlight p {
+      margin: 0;
+      color: #ddd;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .gabriel-quote {
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 50px 0;
+    }
+
+    .gabriel-quote h2 {
+      font: clamp(30px, 6vw, 65px)/1.05 var(--font-display);
+      letter-spacing: -.04em;
+    }
+
+    .gabriel-tribute {
+      padding: 65px 40px;
+      margin-top: 55px;
+      background: #111;
+      border: 1px solid var(--line);
+    }
+
+    .gabriel-tribute .tribute-date {
+      color: #888;
+      font-size: 11px;
+      letter-spacing: .16em;
+    }
+
+    .gabriel-tribute h2 {
+      font: clamp(34px, 6vw, 66px)/.95 var(--font-display);
+      letter-spacing: -.05em;
+      margin: 18px 0 8px;
+    }
+
+    .gabriel-tribute h3 {
+      color: #aaa;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      margin: 0 0 35px;
+    }
+
+    .gabriel-tribute p {
+      max-width: 850px;
+      color: #bbb;
+      font-size: 15px;
+      line-height: 1.95;
+      margin: 0 0 18px;
+    }
+
+    .gabriel-tribute .last-words {
+      color: #fff;
+      font-size: 17px;
+      font-style: italic;
+      margin-top: 30px;
+    }
+
+    .gabriel-end {
+      text-align: center;
+      padding: 55px 0 25px;
+    }
+
+    .gabriel-end h2 {
+      font: clamp(40px, 8vw, 90px)/.95 var(--font-display);
+      letter-spacing: -.05em;
+    }
+
+    @media(max-width:650px) {
+      .gabriel-page {
+        padding-top: 55px;
+      }
+
+      .gabriel-hero {
+        min-height: 350px;
+        padding: 25px;
+      }
+
+      .gabriel-hero h1 {
+        font-size: clamp(42px, 12vw, 72px);
+        line-height: .9;
+        overflow-wrap: anywhere;
+      }
+
+      .gabriel-section {
+        padding: 45px 0;
+      }
+
+      .gabriel-section h2,
+      .gabriel-quote h2,
+      .gabriel-end h2,
+      .gabriel-tribute h2 {
+        overflow-wrap: break-word;
+        hyphens: auto;
+      }
+
+      .gabriel-photo {
+        min-height: 260px;
+      }
+
+      .gabriel-tribute {
+        padding: 40px 24px;
+      }
+
+      .gabriel-highlight {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="./">IMP<span>®</span></a>
+
+    <nav class="desktop-nav">
+      <a href="./?categoria=vestuario">VESTUÁRIO</a>
+      <a href="./?categoria=presets">PRESETS</a>
+      <a href="./?categoria=galeria">GALERIA</a>
+      <a href="./artistas.html">ARTISTAS</a>
+      <a href="./divisoes.html">DIVISÕES</a>
+      <a href="./?categoria=manifesto">MANIFESTO</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="cart-link" href="./?categoria=bag">BAG <span>(0)</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="section-wrap gabriel-page">
+  <a class="text-link" href="./artistas.html">← VOLTAR A ARTISTAS</a>
+
+  <section class="gabriel-hero">
+    <span class="eyebrow">IMP RECORDS / ARTISTA</span>
+    <h1>GABRIEL LEAL</h1>
+    <p>MÚSICA · FÉ · PRODUÇÃO · PROPÓSITO</p>
+  </section>
+
+  <div class="gabriel-photo">
+    <strong>FOTOGRAFIA OFICIAL</strong>
+    <p>Espaço reservado para a imagem de apresentação de Gabriel Leal. A fotografia poderá ser adicionada à pasta assets quando estiver disponível.</p>
+  </div>
+
+  <section class="gabriel-section">
+    <span class="number">01 / ORIGENS</span>
+    <h2>ONDE A MÚSICA COMEÇOU.</h2>
+    <p>
+      A relação de <strong>Gabriel Leal</strong> com a música começou ainda na infância.
+      Por volta dos cinco ou seis anos, ele observava os músicos tocando na igreja e
+      sentia admiração pelos instrumentos. Aos sete anos, quando seu pai comprou um
+      teclado para seu irmão, começou a aprender sozinho, principalmente de ouvido,
+      tentando reproduzir as melodias que escutava.
+    </p>
+    <p>
+      Uma de suas primeiras experiências foi tentar tocar uma música do Coldplay.
+      Mesmo sendo canhoto, aprendeu a tocar teclado da maneira convencional,
+      utilizando as duas mãos. A partir dali, a música passou a fazer parte de sua vida.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">02 / MEMÓRIA E FAMÍLIA</span>
+    <h2>UMA AUSÊNCIA, MUITOS ENSINAMENTOS.</h2>
+    <p>
+      Em 28 de dezembro de 2016, aos nove anos, Gabriel perdeu sua mãe,
+      <strong>Lúcia Maria Leal Aguiar</strong>, nascida em 11 de maio de 1979,
+      em decorrência de um câncer. Ela foi uma mulher guerreira, que enfrentou
+      suas batalhas muitas vezes em silêncio para proteger o filho.
+    </p>
+    <p>
+      Sua partida deixou uma ausência imensa, mas também ensinamentos que continuam
+      presentes: aprender a perdoar, cuidar de si mesmo, seguir em frente e nunca
+      permitir que alguém o faça acreditar que não é capaz de realizar seus sonhos.
+      Ela apoiava seus interesses e gostava de patinação, atividade que hoje também
+      representa uma lembrança especial para Gabriel.
+    </p>
+    <p>
+      Existem atitudes da infância pelas quais ele gostaria de ter pedido desculpas,
+      mas, naquela época, ainda não compreendia a dimensão do que estava acontecendo.
+      Hoje, procura honrar a memória da mãe por meio de suas escolhas e da maneira
+      como continua vivendo.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">03 / INSTRUMENTOS</span>
+    <h2>DO TECLADO À GUITARRA.</h2>
+    <p>
+      Depois do teclado, Gabriel se interessou pelo violão ao ver um amigo tocando
+      na escola. Aprendeu por conta própria, e sua primeira música foi
+      <strong>Come As You Are</strong>, do Nirvana. Mais tarde, por influência do pai,
+      começou a estudar contrabaixo e alcançou um nível intermediário.
+    </p>
+    <p>
+      Sua avó lhe presenteou com uma guitarra elétrica usada da marca Condor,
+      acompanhada de sua primeira pedaleira, uma Zoom G1 cinza. Nessa fase,
+      começou a acompanhar Wagner Amaral em algumas igrejas, aprendendo na prática
+      e desenvolvendo sua musicalidade. Embora o pai preferisse que ele se dedicasse
+      ao contrabaixo, foi pela guitarra que nasceu uma paixão especial.
+    </p>
+    <p>
+      Por volta dos dezesseis anos, passou a estudar guitarra com mais seriedade,
+      buscando aprimorar a técnica e compreender melhor o instrumento.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">04 / CAMINHADA NA IGREJA</span>
+    <h2>APRENDER, ESPERAR E SERVIR.</h2>
+    <p>
+      Sua trajetória musical sempre esteve ligada à igreja. Gabriel cresceu na
+      Igreja Batista e, ao longo dos anos, passou pela Comunidade Nova Vida Moriah,
+      Nova Aliança Esperança e uma igreja Assembleia, até retornar à Moriah.
+    </p>
+    <p>
+      Durante essa caminhada, enfrentou períodos de espera e poucas oportunidades
+      para tocar. Quando retornou à Moriah, aguardou cerca de seis meses por uma
+      oportunidade e participou do Encontro, uma experiência importante em sua
+      caminhada de fé. Fez uma avaliação para tocar guitarra, mas recebeu a
+      oportunidade de voltar ao teclado, seu primeiro instrumento.
+    </p>
+    <p>
+      Na Moriah, começou a explorar novas possibilidades musicais e foi a primeira
+      pessoa a introduzir o uso de dois teclados simultaneamente naquele ambiente:
+      um Roland XPS-10, pertencente à igreja, e um controlador MIDIPLUS X4 Mini.
+      Com o aplicativo Audio Evolution, passou a utilizar diferentes timbres e
+      criar novas atmosferas para as músicas. Mais tarde, também voltou a tocar
+      guitarra na igreja.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">05 / COMPOSIÇÃO E PRODUÇÃO</span>
+    <h2>ENCONTRANDO SUA PRÓPRIA DIREÇÃO.</h2>
+    <p>
+      Com o tempo, Gabriel descobriu o interesse pela composição e pela produção
+      musical. Inicialmente, criava músicas sobre relacionamentos, sentimentos
+      e experiências pessoais, mas não se identificava com letras explícitas
+      e começou a buscar uma direção mais alinhada com suas convicções.
+    </p>
+    <p>
+      Nesse período, trabalhou com seu amigo Alisson, conhecido artisticamente
+      como <strong>C4</strong>. Juntos, desenvolveram músicas como
+      <strong>Bem Mais Que o Sol</strong> e <strong>Ladeira Abaixo</strong>,
+      além de outras faixas que não chegaram a ser lançadas.
+    </p>
+    <p>
+      Posteriormente, direcionou seu trabalho para a música cristã e buscou unir
+      sua identidade musical à fé. Desse processo surgiu
+      <strong>É Sobre Isso e Amém</strong>, dentro da proposta Detroit Gospel.
+      O lançamento alcançou algumas pessoas e trouxe novos seguidores.
+    </p>
+    <p>
+      Problemas com a plataforma de distribuição fizeram com que suas músicas
+      fossem retiradas do Spotify e de outros serviços digitais. Esse episódio
+      marcou uma mudança em sua trajetória: Gabriel passou a dedicar mais
+      atenção à produção musical do que à carreira como artista. Atualmente,
+      ainda compõe ocasionalmente, mas a produção se tornou seu principal foco.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">06 / SUPERAÇÃO</span>
+    <h2>FÉ PARA RECOMEÇAR.</h2>
+    <p>
+      Entre os dezesseis e dezoito anos, Gabriel passou por uma fase difícil,
+      envolvendo experiências com drogas e dependência. Foi um período de
+      desafios que conseguiu superar pela graça de Deus.
+    </p>
+    <p>
+      Ele não define sua história como a trajetória de alguém que sempre acertou.
+      Reconhece os erros, arrependimentos e momentos em que precisou encarar
+      suas próprias limitações. Ainda assim, sua fé foi fundamental para
+      continuar seguindo em frente.
+    </p>
+    <p>
+      Acredita que Deus esteve presente até mesmo nos momentos em que não
+      conseguia perceber. É grato pelas oportunidades, pelas pessoas que
+      fizeram parte de sua vida e por tudo o que lhe foi permitido viver.
+    </p>
+  </section>
+
+  <section class="gabriel-section">
+    <span class="number">07 / PRESENTE</span>
+    <h2>MÚSICA COMO SERVIÇO.</h2>
+    <p>
+      Atualmente, Gabriel trabalha com a venda de instrumentos musicais e
+      equipamentos de sonorização, especialmente voltados para igrejas,
+      e também atua como produtor musical.
+    </p>
+    <p>
+      Além disso, participa do <strong>Projeto Água Viva</strong>, um grupo
+      de músicos que se reúne para tocar gratuitamente em eventos de igrejas.
+      O trabalho exige dedicação, ensaios e responsabilidade, com o compromisso
+      de entregar qualidade musical mesmo sem cobrar pelas apresentações.
+    </p>
+    <p>
+      Para Gabriel, participar do projeto é uma maneira de servir a Deus por
+      meio daquilo que sempre fez parte de sua vida. Ele reconhece que ainda
+      tem muito a aprender e muitos sonhos a realizar.
+    </p>
+  </section>
+
+  <section class="gabriel-quote">
+    <h2>“NÃO SEI EXATAMENTE ONDE A MÚSICA VAI ME LEVAR, MAS SEI QUE NÃO QUERO DEIXAR DE CAMINHAR.”</h2>
+  </section>
+
+  <section class="gabriel-tribute">
+    <span class="tribute-date">UMA HOMENAGEM À MINHA MÃE</span>
+    <h2>LÚCIA MARIA<br>LEAL AGUIAR.</h2>
+    <h3>11 DE MAIO DE 1979 — 28 DE DEZEMBRO DE 2016</h3>
+
+    <p>
+      Minha mãe sempre terá um lugar especial na minha história. Mesmo tendo
+      partido quando eu tinha apenas nove anos, deixou ensinamentos que
+      continuam presentes em tudo o que faço.
+    </p>
+    <p>
+      Ela foi uma mulher guerreira, que enfrentou suas próprias batalhas sem
+      deixar de cuidar de mim. Ensinou-me a perdoar, a cuidar de mim mesmo,
+      a seguir em frente e a nunca desistir daquilo em que acredito.
+    </p>
+    <p>
+      Existem palavras que gostaria de ter dito, momentos que gostaria de ter
+      vivido e pedidos de desculpas que nunca tive a oportunidade de fazer.
+      Mas, acima de tudo, existe uma enorme gratidão por tudo o que ela foi
+      e por tudo o que me ensinou.
+    </p>
+    <p>
+      Hoje, enquanto continuo aprendendo, trabalhando, tocando, compondo e
+      buscando meus sonhos, carrego comigo uma parte de tudo o que recebi dela.
+      Até mesmo a patinação representa uma lembrança de algo que ela achava bonito.
+    </p>
+    <p>
+      Não posso voltar no tempo, mas posso continuar vivendo de uma maneira
+      que honre seus ensinamentos.
+    </p>
+    <p>
+      Mãe, obrigado por cada cuidado, cada ensinamento, cada incentivo e por
+      ter acreditado em mim desde quando eu ainda nem sabia o que queria ser.
+    </p>
+    <p>
+      Enquanto eu continuar seguindo em frente, uma parte de você continuará
+      presente em cada passo da minha história.
+    </p>
+    <p class="last-words">
+      “Sempre siga em frente. Sempre se esforce e nunca permita que alguém
+      diga que você não é capaz.”
+    </p>
+  </section>
+
+  <section class="gabriel-end">
+    <h2>ESSA É A<br>TRAJETÓRIA DE GABRIEL LEAL.</h2>
+    <p>UMA HISTÓRIA DE MÚSICA, FÉ E RECOMEÇOS.</p>
+    <p class="eyebrow">IMP RECORDS © 2026</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<!-- IMP RECORDS — proteção contra cópia casual; não impede capturas de tela ou acesso técnico aos arquivos. -->
+<script>
+(() => {
+  const blockedKeys = new Set(["c", "x", "s", "u", "p"]);
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
+  document.addEventListener("copy", (event) => event.preventDefault());
+  document.addEventListener("cut", (event) => event.preventDefault());
+  document.addEventListener("dragstart", (event) => {
+    if (event.target && (event.target.closest("img, picture, svg") || event.target.closest("a"))) {
+      event.preventDefault();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    const key = (event.key || "").toLowerCase();
+    const modifier = event.ctrlKey || event.metaKey;
+    if ((modifier && blockedKeys.has(key)) ||
+        (modifier && event.shiftKey && ["i", "j", "c"].includes(key)) ||
+        key === "f12") {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  }, true);
+})();
+</script>
+</body>
+</html>

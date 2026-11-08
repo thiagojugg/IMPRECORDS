@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OLLIVERVN | IMP RECORDS</title>
+
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+
+  <style>
+    .olliver-page {
+      padding: 80px 0 100px;
+    }
+
+    .olliver-hero {
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+      background: #111;
+      border: 1px solid var(--line);
+      margin: 30px 0 70px;
+    }
+
+    .olliver-hero h1 {
+      font: clamp(60px, 13vw, 150px)/.85 var(--font-display);
+      letter-spacing: -.07em;
+      margin: 0;
+    }
+
+    .olliver-hero p {
+      color: #aaa;
+      font-size: 10px;
+      letter-spacing: .2em;
+      margin-top: 25px;
+    }
+
+    .olliver-photo {
+      min-height: 350px;
+      background: #151515;
+      border: 1px dashed #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      color: #aaa;
+      margin: 35px 0;
+    }
+
+    .olliver-photo strong {
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .15em;
+    }
+
+    .olliver-section {
+      padding: 65px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .olliver-section .number {
+      color: #888;
+      font-size: 11px;
+      letter-spacing: .2em;
+    }
+
+    .olliver-section h2 {
+      font: clamp(35px, 6vw, 70px)/.95 var(--font-display);
+      letter-spacing: -.05em;
+      margin: 20px 0 30px;
+    }
+
+    .olliver-section p {
+      max-width: 850px;
+      color: #bbb;
+      font-size: 15px;
+      line-height: 1.95;
+    }
+
+    /* LANÇAMENTOS */
+
+    .olliver-releases {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 35px;
+    }
+
+    .olliver-release {
+      min-height: 150px;
+      padding: 25px;
+      background: #111;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: .3s;
+    }
+
+    .olliver-release:hover {
+      border-color: #888;
+      transform: translateY(-3px);
+    }
+
+    .olliver-release span {
+      color: #888;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+
+    .olliver-release h3 {
+      color: #fff;
+      font: clamp(23px, 3vw, 35px)/1 var(--font-display);
+      margin: 12px 0;
+    }
+
+    .olliver-release a {
+      color: #aaa;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-decoration: none;
+    }
+
+    .olliver-release a:hover {
+      color: #fff;
+    }
+
+    .olliver-quote {
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 50px 0;
+    }
+
+    .olliver-quote h2 {
+      font: clamp(30px, 6vw, 65px)/1.05 var(--font-display);
+    }
+
+    .olliver-end {
+      text-align: center;
+      padding: 40px 0 25px;
+    }
+
+    .olliver-end h2 {
+      font: clamp(40px, 8vw, 90px)/.95 var(--font-display);
+    }
+
+    /* REDES SOCIAIS */
+
+    .olliver-social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 25px 0 55px;
+    }
+
+    .olliver-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 25px;
+      border: 1px solid #777;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      transition: .3s;
+    }
+
+    .olliver-social a:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-3px);
+    }
+
+    .olliver-social svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media(max-width:650px) {
+      .olliver-hero {
+        min-height: 350px;
+        padding: 25px;
+      }
+
+      .olliver-section {
+        padding: 45px 0;
+      }
+
+      .olliver-releases {
+        grid-template-columns: 1fr;
+      }
+
+      .olliver-social a {
+        width: 100%;
+        max-width: 310px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="./">IMP<span>®</span></a>
+
+    <nav class="desktop-nav">
+      <a href="./?categoria=vestuario">VESTUÁRIO</a>
+      <a href="./?categoria=presets">PRESETS</a>
+      <a href="./?categoria=galeria">GALERIA</a>
+      <a href="./artistas.html">ARTISTAS</a>
+      <a href="./divisoes.html">DIVISÕES</a>
+      <a href="./?categoria=manifesto">MANIFESTO</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="cart-link" href="./?categoria=bag">BAG <span>(0)</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="section-wrap olliver-page">
+
+  <a class="text-link" href="./artistas.html">
+    ← VOLTAR A ARTISTAS
+  </a>
+
+  <!-- APRESENTAÇÃO -->
+
+  <section class="olliver-hero">
+    <span class="eyebrow">IMP RECORDS / ARTISTA INDEPENDENTE</span>
+    <h1>OLLIVERVN</h1>
+    <p>HIP-HOP · RAP · TRAP · PLUG</p>
+  </section>
+
+  <!-- FOTO DE ABERTURA -->
+
+  <div class="olliver-photo">
+    <strong>FOTOGRAFIA OFICIAL</strong>
+    <p>Espaço reservado para a imagem de apresentação do OlliverVn.</p>
+    <small>assets/artistas/ollivervn-capa.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 01 -->
+
+  <section class="olliver-section">
+    <span class="number">01 / ORIGENS</span>
+    <h2>AS PRIMEIRAS BATIDAS.</h2>
+
+    <p>
+      A música entrou na vida de <strong>OlliverVn</strong> ainda durante sua
+      época de escola. Seu primeiro contato com a cultura musical aconteceu
+      através do funk, gênero que despertou seu interesse pelo universo dos
+      ritmos e das produções musicais.
+    </p>
+
+    <p>
+      O que começou de maneira simples, com batidas feitas na palma das mãos,
+      aos poucos se transformou em uma busca por algo maior. A curiosidade e
+      o desejo de desenvolver uma sonoridade própria fizeram com que desse
+      seus primeiros passos de forma independente, chegando a construir
+      seu próprio estúdio.
+    </p>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>REGISTROS DO INÍCIO MUSICAL</strong>
+    <p>Espaço para fotos antigas e registros do primeiro estúdio.</p>
+    <small>assets/artistas/ollivervn-inicio.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 02 -->
+
+  <section class="olliver-section">
+    <span class="number">02 / UNDERGROUND</span>
+    <h2>A CULTURA UNDERGROUND.</h2>
+
+    <p>
+      Com o passar do tempo, sua caminhada ganhou novas experiências.
+      As batalhas de rima, as vivências nas ruas e o contato cada vez
+      mais próximo com a cena underground passaram a fazer parte
+      de sua formação artística.
+    </p>
+
+    <p>
+      Foi nesse ambiente que OlliverVn começou a desenvolver sua identidade,
+      compreender melhor sua relação com a música e construir seu espaço
+      dentro da cena independente.
+    </p>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>VIVÊNCIAS NA CENA</strong>
+    <p>Espaço para fotos de batalhas, encontros e momentos do underground.</p>
+    <small>assets/artistas/ollivervn-underground.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 03 -->
+
+  <section class="olliver-section">
+    <span class="number">03 / IDENTIDADE SONORA</span>
+    <h2>A DIREÇÃO DO PLUG.</h2>
+
+    <p>
+      Posteriormente, o trap se tornou sua principal direção musical.
+      Dentro desse universo, encontrou na vertente <strong>Plug</strong>
+      uma linguagem com a qual se identificou e passou a desenvolver
+      sua própria estética.
+    </p>
+
+    <p>
+      O estilo se tornou uma parte importante de sua identidade musical,
+      conectando suas influências do hip-hop e do rap à atmosfera
+      característica do underground.
+    </p>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>OLLIVERVN EM ESTÚDIO</strong>
+    <p>Espaço para fotos de gravações, produções e bastidores.</p>
+    <small>assets/artistas/ollivervn-estudio.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 04 -->
+
+  <section class="olliver-section">
+    <span class="number">04 / EXPANSÃO</span>
+    <h2>NOVOS CAMINHOS, NOVOS PALCOS.</h2>
+
+    <p>
+      A trajetória de OlliverVn começou a ultrapassar os limites de sua região.
+      Com o desenvolvimento de seu trabalho, surgiram oportunidades de viajar,
+      realizar apresentações e compartilhar sua música com novos públicos.
+    </p>
+
+    <p>
+      Entre essas experiências, um dos momentos mais marcantes foi seu
+      primeiro show em <strong>São Paulo</strong>, representando uma nova
+      etapa em sua caminhada e a oportunidade de levar sua arte para
+      além de suas origens.
+    </p>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>PRIMEIRO SHOW EM SÃO PAULO</strong>
+    <p>Espaço para fotografias e registros da apresentação.</p>
+    <small>assets/artistas/ollivervn-sao-paulo.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 05 -->
+
+  <section class="olliver-section">
+    <span class="number">05 / TRANSFORMAÇÃO</span>
+    <h2>ANTES DE OLLIVERVN.</h2>
+
+    <p>
+      Antes de assumir definitivamente o nome artístico
+      <strong>OlliverVn</strong>, o artista também utilizou o
+      vulgo <strong>Ex Mi Oliver</strong>.
+    </p>
+
+    <p>
+      Essa fase representa uma parte importante de sua história.
+      Um período de descobertas, experiências e transformações
+      que contribuíram para a construção da identidade que carrega
+      atualmente.
+    </p>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>ARQUIVO EX MI OLIVER</strong>
+    <p>Espaço reservado para imagens e registros dessa fase.</p>
+    <small>assets/artistas/ex-mi-oliver.jpg</small>
+  </div>
+
+  <!-- CAPÍTULO 06 -->
+
+  <section class="olliver-section">
+    <span class="number">06 / LANÇAMENTOS</span>
+    <h2>UMA HISTÓRIA EM CONSTRUÇÃO.</h2>
+
+    <p>
+      Ao longo dos anos, OlliverVn vem construindo seu catálogo musical
+      e consolidando sua presença no cenário independente.
+      Seus trabalhos transitam pelo hip-hop, rap e trap, mantendo
+      uma ligação com a estética underground e com a vertente Plug.
+    </p>
+
+    <div class="olliver-releases">
+
+      <article class="olliver-release">
+        <div>
+          <span>LANÇAMENTO · 2024</span>
+          <h3>PLUG NINE MIND</h3>
+        </div>
+        <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+           target="_blank" rel="noopener noreferrer">
+          OUVIR NO SPOTIFY ↗
+        </a>
+      </article>
+
+      <article class="olliver-release">
+        <div>
+          <span>LANÇAMENTO · 2025</span>
+          <h3>BPM</h3>
+        </div>
+        <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+           target="_blank" rel="noopener noreferrer">
+          OUVIR NO SPOTIFY ↗
+        </a>
+      </article>
+
+      <article class="olliver-release">
+        <div>
+          <span>LANÇAMENTO · 2026</span>
+          <h3>GOIÁS</h3>
+        </div>
+        <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+           target="_blank" rel="noopener noreferrer">
+          OUVIR NO SPOTIFY ↗
+        </a>
+      </article>
+
+      <article class="olliver-release">
+        <div>
+          <span>LANÇAMENTO · 2026</span>
+          <h3>SUJO</h3>
+        </div>
+        <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+           target="_blank" rel="noopener noreferrer">
+          OUVIR NO SPOTIFY ↗
+        </a>
+      </article>
+
+      <article class="olliver-release">
+        <div>
+          <span>LANÇAMENTO · 2026</span>
+          <h3>ANARQUIA</h3>
+        </div>
+        <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+           target="_blank" rel="noopener noreferrer">
+          OUVIR NO SPOTIFY ↗
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="olliver-photo">
+    <strong>CAPAS E ARTES DOS LANÇAMENTOS</strong>
+    <p>Espaço reservado para imagens dos projetos musicais.</p>
+    <small>assets/artistas/ollivervn-lancamentos.jpg</small>
+  </div>
+
+  <!-- ENCERRAMENTO -->
+
+  <section class="olliver-quote">
+    <h2>
+      “DA PRIMEIRA BATIDA À CONSTRUÇÃO DE UMA IDENTIDADE PRÓPRIA.”
+    </h2>
+  </section>
+
+  <section class="olliver-end">
+    <h2>ESSA É A<br>TRAJETÓRIA DE OLLIVERVN.</h2>
+    <p>UMA HISTÓRIA QUE AINDA ESTÁ SENDO ESCRITA.</p>
+    <p class="eyebrow">IMP RECORDS © 2026</p>
+  </section>
+
+  <!-- REDES SOCIAIS -->
+
+  <section class="olliver-social" aria-label="Redes sociais do artista">
+
+    <a href="COLE_AQUI_O_LINK_DO_INSTAGRAM"
+       target="_blank" rel="noopener noreferrer">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+        <circle cx="12" cy="12" r="4"></circle>
+        <circle cx="17.5" cy="6.5" r=".8"
+                fill="currentColor" stroke="none"></circle>
+      </svg>
+
+      <span>INSTAGRAM · OLLIVERVN</span>
+    </a>
+
+    <a href="COLE_AQUI_O_LINK_DO_SPOTIFY"
+       target="_blank" rel="noopener noreferrer">
+
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M6.5 9.2c3.8-1.1 8.4-.7 11.3 1.1
+                 M7.2 12.2c3.2-.9 7-.5 9.6 1
+                 M8 15c2.6-.7 5.5-.3 7.8.8"
+              fill="none" stroke="#000"
+              stroke-width="1.7" stroke-linecap="round"></path>
+      </svg>
+
+      <span>SPOTIFY · OLLIVERVN</span>
+    </a>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-bottom">
+    <span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+</body>
+</html>

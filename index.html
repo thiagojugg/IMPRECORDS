@@ -228,6 +228,33 @@
       to { transform: translateX(-50%); }
     }
     @media (max-width: 650px) {
+      /* Cards e imagens de produtos mais compactos no celular. */
+      .camisetas-carousel .product-card,
+      .presets-vocais-carousel .product-card {
+        flex: 0 0 190px;
+      }
+      .camisetas-carousel .product-image,
+      .presets-vocais-carousel .product-image {
+        aspect-ratio: 1.08;
+      }
+      .camisetas-carousel .product-meta,
+      .presets-vocais-carousel .product-meta {
+        gap: 8px;
+      }
+      .camisetas-carousel .product-title,
+      .presets-vocais-carousel .product-title {
+        font-size: 10px;
+        line-height: 1.35;
+      }
+      .camisetas-carousel .product-price,
+      .presets-vocais-carousel .product-price {
+        font-size: 11px;
+      }
+      .presets-vocais-carousel .product-image img.preset-twiz-image,
+      .presets-vocais-carousel .product-image img.preset-gabriel-image {
+        transform: none;
+      }
+
       .artists-roulette-head {
         align-items: start;
         flex-direction: column;

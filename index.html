@@ -1889,91 +1889,75 @@
 </script>
 
 <script>
+/* Banner principal: troca automática das três imagens. */
 (() => {
   const carousel = document.querySelector(".hero-carousel");
   const track = document.querySelector(".hero-slides");
   if (!carousel || !track) return;
 
-  let current = 0;
   const totalSlides = track.children.length;
-  if (totalSlides !== 3) return;
+  if (totalSlides < 2) return;
+  let current = 0;
 
-  function showNextSlide() {
-    current = (current + 1) % totalSlides;
-    track.style.tr  <script>
-  /* Roleta automática com controle manual por toque ou mouse. */
-  (() => {
-    const track = document.getElementById("artists-roulette-track");
-    const viewport = track?.closest(".artists-roulette-window");
-    if (!track || !viewport || track.children.length < 2) return;
+  const showSlide = (index) => {
+    current = (index + totalSlides) % totalSlides;
+    track.style.transform = `translate3d(-${current * 100}%, 0, 0)`;
+  };
 
-    let offset = 0;
+  showSlide(0);
+  window.setInterval(() => showSlide(current + 1), 5000);
+})();
+
+/* Camisetas e presets: movimento contínuo de ida e volta, com arraste manual. */
+(() => {
+  const carousels = document.querySelectorAll(
+    ".camisetas-carousel, .presets-vocais-carousel"
+  );
+
+  carousels.forEach((carousel) => {
+    let direction = 1;
     let previousTime = 0;
     let dragging = false;
+    let pointerId = null;
     let lastX = 0;
     let moved = false;
-    let pointerId = null;
-    const speed = 35; // pixels por segundo
-    const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
+    const speed = 30;
 
-    const normalize = () => {
-      let first = track.firstElementChild;
-      let distance = first.getBoundingClientRect().width + gap();
-      while (distance > 0 && offset >= distance) {
-        offset -= distance;
-        track.appendChild(first);
-        first = track.firstElementChild;
-        distance = first.getBoundingClientRect().width + gap();
-      }
+    carousel.style.scrollSnapType = "none";
+    carousel.style.scrollBehavior = "auto";
 
-      let last = track.lastElementChild;
-      let previousDistance = last.getBoundingClientRect().width + gap();
-      while (previousDistance > 0 && offset < 0) {
-        track.insertBefore(last, track.firstElementChild);
-        offset += previousDistance;
-        last = track.lastElementChild;
-        previousDistance = last.getBoundingClientRect().width + gap();
-      }
-    };
-
-    const render = () => {
-      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
-    };
-
-    const stopDragging = () => {
-      if (!dragging) return;
+    const stopDragging = (event) => {
+      if (!dragging || (event && event.pointerId !== pointerId)) return;
       dragging = false;
       pointerId = null;
-      track.classList.remove("is-dragging");
+      carousel.style.cursor = "";
     };
 
-    viewport.addEventListener("pointerdown", (event) => {
+    carousel.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "mouse" && event.button !== 0) return;
       dragging = true;
-      moved = false;
-      lastX = event.clientX;
       pointerId = event.pointerId;
-      track.classList.add("is-dragging");
-      try { viewport.setPointerCapture(event.pointerId); } catch (_) {}
-    });
-
-    viewport.addEventListener("pointermove", (event) => {
-      if (!dragging || event.pointerId !== pointerId) return;
-      const deltaX = event.clientX - lastX;
-      if (Math.abs(deltaX) > 0) moved = true;
-      offset -= deltaX;
       lastX = event.clientX;
-      normalize();
-      render();
+      moved = false;
+      carousel.style.cursor = "grabbing";
+      try { carousel.setPointerCapture(event.pointerId); } catch (_) {}
     });
 
-    viewport.addEventListener("pointerup", stopDragging);
-    viewport.addEventListener("pointercancel", stopDragging);
-    viewport.addEventListener("lostpointercapture", stopDragging);
-    window.addEventListener("pointerup", stopDragging);
-    window.addEventListener("pointercancel", stopDragging);
+    carousel.addEventListener("pointermove", (event) => {
+      if (!dragging || event.pointerId !== pointerId) return;
+      const delta = event.clientX - lastX;
+      if (Math.abs(delta) > 2) moved = true;
+      if (moved) {
+        carousel.scrollLeft -= delta;
+        lastX = event.clientX;
+      }
+    });
 
-    viewport.addEventListener("click", (event) => {
+    carousel.addEventListener("pointerup", stopDragging);
+    carousel.addEventListener("pointercancel", stopDragging);
+    carousel.addEventListener("lostpointercapture", stopDragging);
+
+    carousel.addEventListener("click", (event) => {
       if (!moved) return;
       event.preventDefault();
       event.stopPropagation();
@@ -1985,19 +1969,119 @@
       const delta = Math.min((time - previousTime) / 1000, 0.05);
       previousTime = time;
 
-      // A roleta só fica sob controle manual enquanto o ponteiro está pressionado.
       if (!dragging) {
-        offset += speed * delta;
-        normalize();
-        render();
+        const maxScroll = Math.max(0, carousel.scrollWidth - carousel.clientWidth);
+        if (maxScroll > 1) {
+          carousel.scrollLeft += direction * speed * delta;
+          if (carousel.scrollLeft >= maxScroll - 1) {
+            carousel.scrollLeft = maxScroll;
+            direction = -1;
+          } else if (carousel.scrollLeft <= 1) {
+            carousel.scrollLeft = 0;
+            direction = 1;
+          }
+        }
       }
       requestAnimationFrame(animate);
     };
 
-    render();
     requestAnimationFrame(animate);
-  })();
-  </script>
+  });
+})();
+
+/* Roleta automática de artistas, com arraste manual nos dois sentidos. */
+(() => {
+  const track = document.getElementById("artists-roulette-track");
+  const viewport = track?.closest(".artists-roulette-window");
+  if (!track || !viewport || track.children.length < 2) return;
+
+  let offset = 0;
+  let previousTime = 0;
+  let dragging = false;
+  let lastX = 0;
+  let moved = false;
+  let pointerId = null;
+  const speed = 35;
+  const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
+
+  const normalize = () => {
+    let first = track.firstElementChild;
+    let distance = first.getBoundingClientRect().width + gap();
+    while (distance > 0 && offset >= distance) {
+      offset -= distance;
+      track.appendChild(first);
+      first = track.firstElementChild;
+      distance = first.getBoundingClientRect().width + gap();
+    }
+
+    let last = track.lastElementChild;
+    let previousDistance = last.getBoundingClientRect().width + gap();
+    while (previousDistance > 0 && offset < 0) {
+      track.insertBefore(last, track.firstElementChild);
+      offset += previousDistance;
+      last = track.lastElementChild;
+      previousDistance = last.getBoundingClientRect().width + gap();
+    }
+  };
+
+  const render = () => {
+    track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+  };
+
+  const stopDragging = (event) => {
+    if (!dragging || (event && event.pointerId !== pointerId)) return;
+    dragging = false;
+    pointerId = null;
+    track.classList.remove("is-dragging");
+  };
+
+  viewport.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    dragging = true;
+    moved = false;
+    lastX = event.clientX;
+    pointerId = event.pointerId;
+    track.classList.add("is-dragging");
+    try { viewport.setPointerCapture(event.pointerId); } catch (_) {}
+  });
+
+  viewport.addEventListener("pointermove", (event) => {
+    if (!dragging || event.pointerId !== pointerId) return;
+    const deltaX = event.clientX - lastX;
+    if (Math.abs(deltaX) > 2) moved = true;
+    offset -= deltaX;
+    lastX = event.clientX;
+    normalize();
+    render();
+  });
+
+  viewport.addEventListener("pointerup", stopDragging);
+  viewport.addEventListener("pointercancel", stopDragging);
+  viewport.addEventListener("lostpointercapture", stopDragging);
+
+  viewport.addEventListener("click", (event) => {
+    if (!moved) return;
+    event.preventDefault();
+    event.stopPropagation();
+    moved = false;
+  }, true);
+
+  const animate = (time) => {
+    if (!previousTime) previousTime = time;
+    const delta = Math.min((time - previousTime) / 1000, 0.05);
+    previousTime = time;
+    if (!dragging) {
+      offset += speed * delta;
+      normalize();
+      render();
+    }
+    requestAnimationFrame(animate);
+  };
+
+  render();
+  requestAnimationFrame(animate);
+})();
+</script>
 
 </body>
 </html>

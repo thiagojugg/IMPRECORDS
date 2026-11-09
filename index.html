@@ -333,6 +333,63 @@
         padding: 22px;
       }
     }
+
+    /* Carrossel do banner principal — três fotos, com deslize horizontal. */
+    .hero-carousel {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform .85s cubic-bezier(.22,.7,.2,1);
+      will-change: transform;
+    }
+    .hero-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .hero-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-pagination {
+      position: absolute;
+      z-index: 6;
+      left: 9%;
+      bottom: 58px;
+      display: flex;
+      gap: 9px;
+    }
+    .hero-dot {
+      width: 26px;
+      height: 3px;
+      padding: 0;
+      border: 0;
+      background: rgba(255,255,255,.4);
+      cursor: pointer;
+      transition: background .25s, width .25s;
+    }
+    .hero-dot.is-active {
+      width: 42px;
+      background: #fff;
+    }
+    @media (max-width: 650px) {
+      .hero-pagination { left: 6%; bottom: 55px; }
+      .hero-slide img { object-position: 50% center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slides, .hero-dot { transition: none; }
+    }
+
   </style>
 </head>
 
@@ -409,13 +466,17 @@
         </a>
       </nav>
 
-      <div class="hero-art" aria-hidden="true">
-        <div class="hero-grid"></div>
-        <span class="hero-stamp">INDEPENDENT<br>BY NATURE</span>
-        <span class="hero-giant">IMP</span>
-        <span class="hero-side">
-          RECORDS / STREET DIVISION / EST. 2024
-        </span>
+      <div class="hero-carousel" aria-label="Ensaio fotográfico IMP RECORDS">
+        <div class="hero-slides">
+          <div class="hero-slide is-active"><img src="./assets/banner-gengar-1.jpg" alt="Ensaio streetwear IMP RECORDS — foto 1" fetchpriority="high"></div>
+          <div class="hero-slide"><img src="./assets/banner-gengar-2.jpg" alt="Ensaio streetwear IMP RECORDS — foto 2" loading="lazy"></div>
+          <div class="hero-slide"><img src="./assets/banner-gengar-3.jpg" alt="Ensaio streetwear IMP RECORDS — foto 3" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="hero-pagination" aria-label="Selecionar foto do banner">
+        <button class="hero-dot is-active" type="button" aria-label="Mostrar foto 1" aria-pressed="true"></button>
+        <button class="hero-dot" type="button" aria-label="Mostrar foto 2" aria-pressed="false"></button>
+        <button class="hero-dot" type="button" aria-label="Mostrar foto 3" aria-pressed="false"></button>
       </div>
 
       <div class="hero-overlay">
@@ -1625,5 +1686,52 @@
   }, true);
 })();
 </script>
+
+<script>
+(() => {
+  const carousel = document.querySelector(".hero-carousel");
+  const track = document.querySelector(".hero-slides");
+  const dots = Array.from(document.querySelectorAll(".hero-dot"));
+  if (!carousel || !track || dots.length !== 3) return;
+
+  let current = 0;
+  let timer;
+
+  function showSlide(index) {
+    current = (index + dots.length) % dots.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((dot, i) => {
+      const active = i === current;
+      dot.classList.toggle("is-active", active);
+      dot.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  function stopAutoplay() {
+    window.clearInterval(timer);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !document.hidden) {
+      timer = window.setInterval(() => showSlide(current + 1), 5000);
+    }
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      showSlide(index);
+      startAutoplay();
+    });
+  });
+
+  carousel.addEventListener("mouseenter", stopAutoplay);
+  carousel.addEventListener("mouseleave", startAutoplay);
+  document.addEventListener("visibilitychange", startAutoplay);
+  showSlide(0);
+  startAutoplay();
+})();
+</script>
+
 </body>
 </html>

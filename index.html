@@ -159,7 +159,16 @@
       display: flex;
       width: max-content;
       gap: 14px;
-      animation: impArtistsSpin 32s linear infinite;
+      animation: none;
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      will-change: transform;
+    }
+    .artists-roulette-track.is-dragging { cursor: grabbing; }
+    .artists-roulette-track img {
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
     .artists-roulette.is-paused .artists-roulette-track {
       animation-play-state: paused;
@@ -1864,47 +1873,89 @@
 
   function showNextSlide() {
     current = (current + 1) % totalSlides;
-    track.style.transform = `translateX(-${current * 100}%)`;
-  }
-
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    window.setInterval(() => {
-      if (!document.hidden) showNextSlide();
-    }, 5000);
-  }
-})();
-</script>
-
-
-  <script>
-  /* Roleta contínua de artistas, sem cards duplicados ou botão de pausa. */
+    track.style.tr  <script>
+  /* Roleta contínua com navegação manual por arraste. */
   (() => {
     const track = document.getElementById("artists-roulette-track");
-    if (!track || track.children.length < 2) return;
+    const viewport = track?.closest(".artists-roulette-window");
+    if (!track || !viewport || track.children.length < 2) return;
 
     let offset = 0;
     let previousTime = 0;
+    let dragging = false;
+    let startX = 0;
+    let lastX = 0;
+    let moved = false;
     const speed = 35; // pixels por segundo
+    const gap = () => parseFloat(getComputedStyle(track).gap || 0);
+
+    const normalize = () => {
+      let first = track.firstElementChild;
+      let distance = first.getBoundingClientRect().width + gap();
+      while (offset >= distance) {
+        offset -= distance;
+        track.appendChild(first);
+        first = track.firstElementChild;
+        distance = first.getBoundingClientRect().width + gap();
+      }
+      let last = track.lastElementChild;
+      let previousDistance = last.getBoundingClientRect().width + gap();
+      while (offset < 0) {
+        track.insertBefore(last, track.firstElementChild);
+        offset += previousDistance;
+        last = track.lastElementChild;
+        previousDistance = last.getBoundingClientRect().width + gap();
+      }
+    };
+
+    const render = () => {
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    };
+
+    viewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      dragging = true;
+      moved = false;
+      startX = lastX = event.clientX;
+      track.classList.add("is-dragging");
+      viewport.setPointerCapture(event.pointerId);
+    });
+
+    viewport.addEventListener("pointermove", (event) => {
+      if (!dragging) return;
+      const deltaX = event.clientX - lastX;
+      if (Math.abs(event.clientX - startX) > 5) moved = true;
+      offset -= deltaX;
+      lastX = event.clientX;
+      normalize();
+      render();
+    });
+
+    const stopDragging = () => {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove("is-dragging");
+    };
+    viewport.addEventListener("pointerup", stopDragging);
+    viewport.addEventListener("pointercancel", stopDragging);
+    viewport.addEventListener("click", (event) => {
+      if (!moved) return;
+      event.preventDefault();
+      event.stopPropagation();
+      moved = false;
+    }, true);
 
     const animate = (time) => {
       if (!previousTime) previousTime = time;
       const delta = Math.min((time - previousTime) / 1000, 0.05);
       previousTime = time;
-      offset += speed * delta;
-
-      const firstCard = track.firstElementChild;
-      const distance = firstCard.getBoundingClientRect().width +
-        parseFloat(getComputedStyle(track).gap || 0);
-
-      if (offset >= distance) {
-        offset -= distance;
-        track.appendChild(firstCard);
+      if (!dragging) {
+        offset += speed * delta;
+        normalize();
+        render();
       }
-
-      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
       requestAnimationFrame(animate);
     };
-
     requestAnimationFrame(animate);
   })();
   </script>

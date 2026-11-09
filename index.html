@@ -590,6 +590,49 @@
       border: 1px solid rgba(255,255,255,.14);
       box-shadow: 0 24px 70px rgba(0,0,0,.38);
     }
+    .imp-release-start {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: #080808;
+      cursor: pointer;
+    }
+    .imp-release-start img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .82;
+    }
+    .imp-release-play-icon {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 54px;
+      border-radius: 15px;
+      background: #e00000;
+      color: #fff;
+      font-size: 25px;
+      padding-left: 4px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.4);
+    }
+    .imp-release-player.is-playing .imp-release-start { display: none; }
+    .imp-release-player iframe {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
     .imp-release-player #imp-release-youtube,
     .imp-release-player iframe {
       position: absolute;
@@ -1175,8 +1218,11 @@
     <section class="section-wrap latest-release" id="lancamento">
       <h2>Veja o nosso último lançamento</h2>
 
-      <div class="video imp-release-player">
-        <div id="imp-release-youtube" aria-label="Prévia do último lançamento IMP RECORDS"></div>
+      <div class="video imp-release-player" id="imp-release-player">
+        <button class="imp-release-start" id="imp-release-start" type="button" aria-label="Reproduzir último lançamento">
+          <img src="https://img.youtube.com/vi/7EmcUj99hOU/hqdefault.jpg" alt="Capa do último lançamento da IMP RECORDS">
+          <span class="imp-release-play-icon" aria-hidden="true">▶</span>
+        </button>
         <div class="imp-release-overlay">
           <span class="imp-release-label">IMP RECORDS · ÚLTIMO LANÇAMENTO</span>
           <a
@@ -1256,45 +1302,28 @@
   </footer>
 
   <script>
-    /* Prévia automática de 30 segundos do último lançamento. */
+    /* O vídeo só é carregado depois do clique explícito em Play. */
     (() => {
-      const channelUrl = "https://www.youtube.com/@imp_records";
-      let player;
+      const playerBox = document.getElementById("imp-release-player");
+      const startButton = document.getElementById("imp-release-start");
+      if (!playerBox || !startButton) return;
+
       let redirectTimer = null;
+      startButton.addEventListener("click", () => {
+        if (playerBox.classList.contains("is-playing")) return;
+        playerBox.classList.add("is-playing");
 
-      window.onYouTubeIframeAPIReady = () => {
-        player = new YT.Player("imp-release-youtube", {
-          videoId: "7EmcUj99hOU",
-          playerVars: {
-            autoplay: 0,
-            controls: 1,
-            disablekb: 1,
-            fs: 0,
-            modestbranding: 1,
-            rel: 0,
-            playsinline: 1,
-            start: 0,
-            end: 30
-          },
-          events: {
-            onReady: () => {},
-            onStateChange: (event) => {
-              if (event.data === YT.PlayerState.PLAYING && !redirectTimer) {
-                redirectTimer = window.setTimeout(() => {
-                  window.location.href = channelUrl;
-                }, 30000);
-              }
-              if (event.data === YT.PlayerState.ENDED) {
-                window.location.href = channelUrl;
-              }
-            }
-          }
-        });
-      };
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube-nocookie.com/embed/7EmcUj99hOU?autoplay=1&controls=1&start=0&end=30&playsinline=1&rel=0";
+        iframe.title = "Último lançamento da IMP RECORDS";
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+        iframe.allowFullscreen = true;
+        playerBox.insertBefore(iframe, playerBox.querySelector(".imp-release-overlay"));
 
-      const api = document.createElement("script");
-      api.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(api);
+        redirectTimer = window.setTimeout(() => {
+          window.location.href = "https://www.youtube.com/@imp_records";
+        }, 30000);
+      });
     })();
 
     /* Menu do celular e tablet. Não depende de assets/menu.js. */

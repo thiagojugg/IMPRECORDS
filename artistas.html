@@ -42,6 +42,7 @@
     }
 
     .artist-card {
+      position: relative;
       min-height: 260px;
       padding: 35px 25px;
       background: #111;
@@ -49,6 +50,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      overflow: hidden;
+      isolation: isolate;
       transition: .3s;
     }
 
@@ -57,14 +60,33 @@
       transform: translateY(-5px);
     }
 
+    .artist-card-photo {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .artist-card.has-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0,0,0,.08) 10%, rgba(0,0,0,.88) 100%);
+    }
+
     .artist-card h2 {
       font: clamp(25px, 3vw, 40px)/1 var(--font-display);
       letter-spacing: -.05em;
       margin: 0;
+      color: #fff;
     }
 
     .artist-card span {
-      color: var(--gray);
+      color: #ddd;
       font-size: 9px;
       font-weight: 700;
       letter-spacing: .15em;
@@ -247,7 +269,8 @@
         <span>ARTISTA IMP RECORDS · CONHEÇA A HISTÓRIA</span>
       </a>
 
-      <a href="./ollivervn.html" class="artist-card">
+      <a href="./ollivervn.html" class="artist-card has-photo">
+        <img class="artist-card-photo" src="./assets/ollivervn-capa.jpg" alt="" loading="lazy" aria-hidden="true">
         <h2>OLLIVERVN</h2>
         <span>ARTISTA IMP RECORDS · CONHEÇA A HISTÓRIA</span>
       </a>

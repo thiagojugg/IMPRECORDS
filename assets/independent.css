@@ -52,3 +52,6 @@
 
 
 .hero-overlay h1 .hero-gengar{color:#8b5cf6!important;}
+
+
+.hero-overlay h1 img.hero-gengar{display:inline-block;height:.78em;width:auto;max-width:55vw;vertical-align:-.08em;object-fit:contain;}

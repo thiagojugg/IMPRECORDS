@@ -46,3 +46,6 @@
 .product-card-link:hover .product-image img.preset-gabriel-image {
   transform: scale(1.12);
 }
+
+
+.hero-overlay h1 .hero-soldout{color:#c62828!important;}

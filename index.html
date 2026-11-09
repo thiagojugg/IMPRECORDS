@@ -270,13 +270,13 @@
       }
 
       @keyframes impMenuSlideIn {
-        from { transform: translateX(-100%); }
+        from { transform: translateX(100%); }
         to { transform: translateX(0); }
       }
 
       @keyframes impMenuSlideOut {
         from { transform: translateX(0); }
-        to { transform: translateX(-100%); }
+        to { transform: translateX(100%); }
       }
 
       .mobile-menu a {
@@ -941,6 +941,7 @@
         } else {
           menu.hidden = false;
           menu.classList.remove("is-closing");
+          document.body.style.overflow = "hidden";
           botao.setAttribute("aria-expanded", "true");
         }
         botao.setAttribute(
@@ -953,6 +954,7 @@
         if (evento.target === menu && menu.classList.contains("is-closing")) {
           menu.hidden = true;
           menu.classList.remove("is-closing");
+          document.body.style.overflow = "";
         }
       });
 

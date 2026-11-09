@@ -82,6 +82,25 @@
       align-items: flex-start;
     }
 
+    .presets-vocais-carousel {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0 0 18px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #777 #222;
+    }
+
+    .presets-vocais-carousel .product-card {
+      flex: 0 0 clamp(250px, 28vw, 360px);
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+
     .manifesto-content {
       max-width: 760px;
       color: #ccc;
@@ -230,8 +249,15 @@
         padding-right: 5vw;
       }
 
-      .camisetas-carousel .product-card {
+      .camisetas-carousel .product-card,
+      .presets-vocais-carousel .product-card {
         flex-basis: min(78vw, 310px);
+      }
+
+      .presets-vocais-carousel {
+        gap: 12px;
+        margin-right: -5vw;
+        padding-right: 5vw;
       }
 
       .section-heading .category-title {
@@ -461,11 +487,11 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">PARA PRODUTORES</p>
-          <h2>PRESETS</h2>
+          <h2>PRESETS VOCAIS</h2>
         </div>
       </div>
 
-      <div class="product-grid">
+      <div class="product-grid presets-vocais-carousel" aria-label="Carrossel de presets vocais">
         <article class="product-card">
           <a class="product-card-link" href="#preset-detalhes">
             <div class="product-image">
@@ -931,7 +957,7 @@
       const titulo = categorias[categoria];
       const heading = secao.querySelector(".section-heading h2");
 
-      if (heading) {
+      if (heading && categoria !== "presets") {
         const novoTitulo = document.createElement("h1");
         novoTitulo.className = "category-title";
         novoTitulo.textContent = titulo;

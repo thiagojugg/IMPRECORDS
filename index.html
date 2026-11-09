@@ -267,6 +267,40 @@
         width: 100%;
       }
     }
+    /* Ajuste final dos cards no celular: caixa de imagem menor e texto destacado. */
+    @media (max-width: 650px) {
+      .camisetas-carousel .product-card,
+      .presets-vocais-carousel .product-card {
+        flex: 0 0 230px;
+      }
+
+      .camisetas-carousel .product-image,
+      .presets-vocais-carousel .product-image {
+        width: 100%;
+        aspect-ratio: 1.22;
+        background: #191919;
+        overflow: hidden;
+      }
+
+      .camisetas-carousel .product-image img,
+      .presets-vocais-carousel .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .camisetas-carousel .product-title,
+      .presets-vocais-carousel .product-title {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .camisetas-carousel .product-price,
+      .presets-vocais-carousel .product-price {
+        font-size: 13px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .artists-roulette-track { animation: none; }
     }

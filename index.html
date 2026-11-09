@@ -59,6 +59,29 @@
       margin: 0;
     }
 
+    .camisetas-carousel {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0 0 18px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #777 #222;
+    }
+
+    .camisetas-carousel .product-card {
+      flex: 0 0 clamp(250px, 28vw, 360px);
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+
+    .camisetas-carousel .product-meta {
+      align-items: flex-start;
+    }
+
     .manifesto-content {
       max-width: 760px;
       color: #ccc;
@@ -201,6 +224,16 @@
     }
 
     @media (max-width: 650px) {
+      .camisetas-carousel {
+        gap: 12px;
+        margin-right: -5vw;
+        padding-right: 5vw;
+      }
+
+      .camisetas-carousel .product-card {
+        flex-basis: min(78vw, 310px);
+      }
+
       .section-heading .category-title {
         font-size: 36px;
       }
@@ -321,16 +354,16 @@
     <section class="section-wrap product-section" id="vestuario">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">SELEÇÃO DA CASA</p>
-          <h2>MAIS VENDIDOS</h2>
+          <p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
+          <h2>CAMISETAS</h2>
         </div>
 
         <a class="text-link" href="#gengar-detalhes">
-          VER PRODUTO ↗
+          VER CAMISETA ↗
         </a>
       </div>
 
-      <div class="product-grid">
+      <div class="product-grid camisetas-carousel" aria-label="Carrossel de camisetas">
         <article class="product-card" id="gengar">
           <a class="product-card-link" href="#gengar-detalhes">
             <div class="product-image">

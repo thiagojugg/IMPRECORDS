@@ -361,33 +361,11 @@
       object-fit: cover;
       object-position: center;
     }
-    .hero-pagination {
-      position: absolute;
-      z-index: 6;
-      left: 9%;
-      bottom: 58px;
-      display: flex;
-      gap: 9px;
-    }
-    .hero-dot {
-      width: 26px;
-      height: 3px;
-      padding: 0;
-      border: 0;
-      background: rgba(255,255,255,.4);
-      cursor: pointer;
-      transition: background .25s, width .25s;
-    }
-    .hero-dot.is-active {
-      width: 42px;
-      background: #fff;
-    }
     @media (max-width: 650px) {
-      .hero-pagination { left: 6%; bottom: 55px; }
       .hero-slide img { object-position: 50% center; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-slides, .hero-dot { transition: none; }
+      .hero-slides { transition: none; }
     }
 
   </style>
@@ -473,11 +451,7 @@
           <div class="hero-slide"><img src="./assets/banner-gengar-3.jpg" alt="Ensaio streetwear IMP RECORDS — foto 3" loading="lazy"></div>
         </div>
       </div>
-      <div class="hero-pagination" aria-label="Selecionar foto do banner">
-        <button class="hero-dot is-active" type="button" aria-label="Mostrar foto 1" aria-pressed="true"></button>
-        <button class="hero-dot" type="button" aria-label="Mostrar foto 2" aria-pressed="false"></button>
-        <button class="hero-dot" type="button" aria-label="Mostrar foto 3" aria-pressed="false"></button>
-      </div>
+
 
       <div class="hero-overlay">
         <p class="eyebrow">SEJA BEM-VINDO À IMP RECORDS®</p>
@@ -1691,45 +1665,22 @@
 (() => {
   const carousel = document.querySelector(".hero-carousel");
   const track = document.querySelector(".hero-slides");
-  const dots = Array.from(document.querySelectorAll(".hero-dot"));
-  if (!carousel || !track || dots.length !== 3) return;
+  if (!carousel || !track) return;
 
   let current = 0;
-  let timer;
+  const totalSlides = track.children.length;
+  if (totalSlides !== 3) return;
 
-  function showSlide(index) {
-    current = (index + dots.length) % dots.length;
+  function showNextSlide() {
+    current = (current + 1) % totalSlides;
     track.style.transform = `translateX(-${current * 100}%)`;
-    dots.forEach((dot, i) => {
-      const active = i === current;
-      dot.classList.toggle("is-active", active);
-      dot.setAttribute("aria-pressed", String(active));
-    });
   }
 
-  function stopAutoplay() {
-    window.clearInterval(timer);
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    window.setInterval(() => {
+      if (!document.hidden) showNextSlide();
+    }, 5000);
   }
-
-  function startAutoplay() {
-    stopAutoplay();
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !document.hidden) {
-      timer = window.setInterval(() => showSlide(current + 1), 5000);
-    }
-  }
-
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", () => {
-      showSlide(index);
-      startAutoplay();
-    });
-  });
-
-  carousel.addEventListener("mouseenter", stopAutoplay);
-  carousel.addEventListener("mouseleave", startAutoplay);
-  document.addEventListener("visibilitychange", startAutoplay);
-  showSlide(0);
-  startAutoplay();
 })();
 </script>
 

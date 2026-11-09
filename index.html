@@ -626,10 +626,15 @@
       text-align: right;
     }
     @media (max-width: 650px) {
-      .imp-release-overlay { padding: 34px 14px 14px; }
+      .imp-release-player { aspect-ratio: 16 / 9; }
+      .imp-release-overlay {
+        inset: 0 0 auto;
+        align-items: flex-start;
+        padding: 12px 12px 34px;
+        background: linear-gradient(rgba(0,0,0,.82), transparent);
+      }
       .imp-release-label { font-size: 8px; }
-      .imp-release-overlay .button { padding: 11px 13px; font-size: 9px; }
-      .imp-release-note { font-size: 10px; text-align: left; }
+      .imp-release-overlay .button { padding: 9px 11px; font-size: 9px; }
     }
 
   </style>

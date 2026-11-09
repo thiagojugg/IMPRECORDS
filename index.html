@@ -1890,5 +1890,50 @@
 })();
 </script>
 
+
+  <script>
+  /* Roleta automática de artistas */
+  (() => {
+    const section = document.getElementById("artists-roulette");
+    const track = document.getElementById("artists-roulette-track");
+    const button = document.getElementById("artists-roulette-toggle");
+    if (!section || !track || !button) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let paused = reducedMotion.matches;
+
+    const render = () => {
+      section.classList.toggle("is-paused", paused);
+      button.textContent = paused ? "CONTINUAR" : "PARAR";
+      button.setAttribute("aria-pressed", String(paused));
+      button.setAttribute("aria-label", paused
+        ? "Continuar rolagem automática dos artistas"
+        : "Parar rolagem automática dos artistas");
+    };
+
+    button.addEventListener("click", () => {
+      paused = !paused;
+      render();
+    });
+
+    section.addEventListener("mouseenter", () => {
+      section.classList.add("is-hover-paused");
+      track.style.animationPlayState = "paused";
+    });
+    section.addEventListener("mouseleave", () => {
+      section.classList.remove("is-hover-paused");
+      track.style.animationPlayState = paused ? "paused" : "running";
+    });
+
+    reducedMotion.addEventListener?.("change", event => {
+      if (event.matches) paused = true;
+      render();
+    });
+
+    render();
+    track.style.animationPlayState = paused ? "paused" : "running";
+  })();
+  </script>
+
 </body>
 </html>

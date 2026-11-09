@@ -24,9 +24,19 @@
       justify-content: flex-end;
       padding: 40px;
       overflow: hidden;
-      background: #111;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.35) 58%, rgba(0,0,0,.12) 100%),
+        linear-gradient(0deg, rgba(0,0,0,.65), transparent 70%),
+        url("./assets/twiz-principal.jpg") center 40% / cover no-repeat;
       border: 1px solid var(--line);
       margin-bottom: 70px;
+    }
+
+    .twiz-hero .eyebrow,
+    .twiz-hero h1,
+    .twiz-hero p {
+      position: relative;
+      z-index: 1;
     }
 
     .twiz-hero h1 {
@@ -43,17 +53,15 @@
     }
 
     .twiz-photo {
-      min-height: 350px;
-      background: #151515;
-      border: 1px dashed #555;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 25px;
-      color: #aaa;
       margin: 35px 0;
+    }
+
+    .twiz-photo img {
+      display: block;
+      width: 100%;
+      max-height: 680px;
+      object-fit: cover;
+      border: 1px solid var(--line);
     }
 
     .twiz-photo strong {
@@ -296,6 +304,11 @@
     </p>
   </section>
 
+  <figure class="twiz-photo">
+    <img src="./assets/twiz-raizes-do-interior.jpg" alt="Raízes de Twiz no interior do Maranhão">
+    <figcaption>RAÍZES DO INTERIOR</figcaption>
+  </figure>
+
   <div class="twiz-photo">
     <strong>FOTOGRAFIA PESSOAL DO TWIZ</strong>
     <p>Espaço reservado para o retrato oficial do artista.</p>
@@ -327,11 +340,10 @@
     </p>
   </section>
 
-  <div class="twiz-photo">
-    <strong>ARQUIVO IMP RECORDS</strong>
-    <p>Espaço reservado para o logotipo, estúdio e registros da gravadora.</p>
-    <small>Arquivo futuro: assets/twiz-imp-records.jpg</small>
-  </div>
+  <figure class="twiz-photo">
+    <img src="./assets/twiz-imp-records.jpg" alt="Registros de Twiz e da IMP RECORDS">
+    <figcaption>ARQUIVO IMP RECORDS</figcaption>
+  </figure>
 
   <section class="twiz-section">
     <span class="number">04 / IDENTIDADE</span>
@@ -449,11 +461,10 @@
     </p>
   </section>
 
-  <div class="twiz-photo">
-    <strong>FOTOGRAFIA DA IMP ROOTS</strong>
-    <p>Espaço reservado para uma imagem que represente as raízes de Twiz no reggae maranhense e o início do projeto IMP ROOTS.</p>
-    <small>Imagem a adicionar posteriormente</small>
-  </div>
+  <figure class="twiz-photo">
+    <img src="./assets/twiz-imp-roots.jpg" alt="Projeto IMP ROOTS e as raízes de Twiz no reggae maranhense">
+    <figcaption>FOTOGRAFIA DA IMP ROOTS</figcaption>
+  </figure>
 
   <section class="twiz-section">
     <span class="number">08 / FUTURO</span>
@@ -506,11 +517,10 @@
     </p>
   </section>
 
-  <div class="twiz-photo">
-    <strong>FOTOGRAFIA DA FAMÍLIA IMP RECORDS</strong>
-    <p>Espaço reservado para uma foto reunindo artistas e integrantes que fizeram parte da caminhada da gravadora.</p>
-    <small>Arquivo futuro: assets/imp-records-artistas.jpg</small>
-  </div>
+  <figure class="twiz-photo">
+    <img src="./assets/imp-records-artistas.jpg" alt="Artistas e integrantes da família IMP RECORDS">
+    <figcaption>FOTOGRAFIA DA FAMÍLIA IMP RECORDS</figcaption>
+  </figure>
 
   <section class="twiz-section">
     <span class="number">10 / IRMANDADE E SOCIEDADE</span>
@@ -536,11 +546,10 @@
     </p>
   </section>
 
-  <div class="twiz-photo">
-    <strong>FOTOGRAFIA DE TWIZ E OLLIVERVN</strong>
-    <p>Espaço reservado para uma foto que represente essa irmandade e a história da IMP RECORDS.</p>
-    <small>Imagem a adicionar posteriormente</small>
-  </div>
+  <figure class="twiz-photo">
+    <img src="./assets/twiz-ollivervn.jpg" alt="Twiz e OlliverVn, integrantes e sócios da IMP RECORDS">
+    <figcaption>FOTOGRAFIA DE TWIZ E OLLIVERVN</figcaption>
+  </figure>
 
   <section class="twiz-quote">
     <h2>

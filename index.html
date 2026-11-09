@@ -808,10 +808,7 @@
           <p class="eyebrow">IMP RECORDS / NOSSA FREQUÊNCIA</p>
           <h2>ROULETA DE ARTISTAS</h2>
         </div>
-        <div class="artists-roulette-controls">
-          <button type="button" id="artists-roulette-toggle" aria-pressed="false">PARAR</button>
-          <a class="text-link" href="./artistas.html">VER TODOS ↗</a>
-        </div>
+        <a class="text-link" href="./artistas.html">VER TODOS ↗</a>
       </div>
 
       <div class="artists-roulette-window">
@@ -828,21 +825,9 @@
             <img src="./assets/gabriel-principal.jpg" alt="" loading="lazy">
             <strong>GABRIEL LEAL</strong><span>VER AUTOBIOGRAFIA ↗</span>
           </a>
-          <a class="artist-roulette-card has-image" href="./twiz.html" aria-hidden="true" tabindex="-1">
-            <img src="./assets/twiz-principal.jpg" alt="" loading="lazy">
-            <strong>TWIZ</strong><span>VER AUTOBIOGRAFIA ↗</span>
-          </a>
-          <a class="artist-roulette-card has-image" href="./ollivervn.html" aria-hidden="true" tabindex="-1">
-            <img src="./assets/ollivervn-capa.jpg" alt="" loading="lazy">
-            <strong>OLLIVERVN</strong><span>VER AUTOBIOGRAFIA ↗</span>
-          </a>
-          <a class="artist-roulette-card has-image" href="./gabriel-leal.html" aria-hidden="true" tabindex="-1">
-            <img src="./assets/gabriel-principal.jpg" alt="" loading="lazy">
-            <strong>GABRIEL LEAL</strong><span>VER AUTOBIOGRAFIA ↗</span>
-          </a>
         </div>
       </div>
-      <p class="artists-roulette-hint">A roleta passa automaticamente. Pare quando encontrar o artista e selecione o card para abrir a página.</p>
+      <p class="artists-roulette-hint">Os artistas passam continuamente. Selecione um card para abrir sua autobiografia.</p>
     </section>
 
     <section class="section-wrap standard-page" id="galeria" hidden>
@@ -1892,46 +1877,35 @@
 
 
   <script>
-  /* Roleta automática de artistas */
+  /* Roleta contínua de artistas, sem cards duplicados ou botão de pausa. */
   (() => {
-    const section = document.getElementById("artists-roulette");
     const track = document.getElementById("artists-roulette-track");
-    const button = document.getElementById("artists-roulette-toggle");
-    if (!section || !track || !button) return;
+    if (!track || track.children.length < 2) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let paused = reducedMotion.matches;
+    let offset = 0;
+    let previousTime = 0;
+    const speed = 28; // pixels por segundo
 
-    const render = () => {
-      section.classList.toggle("is-paused", paused);
-      button.textContent = paused ? "CONTINUAR" : "PARAR";
-      button.setAttribute("aria-pressed", String(paused));
-      button.setAttribute("aria-label", paused
-        ? "Continuar rolagem automática dos artistas"
-        : "Parar rolagem automática dos artistas");
+    const animate = (time) => {
+      if (!previousTime) previousTime = time;
+      const delta = Math.min((time - previousTime) / 1000, 0.05);
+      previousTime = time;
+      offset += speed * delta;
+
+      const firstCard = track.firstElementChild;
+      const distance = firstCard.getBoundingClientRect().width +
+        parseFloat(getComputedStyle(track).gap || 0);
+
+      if (offset >= distance) {
+        offset -= distance;
+        track.appendChild(firstCard);
+      }
+
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+      requestAnimationFrame(animate);
     };
 
-    button.addEventListener("click", () => {
-      paused = !paused;
-      render();
-    });
-
-    section.addEventListener("mouseenter", () => {
-      section.classList.add("is-hover-paused");
-      track.style.animationPlayState = "paused";
-    });
-    section.addEventListener("mouseleave", () => {
-      section.classList.remove("is-hover-paused");
-      track.style.animationPlayState = paused ? "paused" : "running";
-    });
-
-    reducedMotion.addEventListener?.("change", event => {
-      if (event.matches) paused = true;
-      render();
-    });
-
-    render();
-    track.style.animationPlayState = paused ? "paused" : "running";
+    requestAnimationFrame(animate);
   })();
   </script>
 

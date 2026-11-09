@@ -277,16 +277,18 @@
       .camisetas-carousel .product-image,
       .presets-vocais-carousel .product-image {
         width: 100%;
-        aspect-ratio: 1.22;
-        background: #191919;
-        overflow: hidden;
+        height: auto;
+        aspect-ratio: auto;
+        background: transparent;
+        overflow: visible;
       }
 
       .camisetas-carousel .product-image img,
       .presets-vocais-carousel .product-image img {
+        display: block;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+        object-fit: contain;
       }
 
       .camisetas-carousel .product-title,

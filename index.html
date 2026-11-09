@@ -1173,7 +1173,6 @@
           >ASSISTIR NO YOUTUBE <span>↗</span></a>
         </div>
       </div>
-      <p class="imp-release-note">Prévia automática de 30 segundos. Depois, você será direcionado ao canal da IMP RECORDS.</p>
     </section>
 
       <section class="section-wrap bag-section" id="bag" hidden>
@@ -1253,22 +1252,18 @@
         player = new YT.Player("imp-release-youtube", {
           videoId: "7EmcUj99hOU",
           playerVars: {
-            autoplay: 1,
-            controls: 0,
+            autoplay: 0,
+            controls: 1,
             disablekb: 1,
             fs: 0,
             modestbranding: 1,
             rel: 0,
             playsinline: 1,
-            mute: 1,
             start: 0,
             end: 30
           },
           events: {
-            onReady: (event) => {
-              event.target.mute();
-              event.target.playVideo();
-            },
+            onReady: () => {},
             onStateChange: (event) => {
               if (event.data === YT.PlayerState.PLAYING && !redirectTimer) {
                 redirectTimer = window.setTimeout(() => {

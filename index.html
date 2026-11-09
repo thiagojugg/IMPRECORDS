@@ -1874,7 +1874,7 @@
   function showNextSlide() {
     current = (current + 1) % totalSlides;
     track.style.tr  <script>
-  /* Roleta contínua com navegação manual por arraste. */
+  /* Roleta automática com controle manual por toque ou mouse. */
   (() => {
     const track = document.getElementById("artists-roulette-track");
     const viewport = track?.closest(".artists-roulette-window");
@@ -1883,24 +1883,25 @@
     let offset = 0;
     let previousTime = 0;
     let dragging = false;
-    let startX = 0;
     let lastX = 0;
     let moved = false;
+    let pointerId = null;
     const speed = 35; // pixels por segundo
-    const gap = () => parseFloat(getComputedStyle(track).gap || 0);
+    const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
 
     const normalize = () => {
       let first = track.firstElementChild;
       let distance = first.getBoundingClientRect().width + gap();
-      while (offset >= distance) {
+      while (distance > 0 && offset >= distance) {
         offset -= distance;
         track.appendChild(first);
         first = track.firstElementChild;
         distance = first.getBoundingClientRect().width + gap();
       }
+
       let last = track.lastElementChild;
       let previousDistance = last.getBoundingClientRect().width + gap();
-      while (offset < 0) {
+      while (previousDistance > 0 && offset < 0) {
         track.insertBefore(last, track.firstElementChild);
         offset += previousDistance;
         last = track.lastElementChild;
@@ -1912,32 +1913,39 @@
       track.style.transform = `translate3d(${-offset}px, 0, 0)`;
     };
 
+    const stopDragging = () => {
+      if (!dragging) return;
+      dragging = false;
+      pointerId = null;
+      track.classList.remove("is-dragging");
+    };
+
     viewport.addEventListener("pointerdown", (event) => {
       if (event.pointerType === "mouse" && event.button !== 0) return;
       dragging = true;
       moved = false;
-      startX = lastX = event.clientX;
+      lastX = event.clientX;
+      pointerId = event.pointerId;
       track.classList.add("is-dragging");
-      viewport.setPointerCapture(event.pointerId);
+      try { viewport.setPointerCapture(event.pointerId); } catch (_) {}
     });
 
     viewport.addEventListener("pointermove", (event) => {
-      if (!dragging) return;
+      if (!dragging || event.pointerId !== pointerId) return;
       const deltaX = event.clientX - lastX;
-      if (Math.abs(event.clientX - startX) > 5) moved = true;
+      if (Math.abs(deltaX) > 0) moved = true;
       offset -= deltaX;
       lastX = event.clientX;
       normalize();
       render();
     });
 
-    const stopDragging = () => {
-      if (!dragging) return;
-      dragging = false;
-      track.classList.remove("is-dragging");
-    };
     viewport.addEventListener("pointerup", stopDragging);
     viewport.addEventListener("pointercancel", stopDragging);
+    viewport.addEventListener("lostpointercapture", stopDragging);
+    window.addEventListener("pointerup", stopDragging);
+    window.addEventListener("pointercancel", stopDragging);
+
     viewport.addEventListener("click", (event) => {
       if (!moved) return;
       event.preventDefault();
@@ -1949,6 +1957,8 @@
       if (!previousTime) previousTime = time;
       const delta = Math.min((time - previousTime) / 1000, 0.05);
       previousTime = time;
+
+      // A roleta só fica sob controle manual enquanto o ponteiro está pressionado.
       if (!dragging) {
         offset += speed * delta;
         normalize();
@@ -1956,6 +1966,8 @@
       }
       requestAnimationFrame(animate);
     };
+
+    render();
     requestAnimationFrame(animate);
   })();
   </script>

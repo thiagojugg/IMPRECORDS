@@ -113,7 +113,7 @@ input, textarea, select, [contenteditable="true"], iframe {
 
 /* Logotipo animado no rodapé em todas as páginas */
 .footer-logo.wordmark { display:inline-flex; align-items:flex-start; position:relative; white-space:nowrap; }
-.footer-logo.wordmark .footer-flag-stack { display:inline-block; position:relative; width:2.12em; height:.9em; line-height:.9; vertical-align:top; }
+.footer-logo.wordmark .footer-flag-stack { display:inline-block; position:relative; width:6.25em; height:.9em; line-height:.9; vertical-align:top; }
 .footer-logo.wordmark .wordmark-flag {
   position:absolute; inset:0 auto auto 0; display:block; width:100%; height:100%;
   font-family:var(--font-display); font-size:36px; font-weight:inherit; line-height:.9;
@@ -121,7 +121,7 @@ input, textarea, select, [contenteditable="true"], iframe {
   background-clip:text; -webkit-background-clip:text; background-repeat:no-repeat;
   background-size:145% 145%; background-position:50% 50%;
 }
-.footer-logo.wordmark .footer-records-stack { width:5.2em; height:.9em; margin-left:.12em; }
+
 .footer-logo.wordmark .wordmark-reg { font:10px var(--font-body); line-height:1; margin:0 0 0 4px; color:#fff; }
 .footer-brand-row { margin:0 0 24px; }
 @media(max-width:650px) {

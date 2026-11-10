@@ -93,6 +93,27 @@
       padding-top: 50px;
     }
 
+    .imp-category-shortcuts button.imp-category {
+      appearance: none;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .clothing-category-empty {
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 35px 20px;
+      text-align: center;
+      color: #999;
+      border: 1px solid var(--line);
+      letter-spacing: .14em;
+      font-size: 10px;
+    }
+
     .camisetas-carousel {
       display: flex;
       gap: 18px;
@@ -2039,9 +2060,9 @@
 
     <section class="imp-category-shortcuts" aria-label="Categorias de vestuário">
       <a class="imp-category" href="./?categoria=vestuario" aria-label="Ver camisetas"><span class="imp-category-circle"><img src="./assets/WhatsApp Image 2026-11-09 at 21.39.01 (4).jpeg" alt="" loading="lazy"></span><span>CAMISETAS</span></a>
-      <div class="imp-category" aria-label="Jeans"><span class="imp-category-circle"><img src="./assets/jeans-1.png" alt="" loading="lazy"></span><span>JEANS</span></div>
-      <div class="imp-category" aria-label="Bonés"><span class="imp-category-circle"><img src="./assets/bones-1.png" alt="" loading="lazy"></span><span>BONÉS</span></div>
-      <div class="imp-category" aria-label="Moletons"><span class="imp-category-circle"><img src="./assets/moletons-1.png" alt="" loading="lazy"></span><span>MOLETONS</span></div>
+      <button class="imp-category" type="button" data-clothing-filter="jeans" aria-label="Ver categoria Jeans"><span class="imp-category-circle"><img src="./assets/jeans-1.png" alt="" loading="lazy"></span><span>JEANS</span></button>
+      <button class="imp-category" type="button" data-clothing-filter="bones" aria-label="Ver categoria Bonés"><span class="imp-category-circle"><img src="./assets/bones-1.png" alt="" loading="lazy"></span><span>BONÉS</span></button>
+      <button class="imp-category" type="button" data-clothing-filter="moletons" aria-label="Ver categoria Moletons"><span class="imp-category-circle"><img src="./assets/moletons-1.png" alt="" loading="lazy"></span><span>MOLETONS</span></button>
     </section>
 
     <section class="fl-studio-launch" aria-label="Atalho para a área de produtores">
@@ -2123,6 +2144,7 @@
         </article>
 
       </div>
+      <p class="clothing-category-empty" hidden aria-live="polite">NOVOS PRODUTOS DESTA CATEGORIA EM BREVE.</p>
     </section>
 
     <section class="section-wrap product-section" id="presets">
@@ -4303,6 +4325,35 @@
   <script src="./assets/christmas-season.js" defer></script>
 
   <script src="./assets/navigation-transition.js" defer></script>
+
+  <script id="imp-clothing-category-filter">
+  (() => {
+    const section = document.querySelector("#vestuario");
+    if (!section) return;
+    const buttons = [...document.querySelectorAll("[data-clothing-filter]")];
+    const grid = section.querySelector(".camisetas-carousel");
+    const empty = section.querySelector(".clothing-category-empty");
+    const heading = section.querySelector(".section-heading h2");
+    const link = section.querySelector(".section-heading .text-link");
+    if (!buttons.length || !grid || !empty || !heading) return;
+
+    const labels = { jeans: "JEANS", bones: "BONÉS", moletons: "MOLETONS" };
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.clothingFilter;
+        heading.textContent = labels[category] || "VESTUÁRIO";
+        grid.hidden = true;
+        empty.hidden = false;
+        if (link) link.hidden = true;
+        buttons.forEach(item => {
+          const active = item === button;
+          item.setAttribute("aria-pressed", String(active));
+        });
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  })();
+  </script>
 
   <script id="imp-digital-category-filter">
   (() => {

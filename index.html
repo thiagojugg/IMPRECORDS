@@ -1685,6 +1685,38 @@
     filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));
   }
   .site-header.imp-christmas-header .imp-christmas-snowman { display:none !important; }
+
+  .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+    position:absolute;
+    z-index:3;
+    display:block;
+    right:max(10px,calc((100vw - 1180px)/2));
+    bottom:0;
+    width:auto;
+    height:68px;
+    max-width:70px;
+    object-fit:contain;
+    object-position:center bottom;
+    pointer-events:none;
+    user-select:none;
+    filter:drop-shadow(0 4px 5px rgba(0,0,0,.58));
+    animation:imp-snowman-photo-bob 3.6s ease-in-out infinite;
+  }
+  @keyframes imp-snowman-photo-bob {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-3px); }
+  }
+  @media(max-width:650px) {
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+      right:2px;
+      height:56px;
+      max-width:58px;
+    }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo { animation:none; }
+  }
+
   .site-header.imp-christmas-header .imp-christmas-santa {
     position:absolute !important;
     z-index:3 !important;
@@ -1765,6 +1797,7 @@
     <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
     <img class="imp-christmas-tree" src="./assets/—Pngtree—3d green christmas tree featuring_16992922.png" alt="" aria-hidden="true">
     <img class="imp-christmas-santa" src="./assets/pngwing.com.png" alt="" aria-hidden="true">
+    <img class="imp-christmas-snowman-photo" src="./assets/—Pngtree—christmas snowman with santa hat_5667812.png" alt="" aria-hidden="true">
     <div class="header-inner">
       
 

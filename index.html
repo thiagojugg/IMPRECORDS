@@ -877,12 +877,12 @@
       inset: 0;
       z-index: 999999;
       pointer-events: none;
-      background: #050505;
-      animation: impFlTransitionFade .55s cubic-bezier(.2,.7,.2,1) both;
+      background: radial-gradient(ellipse at center, rgba(12,12,12,.88), #050505 82%);
+      animation: impFlTransitionFade .48s cubic-bezier(.22,.72,.24,1) both;
     }
     @keyframes impFlTransitionFade {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; backdrop-filter: blur(0); }
+      to { opacity: 1; backdrop-filter: blur(5px); }
     }
     @media (prefers-reduced-motion: reduce) {
       html.imp-fl-transition-active::after { animation-duration: .12s; }
@@ -2702,30 +2702,46 @@
     iniciou = true;
     link.setAttribute("aria-busy", "true");
 
-    document.documentElement.classList.add("imp-fl-transition-active");
-
     const audio = new Audio("./assets/audio/transicao-fl-studio.mp3");
     audio.preload = "auto";
     audio.volume = 1;
 
     let redirecionou = false;
-    let limite = null;
+    let iniciouFade = false;
+    let instanteFade = 0;
+    let instanteRedirecionamento = 0;
+
+    const iniciarFade = () => {
+      if (iniciouFade) return;
+      iniciouFade = true;
+      document.documentElement.classList.add("imp-fl-transition-active");
+    };
+
     const redirecionar = () => {
       if (redirecionou) return;
       redirecionou = true;
       window.location.assign(destino);
     };
 
+    audio.addEventListener("loadedmetadata", () => {
+      const duracao = Number.isFinite(audio.duration) ? audio.duration : 0;
+      // A tela começa a escurecer suavemente pouco antes do fim do áudio.
+      instanteFade = Math.max(0, duracao - 0.72);
+      // A nova página abre cerca de 0,2 s antes do áudio terminar.
+      instanteRedirecionamento = Math.max(0, duracao - 0.2);
+    }, { once: true });
+
+    audio.addEventListener("timeupdate", () => {
+      if (audio.currentTime >= instanteFade) iniciarFade();
+      if (audio.currentTime >= instanteRedirecionamento) redirecionar();
+    });
+
     audio.addEventListener("ended", redirecionar, { once: true });
     audio.addEventListener("error", redirecionar, { once: true });
-    audio.addEventListener("loadedmetadata", () => {
-      const duracao = Number.isFinite(audio.duration) ? audio.duration * 1000 : 0;
-      limite = window.setTimeout(redirecionar, Math.min(Math.max(duracao + 500, 1200), 10000));
-    }, { once: true });
 
     audio.play().catch(redirecionar);
 
-    // Evita deixar o visitante preso caso o navegador não dispare ended/metadata.
+    // Proteção para falhas de carregamento ou eventos de áudio não disparados.
     window.setTimeout(redirecionar, 10500);
   });
 })();

@@ -675,3 +675,26 @@ body {
     opacity: 0 !important;
   }
 }
+
+/* Fundo estrutural uniforme: evita manchas de preto diferentes entre as seções. */
+main,
+.section-wrap,
+.product-section,
+.site-footer {
+  background-color: var(--black);
+}
+.site-header .desktop-nav,
+.site-header .header-actions {
+  position: relative;
+  z-index: 5;
+}
+.site-header .desktop-nav a,
+.site-header .header-actions a {
+  color: #f5f5f2;
+  opacity: 1;
+  visibility: visible;
+}
+.site-header .desktop-nav a:hover,
+.site-header .header-actions a:hover {
+  opacity: .72;
+}

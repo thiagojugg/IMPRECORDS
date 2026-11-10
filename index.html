@@ -2133,7 +2133,30 @@
         </div>
       </div>
 
-      <div class="product-grid presets-vocais-carousel" aria-label="Carrossel de presets vocais">
+      <nav class="digital-category-carousel" aria-label="Categorias de produtos digitais">
+        <button class="digital-category is-active" type="button" data-digital-filter="presets" aria-pressed="true">
+          <span class="digital-category-orb"><span>FX</span></span>
+          <span class="digital-category-label">PRESETS</span>
+        </button>
+        <button class="digital-category" type="button" data-digital-filter="drum-kits" aria-pressed="false">
+          <span class="digital-category-orb"><span>DR</span></span>
+          <span class="digital-category-label">DRUM KITS</span>
+        </button>
+        <button class="digital-category" type="button" data-digital-filter="plugins" aria-pressed="false">
+          <span class="digital-category-orb"><span>PL</span></span>
+          <span class="digital-category-label">PLUGINS</span>
+        </button>
+        <button class="digital-category" type="button" data-digital-filter="programas" aria-pressed="false">
+          <span class="digital-category-orb"><span>APP</span></span>
+          <span class="digital-category-label">PROGRAMAS</span>
+        </button>
+        <button class="digital-category" type="button" data-digital-filter="audio-evolution" aria-pressed="false">
+          <span class="digital-category-orb"><span>AE</span></span>
+          <span class="digital-category-label">AUDIO EVOLUTION</span>
+        </button>
+      </nav>
+
+      <div class="product-grid presets-vocais-carousel digital-products-grid" aria-label="Produtos digitais">
         <article class="product-card">
           <a class="product-card-link" href="#preset-detalhes">
             <div class="product-image">
@@ -2187,7 +2210,7 @@
             ESGOTADO
           </button>
         </article>
-        <article class="product-card" id="preset-em-breve">
+        <article class="product-card" id="preset-em-breve" data-digital-category="presets">
           <a class="product-card-link" href="#preset-em-breve-detalhes">
             <div class="product-image">
               <img
@@ -4281,6 +4304,45 @@
   <script src="./assets/christmas-season.js" defer></script>
 
   <script src="./assets/navigation-transition.js" defer></script>
+
+  <script id="imp-digital-category-filter">
+  (() => {
+    const section = document.querySelector("#presets");
+    if (!section) return;
+    const buttons = [...section.querySelectorAll("[data-digital-filter]")];
+    const grid = section.querySelector(".digital-products-grid");
+    if (!grid || !buttons.length) return;
+    const cards = [...grid.querySelectorAll("[data-digital-category]")];
+    const empty = document.createElement("p");
+    empty.className = "digital-category-empty";
+    empty.textContent = "NOVOS PRODUTOS DESTA CATEGORIA EM BREVE.";
+    empty.setAttribute("aria-live","polite");
+    grid.after(empty);
+    const heading = section.querySelector(".section-heading h2");
+    const labels = {
+      "drum-kits":"DRUM KITS","plugins":"PLUGINS","presets":"PRESETS",
+      "programas":"PROGRAMAS","audio-evolution":"AUDIO EVOLUTION"
+    };
+    function selectCategory(category) {
+      buttons.forEach(button => {
+        const active = button.dataset.digitalFilter === category;
+        button.classList.toggle("is-active",active);
+        button.setAttribute("aria-pressed",String(active));
+      });
+      let visible = 0;
+      cards.forEach(card => {
+        const show = card.dataset.digitalCategory === category;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      if (heading) heading.textContent = labels[category] || "PRODUTOS DIGITAIS";
+      empty.classList.toggle("is-visible",visible === 0);
+    }
+    buttons.forEach(button => button.addEventListener("click",() => selectCategory(button.dataset.digitalFilter)));
+    selectCategory("presets");
+  })();
+  </script>
+
 </body>
 </html>
 
@@ -4467,5 +4529,69 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-ch
 html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowbank {
   display: none !important;
   animation: none !important;
+}
+</style>
+
+
+<style id="imp-digital-category-carousel">
+.digital-category-carousel {
+  display:flex; align-items:flex-start; gap:clamp(15px,2.3vw,30px);
+  overflow-x:auto; overflow-y:hidden; padding:8px 5vw 22px;
+  margin:0 -5vw 12px; scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.digital-category-carousel::-webkit-scrollbar { display:none; }
+.digital-category {
+  flex:0 0 auto; min-width:86px; display:flex; flex-direction:column;
+  align-items:center; gap:10px; border:0; padding:0; background:transparent;
+  color:#aaa; cursor:pointer; scroll-snap-align:center;
+  font:inherit; -webkit-tap-highlight-color:transparent;
+}
+.digital-category-orb {
+  width:clamp(66px,7vw,86px); aspect-ratio:1; border-radius:50%;
+  display:grid; place-items:center; position:relative; overflow:hidden;
+  border:1px solid rgba(255,255,255,.22);
+  background:radial-gradient(circle at 32% 24%,#414141 0,#171717 48%,#080808 100%);
+  box-shadow:inset 0 0 20px rgba(255,255,255,.06),0 8px 22px rgba(0,0,0,.28);
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+}
+.digital-category-orb::before {
+  content:""; position:absolute; inset:7px; border:1px solid rgba(255,255,255,.12);
+  border-radius:50%; transition:inset .28s ease,border-color .28s ease;
+}
+.digital-category-orb span {
+  position:relative; font:800 17px/1 var(--font-display);
+  letter-spacing:-.06em; color:#eee;
+}
+.digital-category-label {
+  font-size:9px; font-weight:800; letter-spacing:.13em;
+  white-space:nowrap; transition:color .2s ease;
+}
+.digital-category:hover .digital-category-orb,
+.digital-category:focus-visible .digital-category-orb {
+  transform:translateY(-4px); border-color:#aaa;
+}
+.digital-category.is-active { color:#fff; }
+.digital-category.is-active .digital-category-orb {
+  transform:translateY(-3px); border-color:#fff;
+  box-shadow:0 0 0 3px rgba(255,255,255,.08),0 10px 28px rgba(255,255,255,.12);
+}
+.digital-category.is-active .digital-category-orb::before { inset:4px; border-color:rgba(255,255,255,.38); }
+.digital-category.is-active .digital-category-label { color:#fff; }
+.digital-products-grid .product-card[hidden] { display:none !important; }
+.digital-category-empty {
+  display:none; width:100%; padding:35px 20px; text-align:center;
+  color:#999; border:1px solid var(--line); letter-spacing:.14em;
+  font-size:10px;
+}
+.digital-category-empty.is-visible { display:block; }
+@media(max-width:650px) {
+  .digital-category-carousel { gap:18px; padding:8px 5vw 18px; }
+  .digital-category { min-width:76px; gap:8px; }
+  .digital-category-orb { width:64px; }
+  .digital-category-label { font-size:8px; letter-spacing:.1em; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .digital-category-orb,.digital-category-orb::before,.digital-category-label { transition:none; }
 }
 </style>

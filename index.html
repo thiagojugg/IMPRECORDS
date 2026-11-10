@@ -762,9 +762,112 @@
     .imp-release-overlay .video-link span{position:relative;z-index:1}
 
 </style>
+
+  <!-- Abertura cinematográfica da IMP RECORDS (somente na primeira entrada da sessão). -->
+  <style>
+    #imp-intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      overflow: hidden;
+      background: #000;
+      color: #fff;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .75s ease, visibility .75s ease;
+    }
+    html.imp-intro-active #imp-intro-screen { display: flex; }
+    html.imp-intro-active body { overflow: hidden; }
+    #imp-intro-screen.is-leaving { opacity: 0; visibility: hidden; }
+    .imp-intro-wordmark {
+      margin: 0;
+      padding-left: .16em;
+      font-family: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(34px, 8vw, 76px);
+      font-weight: 900;
+      letter-spacing: .16em;
+      line-height: 1;
+      text-align: center;
+      opacity: 0;
+      filter: blur(12px);
+      transform: scale(.96);
+      animation: impIntroReveal 1.65s cubic-bezier(.2,.7,.2,1) .15s forwards;
+    }
+    .imp-intro-line {
+      width: min(190px, 42vw);
+      height: 1px;
+      margin-top: 27px;
+      overflow: hidden;
+      background: rgba(255,255,255,.16);
+    }
+    .imp-intro-line::after {
+      content: "";
+      display: block;
+      width: 42%;
+      height: 100%;
+      background: #fff;
+      box-shadow: 0 0 12px rgba(255,255,255,.7);
+      animation: impIntroLoad 1.8s ease-in-out .2s forwards;
+    }
+    @keyframes impIntroReveal {
+      0% { opacity: 0; filter: blur(12px); transform: scale(.96); }
+      100% { opacity: 1; filter: blur(0); transform: scale(1); }
+    }
+    @keyframes impIntroLoad {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(250%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .imp-intro-wordmark { animation-duration: .01ms; animation-delay: 0s; }
+      .imp-intro-line::after { animation-duration: .01ms; animation-delay: 0s; }
+      #imp-intro-screen { transition-duration: .15s; }
+    }
+  </style>
+  <script>
+    (() => {
+      const isHomeEntry = !window.location.search &&
+        (window.location.pathname.endsWith("/") ||
+         window.location.pathname.endsWith("/index.html"));
+      if (!isHomeEntry) return;
+      try {
+        if (sessionStorage.getItem("impIntroSeen") === "1") return;
+        sessionStorage.setItem("impIntroSeen", "1");
+      } catch (_) {}
+      document.documentElement.classList.add("imp-intro-active");
+    })();
+  </script>
+
 </head>
 
 <body>
+
+  <div id="imp-intro-screen" aria-label="IMP RECORDS" role="status" aria-live="polite">
+    <h1 class="imp-intro-wordmark">IMP RECORDS</h1>
+    <span class="imp-intro-line" aria-hidden="true"></span>
+  </div>
+  <script>
+    (() => {
+      const screen = document.getElementById("imp-intro-screen");
+      if (!screen || !document.documentElement.classList.contains("imp-intro-active")) return;
+      const finishIntro = () => {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.setTimeout(() => {
+          screen.classList.add("is-leaving");
+          window.setTimeout(() => {
+            screen.remove();
+            document.documentElement.classList.remove("imp-intro-active");
+          }, reduced ? 180 : 800);
+        }, reduced ? 500 : 2350);
+      };
+      if (document.readyState === "complete") finishIntro();
+      else window.addEventListener("load", finishIntro, { once: true });
+    })();
+  </script>
+
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
   <header class="site-header">

@@ -3806,6 +3806,127 @@
 })();
 </script>
 
+
+<style id="imp-christmas-animation-polish">
+/* Acabamento de personagem de animação: formas mais arredondadas, expressão e detalhes. */
+.imp-christmas-santa {
+  width: 300px; height: 84px; left: -315px;
+  animation-duration: 21s;
+  filter: drop-shadow(0 7px 6px rgba(0,0,0,.62));
+}
+.imp-santa-3d { transform: rotateY(-8deg) rotateX(2deg); }
+.imp-santa-rider { left:52px; top:0; width:72px; height:64px; }
+.santa-body {
+  left:8px; top:22px; width:48px; height:34px;
+  border-radius:20px 20px 15px 15px;
+  background:linear-gradient(115deg,#ff7770 0%,#e51d2b 42%,#8e0714 100%);
+  box-shadow:inset 6px 3px 7px rgba(255,190,170,.72),inset -7px -6px 9px #650511,0 5px 7px #210306;
+}
+.santa-body::before {
+  content:""; position:absolute; left:21px; top:0; width:5px; height:30px;
+  border-radius:4px; background:linear-gradient(90deg,#b58a3d,#ffe8a2,#8d6428);
+  box-shadow:0 0 3px #ffe8a2;
+}
+.santa-body::after {
+  content:""; position:absolute; left:22px; top:8px; width:4px; height:4px;
+  border-radius:50%; background:#ffe7a2; box-shadow:0 9px #ffe7a2;
+}
+.santa-face {
+  left:18px; top:2px; width:32px; height:31px;
+  background:radial-gradient(circle at 35% 25%,#ffe8d5 0%,#f3bd99 52%,#bd7658 100%);
+  box-shadow:inset -4px -4px 5px #a45c43,0 3px 5px #240b08;
+}
+.santa-face::before {
+  content:""; position:absolute; left:8px; top:12px; width:4px; height:5px;
+  border-radius:50%; background:#30201b; box-shadow:11px 0 #30201b;
+}
+.santa-face::after {
+  content:""; position:absolute; left:11px; top:21px; width:10px; height:4px;
+  border-bottom:2px solid #8f392e; border-radius:0 0 50% 50%;
+}
+.santa-beard {
+  left:16px; top:20px; width:36px; height:27px;
+  border-radius:8px 8px 48% 48%;
+  background:radial-gradient(ellipse at 28% 18%,#fff 0 25%,#e8edf0 58%,#aeb8bf 100%);
+  clip-path:polygon(0 0,100% 0,94% 55%,72% 82%,52% 100%,28% 82%,7% 56%);
+  box-shadow:inset -4px -4px 5px #9aa4aa,0 3px 4px #222;
+}
+.santa-hat {
+  left:15px; top:-6px; width:37px; height:21px;
+  border-radius:85% 12% 0 0;
+  background:linear-gradient(130deg,#ff8179,#ed182b 52%,#87000e);
+  transform:rotate(-9deg);
+}
+.santa-hat::after { left:-3px; bottom:-4px; width:41px; height:9px; background:linear-gradient(#fff,#dce4e8); }
+.santa-hat::before { right:-5px; top:-3px; width:10px; height:10px; }
+.santa-arm {
+  left:0; top:28px; width:29px; height:13px;
+  border-radius:10px; background:linear-gradient(110deg,#ff766c,#c10b20 75%);
+  transform:rotate(35deg) translateZ(8px);
+  box-shadow:inset 2px 2px 3px #ffb0a5,0 3px 4px #300;
+}
+.imp-reindeer-3d { left:158px; top:12px; width:112px; height:64px; }
+.reindeer-body {
+  left:2px; top:24px; width:59px; height:25px;
+  border-radius:58% 48% 46% 52%;
+  background:radial-gradient(ellipse at 28% 22%,#f2ca91 0%,#c78a4b 43%,#74401e 100%);
+  box-shadow:inset -6px -5px 7px #593017, inset 4px 3px 5px #ffe0ae,0 5px 5px #170d08;
+}
+.reindeer-neck {
+  left:43px; top:12px; width:23px; height:34px;
+  border-radius:13px 13px 8px 8px;
+  background:linear-gradient(90deg,#70401f,#e2ad69 48%,#8a4b25);
+  transform:rotate(-21deg) translateZ(5px);
+}
+.reindeer-head {
+  left:54px; top:6px; width:31px; height:28px;
+  border-radius:52% 48% 45% 48%;
+  background:radial-gradient(circle at 30% 25%,#f5d19b,#c28a50 58%,#75401f);
+  transform:rotate(-8deg) translateZ(10px);
+  box-shadow:inset -4px -4px 6px #61371b,0 3px 5px #211008;
+}
+.reindeer-head::before {
+  content:""; position:absolute; left:8px; top:10px; width:4px; height:5px;
+  border-radius:50%; background:#24160f; box-shadow:12px 1px #24160f;
+}
+.reindeer-head::after {
+  content:""; position:absolute; left:10px; top:19px; width:11px; height:5px;
+  border-radius:50%; background:#e7bd8d; box-shadow:inset 0 -2px 2px #9b633b;
+}
+.reindeer-muzzle { left:76px; top:20px; width:15px; height:11px; border-radius:55%; background:linear-gradient(145deg,#f8dfb7,#b87947); }
+.reindeer-muzzle::after { right:1px; top:1px; width:7px; height:7px; background:radial-gradient(circle at 30% 25%,#ffb2ad,#d20b24 65%,#75000d); box-shadow:0 0 8px rgba(255,30,45,.65); }
+.reindeer-antlers {
+  left:56px; top:-7px; width:33px; height:21px;
+  border-top:4px solid #e7c995; border-left:4px solid #e7c995;
+  border-radius:7px 0 0 0; transform:rotate(22deg) translateZ(13px);
+  filter:drop-shadow(1px 2px 1px #4a2a16);
+}
+.reindeer-antlers::before,.reindeer-antlers::after {
+  width:4px; height:13px; background:linear-gradient(90deg,#9b7140,#f4dca9);
+}
+.reindeer-leg { width:6px; height:19px; border-radius:5px; background:linear-gradient(90deg,#633718,#d09a5c,#6b3b1d); }
+.imp-christmas-snowman {
+  width:53px; height:73px; right:max(18px,calc((100vw - 1180px)/2));
+  filter:drop-shadow(0 7px 6px rgba(0,0,0,.72));
+}
+.snowman-bottom { left:5px; width:43px; height:34px; background:radial-gradient(circle at 28% 20%,#fff 0 12%,#f0f7fa 42%,#aabdc8 100%); }
+.snowman-middle { left:10px; bottom:25px; width:34px; height:29px; background:radial-gradient(circle at 28% 20%,#fff,#eef6f9 55%,#a7b9c2); }
+.snowman-head { left:15px; bottom:48px; width:25px; height:23px; background:radial-gradient(circle at 28% 20%,#fff,#f1f7fa 55%,#a8bac3); }
+.snowman-hat { left:14px; bottom:66px; width:28px; height:10px; background:linear-gradient(90deg,#101010,#555,#080808); }
+.snowman-hat::before { width:34px; height:5px; left:-3px; background:linear-gradient(#333,#090909); }
+.snowman-nose { left:35px; bottom:57px; width:12px; height:5px; background:linear-gradient(#ffc36e,#d65b17); }
+.snowman-eyes { left:22px; bottom:62px; width:4px; height:4px; background:#171717; box-shadow:9px 0 #171717,4px 9px 0 -1px #333; }
+.snowman-scarf { left:10px; bottom:43px; width:35px; height:7px; background:linear-gradient(#f45a60,#a60018); }
+.snowman-scarf::after { left:22px; width:6px; height:16px; background:linear-gradient(90deg,#a80018,#ff7777); }
+@media(max-width:650px) {
+  .imp-christmas-santa { width:230px; height:70px; left:-245px; }
+  .imp-christmas-snowman { right:8px; bottom:3px; transform:scale(.88); transform-origin:bottom right; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .imp-santa-3d { animation:none !important; }
+}
+</style>
+
   <script src="./assets/navigation-transition.js" defer></script>
 </body>
 </html>

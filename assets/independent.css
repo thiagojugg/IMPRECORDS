@@ -106,9 +106,11 @@
 .category-back,
 .lookbook-back,
 .imp-produto-voltar {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  vertical-align: middle;
   gap: 12px;
   min-height: 42px;
   padding: 0 16px;

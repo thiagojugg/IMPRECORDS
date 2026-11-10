@@ -54,6 +54,30 @@
   </style>
 </head>
 <body>
+<header class="site-header imp-christmas-header">
+    <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
+    <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
+    <img class="imp-christmas-tree" src="./assets/—Pngtree—3d green christmas tree featuring_16992922.png" alt="" aria-hidden="true">
+    <img class="imp-christmas-santa" src="./assets/pngwing.com.png" alt="" aria-hidden="true">
+    <img class="imp-christmas-snowman-photo" src="./assets/—Pngtree—christmas snowman with santa hat_5667812.png" alt="" aria-hidden="true">
+    <div class="header-inner">
+      
+
+<a class="wordmark" href="./" aria-label="IMP Records, início">
+  <span class="wordmark-flag-stack" aria-hidden="true">
+    <span class="wordmark-flag wordmark-flag-ma">IMP</span>
+    <span class="wordmark-flag wordmark-flag-go">IMP</span>
+    <span class="wordmark-flag wordmark-flag-sp">IMP</span>
+  </span><span class="wordmark-reg">®</span>
+</a>
+
+
+
+
+</div>
+
+
+</header>
   <main class="page-shell">
     <header class="topbar">
       <a class="brand" href="./index.html">IMP RECORDS</a>
@@ -106,8 +130,59 @@
         </section>
       </div>
     </section>
-    <footer class="bottom-note">IMP RECORDS © — FEITO INDEPENDENTEMENTE</footer>
   </main>
+<footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo wordmark" href="./" aria-label="IMP Records"><span class="wordmark-flag-stack footer-flag-stack footer-fullname-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-go">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-sp">IMP RECORDS</span></span><span class="wordmark-reg">®</span></a>
+        <p>Feito para quem vive a própria frequência.</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="./?categoria=vestuario">Vestuário</a>
+        <a href="./?categoria=presets">Produtos Digitais</a>
+        <a href="./?categoria=galeria">Galeria</a>
+        
+        
+        <a href="./?categoria=manifesto">Nossa História</a>
+        <a href="./#bag">Carrinho</a>
+      </nav>
+
+      <div class="newsletter">
+        <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
+        <p>Acompanhe os lançamentos da IMP.</p>
+
+        <div class="footer-links">
+          <a
+            href="https://www.instagram.com/imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram ↗
+          </a>
+
+          <a
+            href="https://www.youtube.com/@imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+  © 2020/<span id="copyright-ano"></span> IMP RECORDS.
+  Todos os direitos reservados.
+</span>
+    </div>
+  </footer>
+  <script>
+    const yearNode = document.getElementById("copyright-ano");
+    if (yearNode) yearNode.textContent = new Date().getFullYear();
+  </script>
 
   <script>
     const mainImage = document.getElementById('main-product-image');

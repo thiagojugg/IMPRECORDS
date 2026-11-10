@@ -2485,16 +2485,6 @@
 
   <header class="site-header imp-christmas-header">
     <div class="header-inner">
-      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="desktop-nav" aria-label="Navegação principal">
-        <a href="./?categoria=vestuario">VESTUÁRIO</a>
-        <a href="./?categoria=presets">PRESETS</a>
-        <a href="./?categoria=galeria">GALERIA</a>
-      </nav>
-
       <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
         <span class="wordmark-flag-stack" aria-hidden="true">
           <span class="wordmark-flag wordmark-flag-ma">IMP</span>
@@ -2502,23 +2492,7 @@
           <span class="wordmark-flag wordmark-flag-sp">IMP</span>
         </span><span class="wordmark-reg">®</span>
       </a>
-
-      <div class="header-actions">
-        <a href="./artistas.html">ARTISTAS</a>
-        <a href="./divisoes.html">DIVISÕES</a>
-        <a href="./?categoria=manifesto">MANIFESTO</a>
-      </div>
     </div>
-
-    <nav class="mobile-menu" id="mobile-menu" hidden aria-label="Menu principal">
-      <button class="mobile-menu-close" type="button">FECHAR ×</button>
-      <a href="./?categoria=vestuario">VESTUÁRIO</a>
-      <a href="./?categoria=presets">PRESETS</a>
-      <a href="./?categoria=galeria">GALERIA</a>
-      <a href="./artistas.html">ARTISTAS</a>
-      <a href="./divisoes.html">DIVISÕES</a>
-      <a href="./?categoria=manifesto">MANIFESTO</a>
-    </nav>
   </header>
 
   <main id="main">
@@ -5212,4 +5186,25 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-ch
       min-height: 0;
       object-fit: contain;
     }
+</style>
+
+<style id="imp-header-logo-only">
+/* Cabeçalho sem navegação: somente a marca IMP RECORDS centralizada. */
+.site-header.imp-christmas-header .header-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  grid-template-columns: 1fr !important;
+}
+.site-header.imp-christmas-header .wordmark {
+  grid-column: 1 !important;
+  justify-self: center !important;
+  margin-inline: auto !important;
+}
+.site-header.imp-christmas-header .desktop-nav,
+.site-header.imp-christmas-header .header-actions,
+.site-header.imp-christmas-header .menu-toggle,
+.site-header.imp-christmas-header .mobile-menu {
+  display: none !important;
+}
 </style>

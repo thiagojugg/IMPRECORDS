@@ -540,3 +540,138 @@ html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
     will-change: auto !important;
   }
 }
+
+
+/* IMP RECORDS — correção definitiva do cabeçalho e do wordmark animado. */
+:root {
+  --black: #090909;
+}
+html,
+body {
+  background-color: var(--black) !important;
+}
+.site-header,
+.site-header.imp-christmas-header {
+  background: var(--black) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+.site-header .header-inner {
+  position: relative;
+  z-index: 2;
+  min-height: 78px;
+}
+.site-header .mobile-menu,
+.site-header .mobile-menu:not([hidden]) {
+  background: var(--black) !important;
+}
+.site-header .wordmark {
+  display: inline-flex !important;
+  align-items: flex-start !important;
+  justify-self: start;
+  position: relative;
+  z-index: 6 !important;
+  width: max-content;
+  min-width: max-content;
+  overflow: visible !important;
+  color: #fff !important;
+  line-height: .9;
+  white-space: nowrap;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.site-header .wordmark .wordmark-flag-stack {
+  display: inline-block !important;
+  position: relative !important;
+  width: 2.12em !important;
+  height: .9em !important;
+  overflow: visible !important;
+  isolation: isolate;
+  line-height: .9 !important;
+}
+.site-header .wordmark .wordmark-flag {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  font-family: var(--font-display) !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  line-height: .9 !important;
+  letter-spacing: -.09em !important;
+  white-space: nowrap !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  background-repeat: no-repeat !important;
+  background-size: 145% 145% !important;
+  background-position: 50% 50% !important;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,.22));
+  transform-origin: center;
+  animation-duration: 15s, 1.8s !important;
+  animation-timing-function: linear, ease-in-out !important;
+  animation-iteration-count: infinite, infinite !important;
+  animation-delay: 0s, 0s !important;
+}
+.site-header .wordmark .wordmark-flag-ma {
+  background-image: url("./flag-maranhao.svg") !important;
+  animation-name: impFlagMA, impFlagWave !important;
+}
+.site-header .wordmark .wordmark-flag-go {
+  background-image: url("./flag-goias.svg") !important;
+  animation-name: impFlagGO, impFlagWave !important;
+}
+.site-header .wordmark .wordmark-flag-sp {
+  background-image: url("./flag-sao-paulo.svg") !important;
+  animation-name: impFlagSP, impFlagWave !important;
+}
+.site-header .wordmark .wordmark-reg {
+  display: inline-block !important;
+  position: relative !important;
+  margin: 0 0 0 4px !important;
+  color: #fff !important;
+  font: 10px var(--font-body) !important;
+  line-height: 1 !important;
+  vertical-align: top !important;
+}
+@keyframes impFlagMA {
+  0%, 30% { opacity: 1; }
+  32%, 98% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes impFlagGO {
+  0%, 31% { opacity: 0; }
+  33%, 63% { opacity: 1; }
+  65%, 100% { opacity: 0; }
+}
+@keyframes impFlagSP {
+  0%, 64% { opacity: 0; }
+  66%, 97% { opacity: 1; }
+  99%, 100% { opacity: 0; }
+}
+@media (max-width: 900px) {
+  .site-header .wordmark {
+    justify-self: center !important;
+    font-size: 30px !important;
+  }
+  .site-header .header-inner {
+    min-height: 65px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header .wordmark .wordmark-flag {
+    animation: none !important;
+  }
+  .site-header .wordmark .wordmark-flag-ma {
+    opacity: 1 !important;
+  }
+  .site-header .wordmark .wordmark-flag-go,
+  .site-header .wordmark .wordmark-flag-sp {
+    opacity: 0 !important;
+  }
+}

@@ -1175,6 +1175,110 @@
     }
   </style>
 
+
+<style id="imp-cinematic-motion">
+  .hero {
+    position: relative;
+    isolation: isolate;
+    perspective: 1100px;
+    transform-style: preserve-3d;
+    --imp-pointer-x: 0;
+    --imp-pointer-y: 0;
+  }
+  .hero-depth-orb,
+  .hero-depth-ring {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .hero-depth-orb {
+    width: clamp(110px, 18vw, 250px);
+    aspect-ratio: 1;
+    top: 17%;
+    right: 9%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, rgba(255,255,255,.22), rgba(255,255,255,.035) 38%, rgba(0,0,0,.28) 72%, transparent 73%);
+    border: 1px solid rgba(255,255,255,.13);
+    box-shadow: inset -18px -20px 42px rgba(0,0,0,.32), 0 0 70px rgba(255,255,255,.07);
+    transform: translate3d(calc(var(--imp-pointer-x) * -24px), calc(var(--imp-pointer-y) * -20px), 70px);
+    animation: impOrbFloat 8s ease-in-out infinite;
+  }
+  .hero-depth-ring {
+    width: clamp(190px, 28vw, 390px);
+    aspect-ratio: 1;
+    top: 38%;
+    left: -7%;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 50%;
+    box-shadow: 0 0 36px rgba(255,255,255,.045), inset 0 0 30px rgba(255,255,255,.035);
+    transform: rotateX(66deg) rotateZ(-18deg) translate3d(calc(var(--imp-pointer-x) * 30px), calc(var(--imp-pointer-y) * 24px), 35px);
+    animation: impRingFloat 12s ease-in-out infinite;
+  }
+  .hero-carousel { transform: translateZ(-35px) scale(1.045); }
+  .hero-slide img {
+    transform: translate3d(calc(var(--imp-pointer-x) * -9px), calc(var(--imp-pointer-y) * -7px), 0) scale(1.055);
+    transition: transform .28s ease-out;
+  }
+  .hero-overlay {
+    transform: translate3d(calc(var(--imp-pointer-x) * 12px), calc(var(--imp-pointer-y) * 9px), 55px);
+    transform-style: preserve-3d;
+    transition: transform .28s ease-out;
+    will-change: transform;
+  }
+  .hero-gengar {
+    filter: drop-shadow(0 14px 22px rgba(0,0,0,.42));
+    transform: translateZ(35px);
+    animation: impGengarHover 5.5s ease-in-out infinite;
+  }
+  .hero-social, .hero-index { transform: translateZ(28px); }
+  .product-card, .drop-gallery-card, .artist-roulette-card, .division-roulette-card {
+    transform-style: preserve-3d;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease;
+  }
+  @media (hover:hover) and (pointer:fine) {
+    .product-card:hover, .drop-gallery-card:hover, .artist-roulette-card:hover, .division-roulette-card:hover {
+      transform: perspective(900px) rotateX(2deg) rotateY(-2deg) translateY(-7px);
+      box-shadow: 0 22px 48px rgba(0,0,0,.32);
+    }
+  }
+  @keyframes impOrbFloat {
+    0%,100% { margin-top: 0; }
+    50% { margin-top: -17px; }
+  }
+  @keyframes impRingFloat {
+    0%,100% { margin-top: 0; }
+    50% { margin-top: 13px; }
+  }
+  @keyframes impGengarHover {
+    0%,100% { translate: 0 0; }
+    50% { translate: 0 -8px; }
+  }
+  @media (max-width: 650px) {
+    .hero-depth-orb {
+      top: 12%;
+      right: -5%;
+      opacity: .72;
+      transform: translate3d(calc(var(--imp-pointer-x) * -13px), calc(var(--imp-pointer-y) * -11px), 45px);
+    }
+    .hero-depth-ring {
+      left: -22%;
+      top: 45%;
+      opacity: .65;
+      transform: rotateX(66deg) rotateZ(-18deg) translate3d(calc(var(--imp-pointer-x) * 15px), calc(var(--imp-pointer-y) * 12px), 25px);
+    }
+    .hero-overlay {
+      transform: translate3d(calc(var(--imp-pointer-x) * 5px), calc(var(--imp-pointer-y) * 4px), 35px);
+    }
+    .hero-slide img { transform: translate3d(calc(var(--imp-pointer-x) * -5px), calc(var(--imp-pointer-y) * -4px), 0) scale(1.07); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-depth-orb, .hero-depth-ring, .hero-gengar { animation: none !important; }
+    .hero-slide img, .hero-overlay, .product-card, .drop-gallery-card, .artist-roulette-card, .division-roulette-card { transition: none !important; transform: none !important; }
+  }
+</style>
+
 </head>
 
 <body>
@@ -1225,6 +1329,8 @@
 
   <main id="main">
     <section class="hero">
+      <span class="hero-depth-orb" aria-hidden="true"></span>
+      <span class="hero-depth-ring" aria-hidden="true"></span>
       <nav class="hero-social" aria-label="Redes sociais">
         <a
           href="https://www.instagram.com/imp_records"
@@ -3049,6 +3155,43 @@
   window.addEventListener("resize", start, { passive: true });
 
   start();
+})();
+</script>
+
+
+<script id="imp-cinematic-motion-controller">
+(() => {
+  const hero = document.querySelector(".hero");
+  if (!hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let frame = 0;
+  let x = 0, y = 0;
+  const apply = (clientX, clientY) => {
+    const rect = hero.getBoundingClientRect();
+    x = Math.max(-1, Math.min(1, ((clientX - rect.left) / rect.width - .5) * 2));
+    y = Math.max(-1, Math.min(1, ((clientY - rect.top) / rect.height - .5) * 2));
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      hero.style.setProperty("--imp-pointer-x", x.toFixed(3));
+      hero.style.setProperty("--imp-pointer-y", y.toFixed(3));
+      frame = 0;
+    });
+  };
+  const reset = () => {
+    x = 0; y = 0;
+    hero.style.setProperty("--imp-pointer-x", "0");
+    hero.style.setProperty("--imp-pointer-y", "0");
+  };
+  hero.addEventListener("pointermove", event => {
+    if (event.pointerType === "mouse" || event.pointerType === "pen") apply(event.clientX, event.clientY);
+  }, { passive: true });
+  hero.addEventListener("pointerleave", reset, { passive: true });
+  hero.addEventListener("touchstart", event => {
+    if (event.touches.length) apply(event.touches[0].clientX, event.touches[0].clientY);
+  }, { passive: true });
+  hero.addEventListener("touchmove", event => {
+    if (event.touches.length) apply(event.touches[0].clientX, event.touches[0].clientY);
+  }, { passive: true });
+  hero.addEventListener("touchend", reset, { passive: true });
 })();
 </script>
 

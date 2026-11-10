@@ -246,6 +246,5 @@
 }
 
 
-/* A sacola aparece somente nas categorias de venda da página inicial. */
-.cart-link { display: none; }
-html.show-cart .cart-link { display: inline-flex; }
+/* Sacola 3D sempre visível no cabeçalho da página principal. */
+.cart-link { display: inline-flex !important; }

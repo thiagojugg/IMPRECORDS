@@ -495,3 +495,48 @@ body.imp-home-scroll-lines > .site-footer {
     will-change:auto;
   }
 }
+
+
+/* IMP RECORDS — rolagem cinematográfica para Artistas e Divisões. */
+.imp-cinematic-scroll-reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transform-origin: 50% 65%;
+  transition:
+    opacity .9s cubic-bezier(.2,.7,.2,1),
+    transform 1.05s cubic-bezier(.2,.7,.2,1),
+    filter 1s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--imp-cinematic-delay, 0ms);
+  will-change: opacity, transform, filter;
+  backface-visibility: hidden;
+}
+html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal {
+  opacity: 0;
+  filter: blur(9px);
+  transform: perspective(1000px) translate3d(0, 58px, -55px) rotateX(3deg) scale(.975);
+}
+html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0) scale(1);
+}
+.imp-cinematic-scroll-reveal.imp-cinematic-depth-card {
+  transition-duration: 1s, 1.15s, 1s;
+}
+@media (max-width: 650px) {
+  html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal {
+    transform: perspective(850px) translate3d(0, 38px, -28px) scale(.985);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .imp-cinematic-scroll-reveal,
+  html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal,
+  html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+}

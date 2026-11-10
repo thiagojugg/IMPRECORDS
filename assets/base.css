@@ -381,3 +381,15 @@ html.imp-page-leaving body {
     letter-spacing:.12em;
   }
 }
+
+/* Copyright do rodapé: manter o texto em uma única linha no mobile. */
+@media(max-width:650px) {
+  .site-footer .footer-bottom span:first-child {
+    display:block;
+    width:100%;
+    white-space:nowrap;
+    font-size:clamp(5px,1.65vw,6px);
+    letter-spacing:.04em;
+    line-height:1.2;
+  }
+}

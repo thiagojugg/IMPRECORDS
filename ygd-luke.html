@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YGD LUKE | IMP RECORDS</title>
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+  <style>
+    .ygd-page { padding-top:80px; padding-bottom:100px; }
+    .ygd-hero {
+      position:relative; min-height:420px; aspect-ratio:16/9;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      padding:40px; margin:28px 0 70px; overflow:hidden;
+      isolation:isolate; background:#111; border:1px solid var(--line);
+    }
+    .ygd-hero::after {
+      content:""; position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82));
+    }
+    .ygd-hero h1 {
+      margin:0; color:#fff; font:clamp(48px,11vw,150px)/.85 var(--font-display);
+      letter-spacing:-.075em;
+    }
+    .ygd-hero p { color:#ddd; font-size:10px; letter-spacing:.2em; margin-top:22px; }
+    .ygd-section { padding:65px 0; border-top:1px solid var(--line); }
+    .ygd-section .number { color:#888; font-size:11px; letter-spacing:.2em; }
+    .ygd-section h2 {
+      margin:20px 0 28px; font:clamp(34px,6vw,70px)/.95 var(--font-display);
+      letter-spacing:-.05em;
+    }
+    .ygd-section p { max-width:850px; color:#bbb; font-size:15px; line-height:1.95; }
+    .ygd-photo-placeholder {
+      min-height:300px; margin:35px 0; padding:25px;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; gap:12px; color:#888; background:#111;
+      border:1px dashed #555;
+    }
+    .ygd-photo-placeholder strong { color:#ddd; font-size:11px; letter-spacing:.16em; }
+    .ygd-quote {
+      margin:50px 0; padding:75px 20px; text-align:center;
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    }
+    .ygd-quote h2 { margin:0; font:clamp(28px,5.5vw,64px)/1.05 var(--font-display); }
+    .ygd-end { padding:35px 0 25px; text-align:center; }
+    .ygd-end h2 { font:clamp(38px,8vw,88px)/.95 var(--font-display); }
+    .ygd-social { display:flex; justify-content:center; flex-wrap:wrap; gap:14px; padding:20px 0 55px; }
+    .ygd-social a {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:15px 24px; border:1px solid #777; color:#fff;
+      text-decoration:none; font-size:10px; font-weight:800; letter-spacing:.15em;
+      transition:.25s;
+    }
+    .ygd-social a:hover { color:#000; background:#fff; border-color:#fff; transform:translateY(-3px); }
+    @media(max-width:650px) {
+      .ygd-page { padding-top:60px; }
+      .ygd-hero { min-height:260px; padding:24px; margin-bottom:45px; }
+      .ygd-hero h1 { font-size:clamp(42px,13vw,76px); }
+      .ygd-section { padding:45px 0; }
+      .ygd-photo-placeholder { min-height:210px; }
+      .ygd-social a { width:100%; max-width:310px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="./" aria-label="IMP Records, início">IMP<span>®</span></a>
+      <nav class="desktop-nav" aria-label="Navegação principal">
+        <a href="./?categoria=vestuario">VESTUÁRIO</a>
+        <a href="./?categoria=presets">PRODUTOS DIGITAIS</a>
+        <a href="./?categoria=galeria">GALERIA</a>
+        <a href="./artistas.html" aria-current="page">ARTISTAS</a>
+        <a href="./divisoes.html">DIVISÕES</a>
+        <a href="./?categoria=manifesto">MANIFESTO</a>
+      </nav>
+      <div class="header-actions"><a class="cart-link" href="./?categoria=bag">BAG <span>(0)</span></a></div>
+    </div>
+  </header>
+
+  <main class="section-wrap ygd-page">
+    <a class="text-link" href="./artistas.html">← VOLTAR A ARTISTAS</a>
+
+    <section class="ygd-hero">
+      <span class="eyebrow">IMP RECORDS / ARTISTA</span>
+      <h1>YGD LUKE</h1>
+      <p>AUTOBIOGRAFIA EM CONSTRUÇÃO · IMP RECORDS</p>
+    </section>
+
+    <section class="ygd-section">
+      <span class="number">01 / ORIGENS</span>
+      <h2>ONDE TUDO COMEÇOU.</h2>
+      <div class="ygd-photo-placeholder">
+        <strong>ESPAÇO PARA FOTOGRAFIA</strong>
+        <span>Uma imagem que represente as origens de YGD Luke.</span>
+      </div>
+      <p>A história de YGD Luke será apresentada aqui. Este espaço está reservado para contar sobre suas origens, sua infância, sua cidade e as experiências que fizeram parte de sua formação.</p>
+    </section>
+
+    <section class="ygd-section">
+      <span class="number">02 / PRIMEIROS PASSOS</span>
+      <h2>O INÍCIO DA CAMINHADA.</h2>
+      <p>Neste capítulo vamos construir o relato de como YGD Luke se aproximou da música, quais foram suas primeiras influências e quando começou a desenvolver seu próprio caminho artístico.</p>
+    </section>
+
+    <section class="ygd-section">
+      <span class="number">03 / IDENTIDADE</span>
+      <h2>A CONSTRUÇÃO DE YGD LUKE.</h2>
+      <div class="ygd-photo-placeholder">
+        <strong>ESPAÇO PARA FOTOGRAFIA</strong>
+        <span>Retrato ou registro da identidade artística.</span>
+      </div>
+      <p>Um espaço para apresentar o significado do nome artístico, sua personalidade, suas referências e a sonoridade que representa seu trabalho.</p>
+    </section>
+
+    <section class="ygd-section">
+      <span class="number">04 / TRAJETÓRIA</span>
+      <h2>VIVÊNCIAS QUE VIRARAM HISTÓRIA.</h2>
+      <p>Aqui reuniremos os momentos importantes da caminhada: desafios, conquistas, parcerias, apresentações e acontecimentos que marcaram sua evolução.</p>
+    </section>
+
+    <section class="ygd-section">
+      <span class="number">05 / MÚSICA</span>
+      <h2>TRABALHOS E LANÇAMENTOS.</h2>
+      <div class="ygd-photo-placeholder">
+        <strong>ESPAÇO PARA LANÇAMENTOS</strong>
+        <span>Depois adicionaremos capas, nomes, datas e links das músicas ou projetos.</span>
+      </div>
+      <p>Esta seção será atualizada com os principais lançamentos e projetos de YGD Luke.</p>
+    </section>
+
+    <section class="ygd-quote">
+      <h2>“CADA CAMINHADA TEM UMA HISTÓRIA.”</h2>
+    </section>
+
+    <section class="ygd-end">
+      <h2>A HISTÓRIA DE YGD LUKE.</h2>
+      <p>UMA TRAJETÓRIA EM CONSTRUÇÃO.</p>
+      <p class="eyebrow">IMP RECORDS © 2026</p>
+    </section>
+
+    <section class="ygd-social" aria-label="Redes sociais de YGD Luke">
+      <a href="#" aria-label="Instagram de YGD Luke — adicionar link">INSTAGRAM · EM BREVE</a>
+      <a href="#" aria-label="Spotify de YGD Luke — adicionar link">SPOTIFY · EM BREVE</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand-row">
+      <a class="footer-logo wordmark" href="./" aria-label="IMP Records">
+        <span class="wordmark-flag-stack footer-flag-stack footer-fullname-stack" aria-hidden="true">
+          <span class="wordmark-flag wordmark-flag-ma">IMP RECORDS</span>
+          <span class="wordmark-flag wordmark-flag-go">IMP RECORDS</span>
+          <span class="wordmark-flag wordmark-flag-sp">IMP RECORDS</span>
+        </span>
+        <span class="wordmark-reg">®</span>
+      </a>
+    </div>
+    <div class="footer-bottom"><span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span></div>
+  </footer>
+</body>
+</html>

@@ -1181,6 +1181,26 @@
 
     </section>
 
+
+    <section class="imp-studio" id="imp-home-studio" aria-label="Home Studio 3D da IMP RECORDS">
+      <div class="imp-studio-head">
+        <div>
+          <p>IMP RECORDS / NOSSO UNIVERSO CRIATIVO</p>
+          <h2>HOME STUDIO <span style="color:#888">3D</span></h2>
+        </div>
+        <p>UM ESPAÇO PARA CRIAR FREQUÊNCIAS.</p>
+      </div>
+      <div class="imp-studio-stage">
+        <canvas id="imp-studio-canvas" aria-label="Estúdio musical 3D interativo. Passe o cursor sobre os equipamentos."></canvas>
+        <div class="imp-studio-object" id="imp-studio-object" aria-live="polite"></div>
+        <div class="imp-studio-tip">MOVA O CURSOR E EXPLORE O ESTÚDIO ↗</div>
+      </div>
+      <div class="imp-studio-foot">
+        <span>AMBIENTE 3D INTERATIVO</span>
+        <span>IMP RECORDS © — EST. 2020</span>
+      </div>
+    </section>
+
     <section class="section-wrap artists-roulette" id="artists-roulette">
       <div class="artists-roulette-head">
         <div>
@@ -2505,5 +2525,195 @@
   targets.forEach((element) => observer.observe(element));
 })();
 </script>
+
+<!-- IMP RECORDS — cena isométrica interativa do Home Studio -->
+<script type="module">
+(() => {
+  const canvas = document.getElementById("imp-studio-canvas");
+  const stage = canvas?.parentElement;
+  const label = document.getElementById("imp-studio-object");
+  if (!canvas || !stage || !label) return;
+
+  import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js").then((THREE) => {
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x101010);
+    const camera = new THREE.OrthographicCamera(-8.4, 8.4, 4.725, -4.725, 0.1, 100);
+    camera.position.set(10, 10, 12);
+    camera.lookAt(0, 1.1, 0);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x24202a, 2.0));
+    const keyLight = new THREE.DirectionalLight(0xffffff, 3.0);
+    keyLight.position.set(-5, 10, 7);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.set(1024, 1024);
+    scene.add(keyLight);
+    const rimLight = new THREE.PointLight(0x9d2525, 18, 15);
+    rimLight.position.set(4, 4, -3);
+    scene.add(rimLight);
+    const fillLight = new THREE.PointLight(0xffffff, 8, 14);
+    fillLight.position.set(-5, 3, 2);
+    scene.add(fillLight);
+
+    const mats = {
+      floor: new THREE.MeshStandardMaterial({ color: 0x252525, roughness: .92 }),
+      wall: new THREE.MeshStandardMaterial({ color: 0x171717, roughness: .95 }),
+      black: new THREE.MeshStandardMaterial({ color: 0x090909, roughness: .55 }),
+      charcoal: new THREE.MeshStandardMaterial({ color: 0x303030, roughness: .7 }),
+      metal: new THREE.MeshStandardMaterial({ color: 0x777777, metalness: .72, roughness: .32 }),
+      red: new THREE.MeshStandardMaterial({ color: 0x8e2028, roughness: .5, emissive: 0x240306 }),
+      screen: new THREE.MeshStandardMaterial({ color: 0x25313a, emissive: 0x17232d, emissiveIntensity: .8, roughness: .25 }),
+      cone: new THREE.MeshStandardMaterial({ color: 0x111111, roughness: .45 }),
+      white: new THREE.MeshStandardMaterial({ color: 0xbdbdbd, roughness: .5 })
+    };
+    const room = new THREE.Group();
+    scene.add(room);
+    const box = (parent, name, size, pos, mat, interactive=false) => {
+      const mesh = new THREE.Mesh(new THREE.BoxGeometry(...size), mat);
+      mesh.position.set(...pos);
+      mesh.castShadow = true; mesh.receiveShadow = true;
+      mesh.name = name;
+      if (interactive) { mesh.userData.label = name; mesh.userData.base = mesh.scale.clone(); }
+      parent.add(mesh); return mesh;
+    };
+    const cylinder = (parent, name, radiusTop, radiusBottom, height, pos, mat, interactive=false) => {
+      const mesh = new THREE.Mesh(new THREE.CylinderGeometry(radiusTop, radiusBottom, height, 24), mat);
+      mesh.position.set(...pos); mesh.castShadow = true; mesh.receiveShadow = true; mesh.name = name;
+      if (interactive) { mesh.userData.label = name; mesh.userData.base = mesh.scale.clone(); }
+      parent.add(mesh); return mesh;
+    };
+
+    box(room, "Piso do estúdio", [13,.22,9], [0,-.12,0], mats.floor);
+    box(room, "Parede acústica", [13,5,.18], [0,2.35,-4.45], mats.wall);
+    box(room, "Parede lateral", [.18,5,9], [-6.5,2.35,0], mats.wall);
+    // Painéis acústicos em relevo
+    for (let i=0;i<7;i++) {
+      box(room, "Painel acústico", [.72,1.65,.12], [-4.9+i*1.48,2.7,-4.31], i%2 ? mats.charcoal : mats.black);
+      box(room, "Ripa acústica", [.06,1.65,.04], [-4.55+i*1.48,2.7,-4.22], mats.metal);
+    }
+    // Logo geométrico IMP na parede
+    box(room, "Logo IMP", [1.8,.48,.12], [0,4.05,-4.25], mats.white);
+    box(room, "Detalhe vermelho do logo", [.28,.48,.05], [.72,4.05,-4.16], mats.red);
+
+    const desk = new THREE.Group(); room.add(desk);
+    box(desk, "Mesa de produção", [6.2,.22,2.25], [0,1.65,-1.55], mats.black, true);
+    for (const x of [-2.75,2.75]) for (const z of [-2.35,-.75]) {
+      box(desk, "Pé da mesa", [.16,1.55,.16], [x,.82,z], mats.metal);
+    }
+    box(desk, "Frente da mesa", [5.6,.48,.12], [0,1.34,-.38], mats.charcoal);
+    // Monitores e caixas de referência
+    for (const x of [-2.15,2.15]) {
+      box(room, "Monitor de áudio", [.78,1.05,.62], [x,2.28,-2.12], mats.black, true);
+      cylinder(room, "Woofer", .23,.23,.045,[x,2.22,-1.79],mats.charcoal,true).rotation.x=Math.PI/2;
+      cylinder(room, "Tweeter", .105,.105,.05,[x,2.61,-1.78],mats.metal,true).rotation.x=Math.PI/2;
+    }
+    box(room, "Monitor de computador", [2.35,1.42,.14], [0,2.58,-2.12], mats.black, true);
+    box(room, "Tela de produção musical", [2.12,1.19,.035], [0,2.6,-2.025], mats.screen, true);
+    box(room, "Base do monitor", [.18,.38,.18], [0,1.88,-2.12], mats.metal);
+    box(room, "Computador", [.58,.62,.7], [2.85,2.08,-1.55], mats.charcoal, true);
+    box(room, "Luz do computador", [.035,.18,.025], [3.15,2.08,-1.18], mats.red);
+
+    // Teclado, controladora, mouse e pequenos controles
+    box(room, "Teclado MIDI", [2.0,.12,.62], [-.45,1.82,-.75], mats.charcoal, true);
+    for(let i=0;i<13;i++) box(room,"Tecla MIDI",[.09,.035,.45],[-1.35+i*.15,1.9,-.76],i%3===0?mats.white:mats.black);
+    box(room, "Controladora", [1.05,.14,.65], [1.25,1.82,-.75], mats.black, true);
+    for(let i=0;i<4;i++) cylinder(room,"Knob",.07,.07,.1,[.9+i*.22,1.96,-.78],mats.metal);
+    box(room, "Mouse", [.2,.1,.32], [2.35,1.83,-.78], mats.white, true);
+
+    // Cadeira de produtor
+    const chair = new THREE.Group(); room.add(chair); chair.position.set(0,0,1.45);
+    cylinder(chair,"Base da cadeira",.68,.68,.12,[0,.48,0],mats.black,true);
+    cylinder(chair,"Coluna da cadeira",.11,.11,.7,[0,.85,0],mats.metal);
+    box(chair,"Assento da cadeira",[1.18,.22,1.05],[0,1.28,0],mats.black,true);
+    box(chair,"Encosto da cadeira",[1.18,1.55,.2],[0,2.08,-.48],mats.charcoal,true);
+    for(const x of [-.48,.48]) box(chair,"Braço da cadeira",[.14,.12,.78],[x,1.65,.05],mats.black);
+    for(let i=0;i<5;i++){
+      const spoke=box(chair,"Pé rodízio da cadeira",[.09,.08,.68],[0,.43,0],mats.metal);
+      spoke.rotation.y=i*Math.PI*2/5;
+    }
+    // Headphones apoiados e detalhes decorativos
+    const headphone = new THREE.Group(); room.add(headphone);
+    const arc = new THREE.Mesh(new THREE.TorusGeometry(.22,.045,8,24,Math.PI),mats.black);
+    arc.position.set(-2.5,1.95,-.65); arc.rotation.z=Math.PI; headphone.add(arc);
+    box(headphone,"Fone de estúdio", [.16,.28,.16],[-2.72,1.84,-.65],mats.charcoal,true);
+    box(headphone,"Fone de estúdio", [.16,.28,.16],[-2.28,1.84,-.65],mats.charcoal,true);
+
+    // Tapete e iluminação de recorte
+    const rug = new THREE.Mesh(new THREE.BoxGeometry(5.5,.035,3.2),new THREE.MeshStandardMaterial({color:0x171717,roughness:1}));
+    rug.position.set(0,.02,.5); rug.receiveShadow=true; room.add(rug);
+    box(room,"Filete vermelho", [5.4,.025,.045], [0,.06,2.08], mats.red);
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2(2,2);
+    const interactive = [];
+    room.traverse(o => { if(o.isMesh && o.userData.label) interactive.push(o); });
+    let hovered = null, targetX = 0, targetY = 0, currentX = 0, currentY = 0;
+    const setHover = (object) => {
+      if(hovered && hovered !== object) hovered.scale.copy(hovered.userData.base);
+      hovered = object;
+      if(hovered) {
+        label.textContent = hovered.userData.label;
+        label.classList.add("is-visible");
+        canvas.style.cursor = "pointer";
+      } else {
+        label.classList.remove("is-visible");
+        canvas.style.cursor = "grab";
+      }
+    };
+    const onPointerMove = (event) => {
+      const rect=canvas.getBoundingClientRect();
+      pointer.x=((event.clientX-rect.left)/rect.width)*2-1;
+      pointer.y=-((event.clientY-rect.top)/rect.height)*2+1;
+      if(event.pointerType==="mouse") {
+        targetY=(pointer.x)*.10;
+        targetX=(-pointer.y)*.045;
+      }
+    };
+    canvas.addEventListener("pointermove",onPointerMove);
+    canvas.addEventListener("pointerleave",()=>{setHover(null);targetX=0;targetY=0;});
+    const resize = () => {
+      const w=stage.clientWidth, h=stage.clientHeight;
+      renderer.setSize(w,h,false);
+      const aspect=w/h, frustum=9.45;
+      camera.left=-frustum*aspect/2; camera.right=frustum*aspect/2;
+      camera.top=frustum/2; camera.bottom=-frustum/2; camera.updateProjectionMatrix();
+    };
+    const observer = new ResizeObserver(resize); observer.observe(stage); resize();
+
+    const clock = new THREE.Clock();
+    const animate = () => {
+      requestAnimationFrame(animate);
+      const t=clock.getElapsedTime();
+      currentX += (targetX-currentX)*.035;
+      currentY += (targetY-currentY)*.035;
+      camera.position.set(10+currentY*8,10+currentX*5,12);
+      camera.lookAt(0,1.1,0);
+      if(hovered) {
+        const pulse=1+Math.sin(t*5)*.025;
+        hovered.scale.set(hovered.userData.base.x*pulse,hovered.userData.base.y*pulse,hovered.userData.base.z*pulse);
+      }
+      raycaster.setFromCamera(pointer,camera);
+      const hits=raycaster.intersectObjects(interactive,false);
+      setHover(hits.length ? hits[0].object : null);
+      renderer.render(scene,camera);
+    };
+    canvas.style.cursor="grab";
+    animate();
+  }).catch((error) => {
+    console.error("Não foi possível carregar o Home Studio 3D:",error);
+    stage.classList.add("studio-load-error");
+    label.textContent="3D INDISPONÍVEL NESTE NAVEGADOR";
+    label.classList.add("is-visible");
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -156,28 +156,6 @@
       font: clamp(34px, 5vw, 62px)/.95 var(--font-display);
       letter-spacing: -.06em;
     }
-    .drop-gallery-actions {
-      display: flex;
-      gap: 9px;
-      flex-shrink: 0;
-    }
-    .drop-gallery-actions button {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(255,255,255,.38);
-      background: transparent;
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-      transition: background .25s, color .25s, border-color .25s;
-    }
-    .drop-gallery-actions button:hover {
-      background: #fff;
-      color: #000;
-      border-color: #fff;
-    }
     .drop-gallery-window {
       overflow: hidden;
       padding: 12px 5vw 22px;
@@ -274,8 +252,6 @@
         gap: 17px;
         margin-bottom: 18px;
       }
-      .drop-gallery-actions { align-self: flex-end; margin-top: -5px; }
-      .drop-gallery-actions button { width: 40px; height: 40px; }
       .drop-gallery-window { padding-right: 5vw; }
       .drop-gallery-card {
         flex-basis: 76vw;
@@ -1615,10 +1591,6 @@
         <div>
           <p class="eyebrow">IMP RECORDS / DROP GENGAR</p>
           <h2>IMP NA RUA</h2>
-        </div>
-        <div class="drop-gallery-actions" aria-label="Controles da galeria">
-          <button type="button" class="drop-gallery-prev" aria-label="Fotos anteriores">←</button>
-          <button type="button" class="drop-gallery-next" aria-label="Próximas fotos">→</button>
         </div>
       </div>
 
@@ -3221,17 +3193,6 @@
     event.stopImmediatePropagation();
     moved = false;
   }, true);
-
-  const moveByCard = direction => {
-    const first = track.firstElementChild;
-    const distance = first.getBoundingClientRect().width + gap();
-    offset += distance * direction;
-    normalize();
-    render();
-  };
-
-  section.querySelector(".drop-gallery-prev")?.addEventListener("click", () => moveByCard(-1));
-  section.querySelector(".drop-gallery-next")?.addEventListener("click", () => moveByCard(1));
 
   section.addEventListener("mouseenter", () => { paused = true; });
   section.addEventListener("mouseleave", () => { paused = false; });

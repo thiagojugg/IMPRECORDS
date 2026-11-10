@@ -259,6 +259,46 @@
     }
   </style>
 
+  <style id="imp-lookbook-christmas-header-fix">
+    /* Mantém a decoração natalina confinada ao cabeçalho nesta página. */
+    .site-header.imp-christmas-header {
+      height: 78px !important;
+      min-height: 78px !important;
+      max-height: 78px !important;
+      overflow: hidden !important;
+      contain: layout paint !important;
+    }
+    .site-header.imp-christmas-header .imp-christmas-tree,
+    .site-header.imp-christmas-header .imp-christmas-santa,
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+      position: absolute !important;
+      display: block !important;
+      max-width: none !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      box-sizing: border-box !important;
+    }
+    .site-header.imp-christmas-header .imp-christmas-tree {
+      width: 62px !important;
+      height: 76px !important;
+    }
+    .site-header.imp-christmas-header .imp-christmas-santa {
+      width: 180px !important;
+      height: 60px !important;
+      top: 0 !important;
+    }
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+      width: 58px !important;
+      height: 68px !important;
+    }
+    @media (max-width: 650px) {
+      .site-header.imp-christmas-header .imp-christmas-santa {
+        width: 150px !important;
+        height: 54px !important;
+      }
+    }
+  </style>
+
   <style id="imp-centered-header-logo">
     .site-header .header-inner {
       display: flex !important;

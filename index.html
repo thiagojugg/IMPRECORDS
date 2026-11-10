@@ -870,6 +870,24 @@
       #imp-intro-screen { transition-duration: .15s; }
     }
 
+    /* Transição sonora do atalho FL Studio. */
+    html.imp-fl-transition-active::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      pointer-events: none;
+      background: #050505;
+      animation: impFlTransitionFade .55s cubic-bezier(.2,.7,.2,1) both;
+    }
+    @keyframes impFlTransitionFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html.imp-fl-transition-active::after { animation-duration: .12s; }
+    }
+
     /* Atalho visual do FL Studio — imagem original sem moldura. */
     .fl-studio-launch {
       display: flex;
@@ -2659,6 +2677,59 @@
 </script>
 
 
+
+
+<!-- Transição sonora do FL Studio para a área de produtos digitais. -->
+<script>
+(() => {
+  const link = document.querySelector(".fl-studio-launch a");
+  if (!link) return;
+
+  let iniciou = false;
+  const destino = new URL("./?categoria=presets", window.location.href).href;
+
+  link.addEventListener("click", (evento) => {
+    if (
+      evento.button !== 0 ||
+      evento.ctrlKey ||
+      evento.metaKey ||
+      evento.shiftKey ||
+      evento.altKey
+    ) return;
+
+    evento.preventDefault();
+    if (iniciou) return;
+    iniciou = true;
+    link.setAttribute("aria-busy", "true");
+
+    document.documentElement.classList.add("imp-fl-transition-active");
+
+    const audio = new Audio("./assets/audio/transicao-fl-studio.mp3");
+    audio.preload = "auto";
+    audio.volume = 1;
+
+    let redirecionou = false;
+    let limite = null;
+    const redirecionar = () => {
+      if (redirecionou) return;
+      redirecionou = true;
+      window.location.assign(destino);
+    };
+
+    audio.addEventListener("ended", redirecionar, { once: true });
+    audio.addEventListener("error", redirecionar, { once: true });
+    audio.addEventListener("loadedmetadata", () => {
+      const duracao = Number.isFinite(audio.duration) ? audio.duration * 1000 : 0;
+      limite = window.setTimeout(redirecionar, Math.min(Math.max(duracao + 500, 1200), 10000));
+    }, { once: true });
+
+    audio.play().catch(redirecionar);
+
+    // Evita deixar o visitante preso caso o navegador não dispare ended/metadata.
+    window.setTimeout(redirecionar, 10500);
+  });
+})();
+</script>
 
 </body>
 </html>

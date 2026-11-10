@@ -828,37 +828,32 @@
       text-transform: uppercase;
       text-align: center;
       opacity: 0;
-      filter: blur(12px);
-      transform: scale(.96);
-      animation: impIntroReveal 1.65s cubic-bezier(.2,.7,.2,1) .15s forwards;
+      filter: blur(10px);
+      clip-path: inset(100% 0 0 0);
+      transform: translate3d(0, 34px, 0);
+      animation: impIntroRise 1.8s cubic-bezier(.16,.75,.2,1) .12s forwards;
+      text-shadow: 0 12px 36px rgba(255,255,255,.12);
     }
-    .imp-intro-line {
-      width: min(190px, 42vw);
-      height: 1px;
-      margin-top: 27px;
-      overflow: hidden;
-      background: rgba(255,255,255,.16);
-    }
-    .imp-intro-line::after {
-      content: "";
-      display: block;
-      width: 42%;
-      height: 100%;
-      background: #fff;
-      box-shadow: 0 0 12px rgba(255,255,255,.7);
-      animation: impIntroLoad 1.8s ease-in-out .2s forwards;
-    }
-    @keyframes impIntroReveal {
-      0% { opacity: 0; filter: blur(12px); transform: scale(.96); }
-      100% { opacity: 1; filter: blur(0); transform: scale(1); }
-    }
-    @keyframes impIntroLoad {
-      0% { transform: translateX(-110%); }
-      100% { transform: translateX(250%); }
+    @keyframes impIntroRise {
+      0% {
+        opacity: 0;
+        filter: blur(10px);
+        clip-path: inset(100% 0 0 0);
+        transform: translate3d(0, 34px, 0);
+      }
+      65% {
+        opacity: 1;
+        filter: blur(1px);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        clip-path: inset(0 0 0 0);
+        transform: translate3d(0, 0, 0);
+      }
     }
     @media (prefers-reduced-motion: reduce) {
       .imp-intro-wordmark { animation-duration: .01ms; animation-delay: 0s; }
-      .imp-intro-line::after { animation-duration: .01ms; animation-delay: 0s; }
       #imp-intro-screen { transition-duration: .15s; }
     }
   </style>
@@ -882,7 +877,6 @@
 
   <div id="imp-intro-screen" aria-label="IMP RECORDS" role="status" aria-live="polite">
     <h1 class="imp-intro-wordmark">IMP RECORDS</h1>
-    <span class="imp-intro-line" aria-hidden="true"></span>
   </div>
   <script>
     (() => {

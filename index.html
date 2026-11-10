@@ -9,6 +9,13 @@
 
   <link rel="stylesheet" href="./assets/base.css">
   <link rel="stylesheet" href="./assets/independent.css">
+  <script>
+    (() => {
+      const salesCategories = ["vestuario", "presets"];
+      const category = new URLSearchParams(window.location.search).get("categoria");
+      document.documentElement.classList.toggle("show-cart", salesCategories.includes(category));
+    })();
+  </script>
 
   <style>
     [hidden] {

@@ -113,13 +113,13 @@ input, textarea, select, [contenteditable="true"], iframe {
 
 /* Logotipo animado no rodapé em todas as páginas */
 .footer-logo.wordmark { display:inline-flex; align-items:flex-start; position:relative; white-space:nowrap; }
-.footer-logo.wordmark .footer-flag-stack { display:inline-block; position:relative; width:6.25em; height:.9em; line-height:.9; vertical-align:top; }
+.footer-logo.wordmark .footer-flag-stack { display:inline-block; position:relative; width:8.5em; height:.9em; line-height:.9; vertical-align:top; }
 .footer-logo.wordmark .wordmark-flag {
   position:absolute; inset:0 auto auto 0; display:block; width:100%; height:100%;
   font-family:var(--font-display); font-size:36px; font-weight:inherit; line-height:.9;
   letter-spacing:-.09em; white-space:nowrap; color:transparent; -webkit-text-fill-color:transparent;
   background-clip:text; -webkit-background-clip:text; background-repeat:no-repeat;
-  background-size:145% 145%; background-position:50% 50%;
+  background-size:100% 100%; background-position:50% 50%;
 }
 
 .footer-logo.wordmark .wordmark-reg { font:10px var(--font-body); line-height:1; margin:0 0 0 4px; color:#fff; }

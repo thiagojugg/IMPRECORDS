@@ -199,18 +199,18 @@ input, textarea, select, [contenteditable="true"], iframe {
   50% { transform:skewX(1deg) scaleX(1); }
 }
 
-/* Rodapé IMP RECORDS — wordmark simples, sem bandeiras ou animações */
+/* Rodapé IMP RECORDS — tipografia alinhada à identidade display do site */
 .footer-logo.wordmark {
   display:inline-block !important;
   width:auto !important;
   max-width:100% !important;
   height:auto !important;
   color:#fff !important;
-  font-family:var(--font-body) !important;
+  font-family:var(--font-display) !important;
   font-size:24px !important;
-  font-weight:600 !important;
-  line-height:1.2 !important;
-  letter-spacing:.08em !important;
+  font-weight:400 !important;
+  line-height:.95 !important;
+  letter-spacing:-.065em !important;
   white-space:nowrap !important;
   transform:none !important;
   filter:none !important;

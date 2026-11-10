@@ -127,6 +127,130 @@
     }
 
 
+    /* Carrossel fotográfico do Drop Gengar — formato editorial, diferente da roleta de artistas. */
+    .drop-gallery-roulette {
+      padding: 58px 0 72px;
+      overflow: hidden;
+    }
+    .drop-gallery-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 0 5vw 26px;
+    }
+    .drop-gallery-head .eyebrow {
+      margin-bottom: 12px;
+    }
+    .drop-gallery-head h2 {
+      margin: 0;
+      font: clamp(34px, 5vw, 62px)/.95 var(--font-display);
+      letter-spacing: -.06em;
+    }
+    .drop-gallery-actions {
+      display: flex;
+      gap: 9px;
+      flex-shrink: 0;
+    }
+    .drop-gallery-actions button {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.38);
+      background: transparent;
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background .25s, color .25s, border-color .25s;
+    }
+    .drop-gallery-actions button:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+    }
+    .drop-gallery-window {
+      overflow: hidden;
+      padding: 4px 5vw 18px;
+    }
+    .drop-gallery-track {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.7vw, 24px);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .drop-gallery-track::-webkit-scrollbar { display: none; }
+    .drop-gallery-card {
+      position: relative;
+      display: block;
+      flex: 0 0 clamp(220px, 27vw, 350px);
+      height: clamp(270px, 34vw, 410px);
+      overflow: hidden;
+      scroll-snap-align: center;
+      border: 1px solid rgba(255,255,255,.2);
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      isolation: isolate;
+    }
+    .drop-gallery-card:nth-child(even) {
+      height: clamp(235px, 30vw, 365px);
+    }
+    .drop-gallery-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .65s cubic-bezier(.2,.7,.2,1), filter .4s;
+    }
+    .drop-gallery-card::after {
+      content: "VER LOOKBOOK DROP GENGAR ↗";
+      position: absolute;
+      inset: auto 0 0;
+      padding: 34px 18px 17px;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      opacity: .92;
+      transition: opacity .3s;
+    }
+    .drop-gallery-card:hover img,
+    .drop-gallery-card:focus-visible img {
+      transform: scale(1.055);
+      filter: contrast(1.04);
+    }
+    .drop-gallery-card:hover::after { opacity: 1; }
+    .drop-gallery-note {
+      margin: 2px 5vw 0;
+      color: #999;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+    @media (max-width: 650px) {
+      .drop-gallery-roulette { padding: 42px 0 54px; }
+      .drop-gallery-head {
+        align-items: start;
+        flex-direction: column;
+        gap: 17px;
+        margin-bottom: 18px;
+      }
+      .drop-gallery-actions { align-self: flex-end; margin-top: -5px; }
+      .drop-gallery-actions button { width: 40px; height: 40px; }
+      .drop-gallery-window { padding-right: 5vw; }
+      .drop-gallery-card {
+        flex-basis: 76vw;
+        height: 330px;
+      }
+      .drop-gallery-card:nth-child(even) { height: 295px; }
+    }
+
     /* Roleta automática de artistas IMP RECORDS. */
     .artists-roulette {
       padding-top: 65px;
@@ -1280,6 +1404,49 @@
 
     </section>
 
+
+    <section class="drop-gallery-roulette" id="drop-gallery-roulette" aria-label="Galeria fotográfica Drop Gengar">
+      <div class="drop-gallery-head">
+        <div>
+          <p class="eyebrow">IMP RECORDS / DROP GENGAR</p>
+          <h2>IMP NA RUA</h2>
+        </div>
+        <div class="drop-gallery-actions" aria-label="Controles da galeria">
+          <button type="button" class="drop-gallery-prev" aria-label="Fotos anteriores">←</button>
+          <button type="button" class="drop-gallery-next" aria-label="Próximas fotos">→</button>
+        </div>
+      </div>
+
+      <div class="drop-gallery-window">
+        <div class="drop-gallery-track" id="drop-gallery-track">
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Isabele">
+            <img src="./FOTO-ISA.PNG" alt="Isabele vestindo IMP RECORDS" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Kouth">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3519_480x480.heic?v=1794093167" alt="Foto do Drop Gengar enviada por Kouth" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Twiz">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3521_480x480.png?v=1794088292" alt="Twiz vestindo IMP RECORDS" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Matheus">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3518_480x480.png?v=1794087588" alt="Foto do Drop Gengar enviada por Matheus" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Ryan">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3517_480x480.png?v=1794087216" alt="Foto do Drop Gengar enviada por Ryan" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Eloa">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3516_480x480.png?v=1794086856" alt="Foto do Drop Gengar enviada por Eloa" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Lucas">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3515_1_480x480.png?v=1794085663" alt="Foto do Drop Gengar enviada por Lucas" loading="lazy">
+          </a>
+          <a class="drop-gallery-card" href="./lookbook-drop-gengar.html" aria-label="Abrir Lookbook Drop Gengar — Kamili">
+            <img src="https://cdn.shopify.com/s/files/1/0974/0818/8713/files/IMG_3512_480x480.png?v=1794084552" alt="Foto do Drop Gengar enviada por Kamili" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <p class="drop-gallery-note">DESLIZE PARA EXPLORAR. TOQUE EM QUALQUER FOTO PARA ABRIR O LOOKBOOK COMPLETO.</p>
+    </section>
 
     <section class="section-wrap artists-roulette" id="artists-roulette">
       <div class="artists-roulette-head">
@@ -2762,6 +2929,70 @@
     // Proteção para falhas de carregamento ou eventos de áudio não disparados.
     window.setTimeout(redirecionar, 10500);
   });
+})();
+</script>
+
+
+<script>
+/* Carrossel editorial do Drop Gengar: avanço automático e navegação manual. */
+(() => {
+  const track = document.getElementById("drop-gallery-track");
+  const section = document.getElementById("drop-gallery-roulette");
+  if (!track || !section) return;
+
+  const cards = Array.from(track.querySelectorAll(".drop-gallery-card"));
+  if (cards.length < 2) return;
+
+  let timer = 0;
+  let paused = false;
+
+  const step = () => {
+    const first = cards[0];
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return first.getBoundingClientRect().width + gap;
+  };
+
+  const advance = (direction = 1) => {
+    const max = track.scrollWidth - track.clientWidth;
+    const current = track.scrollLeft;
+    const distance = step();
+
+    if (direction > 0 && current >= max - 8) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else if (direction < 0 && current <= 8) {
+      track.scrollTo({ left: max, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: distance * direction, behavior: "smooth" });
+    }
+  };
+
+  const stop = () => window.clearInterval(timer);
+  const start = () => {
+    stop();
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    timer = window.setInterval(() => advance(1), 3800);
+  };
+
+  section.querySelector(".drop-gallery-prev")?.addEventListener("click", () => {
+    advance(-1);
+    start();
+  });
+  section.querySelector(".drop-gallery-next")?.addEventListener("click", () => {
+    advance(1);
+    start();
+  });
+
+  section.addEventListener("mouseenter", () => { paused = true; stop(); });
+  section.addEventListener("mouseleave", () => { paused = false; start(); });
+  section.addEventListener("focusin", () => { paused = true; stop(); });
+  section.addEventListener("focusout", () => { paused = false; start(); });
+  track.addEventListener("touchstart", stop, { passive: true });
+  track.addEventListener("touchend", start, { passive: true });
+  track.addEventListener("pointerdown", stop);
+  window.addEventListener("pointerup", start);
+  window.addEventListener("resize", start, { passive: true });
+
+  start();
 })();
 </script>
 

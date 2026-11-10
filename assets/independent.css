@@ -55,3 +55,46 @@
 
 
 .hero-overlay h1 img.hero-gengar{display:inline-block;height:1.15em;width:auto;max-width:80vw;vertical-align:-.16em;object-fit:contain;}
+
+
+/* Back navigation links: stronger IMP RECORDS visual treatment */
+.artist-back-link,
+.category-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 42px;
+  padding: 0 16px;
+  margin: 0 0 24px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: linear-gradient(180deg, #202020 0%, #101010 100%);
+  color: #f5f5f5;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.09), 0 5px 14px rgba(0,0,0,.28);
+  transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+.artist-back-link:hover,
+.category-back:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.72);
+  background: linear-gradient(180deg, #303030 0%, #171717 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 8px 20px rgba(0,0,0,.4);
+}
+.artist-back-link:active,
+.category-back:active {
+  transform: translateY(1px) scale(.99);
+}
+@media (max-width: 650px) {
+  .artist-back-link,
+  .category-back { min-height: 40px; padding: 0 13px; font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .artist-back-link,
+  .category-back { transition: none; }
+}

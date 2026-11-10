@@ -348,10 +348,12 @@
       user-select: none;
       will-change: transform;
     }
-    /* No desktop, artistas e divisões ocupam a largura total, como a roleta IMP NA RUA. */
+    /* No desktop, artistas, divisões, lançamentos e gráfico ocupam a largura total. */
     @media (min-width: 651px) {
       #artists-roulette,
-      #divisions-roulette {
+      #divisions-roulette,
+      #lancamento,
+      #imp-stream-history {
         width: 100%;
         max-width: none;
         margin-left: 0;
@@ -363,6 +365,11 @@
 
       #artists-roulette .artists-roulette-track {
         margin-inline: auto;
+      }
+
+      #lancamento .imp-release-carousel,
+      #lancamento .imp-release-player {
+        max-width: none;
       }
     }
     .artists-roulette-track.is-dragging { cursor: grabbing; }

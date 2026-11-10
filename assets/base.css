@@ -443,3 +443,55 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header{backgro
 html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::before,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::after,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-tree,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-santa,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowman-photo,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowbank{display:none!important;animation:none!important;content:none!important}
 @media(max-width:650px){.site-header.imp-christmas-header .imp-christmas-santa{width:205px!important;height:66px!important;right:5px!important;animation-duration:15s!important}.site-header.imp-christmas-header .imp-christmas-tree{width:62px!important;height:66px!important}.site-header.imp-christmas-header .imp-christmas-snowman-photo{width:58px!important;height:60px!important}}
 @media(prefers-reduced-motion:reduce){.site-header.imp-christmas-header::before,.site-header.imp-christmas-header .imp-christmas-santa{animation:none!important}.site-header.imp-christmas-header .imp-christmas-santa{right:8px!important}}
+
+
+/* IMP HOME SCROLL LINES — malha editorial monocromática que acompanha o scroll. */
+body.imp-home-scroll-lines {
+  isolation:isolate;
+}
+body.imp-home-scroll-lines::before,
+body.imp-home-scroll-lines::after {
+  content:"";
+  position:fixed;
+  inset:-120px -2px;
+  z-index:0;
+  pointer-events:none;
+  transform:translate3d(0,var(--imp-scroll-shift,0px),0);
+  will-change:transform;
+}
+body.imp-home-scroll-lines::before {
+  opacity:.34;
+  background-image:
+    linear-gradient(to right,rgba(255,255,255,.105) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.075) 1px,transparent 1px);
+  background-size:112px 112px;
+  background-position:center center;
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 9%,#000 91%,transparent 100%);
+}
+body.imp-home-scroll-lines::after {
+  opacity:.18;
+  background-image:
+    repeating-linear-gradient(135deg,transparent 0 86px,rgba(255,255,255,.12) 87px,transparent 88px 174px),
+    linear-gradient(to right,transparent 0 49.85%,rgba(255,255,255,.16) 50%,transparent 50.15%);
+  background-size:100% 100%,100% 100%;
+  mask-image:linear-gradient(90deg,transparent,#000 16%,#000 84%,transparent);
+}
+body.imp-home-scroll-lines > main,
+body.imp-home-scroll-lines > .site-footer {
+  position:relative;
+  z-index:1;
+}
+@media(max-width:650px) {
+  body.imp-home-scroll-lines::before {
+    opacity:.25;
+    background-size:76px 76px;
+  }
+  body.imp-home-scroll-lines::after { opacity:.12; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body.imp-home-scroll-lines::before,
+  body.imp-home-scroll-lines::after {
+    transform:none !important;
+    will-change:auto;
+  }
+}

@@ -395,6 +395,20 @@ html.imp-page-leaving body {
 }
 
 
+
+/* Garantir que o ano dinâmico use exatamente a tipografia do copyright. */
+.site-footer .footer-bottom #copyright-ano {
+  font: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  text-transform: inherit !important;
+  vertical-align: baseline !important;
+}
+
 /* Copyright: ano inicial, ano atual e mensagem sempre na mesma linha. */
 .site-footer .footer-bottom > span:first-child {
   display:inline-block !important;

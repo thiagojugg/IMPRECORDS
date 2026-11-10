@@ -217,10 +217,55 @@
     }
 
     .gabriel-tribute {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       padding: 65px 40px;
       margin-top: 55px;
-      background: #111;
-      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #191919 0%, #111 48%, #0c0c0c 100%);
+      border: 1px solid rgba(255,255,255,.22);
+      border-top-color: rgba(255,255,255,.34);
+      border-radius: 2px;
+      box-shadow:
+        0 28px 55px rgba(0,0,0,.48),
+        0 8px 18px rgba(0,0,0,.32),
+        inset 0 1px 0 rgba(255,255,255,.10),
+        inset 0 -1px 0 rgba(0,0,0,.8),
+        inset 1px 0 0 rgba(255,255,255,.035);
+      transform: perspective(1400px) rotateX(.35deg);
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+
+    .gabriel-tribute::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(118deg, rgba(255,255,255,.055), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,.025), transparent 22%);
+    }
+
+    .gabriel-tribute > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gabriel-tribute:hover {
+      transform: perspective(1400px) translateY(-3px) rotateX(.15deg);
+      border-color: rgba(255,255,255,.32);
+      box-shadow:
+        0 34px 68px rgba(0,0,0,.54),
+        0 12px 24px rgba(0,0,0,.36),
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(0,0,0,.8),
+        inset 1px 0 0 rgba(255,255,255,.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gabriel-tribute { transition: none; }
+      .gabriel-tribute:hover { transform: none; }
     }
 
     .gabriel-tribute .tribute-date {

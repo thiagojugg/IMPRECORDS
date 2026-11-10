@@ -1367,6 +1367,73 @@
   }
 </style>
 
+
+<style id="imp-lookbook-image-lighting">
+  /* Iluminação e sombreamento inspirados nas caixas do carrossel de artistas. */
+  .drop-gallery-card {
+    position: relative;
+    isolation: isolate;
+    box-shadow:
+      inset 0 8px 16px rgba(0,0,0,.42),
+      inset 0 -3px 8px rgba(255,255,255,.10),
+      0 7px 18px rgba(0,0,0,.32);
+  }
+  .drop-gallery-card img {
+    position: relative;
+    z-index: -1;
+  }
+  .drop-gallery-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 28% 12%, rgba(255,255,255,.22), transparent 48%),
+      linear-gradient(145deg, transparent 40%, rgba(0,0,0,.28));
+    box-shadow:
+      inset 0 3px 7px rgba(255,255,255,.18),
+      inset 0 -10px 16px rgba(0,0,0,.38);
+    transition: background .25s ease, box-shadow .25s ease;
+  }
+  .drop-gallery-card::after {
+    z-index: 1;
+  }
+  .drop-gallery-card:hover,
+  .drop-gallery-card:focus-visible {
+    border-color: rgba(255,255,255,.72);
+    box-shadow:
+      inset 0 8px 16px rgba(0,0,0,.42),
+      inset 0 -3px 8px rgba(255,255,255,.10),
+      0 12px 26px rgba(0,0,0,.48),
+      0 0 20px rgba(255,255,255,.10);
+    transform: translateY(-4px);
+    outline: none;
+  }
+  .drop-gallery-card:hover::before,
+  .drop-gallery-card:focus-visible::before {
+    background:
+      radial-gradient(ellipse at 28% 12%, rgba(255,255,255,.30), transparent 42%),
+      linear-gradient(145deg, rgba(0,0,0,.06), rgba(0,0,0,.38));
+    box-shadow:
+      inset 0 9px 16px rgba(0,0,0,.38),
+      inset 0 -2px 7px rgba(255,255,255,.16);
+  }
+  .drop-gallery-card:active {
+    transform: translateY(1px) scale(.99);
+    box-shadow:
+      inset 0 9px 17px rgba(0,0,0,.58),
+      inset 0 -2px 6px rgba(255,255,255,.12),
+      0 2px 7px rgba(0,0,0,.38);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .drop-gallery-card,
+    .drop-gallery-card::before {
+      transition: none !important;
+    }
+  }
+</style>
+
 </head>
 
 <body>

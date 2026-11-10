@@ -1733,7 +1733,99 @@
       font-size: clamp(32px, 8vw, 48px);
     }
   }
-</style>
+
+    /* Botões/cartões de artistas — mesmo relevo 3D da página inicial */
+    .artist-card,
+    .artist-roulette-card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow:
+        inset 0 4px 7px rgba(255,255,255,.16),
+        inset 0 -9px 15px rgba(0,0,0,.48),
+        0 7px 18px rgba(0,0,0,.32);
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+      transform: translateY(0);
+    }
+
+    .artist-card::before,
+    .artist-roulette-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 28% 12%, rgba(255,255,255,.22), transparent 48%),
+        linear-gradient(145deg, transparent 40%, rgba(0,0,0,.28));
+      box-shadow:
+        inset 0 3px 7px rgba(255,255,255,.18),
+        inset 0 -10px 16px rgba(0,0,0,.38);
+      transition: background .25s ease, box-shadow .25s ease;
+    }
+
+    .artist-card h2,
+    .artist-card span,
+    .artist-roulette-card strong,
+    .artist-roulette-card span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .artist-card:hover,
+    .artist-card:focus-visible,
+    .artist-roulette-card:hover,
+    .artist-roulette-card:focus-visible {
+      border-color: rgba(255,255,255,.72);
+      box-shadow:
+        inset 0 8px 16px rgba(0,0,0,.42),
+        inset 0 -3px 8px rgba(255,255,255,.10),
+        0 12px 26px rgba(0,0,0,.48),
+        0 0 20px rgba(255,255,255,.10);
+      transform: translateY(-4px);
+      outline: none;
+    }
+
+    .artist-card:hover::before,
+    .artist-card:focus-visible::before,
+    .artist-roulette-card:hover::before,
+    .artist-roulette-card:focus-visible::before {
+      background:
+        radial-gradient(ellipse at 28% 12%, rgba(255,255,255,.30), transparent 42%),
+        linear-gradient(145deg, rgba(0,0,0,.06), rgba(0,0,0,.38));
+      box-shadow:
+        inset 0 9px 16px rgba(0,0,0,.38),
+        inset 0 -2px 7px rgba(255,255,255,.16);
+    }
+
+    .artist-card:active,
+    .artist-roulette-card:active {
+      transform: translateY(1px) scale(.99);
+      box-shadow:
+        inset 0 9px 17px rgba(0,0,0,.58),
+        inset 0 -2px 6px rgba(255,255,255,.12),
+        0 2px 7px rgba(0,0,0,.38);
+    }
+
+    .artist-card:focus-visible,
+    .artist-roulette-card:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .artist-card,
+      .artist-roulette-card,
+      .artist-card::before,
+      .artist-roulette-card::before {
+        transition: none !important;
+      }
+    }
+
+
+  </style>
 
 <script>
 (() => {

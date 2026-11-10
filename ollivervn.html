@@ -327,6 +327,18 @@
       transform: translate3d(0, 0, 0);
     }
 
+    .artist-hero-image-reveal {
+      transition: transform 1.5s cubic-bezier(.2,.7,.2,1), filter 1.5s ease;
+      transform: scale(1.1);
+      filter: saturate(.72) brightness(.72);
+      will-change: transform, filter;
+    }
+
+    .artist-hero-image-reveal.is-visible {
+      transform: scale(1);
+      filter: saturate(1) brightness(1);
+    }
+
     .artist-photo-reveal {
       perspective: 1000px;
     }
@@ -751,6 +763,20 @@
       delay += (isPhoto || isCards) ? 110 : 75;
     });
   });
+
+  // As fotografias de OlliverVn ficam entre as sections, por isso precisam
+  // ser observadas separadamente para receber a animação de imagem.
+  main.querySelectorAll(".olliver-photo").forEach((photo, index) => {
+    add(photo, (index % 2) * 100, "photo");
+  });
+
+  // A imagem de capa também ganha movimento próprio, sem ocultar os textos do hero.
+  const heroImage = main.querySelector(".olliver-hero-image");
+  if (heroImage) {
+    heroImage.classList.add("artist-reveal", "artist-hero-image-reveal");
+    heroImage.style.setProperty("--artist-delay", "0ms");
+    targets.push(heroImage);
+  }
 
   main.querySelectorAll("[class*='release'], [class*='album']").forEach((card, index) => {
     if (card.matches("article, .olliver-release, .ygd-release")) {

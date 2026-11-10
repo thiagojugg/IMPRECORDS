@@ -1267,7 +1267,95 @@
       margin: 0 auto !important;
       justify-self: center !important;
     }
-  </style>
+  
+    /* Tema natalino restrito ao cabeçalho; a marca e suas bandeiras permanecem intactas. */
+    .site-header.imp-christmas-header {
+      position: relative !important;
+      isolation: isolate;
+      overflow: hidden;
+      background-color: #050505;
+      background-image:
+        radial-gradient(ellipse at 50% 100%, rgba(22,72,49,.22), transparent 68%),
+        linear-gradient(180deg, rgba(8,20,14,.45), rgba(0,0,0,.96));
+    }
+    .site-header.imp-christmas-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .78;
+      background-image:
+        radial-gradient(2px 2px at 18px 24px, rgba(255,255,255,.95) 98%, transparent),
+        radial-gradient(1.5px 1.5px at 78px 68px, rgba(220,242,255,.9) 98%, transparent),
+        radial-gradient(2px 2px at 138px 14px, rgba(255,255,255,.85) 98%, transparent),
+        radial-gradient(1px 1px at 198px 52px, rgba(255,255,255,.9) 98%, transparent);
+      background-size: 220px 92px;
+      animation: imp-header-snowfall 7s linear infinite;
+    }
+    .site-header.imp-christmas-header::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 1;
+      height: 1px;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(205,32,42,.8), rgba(255,255,255,.5), rgba(24,110,65,.8), transparent);
+      box-shadow: 0 0 12px rgba(255,255,255,.16);
+    }
+    .site-header.imp-christmas-header .header-inner {
+      z-index: 2;
+      min-height: 76px;
+    }
+    .imp-christmas-santa,
+    .imp-christmas-snowman {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,.75));
+    }
+    .imp-christmas-santa {
+      top: 7px;
+      left: -100px;
+      font-size: 25px;
+      white-space: nowrap;
+      animation: imp-santa-flight 16s linear infinite;
+    }
+    .imp-christmas-snowman {
+      right: max(18px, calc((100vw - 1180px) / 2));
+      bottom: 8px;
+      font-size: 29px;
+      filter: drop-shadow(0 0 8px rgba(210,238,255,.22));
+      animation: imp-snowman-bob 3.8s ease-in-out infinite;
+    }
+    @keyframes imp-header-snowfall {
+      from { background-position: 0 -92px, 35px -92px, 90px -92px, 150px -92px; }
+      to { background-position: 0 92px, 35px 92px, 90px 92px, 150px 92px; }
+    }
+    @keyframes imp-santa-flight {
+      0% { transform: translate3d(0,0,0) rotate(-4deg); }
+      45% { transform: translate3d(55vw,9px,0) rotate(2deg); }
+      100% { transform: translate3d(calc(100vw + 180px),-3px,0) rotate(-3deg); }
+    }
+    @keyframes imp-snowman-bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @media (max-width: 650px) {
+      .site-header.imp-christmas-header .header-inner { min-height: 68px; }
+      .imp-christmas-santa { top: 5px; font-size: 19px; animation-duration: 13s; }
+      .imp-christmas-snowman { right: 10px; bottom: 6px; font-size: 23px; }
+      .site-header.imp-christmas-header::before { opacity: .65; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .site-header.imp-christmas-header::before,
+      .imp-christmas-santa,
+      .imp-christmas-snowman { animation: none !important; }
+    }
+</style>
 
 
 <style id="imp-cinematic-motion">
@@ -1533,7 +1621,9 @@
 
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-  <header class="site-header">
+  <header class="site-header imp-christmas-header">
+    <span class="imp-christmas-santa" aria-hidden="true">🎅🏻🛷</span>
+    <span class="imp-christmas-snowman" aria-hidden="true">☃️</span>
     <div class="header-inner">
       
 

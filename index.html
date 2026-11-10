@@ -2636,40 +2636,50 @@
 
   import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js").then((THREE) => {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x101010);
+    scene.background = new THREE.Color(0x090b10);
     const camera = new THREE.OrthographicCamera(-8.4, 8.4, 2.45, -2.45, 0.1, 100);
     camera.position.set(0, 9.2, 18);
     camera.lookAt(0, 1.45, -0.45);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
+    renderer.toneMappingExposure = 1.42;
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x24202a, 2.0));
-    const keyLight = new THREE.DirectionalLight(0xffffff, 3.0);
+    scene.add(new THREE.HemisphereLight(0xdceaff, 0x17111b, 2.35));
+    const keyLight = new THREE.DirectionalLight(0xffe4c4, 4.0);
     keyLight.position.set(-5, 10, 7);
     keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(1024, 1024);
+    keyLight.shadow.mapSize.set(2048, 2048);
+    keyLight.shadow.camera.left = -9; keyLight.shadow.camera.right = 9;
+    keyLight.shadow.camera.top = 8; keyLight.shadow.camera.bottom = -8;
     scene.add(keyLight);
-    const rimLight = new THREE.PointLight(0x9d2525, 18, 15);
+    const rimLight = new THREE.PointLight(0xb52cff, 24, 18);
     rimLight.position.set(4, 4, -3);
     scene.add(rimLight);
-    const fillLight = new THREE.PointLight(0xffffff, 8, 14);
+    const fillLight = new THREE.PointLight(0x35c9ff, 15, 16);
     fillLight.position.set(-5, 3, 2);
     scene.add(fillLight);
+    const warmLight = new THREE.PointLight(0xff563d, 10, 12);
+    warmLight.position.set(1, 4, 4);
+    scene.add(warmLight);
 
     const mats = {
-      black: new THREE.MeshStandardMaterial({ color: 0x090909, roughness: .55 }),
-      charcoal: new THREE.MeshStandardMaterial({ color: 0x303030, roughness: .7 }),
-      metal: new THREE.MeshStandardMaterial({ color: 0x777777, metalness: .72, roughness: .32 }),
-      red: new THREE.MeshStandardMaterial({ color: 0x8e2028, roughness: .5, emissive: 0x240306 }),
-      screen: new THREE.MeshStandardMaterial({ color: 0x25313a, emissive: 0x17232d, emissiveIntensity: .8, roughness: .25 }),
-      cone: new THREE.MeshStandardMaterial({ color: 0x111111, roughness: .45 }),
-      white: new THREE.MeshStandardMaterial({ color: 0xbdbdbd, roughness: .5 })
+      black: new THREE.MeshStandardMaterial({ color: 0x11141b, roughness: .34, metalness: .28 }),
+      charcoal: new THREE.MeshStandardMaterial({ color: 0x303744, roughness: .42, metalness: .18 }),
+      metal: new THREE.MeshStandardMaterial({ color: 0x9aa7b8, metalness: .82, roughness: .22 }),
+      red: new THREE.MeshStandardMaterial({ color: 0xff344f, roughness: .3, emissive: 0x7d071c, emissiveIntensity: 1.4 }),
+      screen: new THREE.MeshStandardMaterial({ color: 0x172b45, emissive: 0x1a6b9c, emissiveIntensity: 1.15, roughness: .16, metalness: .08 }),
+      cone: new THREE.MeshStandardMaterial({ color: 0x090d15, roughness: .3, metalness: .18 }),
+      white: new THREE.MeshStandardMaterial({ color: 0xf0f3f8, roughness: .28 }),
+      wood: new THREE.MeshStandardMaterial({ color: 0x392a25, roughness: .32, metalness: .08 }),
+      rgbBlue: new THREE.MeshStandardMaterial({ color: 0x20cfff, emissive: 0x0879ff, emissiveIntensity: 2.2 }),
+      rgbPink: new THREE.MeshStandardMaterial({ color: 0xff4ac8, emissive: 0xa00069, emissiveIntensity: 1.8 }),
+      cushion: new THREE.MeshStandardMaterial({ color: 0x171c27, roughness: .88 }),
+      cushionRed: new THREE.MeshStandardMaterial({ color: 0x9e2636, roughness: .82 })
     };
     const room = new THREE.Group();
     scene.add(room);
@@ -2696,22 +2706,45 @@
     }
     box(desk, "Frente da mesa", [5.6,.48,.12], [0,1.34,-.38], mats.charcoal);
 
-    // Computador: monitor central e gabinete lateral.
-    box(room, "Monitor do computador", [2.35,1.42,.14], [0,2.58,-2.12], mats.black, true);
-    box(room, "Tela de produção musical", [2.12,1.19,.035], [0,2.6,-2.025], mats.screen, true);
-    box(room, "Base do monitor", [.18,.38,.18], [0,1.88,-2.12], mats.metal);
-    box(room, "Computador", [.58,.62,.7], [2.35,2.08,-1.55], mats.charcoal, true);
-    box(room, "Luz do computador", [.035,.18,.025], [2.66,2.08,-1.18], mats.red);
+    // Monitor com moldura fina, tela de DAW e interface musical colorida.
+    box(room, "Monitor do computador", [2.55,1.58,.16], [0,2.62,-2.12], mats.black, true);
+    box(room, "Tela de produção musical", [2.36,1.39,.035], [0,2.64,-2.025], mats.screen, true);
+    box(room, "Base do monitor", [.22,.42,.22], [0,1.82,-2.12], mats.metal);
+    box(room, "Pé da base do monitor", [.82,.07,.42], [0,1.68,-1.98], mats.black);
+    const uiMat = new THREE.MeshStandardMaterial({ color: 0x35c8ff, emissive: 0x0876b5, emissiveIntensity: 1.8 });
+    const uiPink = new THREE.MeshStandardMaterial({ color: 0xff4ca5, emissive: 0x9c1459, emissiveIntensity: 1.5 });
+    const uiGreen = new THREE.MeshStandardMaterial({ color: 0x65f0ae, emissive: 0x087d48, emissiveIntensity: 1.3 });
+    box(room, "Interface da estação de áudio", [2.16,.10,.012], [0,3.22,-1.999], mats.black);
+    for (let i=0;i<9;i++) box(room, "Canal de áudio", [.17,.035,.014], [-.94+i*.235,3.12,-1.995], i%3===0?uiPink:(i%3===1?uiGreen:uiMat));
+    for (let i=0;i<5;i++) box(room, "Faixa de áudio", [.28,.035,.014], [-.78+i*.38,2.83+(i%2)*.12,-1.994], i%2?uiGreen:uiPink);
+    // Gabinete gamer com vidro lateral e ventoinhas RGB frontais.
+    box(room, "Computador", [.72,.92,.78], [2.38,2.12,-1.48], mats.black, true);
+    const glass = new THREE.MeshStandardMaterial({ color: 0x173247, metalness: .42, roughness: .12, transparent: true, opacity: .55 });
+    box(room, "Vidro do gabinete", [.66,.84,.018], [2.38,2.14,-1.075], glass);
+    for (const y of [1.88,2.35]) {
+      const fan = new THREE.Mesh(new THREE.TorusGeometry(.145,.025,8,32), mats.rgbBlue);
+      fan.position.set(2.38,y,-1.045); fan.castShadow = true; room.add(fan);
+      const hub = new THREE.Mesh(new THREE.CircleGeometry(.105,24), mats.rgbPink);
+      hub.position.set(2.38,y,-1.04); room.add(hub);
+    }
+    box(room, "Luz do computador", [.045,.12,.025], [2.69,2.47,-1.04], mats.red);
 
-    // Caixas de som de referência, posicionadas nas laterais do monitor.
+    // Monitores de áudio com cones, bordas e detalhes de estúdio.
     for (const x of [-2.15, 2.15]) {
       const speaker = new THREE.Group(); room.add(speaker);
       speaker.position.set(x, 0, 0);
-      box(speaker, "Caixa de som", [.62,.92,.58], [0,2.18,-1.72], mats.black, true);
-      const woofer = cylinder(speaker, "Alto-falante", .19, .19, .055, [0,2.18,-1.405], mats.cone, true);
+      box(speaker, "Caixa de som", [.68,1.02,.62], [0,2.20,-1.72], mats.charcoal, true);
+      const wooferRing = new THREE.Mesh(new THREE.TorusGeometry(.205,.035,10,36), mats.metal);
+      wooferRing.position.set(0,2.02,-1.385); speaker.add(wooferRing);
+      const woofer = cylinder(speaker, "Alto-falante", .18, .18, .06, [0,2.02,-1.39], mats.cone, true);
       woofer.rotation.x = Math.PI / 2;
-      const tweeter = cylinder(speaker, "Tweeter", .075, .075, .06, [0,2.48,-1.40], mats.metal);
+      const dustCap = new THREE.Mesh(new THREE.CircleGeometry(.07,24), mats.rgbBlue);
+      dustCap.position.set(0,2.02,-1.35); speaker.add(dustCap);
+      const tweeterRing = new THREE.Mesh(new THREE.TorusGeometry(.085,.018,8,28), mats.red);
+      tweeterRing.position.set(0,2.43,-1.385); speaker.add(tweeterRing);
+      const tweeter = cylinder(speaker, "Tweeter", .065, .065, .06, [0,2.43,-1.39], mats.metal);
       tweeter.rotation.x = Math.PI / 2;
+      box(speaker, "LED da caixa de som", [.10,.025,.018], [0,1.76,-1.39], mats.rgbPink);
     }
 
     // Teclado musical sobre a mesa.
@@ -2720,17 +2753,30 @@
       box(room,"Tecla MIDI", [.105,.035,.45], [-.79+i*.105,-0+1.9,-.76], i%3===0?mats.white:mats.black);
     }
 
-    // Cadeira centralizada de frente para a mesa.
+    // Cadeira ergonômica de estúdio: estofado, encosto alto e estrutura metálica.
     const chair = new THREE.Group(); room.add(chair); chair.position.set(0,0,1.45);
-    cylinder(chair,"Base da cadeira",.68,.68,.12,[0,.48,0],mats.black,true);
-    cylinder(chair,"Coluna da cadeira",.11,.11,.7,[0,.85,0],mats.metal);
-    box(chair,"Assento da cadeira",[1.18,.22,1.05],[0,1.28,0],mats.black,true);
-    box(chair,"Encosto da cadeira",[1.18,1.55,.2],[0,2.08,-.48],mats.charcoal,true);
-    for(const x of [-.48,.48]) box(chair,"Braço da cadeira",[.14,.12,.78],[x,1.65,.05],mats.black);
+    cylinder(chair,"Base da cadeira",.68,.68,.13,[0,.48,0],mats.black,true);
+    cylinder(chair,"Coluna hidráulica",.105,.13,.72,[0,.88,0],mats.metal);
     for(let i=0;i<5;i++){
-      const spoke=box(chair,"Pé rodízio da cadeira",[.09,.08,.68],[0,.43,0],mats.metal);
+      const spoke = box(chair,"Pé rodízio da cadeira",[.12,.10,.72],[0,.43,0],mats.metal);
       spoke.rotation.y=i*Math.PI*2/5;
+      const wheel = new THREE.Mesh(new THREE.TorusGeometry(.105,.045,8,20), mats.black);
+      wheel.rotation.y = Math.PI/2; wheel.position.set(Math.sin(i*Math.PI*2/5)*.48,.28,Math.cos(i*Math.PI*2/5)*.48); chair.add(wheel);
     }
+    const seat = new THREE.Mesh(new THREE.CapsuleGeometry(.52,.22,6,16), mats.cushion);
+    seat.rotation.x = Math.PI/2; seat.scale.set(1,.55,1); seat.position.set(0,1.30,.02); seat.castShadow=true; chair.add(seat);
+    seat.userData.label = "Assento acolchoado"; seat.userData.base = seat.scale.clone();
+    const backFrame = box(chair,"Estrutura do encosto",[1.12,1.62,.16],[0,2.12,-.48],mats.black,true);
+    const backPad = new THREE.Mesh(new THREE.CapsuleGeometry(.48,.72,8,18), mats.cushionRed);
+    backPad.scale.set(1.12,.78,.32); backPad.position.set(0,2.14,-.365); backPad.castShadow=true; chair.add(backPad);
+    backPad.userData.label = "Encosto acolchoado"; backPad.userData.base = backPad.scale.clone();
+    for(const x of [-.48,.48]) {
+      box(chair,"Suporte do braço",[.10,.42,.12],[x,1.55,.04],mats.metal);
+      const arm = new THREE.Mesh(new THREE.CapsuleGeometry(.09,.48,5,12), mats.cushion);
+      arm.rotation.z = Math.PI/2; arm.position.set(x,1.76,.05); chair.add(arm);
+    }
+    const headrest = new THREE.Mesh(new THREE.CapsuleGeometry(.27,.20,6,14), mats.cushion);
+    headrest.scale.set(1.5,.7,.42); headrest.position.set(0,2.92,-.34); chair.add(headrest);
 
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2(2,2);

@@ -1079,6 +1079,64 @@
     @media (prefers-reduced-motion: reduce) {
       .fl-studio-fruit, .fl-studio-caption { transition: none; }
     }
+
+    .imp-gothic-story {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1000px;
+      margin: clamp(34px, 5vw, 62px) auto 0;
+      padding: 0 12px 10px;
+      text-align: center;
+      color: #fff;
+      text-decoration: none;
+    }
+    .imp-gothic-story-name {
+      display: block;
+      max-width: 100%;
+      font-family: "UnifrakturCook", "Old English Text MT", fantasy;
+      font-size: clamp(58px, 11vw, 132px);
+      font-weight: 700;
+      line-height: .92;
+      letter-spacing: .015em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+      text-shadow: 0 8px 34px rgba(255,255,255,.12);
+      transition: text-shadow .25s ease, transform .25s ease;
+    }
+    .imp-gothic-story-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: rgba(255,255,255,.76);
+      font-family: var(--font-body);
+      font-size: clamp(10px, 1.15vw, 13px);
+      font-weight: 700;
+      letter-spacing: .2em;
+      line-height: 1.5;
+      text-transform: uppercase;
+      transition: color .25s ease, letter-spacing .25s ease;
+    }
+    .imp-gothic-story:hover .imp-gothic-story-name,
+    .imp-gothic-story:focus-visible .imp-gothic-story-name {
+      transform: translateY(-3px);
+      text-shadow: 0 0 26px rgba(255,255,255,.2);
+    }
+    .imp-gothic-story:hover .imp-gothic-story-link,
+    .imp-gothic-story:focus-visible .imp-gothic-story-link {
+      color: #fff;
+      letter-spacing: .24em;
+    }
+    .imp-gothic-story:focus-visible {
+      outline: 1px solid rgba(255,255,255,.65);
+      outline-offset: 8px;
+    }
+    @media (max-width: 650px) {
+      .imp-gothic-story { margin-top: 32px; }
+      .imp-gothic-story-name { font-size: clamp(48px, 13vw, 78px); }
+      .imp-gothic-story-link { max-width: 280px; margin-top: 12px; letter-spacing: .14em; }
+    }
   </style>
   <script>
     (() => {
@@ -1094,6 +1152,9 @@
     })();
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -1717,6 +1778,11 @@
           ><span>ASSISTIR NO YOUTUBE</span><span>↗</span></a>
         </div>
       </div>
+
+      <a class="imp-gothic-story" href="./?categoria=manifesto" aria-label="IMP RECORDS — clique para ver nossa história">
+        <span class="imp-gothic-story-name">IMP RECORDS</span>
+        <span class="imp-gothic-story-link">CLIQUE PARA VER NOSSA HISTÓRIA</span>
+      </a>
     </section>
 
       <section class="section-wrap bag-section" id="bag" hidden>

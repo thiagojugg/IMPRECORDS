@@ -142,11 +142,7 @@
           </button>
           <span class="photo-count" id="photo-count">01 / 03</span>
         </div>
-        <div class="thumbnails" aria-label="Selecionar foto do produto">
-          <button class="thumb" type="button" aria-label="Ver foto 1" aria-pressed="true" data-image="./assets/camiseta-1.png" data-index="01"><img src="./assets/camiseta-1.png" alt=""></button>
-          <button class="thumb" type="button" aria-label="Ver foto 2" aria-pressed="false" data-image="./assets/camiseta-2.png" data-index="02"><img src="./assets/camiseta-2.png" alt=""></button>
-          <button class="thumb" type="button" aria-label="Ver foto 3" aria-pressed="false" data-image="./assets/camiseta-3.png" data-index="03"><img src="./assets/camiseta-3.png" alt=""></button>
-        </div>
+
       </div>
 
       <div class="details">
@@ -265,7 +261,11 @@
   <script>
     const mainImage = document.getElementById('main-product-image');
     const photoCount = document.getElementById('photo-count');
-    const thumbs = [...document.querySelectorAll('.thumb')];
+    const photoSources = [
+      './assets/camiseta-1.png',
+      './assets/camiseta-2.png',
+      './assets/camiseta-3.png'
+    ];
     const lightbox = document.getElementById('photo-lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCounter = document.getElementById('lightbox-counter');
@@ -273,18 +273,16 @@
     const closeButton = document.getElementById('lightbox-close');
     let currentPhoto = 0;
     const setPhoto = (index) => {
-      currentPhoto = (index + thumbs.length) % thumbs.length;
-      const button = thumbs[currentPhoto];
-      const alt = 'Camiseta IMP Gengar Oversized - Black Edition, foto ' + button.dataset.index;
-      mainImage.src = button.dataset.image;
+      currentPhoto = (index + photoSources.length) % photoSources.length;
+      const source = photoSources[currentPhoto];
+      const alt = 'Camiseta IMP Gengar Oversized - Black Edition, foto ' + String(currentPhoto + 1).padStart(2, '0');
+      mainImage.src = source;
       mainImage.alt = alt;
-      photoCount.textContent = button.dataset.index + ' / 03';
-      lightboxImage.src = button.dataset.image;
+      photoCount.textContent = String(currentPhoto + 1).padStart(2, '0') + ' / 03';
+      lightboxImage.src = source;
       lightboxImage.alt = alt;
-      lightboxCounter.textContent = button.dataset.index + ' / 03';
-      thumbs.forEach((item, i) => item.setAttribute('aria-pressed', String(i === currentPhoto)));
+      lightboxCounter.textContent = String(currentPhoto + 1).padStart(2, '0') + ' / 03';
     };
-    thumbs.forEach((button, index) => button.addEventListener('click', () => setPhoto(index)));
     const openLightbox = () => {
       setPhoto(currentPhoto);
       lightbox.classList.add('is-open');

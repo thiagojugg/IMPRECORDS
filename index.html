@@ -859,8 +859,22 @@
         padding: 12px 12px 34px;
         background: linear-gradient(rgba(0,0,0,.82), transparent);
       }
-      .imp-release-label { font-size: 8px; }
-      .imp-release-overlay .button { padding: 9px 11px; font-size: 9px; }
+      .imp-release-label { font-size: 7px; line-height: 1.35; }
+      .imp-release-overlay .video-link {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 48%;
+        min-height: 0;
+        padding: 7px 8px;
+        gap: 5px;
+        border-radius: 5px;
+        font-size: 7px;
+        line-height: 1.2;
+        letter-spacing: .04em;
+        white-space: nowrap;
+      }
+      .imp-release-overlay .video-link span { font-size: inherit; }
+      .imp-release-overlay .video-link span + span { font-size: 9px; }
     }
 
   

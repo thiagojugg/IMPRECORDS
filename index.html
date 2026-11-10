@@ -1302,6 +1302,26 @@
   }
 </style>
 
+<style>
+  .hero-banner-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    cursor: pointer;
+  }
+  .hero-overlay {
+    pointer-events: none;
+  }
+  .hero-index {
+    pointer-events: none;
+  }
+  .hero-banner-link:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -8px;
+  }
+</style>
+
 </head>
 
 <body>
@@ -1372,6 +1392,10 @@
         </a>
       </nav>
 
+      <a class="hero-banner-link"
+         href="./?categoria=vestuario#gengar-detalhes"
+         aria-label="Explorar o Drop Gengar da IMP RECORDS"></a>
+
       <div class="hero-carousel" aria-label="Ensaio fotográfico IMP RECORDS">
         <div class="hero-slides">
           <div class="hero-slide is-active"><img src="./assets/banner-gengar-1.jpg" alt="Ensaio streetwear IMP RECORDS — foto 1" fetchpriority="high"></div>
@@ -1385,11 +1409,6 @@
         <p class="eyebrow">SEJA BEM-VINDO À IMP RECORDS®</p>
         <h1>DROP <img class="hero-gengar" src="./assets/gengar-gothic.svg" alt="Gengar"> <span class="hero-soldout">ESGOTADO!</span></h1>
 
-       <a class="button button-light hero-drop-cta"
-           href="./?categoria=vestuario#gengar-detalhes"
-           aria-label="Ver o Drop Gengar na seção de vestuário">
-          VER O DROP <span aria-hidden="true">↗</span>
-        </a>
       </div>
 
       <div class="hero-index">

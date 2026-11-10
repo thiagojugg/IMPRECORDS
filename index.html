@@ -1694,17 +1694,15 @@
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
   <header class="site-header imp-christmas-header">
-    <div class="imp-christmas-santa" aria-hidden="true">
-      <div class="imp-santa-3d">
-        <div class="imp-sleigh-3d"><i class="sleigh-runner"></i><i class="sleigh-body"></i><i class="sleigh-seat"></i><i class="sleigh-gift"></i></div>
-        <div class="imp-santa-rider"><i class="santa-body"></i><i class="santa-face"></i><i class="santa-beard"></i><i class="santa-hat"></i><i class="santa-arm"></i></div>
-        <div class="imp-reindeer-3d"><i class="reindeer-body"></i><i class="reindeer-neck"></i><i class="reindeer-head"></i><i class="reindeer-muzzle"></i><i class="reindeer-antlers"></i><i class="reindeer-leg leg-one"></i><i class="reindeer-leg leg-two"></i><i class="reindeer-leg leg-three"></i><i class="reindeer-leg leg-four"></i></div>
-        <i class="imp-reins-3d"></i>
-      </div>
-    </div>
+    <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
+    <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
     <div class="imp-christmas-snowman" aria-hidden="true">
       <i class="snowman-bottom"></i><i class="snowman-middle"></i><i class="snowman-head"></i>
       <i class="snowman-hat"></i><i class="snowman-nose"></i><i class="snowman-eyes"></i><i class="snowman-scarf"></i><i class="snowman-arm"></i>
+    </div>
+    <div class="imp-christmas-tree" aria-hidden="true">
+      <i class="tree-star"></i><i class="tree-top"></i><i class="tree-middle"></i><i class="tree-bottom"></i>
+      <i class="tree-trunk"></i><i class="tree-garland"></i><i class="tree-bauble bauble-one"></i><i class="tree-bauble bauble-two"></i><i class="tree-bauble bauble-three"></i><i class="tree-bauble bauble-four"></i>
     </div>
     <div class="header-inner">
       
@@ -3930,3 +3928,68 @@
   <script src="./assets/navigation-transition.js" defer></script>
 </body>
 </html>
+
+
+<style id="imp-christmas-header-landscape">
+/* Nova composição de inverno: neve contínua, boneco à esquerda e árvore à direita. */
+.site-header.imp-christmas-header { overflow:hidden; }
+.site-header.imp-christmas-header::before { opacity:.9; background-size:190px 84px; }
+.imp-christmas-santa { display:none !important; }
+.imp-christmas-snowman {
+  left:max(14px,calc((100vw - 1180px)/2));
+  right:auto !important;
+  bottom:4px !important;
+  width:48px !important;
+  height:65px !important;
+  z-index:3 !important;
+  transform:scale(.94);
+  transform-origin:bottom left;
+  animation:imp-snowman-bob 4.2s ease-in-out infinite;
+}
+.imp-christmas-snowbank {
+  position:absolute; z-index:2; bottom:-13px; width:clamp(105px,17vw,220px); height:43px;
+  pointer-events:none; border-radius:55% 55% 0 0 / 65% 65% 0 0;
+  background:
+    radial-gradient(ellipse at 28% 20%,rgba(255,255,255,.98),rgba(226,239,246,.95) 38%,rgba(166,190,204,.88) 78%,rgba(110,139,154,.42) 100%);
+  box-shadow:inset 0 7px 12px rgba(255,255,255,.72),0 -5px 15px rgba(216,239,255,.12);
+}
+.imp-snowbank-left { left:-24px; }
+.imp-snowbank-left::before,.imp-snowbank-right::before {
+  content:"";position:absolute;bottom:18px;width:54%;height:28px;border-radius:50%;
+  background:linear-gradient(180deg,#fff,#dceaf1 75%,#a9c0cc);
+  box-shadow:inset 0 4px 8px rgba(255,255,255,.85),0 3px 7px rgba(0,0,0,.2);
+}
+.imp-snowbank-left::before { left:38%; }
+.imp-snowbank-right { right:-24px; width:clamp(125px,19vw,245px); height:48px; }
+.imp-snowbank-right::before { left:4%; width:58%; height:32px; }
+.imp-christmas-tree {
+  position:absolute; z-index:3; right:max(12px,calc((100vw - 1180px)/2)); bottom:3px;
+  width:61px;height:79px;pointer-events:none;filter:drop-shadow(0 5px 5px rgba(0,0,0,.62));
+}
+.imp-christmas-tree i {position:absolute;display:block;box-sizing:border-box;}
+.tree-trunk {left:26px;bottom:0;width:10px;height:17px;border-radius:2px;background:linear-gradient(90deg,#4c2917,#a56a36,#4a2614);}
+.tree-bottom {left:4px;bottom:10px;width:53px;height:42px;background:linear-gradient(105deg,#073b28,#16834c 48%,#032718);clip-path:polygon(50% 0,100% 100%,0 100%);filter:drop-shadow(0 3px 2px #061b12);}
+.tree-middle {left:9px;bottom:30px;width:43px;height:37px;background:linear-gradient(105deg,#06432c,#20a35b 48%,#04301f);clip-path:polygon(50% 0,100% 100%,0 100%);}
+.tree-top {left:15px;bottom:49px;width:31px;height:29px;background:linear-gradient(105deg,#075034,#27ad65 48%,#064027);clip-path:polygon(50% 0,100% 100%,0 100%);}
+.tree-star {left:26px;top:-1px;width:12px;height:12px;background:radial-gradient(circle,#fff5b1 0 18%,#ffd65b 45%,#b87918 100%);clip-path:polygon(50% 0,62% 35%,100% 38%,70% 60%,80% 100%,50% 75%,20% 100%,30% 60%,0 38%,38% 35%);filter:drop-shadow(0 0 5px #ffe28a);}
+.tree-garland {left:12px;bottom:25px;width:38px;height:38px;border-bottom:2px solid #f4d68b;border-radius:0 0 50% 50%;transform:rotate(-8deg);}
+.tree-bauble {width:6px;height:6px;border-radius:50%;box-shadow:0 0 5px currentColor;}
+.bauble-one {left:22px;bottom:48px;background:#e33;color:#e33;}
+.bauble-two {left:39px;bottom:31px;background:#f2d078;color:#f2d078;}
+.bauble-three {left:16px;bottom:23px;background:#d83a45;color:#d83a45;}
+.bauble-four {left:34px;bottom:17px;background:#f5e8c5;color:#f5e8c5;}
+@media(max-width:650px) {
+ .site-header.imp-christmas-header .header-inner {min-height:68px;}
+ .imp-christmas-snowman {left:4px;bottom:2px!important;transform:scale(.72);transform-origin:bottom left;}
+ .imp-christmas-tree {right:4px;bottom:1px;transform:scale(.76);transform-origin:bottom right;}
+ .imp-christmas-snowbank {height:29px;bottom:-10px;width:31vw;}
+ .imp-snowbank-left {left:-16px;}
+ .imp-snowbank-right {right:-16px;width:34vw;height:33px;}
+ .imp-snowbank-left::before,.imp-snowbank-right::before {height:19px;bottom:12px;}
+ .site-header.imp-christmas-header::before {opacity:.82;}
+}
+@media(prefers-reduced-motion:reduce) {
+ .site-header.imp-christmas-header::before {animation:none!important;}
+ .imp-christmas-snowman {animation:none!important;}
+}
+</style>

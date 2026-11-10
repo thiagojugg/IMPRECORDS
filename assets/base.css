@@ -137,3 +137,64 @@ input, textarea, select, [contenteditable="true"], iframe {
   .footer-logo.wordmark .wordmark-flag-ma { opacity:1; }
   .footer-logo.wordmark .wordmark-flag-go,.footer-logo.wordmark .wordmark-flag-sp { opacity:0; }
 }
+
+
+/* IMP RECORDS footer wordmark: stretch each state flag across the FULL name. */
+.footer-logo.wordmark {
+  display:inline-flex !important;
+  align-items:flex-start !important;
+  width:max-content !important;
+  max-width:100%;
+  white-space:nowrap !important;
+  overflow:visible !important;
+}
+.footer-logo.wordmark .footer-fullname-stack {
+  display:grid !important;
+  grid-template-columns:max-content !important;
+  grid-template-rows:max-content !important;
+  position:relative !important;
+  width:max-content !important;
+  min-width:max-content !important;
+  height:auto !important;
+  line-height:.9 !important;
+  isolation:isolate;
+}
+.footer-logo.wordmark .footer-fullname-stack .wordmark-flag {
+  grid-area:1 / 1 !important;
+  display:block !important;
+  position:relative !important;
+  inset:auto !important;
+  width:100% !important;
+  min-width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  font-family:var(--font-display) !important;
+  font-size:36px !important;
+  font-weight:inherit !important;
+  line-height:.9 !important;
+  letter-spacing:-.09em !important;
+  white-space:nowrap !important;
+  color:transparent !important;
+  -webkit-text-fill-color:transparent !important;
+  -webkit-background-clip:text !important;
+  background-clip:text !important;
+  background-repeat:no-repeat !important;
+  background-size:100% 100% !important;
+  background-position:center center !important;
+  transform-origin:center center;
+}
+.footer-logo.wordmark .wordmark-reg {
+  flex:0 0 auto;
+  color:#fff !important;
+}
+@media(max-width:650px) {
+  .footer-logo.wordmark .footer-fullname-stack .wordmark-flag {
+    font-size:30px !important;
+  }
+}
+/* Keep the flag artwork aligned with every letter instead of sliding off the text. */
+@keyframes impFlagWave {
+  0%,100% { transform:skewX(-1deg) scaleX(1); }
+  50% { transform:skewX(1deg) scaleX(1); }
+}

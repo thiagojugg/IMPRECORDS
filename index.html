@@ -2391,32 +2391,35 @@
 
   viewport.addEventListener("pointerdown", (event) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
+    // Não capturar o ponteiro no viewport: a captura troca o alvo do clique
+    // e impede que o navegador acione o link do card após um clique normal.
     dragging = true;
     moved = false;
     lastX = event.clientX;
     pointerId = event.pointerId;
     track.classList.add("is-dragging");
-    try { viewport.setPointerCapture(event.pointerId); } catch (_) {}
   });
 
-  viewport.addEventListener("pointermove", (event) => {
+  // Acompanhar o gesto na janela permite arrastar até fora da faixa sem
+  // sequestrar o evento de clique dos links dos artistas.
+  window.addEventListener("pointermove", (event) => {
     if (!dragging || event.pointerId !== pointerId) return;
     const deltaX = event.clientX - lastX;
-    if (Math.abs(deltaX) > 2) moved = true;
+    if (Math.abs(deltaX) > 3) moved = true;
     offset -= deltaX;
     lastX = event.clientX;
     normalize();
     render();
   });
 
-  viewport.addEventListener("pointerup", stopDragging);
-  viewport.addEventListener("pointercancel", stopDragging);
-  viewport.addEventListener("lostpointercapture", stopDragging);
+  window.addEventListener("pointerup", stopDragging);
+  window.addEventListener("pointercancel", stopDragging);
 
   viewport.addEventListener("click", (event) => {
     if (!moved) return;
     event.preventDefault();
     event.stopPropagation();
+    event.stopImmediatePropagation();
     moved = false;
   }, true);
 

@@ -4019,6 +4019,27 @@
 }
 </style>
 
+
+  <script id="imp-christmas-season-scheduler">
+  (() => {
+    const zone = "America/Sao_Paulo";
+    const updateChristmasSeason = () => {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: zone, month: "numeric", day: "numeric"
+      }).formatToParts(new Date());
+      const month = Number(parts.find(part => part.type === "month")?.value);
+      const day = Number(parts.find(part => part.type === "day")?.value);
+      const active = (month === 11 && day >= 10) || month === 12;
+      document.documentElement.classList.toggle("imp-christmas-season-active", active);
+    };
+    updateChristmasSeason();
+    window.setInterval(updateChristmasSeason, 15000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updateChristmasSeason();
+    });
+  })();
+  </script>
+
   <script src="./assets/navigation-transition.js" defer></script>
 </body>
 </html>
@@ -4182,5 +4203,29 @@
     animation:none !important;
     right:8px !important;
   }
+}
+</style>
+
+
+<style id="imp-christmas-season-schedule">
+/* Fora da temporada, restaura o cabeçalho normal e oculta toda a decoração natalina. */
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header {
+  background: var(--black) !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::before,
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::after {
+  display: none !important;
+  content: none !important;
+  animation: none !important;
+}
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-tree,
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-santa,
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowman,
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowman-photo,
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowbank {
+  display: none !important;
+  animation: none !important;
 }
 </style>

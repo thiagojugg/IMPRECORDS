@@ -19,3 +19,33 @@ input, textarea, select, [contenteditable="true"], iframe {
   -webkit-user-select: auto !important;
   user-select: auto !important;
 }
+
+
+/* IMP wordmark: bandeiras estaduais alternando dentro das letras */
+.wordmark { display:inline-flex; align-items:flex-start; position:relative; }
+.wordmark .wordmark-flag-stack { display:inline-grid; position:relative; line-height:.9; isolation:isolate; }
+.wordmark .wordmark-flag {
+  grid-area:1/1; display:inline-block; color:transparent; -webkit-text-fill-color:transparent;
+  background-size:145% 145%; background-position:50% 50%; background-clip:text; -webkit-background-clip:text;
+  background-repeat:no-repeat; opacity:0; transform:skewX(-5deg) scaleX(1.015);
+  filter:drop-shadow(0 0 1px rgba(255,255,255,.12));
+  animation:impFlagCycle 15s infinite, impFlagWave 1.8s ease-in-out infinite;
+}
+.wordmark .wordmark-flag-ma { background-image:url("./flag-maranhao.svg"); animation-delay:0s,0s; }
+.wordmark .wordmark-flag-go { background-image:url("./flag-goias.svg"); animation-delay:5s,0s; }
+.wordmark .wordmark-flag-sp { background-image:url("./flag-sao-paulo.svg"); animation-delay:10s,0s; }
+.wordmark .wordmark-reg { font:10px var(--font-body); vertical-align:top; letter-spacing:0; margin-left:4px; color:var(--white); }
+@keyframes impFlagCycle {
+  0%,31% { opacity:1; }
+  33%,98% { opacity:0; }
+  100% { opacity:1; }
+}
+@keyframes impFlagWave {
+  0%,100% { background-position:44% 50%; transform:skewX(-5deg) scaleX(1.015); }
+  50% { background-position:56% 50%; transform:skewX(5deg) scaleX(1.015); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wordmark .wordmark-flag { animation:none; }
+  .wordmark .wordmark-flag-ma { opacity:1; }
+  .wordmark .wordmark-flag-go,.wordmark .wordmark-flag-sp { opacity:0; }
+}

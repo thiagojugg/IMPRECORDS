@@ -209,6 +209,23 @@
       #imp-roots-youtube.is-roots-celebrating { animation: none; }
     }
 
+    #glorify-youtube.is-glorify-celebrating {
+      animation: glorifyLight3D .95s cubic-bezier(.18,.82,.2,1);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.2), 0 0 22px rgba(255,220,125,.7), 0 0 38px rgba(255,255,255,.38), 0 7px 0 #710000;
+    }
+
+    @keyframes glorifyLight3D {
+      0% { transform: perspective(520px) translateY(0) rotateX(0) rotateY(0) scale(1); filter: brightness(1); }
+      24% { transform: perspective(520px) translateY(-11px) rotateX(20deg) rotateY(-10deg) scale(1.14); filter: brightness(1.35); }
+      50% { transform: perspective(520px) translateY(2px) rotateX(-11deg) rotateY(10deg) scale(.96); filter: brightness(1.12); }
+      76% { transform: perspective(520px) translateY(-5px) rotateX(8deg) rotateY(-5deg) scale(1.06); filter: brightness(1.25); }
+      100% { transform: perspective(520px) translateY(0) rotateX(0) rotateY(0) scale(1); filter: brightness(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #glorify-youtube.is-glorify-celebrating { animation: none; }
+    }
+
     @media (max-width: 650px) {
       .divisions-page {
         padding-top: 65px;
@@ -455,7 +472,7 @@
           <div class="division-links">
             <!-- Substitua os links pelos endereços oficiais -->
             <a href="#" aria-disabled="true">SPOTIFY</a>
-            <a href="https://youtube.com/@glorifybible" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+            <a id="glorify-youtube" href="https://youtube.com/@glorifybible" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
           </div>
         </div>
       </article>
@@ -764,6 +781,108 @@
         window.setTimeout(() => button.classList.remove("is-roots-celebrating"), 950);
         if (!animationFrame) draw();
       });
+    });
+    window.addEventListener("resize", resize);
+  })();
+  </script>
+  <script>
+  /* Efeito de luz 3D da GLORIFY; o YouTube abre somente após a animação. */
+  (() => {
+    const button = document.getElementById("glorify-youtube");
+    if (!button) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    let canvas, ctx, particles = [], frame = 0;
+    const createCanvas = () => {
+      if (canvas) return;
+      canvas = document.createElement("canvas");
+      canvas.setAttribute("aria-hidden", "true");
+      Object.assign(canvas.style, {
+        position: "fixed", inset: "0", width: "100%", height: "100%",
+        pointerEvents: "none", zIndex: "100001"
+      });
+      document.body.appendChild(canvas);
+      ctx = canvas.getContext("2d");
+    };
+    const resize = () => {
+      if (!canvas) return;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(innerWidth * ratio);
+      canvas.height = Math.round(innerHeight * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+    const draw = () => {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      particles = particles.filter(p => p.life > 0);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += .11; p.vx *= .993;
+        p.rotation += p.spin; p.life--;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = Math.min(1, p.life / 24);
+        ctx.fillStyle = p.color;
+        if (p.star) {
+          ctx.beginPath();
+          for (let k = 0; k < 8; k++) {
+            const radius = k % 2 ? p.size * .35 : p.size;
+            const angle = k * Math.PI / 4;
+            ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+          }
+          ctx.closePath(); ctx.fill();
+        } else {
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 1.8);
+        }
+        ctx.restore();
+      });
+      if (particles.length) frame = requestAnimationFrame(draw);
+      else {
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        frame = 0;
+        const destination = button.dataset.pendingUrl;
+        const tabName = button.dataset.pendingTab;
+        const tab = tabName && window[tabName];
+        delete button.dataset.pendingUrl;
+        delete button.dataset.pendingTab;
+        if (tab && !tab.closed) tab.location.href = destination;
+        else if (!tab) window.location.href = destination;
+      }
+    };
+
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      const destination = button.href;
+      const tab = window.open("about:blank", "_blank");
+      if (tab) {
+        tab.opener = null;
+        try { tab.document.title = "Preparando sua visita..."; } catch (_) {}
+      }
+      // Guarda a referência da aba sem expor dados na página.
+      const tabKey = "__glorifyTab_" + Math.random().toString(36).slice(2);
+      window[tabKey] = tab;
+      button.dataset.pendingUrl = destination;
+      button.dataset.pendingTab = tabKey;
+      createCanvas(); resize();
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      const colors = ["#fff7d6", "#f4d47b", "#ffffff", "#d8c18a"];
+      for (let n = 0; n < 96; n++) {
+        const angle = Math.PI * 2 * n / 96 + (Math.random() - .5) * .4;
+        const speed = 2.5 + Math.random() * 6.5;
+        particles.push({
+          x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2,
+          size: 3 + Math.random() * 6, rotation: Math.random() * Math.PI,
+          spin: (Math.random() - .5) * .18, life: 58 + Math.random() * 25,
+          color: colors[Math.floor(Math.random() * colors.length)], star: n % 3 === 0
+        });
+      }
+      button.classList.remove("is-glorify-celebrating");
+      void button.offsetWidth;
+      button.classList.add("is-glorify-celebrating");
+      window.setTimeout(() => button.classList.remove("is-glorify-celebrating"), 980);
+      if (!frame) draw();
     });
     window.addEventListener("resize", resize);
   })();

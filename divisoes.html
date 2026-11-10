@@ -173,6 +173,21 @@
       }
     }
 
+    #mundo-tindim-spotify.is-celebrating {
+      animation: tindimSpotifyPop .58s cubic-bezier(.2,.85,.25,1);
+    }
+
+    @keyframes tindimSpotifyPop {
+      0% { transform: translateY(0) scale(1) rotateX(0); }
+      35% { transform: translateY(-9px) scale(1.12) rotateX(14deg) rotateZ(-2deg); }
+      65% { transform: translateY(2px) scale(.96) rotateX(-5deg) rotateZ(2deg); }
+      100% { transform: translateY(0) scale(1) rotateX(0) rotateZ(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #mundo-tindim-spotify.is-celebrating { animation: none; }
+    }
+
     @media (max-width: 650px) {
       .divisions-page {
         padding-top: 65px;
@@ -393,7 +408,7 @@
 
           <div class="division-links">
             <!-- Substitua os links pelos endereços oficiais -->
-            <a href="https://open.spotify.com/artist/1luTcTA3NoOYdYKUcWBwGq" target="_blank" rel="noopener noreferrer">SPOTIFY</a>
+            <a id="mundo-tindim-spotify" href="https://open.spotify.com/artist/1luTcTA3NoOYdYKUcWBwGq" target="_blank" rel="noopener noreferrer">SPOTIFY</a>
             <a href="https://youtube.com/@mundotindim" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
           </div>
         </div>
@@ -503,6 +518,110 @@
   }, true);
 })();
 </script>
+  <script>
+  /* Explosão de confetes ao abrir o Spotify do Mundo Tindim. */
+  (() => {
+    const button = document.getElementById("mundo-tindim-spotify");
+    if (!button) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let canvas;
+    let context;
+    let particles = [];
+    let frame = 0;
+
+    const createCanvas = () => {
+      if (canvas) return;
+      canvas = document.createElement("canvas");
+      canvas.setAttribute("aria-hidden", "true");
+      Object.assign(canvas.style, {
+        position: "fixed",
+        inset: "0",
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: "99999"
+      });
+      document.body.appendChild(canvas);
+      context = canvas.getContext("2d");
+    };
+
+    const resizeCanvas = () => {
+      if (!canvas) return;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(window.innerWidth * ratio);
+      canvas.height = Math.round(window.innerHeight * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+
+    const draw = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      context.clearRect(0, 0, width, height);
+
+      particles = particles.filter(p => p.life > 0);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.19;
+        p.vx *= 0.992;
+        p.rotation += p.spin;
+        p.life -= 1;
+        context.save();
+        context.translate(p.x, p.y);
+        context.rotate(p.rotation);
+        context.globalAlpha = Math.min(1, p.life / 24);
+        context.fillStyle = p.color;
+        context.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        context.restore();
+      });
+
+      if (particles.length) {
+        frame = requestAnimationFrame(draw);
+      } else {
+        context.clearRect(0, 0, width, height);
+        cancelAnimationFrame(frame);
+      }
+    };
+
+    button.addEventListener("click", event => {
+      if (reduceMotion) return;
+      createCanvas();
+      resizeCanvas();
+
+      const rect = button.getBoundingClientRect();
+      const originX = rect.left + rect.width / 2;
+      const originY = rect.top + rect.height / 2;
+      const colors = ["#24e66b", "#ffffff", "#ffd447", "#ff4d6d", "#5bd7ff", "#b98aff"];
+
+      for (let i = 0; i < 105; i++) {
+        const angle = (Math.PI * 2 * i) / 105 + (Math.random() - 0.5) * 0.45;
+        const speed = 3 + Math.random() * 8;
+        particles.push({
+          x: originX,
+          y: originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          w: 4 + Math.random() * 6,
+          h: 6 + Math.random() * 8,
+          rotation: Math.random() * Math.PI,
+          spin: (Math.random() - 0.5) * 0.24,
+          life: 65 + Math.random() * 25,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      button.classList.remove("is-celebrating");
+      void button.offsetWidth;
+      button.classList.add("is-celebrating");
+      window.setTimeout(() => button.classList.remove("is-celebrating"), 650);
+
+      if (!frame) draw();
+    });
+
+    window.addEventListener("resize", resizeCanvas);
+  })();
+  </script>
   <script src="./assets/navigation-transition.js" defer></script>
 </body>
 </html>

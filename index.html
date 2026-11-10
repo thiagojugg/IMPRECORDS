@@ -348,6 +348,12 @@
       user-select: none;
       will-change: transform;
     }
+    /* Centraliza a roleta de artistas apenas em telas desktop. */
+    @media (min-width: 651px) {
+      #artists-roulette .artists-roulette-track {
+        margin-inline: auto;
+      }
+    }
     .artists-roulette-track.is-dragging { cursor: grabbing; }
     .artists-roulette-track img {
       -webkit-user-drag: none;

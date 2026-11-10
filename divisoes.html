@@ -190,6 +190,25 @@
       #mundo-tindim-youtube.is-celebrating { animation: none; }
     }
 
+    #imp-roots-spotify.is-roots-celebrating,
+    #imp-roots-youtube.is-roots-celebrating {
+      animation: rootsReggae3D .9s cubic-bezier(.18,.82,.2,1);
+      box-shadow: 0 0 0 3px rgba(255,210,45,.35), 0 0 24px rgba(35,190,82,.65), 0 0 38px rgba(220,35,45,.45), 0 7px 0 #07552b;
+    }
+
+    @keyframes rootsReggae3D {
+      0% { transform: perspective(500px) translateY(0) rotateX(0) rotateY(0) scale(1); }
+      22% { transform: perspective(500px) translateY(-10px) rotateX(22deg) rotateY(-12deg) scale(1.13); }
+      48% { transform: perspective(500px) translateY(2px) rotateX(-12deg) rotateY(12deg) scale(.96); }
+      72% { transform: perspective(500px) translateY(-5px) rotateX(10deg) rotateY(-6deg) scale(1.06); }
+      100% { transform: perspective(500px) translateY(0) rotateX(0) rotateY(0) scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #imp-roots-spotify.is-roots-celebrating,
+      #imp-roots-youtube.is-roots-celebrating { animation: none; }
+    }
+
     @media (max-width: 650px) {
       .divisions-page {
         padding-top: 65px;
@@ -385,8 +404,8 @@
 
           <div class="division-links">
             <!-- Substitua os links pelos endereços oficiais -->
-            <a href="https://open.spotify.com/artist/0aDbXLgFkiUczKgj94N1UE" target="_blank" rel="noopener noreferrer">SPOTIFY</a>
-            <a href="https://youtube.com/@improotsoficial" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+            <a id="imp-roots-spotify" href="https://open.spotify.com/artist/0aDbXLgFkiUczKgj94N1UE" target="_blank" rel="noopener noreferrer">SPOTIFY</a>
+            <a id="imp-roots-youtube" href="https://youtube.com/@improotsoficial" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
           </div>
         </div>
       </article>
@@ -644,6 +663,109 @@
     });
 
     window.addEventListener("resize", resizeCanvas);
+  })();
+  </script>
+  <script>
+  /* Explosão 3D nas cores reggae; os links da IMP ROOTS só abrem ao final. */
+  (() => {
+    const buttons = [
+      document.getElementById("imp-roots-spotify"),
+      document.getElementById("imp-roots-youtube")
+    ].filter(Boolean);
+    if (!buttons.length) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
+    let canvas, ctx, particles = [], animationFrame = 0, pending = null;
+
+    const setupCanvas = () => {
+      if (canvas) return;
+      canvas = document.createElement("canvas");
+      canvas.setAttribute("aria-hidden", "true");
+      Object.assign(canvas.style, {
+        position: "fixed", inset: "0", width: "100%", height: "100%",
+        pointerEvents: "none", zIndex: "100000"
+      });
+      document.body.appendChild(canvas);
+      ctx = canvas.getContext("2d");
+    };
+
+    const resize = () => {
+      if (!canvas) return;
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(innerWidth * ratio);
+      canvas.height = Math.round(innerHeight * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+
+    const finish = () => {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      animationFrame = 0;
+      const item = pending;
+      pending = null;
+      if (!item) return;
+      if (item.tab && !item.tab.closed) item.tab.location.href = item.url;
+      else if (!item.tab) window.location.href = item.url;
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      particles = particles.filter(p => p.life > 0);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += .16; p.vx *= .991;
+        p.rotation += p.spin; p.life--;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = Math.min(1, p.life / 22);
+        ctx.fillStyle = p.color;
+        if (p.kind === "circle") {
+          ctx.beginPath(); ctx.arc(0, 0, p.size, 0, Math.PI * 2); ctx.fill();
+        } else {
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        }
+        ctx.restore();
+      });
+      if (particles.length) animationFrame = requestAnimationFrame(draw);
+      else finish();
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener("click", event => {
+        event.preventDefault();
+        const url = button.href;
+        const tab = window.open("about:blank", "_blank");
+        if (tab) {
+          tab.opener = null;
+          try { tab.document.title = "Preparando sua visita..."; } catch (_) {}
+        }
+        pending = { tab, url };
+        setupCanvas(); resize();
+        const rect = button.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        const reggae = ["#159447", "#f5d328", "#d92d35", "#ffffff", "#087b3a"];
+        for (let n = 0; n < 120; n++) {
+          const angle = Math.PI * 2 * n / 120 + (Math.random() - .5) * .35;
+          const speed = 2.8 + Math.random() * 7.5;
+          const color = reggae[Math.floor(Math.random() * reggae.length)];
+          particles.push({
+            x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2.5,
+            w: 5 + Math.random() * 7, h: 8 + Math.random() * 9,
+            size: 2 + Math.random() * 3, kind: n % 5 === 0 ? "circle" : "rect",
+            rotation: Math.random() * Math.PI, spin: (Math.random() - .5) * .22,
+            life: 68 + Math.random() * 24, color
+          });
+        }
+        button.classList.remove("is-roots-celebrating");
+        void button.offsetWidth;
+        button.classList.add("is-roots-celebrating");
+        window.setTimeout(() => button.classList.remove("is-roots-celebrating"), 950);
+        if (!animationFrame) draw();
+      });
+    });
+    window.addEventListener("resize", resize);
   })();
   </script>
   <script src="./assets/navigation-transition.js" defer></script>

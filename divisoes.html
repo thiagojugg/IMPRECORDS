@@ -570,7 +570,7 @@
     let context;
     let particles = [];
     let frame = 0;
-    let pendingTabs = [];
+    // Sem fila de navegação: os links abrem imediatamente.
 
     const createCanvas = () => {
       if (canvas) return;
@@ -595,15 +595,6 @@
     const finishAndOpenLinks = () => {
       context.clearRect(0, 0, window.innerWidth, window.innerHeight);
       frame = 0;
-      const tabsToOpen = pendingTabs;
-      pendingTabs = [];
-      tabsToOpen.forEach(item => {
-        if (item.tab && !item.tab.closed) {
-          item.tab.location.href = item.url;
-        } else if (!item.tab) {
-          window.location.href = item.url;
-        }
-      });
     };
 
     const draw = () => {
@@ -636,16 +627,7 @@
       button.addEventListener("click", event => {
         if (reduceMotion) return;
 
-        event.preventDefault();
-        const destination = button.href;
-        // Abre uma aba vazia durante o clique para evitar o bloqueio de pop-up;
-        // o endereço real só é carregado depois que todos os confetes caem.
-        const destinationTab = window.open("about:blank", "_blank");
-        if (destinationTab) {
-          destinationTab.opener = null;
-          try { destinationTab.document.title = "Preparando sua visita..."; } catch (_) {}
-        }
-        pendingTabs.push({ tab: destinationTab, url: destination });
+        // O link abre imediatamente; os confetes são apenas visuais.
 
         createCanvas();
         resizeCanvas();
@@ -683,7 +665,7 @@
   })();
   </script>
   <script>
-  /* Explosão 3D nas cores reggae; os links da IMP ROOTS só abrem ao final. */
+  /* Explosão 3D nas cores reggae da IMP ROOTS, sem atrasar a navegação. */
   (() => {
     const buttons = [
       document.getElementById("imp-roots-spotify"),
@@ -694,7 +676,7 @@
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) return;
 
-    let canvas, ctx, particles = [], animationFrame = 0, pending = null;
+    let canvas, ctx, particles = [], animationFrame = 0;
 
     const setupCanvas = () => {
       if (canvas) return;
@@ -719,11 +701,6 @@
     const finish = () => {
       ctx.clearRect(0, 0, innerWidth, innerHeight);
       animationFrame = 0;
-      const item = pending;
-      pending = null;
-      if (!item) return;
-      if (item.tab && !item.tab.closed) item.tab.location.href = item.url;
-      else if (!item.tab) window.location.href = item.url;
     };
 
     const draw = () => {
@@ -750,14 +727,7 @@
 
     buttons.forEach(button => {
       button.addEventListener("click", event => {
-        event.preventDefault();
-        const url = button.href;
-        const tab = window.open("about:blank", "_blank");
-        if (tab) {
-          tab.opener = null;
-          try { tab.document.title = "Preparando sua visita..."; } catch (_) {}
-        }
-        pending = { tab, url };
+        // O navegador segue o link imediatamente; a explosão roda em paralelo.
         setupCanvas(); resize();
         const rect = button.getBoundingClientRect();
         const x = rect.left + rect.width / 2;
@@ -786,7 +756,7 @@
   })();
   </script>
   <script>
-  /* Efeito de luz 3D da GLORIFY; o YouTube abre somente após a animação. */
+  /* Efeito de luz 3D da GLORIFY, sem atrasar a abertura do YouTube. */
   (() => {
     const button = document.getElementById("glorify-youtube");
     if (!button) return;
@@ -840,29 +810,12 @@
       else {
         ctx.clearRect(0, 0, innerWidth, innerHeight);
         frame = 0;
-        const destination = button.dataset.pendingUrl;
-        const tabName = button.dataset.pendingTab;
-        const tab = tabName && window[tabName];
-        delete button.dataset.pendingUrl;
-        delete button.dataset.pendingTab;
-        if (tab && !tab.closed) tab.location.href = destination;
-        else if (!tab) window.location.href = destination;
+        // A navegação nativa do link não depende do fim das partículas.
       }
     };
 
     button.addEventListener("click", event => {
-      event.preventDefault();
-      const destination = button.href;
-      const tab = window.open("about:blank", "_blank");
-      if (tab) {
-        tab.opener = null;
-        try { tab.document.title = "Preparando sua visita..."; } catch (_) {}
-      }
-      // Guarda a referência da aba sem expor dados na página.
-      const tabKey = "__glorifyTab_" + Math.random().toString(36).slice(2);
-      window[tabKey] = tab;
-      button.dataset.pendingUrl = destination;
-      button.dataset.pendingTab = tabKey;
+      // O link abre imediatamente; o efeito visual acontece em paralelo.
       createCanvas(); resize();
       const rect = button.getBoundingClientRect();
       const x = rect.left + rect.width / 2;

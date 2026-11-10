@@ -4146,3 +4146,41 @@
   }
 }
 </style>
+
+
+<style id="imp-christmas-santa-immediate">
+/* Papai Noel começa visível no cabeçalho e atravessa a cena imediatamente. */
+.site-header.imp-christmas-header img.imp-christmas-santa {
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:absolute !important;
+  z-index:20 !important;
+  top:0 !important;
+  left:auto !important;
+  right:8px !important;
+  width:260px !important;
+  height:78px !important;
+  object-fit:contain !important;
+  pointer-events:none !important;
+  animation:imp-santa-enter-now 18s linear infinite !important;
+}
+@keyframes imp-santa-enter-now {
+  0% { right:8px; }
+  100% { right:calc(100% + 280px); }
+}
+@media(max-width:650px) {
+  .site-header.imp-christmas-header img.imp-christmas-santa {
+    width:205px !important;
+    height:66px !important;
+    right:5px !important;
+    animation-duration:15s !important;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-header.imp-christmas-header img.imp-christmas-santa {
+    animation:none !important;
+    right:8px !important;
+  }
+}
+</style>

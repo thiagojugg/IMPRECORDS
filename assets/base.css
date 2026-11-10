@@ -413,3 +413,19 @@ html.imp-page-leaving body {
     line-height:1.2;
   }
 }
+
+
+/* Cabeçalho sazonal compartilhado por todas as páginas da IMP RECORDS. */
+.site-header.imp-christmas-header{position:relative!important;isolation:isolate;overflow:hidden!important;min-height:76px;background-color:#050807!important;background-image:radial-gradient(ellipse at 50% 100%,rgba(22,72,49,.24),transparent 68%),linear-gradient(180deg,rgba(8,20,14,.48),rgba(0,0,0,.96))!important;border-bottom:1px solid rgba(220,235,225,.2)}
+.site-header.imp-christmas-header::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.82;background-image:radial-gradient(2px 2px at 18px 24px,rgba(255,255,255,.95) 98%,transparent),radial-gradient(1.5px 1.5px at 78px 68px,rgba(220,242,255,.9) 98%,transparent),radial-gradient(2px 2px at 138px 14px,rgba(255,255,255,.85) 98%,transparent),radial-gradient(1px 1px at 198px 52px,rgba(255,255,255,.9) 98%,transparent);background-size:220px 92px;animation:imp-shared-header-snow 7s linear infinite}
+.site-header.imp-christmas-header .header-inner{position:relative;z-index:4;min-height:76px}
+.site-header.imp-christmas-header .imp-christmas-tree,.site-header.imp-christmas-header .imp-christmas-santa,.site-header.imp-christmas-header .imp-christmas-snowman-photo{position:absolute!important;display:block!important;visibility:visible!important;opacity:1!important;object-fit:contain!important;pointer-events:none!important;user-select:none!important;filter:drop-shadow(0 4px 5px rgba(0,0,0,.58))}
+.site-header.imp-christmas-header .imp-christmas-tree{z-index:3!important;left:max(10px,calc((100vw - 1180px)/2))!important;right:auto!important;bottom:0!important;width:78px!important;height:76px!important;object-position:left bottom!important}
+.site-header.imp-christmas-header .imp-christmas-santa{z-index:5!important;top:0!important;left:auto!important;right:8px!important;width:260px!important;height:78px!important;animation:imp-shared-santa-flight 18s linear infinite!important}
+.site-header.imp-christmas-header .imp-christmas-snowman-photo{z-index:3!important;right:max(10px,calc((100vw - 1180px)/2))!important;bottom:0!important;width:70px!important;height:68px!important;animation:none!important}
+@keyframes imp-shared-header-snow{from{background-position:0 -92px,35px -92px,90px -92px,150px -92px}to{background-position:0 0,35px 0,90px 0,150px 0}}
+@keyframes imp-shared-santa-flight{0%{right:8px}100%{right:calc(100% + 280px)}}
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header{background:#050505!important;background-image:none!important;border-bottom:1px solid var(--line)!important}
+html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::before,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header::after,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-tree,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-santa,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowman-photo,html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-christmas-snowbank{display:none!important;animation:none!important;content:none!important}
+@media(max-width:650px){.site-header.imp-christmas-header .imp-christmas-santa{width:205px!important;height:66px!important;right:5px!important;animation-duration:15s!important}.site-header.imp-christmas-header .imp-christmas-tree{width:62px!important;height:66px!important}.site-header.imp-christmas-header .imp-christmas-snowman-photo{width:58px!important;height:60px!important}}
+@media(prefers-reduced-motion:reduce){.site-header.imp-christmas-header::before,.site-header.imp-christmas-header .imp-christmas-santa{animation:none!important}.site-header.imp-christmas-header .imp-christmas-santa{right:8px!important}}

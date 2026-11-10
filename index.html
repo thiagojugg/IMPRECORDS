@@ -31,6 +31,15 @@
       color: rgba(255,255,255,.92);
     }
 
+    .hero-overlay .hero-drop-cta {
+      display: inline-flex;
+      position: relative;
+      z-index: 4;
+      visibility: visible;
+      opacity: 1;
+      margin-top: 2px;
+    }
+
     .header-inner > .wordmark {
       grid-column: 1;
       grid-row: 1;
@@ -1363,10 +1372,11 @@
         <h1>DROP <img class="hero-gengar" src="./assets/gengar-gothic.svg" alt="Gengar"> <span class="hero-soldout">ESGOTADO!</span></h1>
         <p class="hero-copy">Todas as unidades foram vendidas.</p>
 
-       <a class="button button-light"
-   href="./?categoria=vestuario#gengar-detalhes">
-  EXPLORAR DROP <span>↗</span>
-</a>
+       <a class="button button-light hero-drop-cta"
+           href="./?categoria=vestuario#gengar-detalhes"
+           aria-label="Ver o Drop Gengar na seção de vestuário">
+          VER O DROP <span aria-hidden="true">↗</span>
+        </a>
       </div>
 
       <div class="hero-index">

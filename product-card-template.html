@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modelo reutilizável — Card de produto IMP RECORDS</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --imp-card-width: 320px;
+      --imp-font-display: Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 32px;
+      display: grid;
+      place-items: start center;
+      background: #080808;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* CARD REUTILIZÁVEL IMP RECORDS */
+    .imp-product-card {
+      position: relative;
+      isolation: isolate;
+      flex: 0 0 var(--imp-card-width);
+      width: var(--imp-card-width);
+      min-width: 0;
+      padding: 10px 10px 14px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.105), transparent 54%),
+        linear-gradient(145deg, #202020 0%, #101010 48%, #080808 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.16),
+        inset 0 -1px 0 rgba(255,255,255,.035),
+        0 8px 18px rgba(0,0,0,.42),
+        0 22px 42px rgba(0,0,0,.28);
+      transform: perspective(1000px) translateY(0) rotateX(0);
+      transition: transform .42s cubic-bezier(.2,.75,.2,1), border-color .35s ease, box-shadow .42s ease;
+    }
+
+    .imp-product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 12% auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+      pointer-events: none;
+    }
+
+    .imp-product-card__link {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* A área de imagem acompanha a proporção natural dos arquivos. */
+    .imp-product-card__image {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(ellipse at 50% 43%, rgba(255,255,255,.105), transparent 58%),
+        linear-gradient(145deg, #242424, #0a0a0a 72%);
+      box-shadow:
+        inset 0 2px 8px rgba(255,255,255,.08),
+        inset 0 -12px 22px rgba(0,0,0,.48),
+        0 8px 16px rgba(0,0,0,.34);
+    }
+
+    .imp-product-card__gallery {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      height: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      touch-action: pan-x pan-y;
+      cursor: grab;
+    }
+
+    .imp-product-card__gallery::-webkit-scrollbar { display: none; }
+    .imp-product-card__gallery:active { cursor: grabbing; }
+
+    .imp-product-card__gallery img {
+      display: block;
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      height: auto;
+      object-fit: contain;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      filter: drop-shadow(0 15px 13px rgba(0,0,0,.62));
+      transition: transform .55s cubic-bezier(.2,.75,.2,1), filter .4s ease;
+    }
+
+    .imp-product-card__arrow {
+      position: absolute;
+      z-index: 2;
+      right: 12px;
+      bottom: 12px;
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f4f4f4, #a9a9a9);
+      color: #090909;
+      font-size: 17px;
+      box-shadow: 0 5px 13px rgba(0,0,0,.4), inset 0 1px 0 #fff;
+      pointer-events: none;
+    }
+
+    .imp-product-card__hint {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 2px;
+      background: rgba(0,0,0,.68);
+      color: rgba(255,255,255,.86);
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      white-space: nowrap;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .imp-product-card__hint span { font-size: 12px; line-height: .7; }
+
+    .imp-product-card__meta {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 13px;
+      padding: 17px 7px 2px;
+    }
+
+    .imp-product-card__vendor {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: #bcbcbc;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .22em;
+    }
+
+    .imp-product-card__vendor::before {
+      content: "";
+      width: 17px;
+      height: 1px;
+      background: #eee;
+      box-shadow: 0 0 8px rgba(255,255,255,.45);
+    }
+
+    .imp-product-card__title {
+      max-width: 100%;
+      margin: 0;
+      color: #fff;
+      font-family: var(--imp-font-display);
+      font-size: clamp(17px, 1.65vw, 23px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(255,255,255,.12), 0 4px 12px rgba(0,0,0,.8);
+    }
+
+    .imp-product-card__price-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    .imp-product-card__old-price {
+      color: rgba(255,255,255,.48);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+    }
+
+    .imp-product-card__price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      margin: 0;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 2px;
+      background: linear-gradient(135deg, #f4f4f4 0%, #c9c9c9 48%, #969696 100%);
+      color: #090909;
+      font-size: clamp(17px, 1.7vw, 22px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: -.045em;
+      text-shadow: 0 1px 0 rgba(255,255,255,.65);
+      box-shadow: 0 7px 17px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -2px 4px rgba(0,0,0,.12);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .imp-product-card:hover {
+        z-index: 2;
+        transform: perspective(1000px) translateY(-8px) rotateX(1.2deg);
+        border-color: rgba(255,255,255,.58);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.24),
+          0 16px 28px rgba(0,0,0,.48),
+          0 30px 55px rgba(0,0,0,.42),
+          0 0 24px rgba(255,255,255,.055);
+      }
+
+      .imp-product-card:hover .imp-product-card__gallery img {
+        transform: scale(1.045) translateY(-3px);
+        filter: drop-shadow(0 20px 17px rgba(0,0,0,.72));
+      }
+    }
+
+    @media (max-width: 650px) {
+      body { padding: 20px; }
+      .imp-product-card { width: min(100%, 230px); flex-basis: min(100%, 230px); }
+      .imp-product-card__title { font-size: 17px; }
+      .imp-product-card__old-price { font-size: 11px; }
+      .imp-product-card__price { font-size: 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .imp-product-card,
+      .imp-product-card__gallery img { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!--
+    MODELO DE CARD — IMP RECORDS
+
+    Para reutilizar:
+    1. Duplique o bloco <article class="imp-product-card">.
+    2. Troque o endereço do link, o nome, os preços e as imagens.
+    3. Para uma foto, deixe apenas um <img>; para várias, adicione mais imagens.
+    4. As imagens devem ter a mesma proporção (recomendado: 4:5).
+    5. Se não houver preço antigo, remova o elemento <del>.
+    6. Mantenha a largura do card no CSS ou ajuste --imp-card-width.
+  -->
+
+  <article class="imp-product-card">
+    <a class="imp-product-card__link" href="URL-DA-PAGINA-DO-PRODUTO">
+      <div class="imp-product-card__image" aria-label="Galeria de fotos do produto">
+        <div class="imp-product-card__gallery" tabindex="0" aria-label="Deslize horizontalmente para ver as fotos do produto">
+          <img src="./assets/foto-produto-1.png" alt="Nome do produto — foto 1" loading="eager">
+          <img src="./assets/foto-produto-2.png" alt="Nome do produto — foto 2" loading="lazy">
+          <img src="./assets/foto-produto-3.png" alt="Nome do produto — foto 3" loading="lazy">
+        </div>
+        <span class="imp-product-card__arrow" aria-hidden="true">↗</span>
+        <span class="imp-product-card__hint" aria-hidden="true">DESLIZE PARA VER MAIS <span>→</span></span>
+      </div>
+
+      <div class="imp-product-card__meta">
+        <div>
+          <p class="imp-product-card__vendor">IMP RECORDS</p>
+          <h3 class="imp-product-card__title">NOME DO PRODUTO</h3>
+        </div>
+
+        <div class="imp-product-card__price-wrap">
+          <del class="imp-product-card__old-price">R$ 149,90</del>
+          <p class="imp-product-card__price">R$ 119,90</p>
+        </div>
+      </div>
+    </a>
+  </article>
+
+</body>
+</html>

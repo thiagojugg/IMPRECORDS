@@ -244,3 +244,8 @@
   .cart-link:focus-visible .cart-bag-icon { transition: none; transform: none; }
   .cart-link:active .cart-bag-icon { animation: none; }
 }
+
+
+/* A sacola aparece somente nas categorias de venda da página inicial. */
+.cart-link { display: none; }
+html.show-cart .cart-link { display: inline-flex; }

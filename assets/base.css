@@ -121,7 +121,7 @@ input, textarea, select, [contenteditable="true"], iframe {
   background-clip:text; -webkit-background-clip:text; background-repeat:no-repeat;
   background-size:145% 145%; background-position:50% 50%;
 }
-.footer-logo.wordmark .footer-logo-rest { font:inherit; letter-spacing:inherit; margin:0 0 0 .12em; }
+.footer-logo.wordmark .footer-records-stack { width:5.2em; height:.9em; margin-left:.12em; }
 .footer-logo.wordmark .wordmark-reg { font:10px var(--font-body); line-height:1; margin:0 0 0 4px; color:#fff; }
 .footer-brand-row { margin:0 0 24px; }
 @media(max-width:650px) {

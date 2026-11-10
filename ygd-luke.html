@@ -15,6 +15,7 @@
       padding:40px; margin:0 0 70px; overflow:hidden;
       isolation:isolate; background:#111; border:1px solid var(--line);
     }
+    .ygd-hero > img { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:center; }
     .ygd-hero::after {
       content:""; position:absolute; inset:0; z-index:-1;
       background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.82));
@@ -31,13 +32,11 @@
       letter-spacing:-.05em;
     }
     .ygd-section p { max-width:850px; color:#bbb; font-size:15px; line-height:1.95; }
-    .ygd-photo-placeholder {
-      min-height:300px; margin:35px 0; padding:25px;
-      display:flex; flex-direction:column; justify-content:center; align-items:center;
-      text-align:center; gap:12px; color:#888; background:#111;
-      border:1px dashed #555;
-    }
-    .ygd-photo-placeholder strong { color:#ddd; font-size:11px; letter-spacing:.16em; }
+    .ygd-photo { margin:35px 0; overflow:hidden; background:#111; border:1px solid var(--line); }
+    .ygd-photo img { display:block; width:100%; height:auto; max-height:680px; object-fit:cover; object-position:center; }
+    .ygd-photo--origins img { aspect-ratio:16/9; }
+    .ygd-photo--dualidade img { aspect-ratio:16/9; }
+    .ygd-photo--releases img { aspect-ratio:16/9; }
     .ygd-quote {
       margin:50px 0; padding:75px 20px; text-align:center;
       border-top:1px solid var(--line); border-bottom:1px solid var(--line);
@@ -59,7 +58,8 @@
       .ygd-hero { min-height:0; padding:25px; margin-bottom:45px; }
       .ygd-hero h1 { font-size:clamp(38px,11.5vw,72px); line-height:.9; letter-spacing:-.075em; max-width:100%; overflow-wrap:anywhere; }
       .ygd-section { padding:45px 0; }
-      .ygd-photo-placeholder { min-height:210px; }
+      .ygd-photo { margin:28px 0; }
+      .ygd-photo img { max-height:480px; }
       .ygd-social a, .ygd-social span { width:100%; max-width:310px; }
     }
   </style>
@@ -84,6 +84,7 @@
     <a class="text-link" href="./artistas.html">← VOLTAR A ARTISTAS</a>
 
     <section class="ygd-hero">
+      <img src="./assets/ygd-luke-banner.jpg" alt="YGD Luke — fotografia de apresentação">
       <span class="eyebrow">IMP RECORDS / ARTISTA</span>
       <h1>YGD LUKE</h1>
       <p>ARTISTA DE MAUÁ · ABC PAULISTA · SÃO PAULO</p>
@@ -92,10 +93,9 @@
     <section class="ygd-section">
       <span class="number">01 / ORIGENS</span>
       <h2>UMA HISTÓRIA QUE COMEÇA EM MAUÁ.</h2>
-      <div class="ygd-photo-placeholder">
-        <strong>ESPAÇO PARA FOTOGRAFIA</strong>
-        <span>Uma imagem que represente as origens de YGD Luke no ABC Paulista.</span>
-      </div>
+      <figure class="ygd-photo ygd-photo--origins">
+        <img src="./assets/ygd-luke-origens.jpg" alt="YGD Luke — suas origens e trajetória em Mauá, no ABC Paulista" loading="lazy">
+      </figure>
       <p>YGD Luke é um artista de Mauá, cidade localizada na região do ABC Paulista, em São Paulo. É desse território e de suas próprias vivências que parte a construção de sua identidade artística. Sua música nasce de experiências pessoais, sentimentos e observações sobre o mundo ao seu redor.</p>
       <p>Mais do que buscar apenas uma sonoridade, YGD Luke encontrou na arte uma maneira de expressar aquilo que muitas vezes é difícil colocar em palavras. Sua trajetória carrega contrastes: de um lado, as marcas da realidade e tudo aquilo que a vida ensina; do outro, os desejos, as ambições e a vontade de alcançar novas possibilidades.</p>
     </section>
@@ -111,10 +111,9 @@
     <section class="ygd-section">
       <span class="number">03 / IDENTIDADE ARTÍSTICA</span>
       <h2>YOUNG D E LUKE: DUAS FACES, UMA IDENTIDADE.</h2>
-      <div class="ygd-photo-placeholder">
-        <strong>ESPAÇO PARA FOTOGRAFIA</strong>
-        <span>Retrato que represente a dualidade artística de YGD Luke.</span>
-      </div>
+      <figure class="ygd-photo ygd-photo--dualidade">
+        <img src="./assets/ygd-luke-dualidade.jpg" alt="YGD Luke — retrato que representa a dualidade entre Young D e Luke" loading="lazy">
+      </figure>
       <p>O nome <strong>YGD Luke</strong> carrega uma ideia central para entender sua identidade musical: a união de duas perspectivas que convivem dentro do mesmo artista. Essa dualidade aparece na própria divisão do nome, em que cada parte representa um lado diferente de sua personalidade e de sua visão de mundo.</p>
       <p><strong>Young D</strong> representa seu lado mais sério e reflexivo. É a parte conectada à realidade, às experiências que viveu, às dificuldades e à maneira como enxerga o mundo. É nesse lado que aparecem os pensamentos mais profundos, as marcas da caminhada e a vontade de transformar vivências em mensagem.</p>
       <p><strong>Luke</strong>, por sua vez, representa o lado dos desejos, da luxúria, das conquistas e de tudo aquilo que gostaria de ter ou fazer. É a expressão de suas ambições, da busca por uma vida diferente e da liberdade de imaginar aquilo que ainda deseja alcançar.</p>
@@ -139,10 +138,9 @@
     <section class="ygd-section">
       <span class="number">06 / MÚSICA E LANÇAMENTOS</span>
       <h2>HISTÓRIAS QUE GANHAM VOZ.</h2>
-      <div class="ygd-photo-placeholder">
-        <strong>ESPAÇO PARA LANÇAMENTOS</strong>
-        <span>Capas, nomes, datas e links das músicas e projetos de YGD Luke serão adicionados aqui.</span>
-      </div>
+      <figure class="ygd-photo ygd-photo--releases">
+        <img src="./assets/ygd-luke-lancamentos.jpg" alt="YGD Luke — imagem da seção de música e lançamentos" loading="lazy">
+      </figure>
       <p>Os lançamentos de YGD Luke serão apresentados nesta seção, reunindo os trabalhos que representam cada etapa de sua evolução musical e artística.</p>
     </section>
 

@@ -2978,7 +2978,10 @@
       const titulo = categorias[categoria];
       const heading = secao.querySelector(".section-heading h2");
 
-      if (heading) {
+      if (heading && categoria === "vestuario") {
+        /* Na vitrine de camisetas, exibe somente o produto, sem o título da categoria. */
+        heading.closest(".section-heading")?.remove();
+      } else if (heading) {
         const novoTitulo = document.createElement("h1");
         novoTitulo.className = "category-title";
         novoTitulo.textContent = titulo;

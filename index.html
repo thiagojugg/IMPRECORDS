@@ -2638,7 +2638,7 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x101010);
     const camera = new THREE.OrthographicCamera(-8.4, 8.4, 2.45, -2.45, 0.1, 100);
-    camera.position.set(0, 5.8, 18);
+    camera.position.set(0, 9.2, 18);
     camera.lookAt(0, 1.45, -0.45);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
@@ -2703,6 +2703,17 @@
     box(room, "Computador", [.58,.62,.7], [2.35,2.08,-1.55], mats.charcoal, true);
     box(room, "Luz do computador", [.035,.18,.025], [2.66,2.08,-1.18], mats.red);
 
+    // Caixas de som de referência, posicionadas nas laterais do monitor.
+    for (const x of [-2.15, 2.15]) {
+      const speaker = new THREE.Group(); room.add(speaker);
+      speaker.position.set(x, 0, 0);
+      box(speaker, "Caixa de som", [.62,.92,.58], [0,2.18,-1.72], mats.black, true);
+      const woofer = cylinder(speaker, "Alto-falante", .19, .19, .055, [0,2.18,-1.405], mats.cone, true);
+      woofer.rotation.x = Math.PI / 2;
+      const tweeter = cylinder(speaker, "Tweeter", .075, .075, .06, [0,2.48,-1.40], mats.metal);
+      tweeter.rotation.x = Math.PI / 2;
+    }
+
     // Teclado musical sobre a mesa.
     box(room, "Teclado MIDI", [2.5,.12,.62], [0,1.82,-.75], mats.charcoal, true);
     for(let i=0;i<16;i++) {
@@ -2764,7 +2775,7 @@
       const t=clock.getElapsedTime();
       currentX += (targetX-currentX)*.035;
       currentY += (targetY-currentY)*.035;
-      camera.position.set(0,5.8,18);
+      camera.position.set(0,9.2,18);
       camera.lookAt(0,1.45,-0.45);
       if(hovered) {
         const pulse=1+Math.sin(t*5)*.025;

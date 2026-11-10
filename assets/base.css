@@ -230,3 +230,50 @@ input, textarea, select, [contenteditable="true"], iframe {
 @media(max-width:650px) {
   .footer-logo.wordmark { font-size:20px !important; }
 }
+
+
+/* IMP RECORDS — transição cinematográfica entre páginas e abas. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: impPageLeave .34s cubic-bezier(.7,0,.84,.2) both;
+}
+::view-transition-new(root) {
+  animation: impPageEnter .48s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes impPageLeave {
+  to { opacity: 0; filter: blur(3px); transform: scale(.992); }
+}
+@keyframes impPageEnter {
+  from { opacity: 0; filter: blur(5px); transform: scale(1.008); }
+  to { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+#imp-page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(35,35,35,.22), transparent 58%),
+    #050505;
+  transform: scale(1.035);
+  transition: opacity .38s cubic-bezier(.2,.7,.2,1), transform .48s cubic-bezier(.2,.7,.2,1);
+}
+html.imp-page-leaving #imp-page-transition {
+  opacity: 1;
+  transform: scale(1);
+}
+html.imp-page-leaving body {
+  opacity: .72;
+  transform: scale(.992);
+  filter: blur(2px);
+  transition: opacity .32s ease, transform .38s ease, filter .32s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+  #imp-page-transition { display: none !important; }
+  html.imp-page-leaving body { opacity: 1; transform: none; filter: none; }
+}

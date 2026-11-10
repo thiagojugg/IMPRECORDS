@@ -393,3 +393,23 @@ html.imp-page-leaving body {
     line-height:1.2;
   }
 }
+
+
+/* Copyright: ano inicial, ano atual e mensagem sempre na mesma linha. */
+.site-footer .footer-bottom > span:first-child {
+  display:inline-block !important;
+  white-space:nowrap !important;
+  width:auto;
+  max-width:100%;
+}
+.site-footer .footer-bottom > span:first-child #copyright-ano {
+  display:inline !important;
+  white-space:inherit;
+}
+@media(max-width:650px) {
+  .site-footer .footer-bottom > span:first-child {
+    font-size:clamp(6px, 2.05vw, 8px) !important;
+    letter-spacing:0 !important;
+    line-height:1.2;
+  }
+}

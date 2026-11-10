@@ -1273,6 +1273,26 @@
       letter-spacing: -.045em;
       font-variant-numeric: tabular-nums;
     }
+    .imp-stream-total .imp-stream-base-total {
+      flex-basis: 100%;
+      color: #888;
+      font-size: 9px;
+      letter-spacing: .12em;
+    }
+    .imp-stream-total .imp-stream-base-total strong {
+      display: inline;
+      color: #bbb;
+      font: inherit;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .04em;
+    }
+    .imp-stream-projection-date {
+      margin: 8px 0 0;
+      color: #aaa;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
     .imp-stream-total small {
       color: #999;
       font-size: 10px;
@@ -2537,46 +2557,108 @@
       <div class="imp-stream-history-head">
         <p class="eyebrow">NOSSA TRAJETÓRIA EM NÚMEROS</p>
         <h2 id="imp-stream-history-title">STREAMS ACUMULADOS</h2>
-        <p class="imp-stream-history-description">Resultados consolidados das distribuidoras digitais e plataformas de streaming.</p>
+        <p class="imp-stream-history-description">Resultados oficiais consolidados das distribuidoras digitais e plataformas de streaming, com projeção mensal separada.</p>
       </div>
 
       <div class="imp-stream-total">
-        <span>TOTAL DAS DIVISÕES</span>
-        <strong>40.020.000</strong>
+        <span>TOTAL PROJETADO DAS DIVISÕES</span>
+        <strong id="imp-stream-projected-total">40.020.000</strong>
         <small>STREAMS</small>
+        <span class="imp-stream-base-total">BASE OFICIAL: <strong id="imp-stream-official-total">40.020.000</strong></span>
       </div>
 
-      <div class="imp-stream-chart" role="img" aria-label="Gráfico comparativo de streams acumulados: IMP ROOTS 30 milhões desde 2020, IMP RECORDS 10 milhões desde 2021, GLORIFY 20 mil desde 2025 e MUNDO TINDIM zero desde 2026. Escala linear de zero a 30 milhões.">
+      <div class="imp-stream-chart" role="img" aria-label="Gráfico comparativo de streams acumulados oficiais e projeção de 105 streams por mês para cada divisão.">
         <div class="imp-stream-axis" aria-hidden="true">
           <span>0</span><span>10 mi</span><span>20 mi</span><span>30 mi</span>
         </div>
 
-        <div class="imp-stream-row roots">
+        <div class="imp-stream-row roots" data-base-streams="30000000">
           <div class="imp-stream-label"><strong>IMP ROOTS</strong><span>DESDE 2020</span></div>
           <div class="imp-stream-bar-area"><div class="imp-stream-bar" style="--stream-width:100%"></div></div>
           <strong class="imp-stream-value">30.000.000</strong>
         </div>
 
-        <div class="imp-stream-row records">
+        <div class="imp-stream-row records" data-base-streams="10000000">
           <div class="imp-stream-label"><strong>IMP RECORDS</strong><span>DESDE 2021</span></div>
           <div class="imp-stream-bar-area"><div class="imp-stream-bar" style="--stream-width:33.3333%"></div></div>
           <strong class="imp-stream-value">10.000.000</strong>
         </div>
 
-        <div class="imp-stream-row glorify">
+        <div class="imp-stream-row glorify" data-base-streams="20000">
           <div class="imp-stream-label"><strong>GLORIFY</strong><span>DESDE 2025</span></div>
           <div class="imp-stream-bar-area"><div class="imp-stream-bar" style="--stream-width:0.0667%"></div></div>
           <strong class="imp-stream-value">20.000</strong>
         </div>
 
-        <div class="imp-stream-row tindim">
+        <div class="imp-stream-row tindim" data-base-streams="0">
           <div class="imp-stream-label"><strong>MUNDO TINDIM</strong><span>CRIADO EM 2026</span></div>
           <div class="imp-stream-bar-area"><div class="imp-stream-bar" style="--stream-width:0%"></div></div>
           <strong class="imp-stream-value">0</strong>
         </div>
       </div>
-      <p class="imp-stream-chart-note">Barras em escala linear. Os valores mostram o acumulado informado até novembro de 2026; não representam uma divisão anual de streams.</p>
+      <p class="imp-stream-chart-note">Base oficial: novembro de 2026. Projeção: +105 streams por mês para cada divisão (+420 no total por mês), calculada automaticamente a partir de dezembro de 2026. Os valores projetados não são dados oficiais das plataformas.</p>
+      <p class="imp-stream-projection-date" id="imp-stream-projection-date" aria-live="polite">PROJEÇÃO ATUALIZADA: NOVEMBRO DE 2026 · 0 MESES</p>
     </section>
+
+    <script id="imp-stream-monthly-projection">
+    (() => {
+      const chart = document.getElementById("imp-stream-history");
+      if (!chart) return;
+
+      const monthlyPerDivision = 105;
+      const baseYear = 2026;
+      const baseMonth = 11;
+      const chartScale = 30000000;
+      const rows = Array.from(chart.querySelectorAll(".imp-stream-row[data-base-streams]"));
+      const totalProjected = chart.querySelector("#imp-stream-projected-total");
+      const totalOfficial = chart.querySelector("#imp-stream-official-total");
+      const projectionDate = chart.querySelector("#imp-stream-projection-date");
+      const format = value => new Intl.NumberFormat("pt-BR").format(value);
+
+      const updateProjection = () => {
+        const parts = new Intl.DateTimeFormat("en", {
+          timeZone: "America/Sao_Paulo",
+          year: "numeric",
+          month: "numeric"
+        }).formatToParts(new Date());
+        const year = Number(parts.find(part => part.type === "year")?.value || baseYear);
+        const month = Number(parts.find(part => part.type === "month")?.value || baseMonth);
+        const elapsedMonths = Math.max(0, (year - baseYear) * 12 + month - baseMonth);
+
+        let officialTotal = 0;
+        let projectedTotal = 0;
+        rows.forEach(row => {
+          const official = Number(row.dataset.baseStreams || 0);
+          const projected = official + monthlyPerDivision * elapsedMonths;
+          officialTotal += official;
+          projectedTotal += projected;
+
+          const value = row.querySelector(".imp-stream-value");
+          const bar = row.querySelector(".imp-stream-bar");
+          if (value) value.textContent = format(projected);
+          if (bar) {
+            const width = Math.min(100, projected / chartScale * 100);
+            bar.style.width = width + "%";
+            bar.style.minWidth = projected > 0 ? "2px" : "0";
+          }
+        });
+
+        if (totalOfficial) totalOfficial.textContent = format(officialTotal);
+        if (totalProjected) totalProjected.textContent = format(projectedTotal);
+        if (projectionDate) {
+          const monthName = new Intl.DateTimeFormat("pt-BR", {
+            month: "long",
+            year: "numeric",
+            timeZone: "America/Sao_Paulo"
+          }).format(new Date()).toLocaleUpperCase("pt-BR");
+          projectionDate.textContent = "PROJEÇÃO ATUALIZADA: " + monthName + " · " + elapsedMonths + (elapsedMonths === 1 ? " MÊS" : " MESES");
+        }
+      };
+
+      updateProjection();
+      window.setInterval(updateProjection, 60 * 60 * 1000);
+    })();
+    </script>
 
       <section class="section-wrap bag-section" id="bag" hidden
       <p class="eyebrow">SUA BAG (0)</p>

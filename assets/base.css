@@ -49,3 +49,8 @@ input, textarea, select, [contenteditable="true"], iframe {
   .wordmark .wordmark-flag-ma { opacity:1; }
   .wordmark .wordmark-flag-go,.wordmark .wordmark-flag-sp { opacity:0; }
 }
+
+
+/* Corrige a herança tipográfica dos spans internos do logotipo */
+.wordmark .wordmark-flag-stack,
+.wordmark .wordmark-flag { font:inherit; letter-spacing:inherit; vertical-align:baseline; margin:0; }

@@ -811,8 +811,8 @@
     .imp-studio-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:22px}
     .imp-studio-head h2{margin:5px 0 0;font:clamp(28px,4vw,52px)/.98 var(--font-display,Arial,sans-serif);letter-spacing:-.055em;text-transform:uppercase}
     .imp-studio-head p{margin:0;color:#999;font-size:11px;letter-spacing:.16em}
-    .imp-studio-stage{position:relative;width:100%;aspect-ratio:2160/632;min-height:0;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,#242424 0%,#101010 62%,#080808 100%);border:1px solid rgba(255,255,255,.14);border-radius:3px;box-shadow:0 20px 58px rgba(0,0,0,.2);isolation:isolate}
-    .imp-studio-stage::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,rgba(255,255,255,.035),transparent 34%,transparent 72%,rgba(255,255,255,.025))}
+    .imp-studio-stage{position:relative;width:100%;aspect-ratio:2160/632;min-height:0;overflow:hidden;background:transparent;border:0;border-radius:0;box-shadow:none;isolation:isolate}
+    .imp-studio-stage::before{display:none}
     #imp-studio-canvas{display:block;width:100%;height:100%;touch-action:pan-y}
     .imp-studio-tip{position:absolute;z-index:3;left:18px;bottom:16px;padding:9px 12px;color:#d7d7d7;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.15);font-size:10px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(8px)}
     .imp-studio-object{position:absolute;z-index:3;right:18px;top:16px;min-width:132px;padding:10px 12px;color:#fff;background:rgba(0,0,0,.62);border:1px solid rgba(255,255,255,.18);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:right;opacity:0;transform:translateY(-5px);transition:opacity .2s,transform .2s;pointer-events:none;backdrop-filter:blur(8px)}

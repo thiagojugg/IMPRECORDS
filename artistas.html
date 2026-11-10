@@ -319,35 +319,47 @@
     }
   </style>
 
+
+  <style id="imp-header-logo-only">
+    /* Mesmo cabeçalho da página principal: apenas a marca centralizada. */
+    .site-header.imp-christmas-header .header-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      grid-template-columns: 1fr !important;
+    }
+    .site-header.imp-christmas-header .wordmark {
+      grid-column: 1 !important;
+      justify-self: center !important;
+      margin-inline: auto !important;
+    }
+    .site-header.imp-christmas-header .desktop-nav,
+    .site-header.imp-christmas-header .header-actions,
+    .site-header.imp-christmas-header .menu-toggle,
+    .site-header.imp-christmas-header .mobile-menu,
+    .site-header.imp-christmas-header .imp-christmas-snowbank,
+    .site-header.imp-christmas-header .imp-christmas-tree,
+    .site-header.imp-christmas-header .imp-christmas-santa,
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+      display: none !important;
+    }
+  </style>
+
 </head>
 
 <body>
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
   <header class="site-header imp-christmas-header">
-    <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
-    <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
-    <img class="imp-christmas-tree" src="./assets/—Pngtree—3d green christmas tree featuring_16992922.png" alt="" aria-hidden="true">
-    <img class="imp-christmas-santa" src="./assets/pngwing.com.png" alt="" aria-hidden="true">
-    <img class="imp-christmas-snowman-photo" src="./assets/—Pngtree—christmas snowman with santa hat_5667812.png" alt="" aria-hidden="true">
-
     <div class="header-inner">
-      
-
-      <a class="wordmark" href="./" aria-label="IMP Records, início">
+      <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
         <span class="wordmark-flag-stack" aria-hidden="true">
           <span class="wordmark-flag wordmark-flag-ma">IMP</span>
           <span class="wordmark-flag wordmark-flag-go">IMP</span>
           <span class="wordmark-flag wordmark-flag-sp">IMP</span>
         </span><span class="wordmark-reg">®</span>
       </a>
-
-      
-
-      
     </div>
-
-    
   </header>
 
   <main id="main" class="section-wrap artists-page">

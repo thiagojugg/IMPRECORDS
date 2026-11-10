@@ -54,3 +54,58 @@ input, textarea, select, [contenteditable="true"], iframe {
 /* Corrige a herança tipográfica dos spans internos do logotipo */
 .wordmark .wordmark-flag-stack,
 .wordmark .wordmark-flag { font:inherit; letter-spacing:inherit; vertical-align:baseline; margin:0; }
+
+
+/* Ajuste específico para o cabeçalho desktop: evita conflito do background-clip com grid */
+@media (min-width: 651px) {
+  .header-inner > a.wordmark {
+    display: inline-flex !important;
+    align-items: flex-start !important;
+    justify-self: start !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    overflow: visible !important;
+    color: #fff;
+    line-height: .9;
+    white-space: nowrap;
+  }
+  .header-inner > a.wordmark .wordmark-flag-stack {
+    display: inline-block !important;
+    position: relative !important;
+    width: 2.12em !important;
+    height: .9em !important;
+    line-height: .9 !important;
+    overflow: visible !important;
+    vertical-align: top !important;
+  }
+  .header-inner > a.wordmark .wordmark-flag {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    font-family: var(--font-display) !important;
+    font-size: 36px !important;
+    font-weight: inherit !important;
+    line-height: .9 !important;
+    letter-spacing: -.09em !important;
+    white-space: nowrap !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    background-repeat: no-repeat !important;
+    background-size: 145% 145% !important;
+    background-position: 50% 50% !important;
+    transform-origin: center;
+  }
+  .header-inner > a.wordmark .wordmark-reg {
+    display: inline-block !important;
+    position: relative !important;
+    margin: 0 0 0 4px !important;
+    font: 10px var(--font-body) !important;
+    line-height: 1 !important;
+    vertical-align: top !important;
+    color: #fff !important;
+  }
+}

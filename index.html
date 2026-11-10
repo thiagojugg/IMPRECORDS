@@ -1960,6 +1960,186 @@
   }
 </style>
 
+
+  <style>
+    /* IMP VITRINE 3D — CAMISETAS */
+    #vestuario .camisetas-carousel .product-card {
+      position: relative;
+      isolation: isolate;
+      padding: 10px 10px 14px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 3px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.105), transparent 54%),
+        linear-gradient(145deg, #202020 0%, #101010 48%, #080808 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.16),
+        inset 0 -1px 0 rgba(255,255,255,.035),
+        0 8px 18px rgba(0,0,0,.42),
+        0 22px 42px rgba(0,0,0,.28);
+      transform: perspective(1000px) translateY(0) rotateX(0);
+      transition: transform .42s cubic-bezier(.2,.75,.2,1), border-color .35s ease, box-shadow .42s ease;
+    }
+    #vestuario .camisetas-carousel .product-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 12% auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.62), transparent);
+      pointer-events: none;
+    }
+    #vestuario .camisetas-carousel .product-card-link {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+    }
+    #vestuario .camisetas-carousel .product-image {
+      position: relative;
+      aspect-ratio: 1 / 1.04;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(ellipse at 50% 43%, rgba(255,255,255,.105), transparent 58%),
+        linear-gradient(145deg, #242424, #0a0a0a 72%);
+      box-shadow:
+        inset 0 2px 8px rgba(255,255,255,.08),
+        inset 0 -12px 22px rgba(0,0,0,.48),
+        0 8px 16px rgba(0,0,0,.34);
+    }
+    #vestuario .camisetas-carousel .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 13px rgba(0,0,0,.62));
+      transition: transform .55s cubic-bezier(.2,.75,.2,1), filter .4s ease;
+    }
+    #vestuario .camisetas-carousel .product-badge {
+      top: 12px;
+      left: 12px;
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 2px;
+      background: linear-gradient(180deg, #f5f5f5, #bdbdbd);
+      color: #111;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      box-shadow: 0 4px 12px rgba(0,0,0,.32), inset 0 1px 0 #fff;
+    }
+    #vestuario .camisetas-carousel .quick-arrow {
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: linear-gradient(145deg, #f4f4f4, #a9a9a9);
+      color: #090909;
+      box-shadow: 0 5px 13px rgba(0,0,0,.4), inset 0 1px 0 #fff;
+    }
+    #vestuario .camisetas-carousel .product-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 13px;
+      padding: 17px 7px 2px;
+    }
+    #vestuario .camisetas-carousel .product-vendor {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: #bcbcbc;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .22em;
+    }
+    #vestuario .camisetas-carousel .product-vendor::before {
+      content: "";
+      width: 17px;
+      height: 1px;
+      background: #eee;
+      box-shadow: 0 0 8px rgba(255,255,255,.45);
+    }
+    #vestuario .camisetas-carousel .product-title {
+      max-width: 100%;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: clamp(17px, 1.65vw, 23px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -.045em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 12px rgba(255,255,255,.12), 0 4px 12px rgba(0,0,0,.8);
+    }
+    #vestuario .camisetas-carousel .product-price {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      margin: 0;
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 2px;
+      background: linear-gradient(135deg, #f4f4f4 0%, #c9c9c9 48%, #969696 100%);
+      color: #090909;
+      font-size: clamp(17px, 1.7vw, 22px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: -.045em;
+      text-shadow: 0 1px 0 rgba(255,255,255,.65);
+      box-shadow: 0 7px 17px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -2px 4px rgba(0,0,0,.12);
+    }
+    #vestuario .camisetas-carousel .stock-button {
+      width: calc(100% - 14px);
+      margin: 13px 7px 0;
+      border-radius: 2px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 6px 14px rgba(0,0,0,.3);
+      letter-spacing: .2em;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      #vestuario .camisetas-carousel .product-card:hover {
+        z-index: 2;
+        transform: perspective(1000px) translateY(-8px) rotateX(1.2deg);
+        border-color: rgba(255,255,255,.58);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.24),
+          0 16px 28px rgba(0,0,0,.48),
+          0 30px 55px rgba(0,0,0,.42),
+          0 0 24px rgba(255,255,255,.055);
+      }
+      #vestuario .camisetas-carousel .product-card-link:hover .product-image img {
+        transform: scale(1.045) translateY(-3px);
+        filter: drop-shadow(0 20px 17px rgba(0,0,0,.72));
+      }
+    }
+    @media (max-width: 650px) {
+      #vestuario .camisetas-carousel .product-card {
+        flex-basis: min(82vw, 330px);
+        padding: 8px 8px 12px;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.15),
+          0 8px 18px rgba(0,0,0,.42),
+          0 18px 34px rgba(0,0,0,.3);
+      }
+      #vestuario .camisetas-carousel .product-image {
+        aspect-ratio: 1 / 1.02;
+      }
+      #vestuario .camisetas-carousel .product-title {
+        font-size: clamp(17px, 5vw, 21px);
+      }
+      #vestuario .camisetas-carousel .product-price {
+        font-size: 20px;
+        padding: 10px 13px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #vestuario .camisetas-carousel .product-card,
+      #vestuario .camisetas-carousel .product-image img {
+        transition: none !important;
+      }
+    }
+  </style>
+
 </head>
 
 <body>

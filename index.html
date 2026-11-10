@@ -2636,48 +2636,48 @@
 
   import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js").then((THREE) => {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x090b10);
+    scene.background = null;
     const camera = new THREE.PerspectiveCamera(17, 1, 0.1, 100);
     camera.position.set(0, 4.15, 7.25);
     camera.lookAt(0, 1.82, -1.55);
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.42;
+    renderer.toneMappingExposure = 1.12;
 
-    scene.add(new THREE.HemisphereLight(0xdceaff, 0x17111b, 2.35));
-    const keyLight = new THREE.DirectionalLight(0xffe4c4, 4.0);
+    scene.add(new THREE.HemisphereLight(0xdceaff, 0x17111b, 1.15));
+    const keyLight = new THREE.DirectionalLight(0xffe4c4, 2.65);
     keyLight.position.set(-5, 10, 7);
     keyLight.castShadow = true;
     keyLight.shadow.mapSize.set(2048, 2048);
     keyLight.shadow.camera.left = -9; keyLight.shadow.camera.right = 9;
     keyLight.shadow.camera.top = 8; keyLight.shadow.camera.bottom = -8;
     scene.add(keyLight);
-    const rimLight = new THREE.PointLight(0xb52cff, 24, 18);
+    const rimLight = new THREE.PointLight(0xb52cff, 7, 15);
     rimLight.position.set(4, 4, -3);
     scene.add(rimLight);
-    const fillLight = new THREE.PointLight(0x35c9ff, 15, 16);
+    const fillLight = new THREE.PointLight(0x35c9ff, 5, 13);
     fillLight.position.set(-5, 3, 2);
     scene.add(fillLight);
-    const warmLight = new THREE.PointLight(0xff563d, 10, 12);
+    const warmLight = new THREE.PointLight(0xffa477, 3, 10);
     warmLight.position.set(1, 4, 4);
     scene.add(warmLight);
 
     const mats = {
-      black: new THREE.MeshStandardMaterial({ color: 0x11141b, roughness: .34, metalness: .28 }),
-      charcoal: new THREE.MeshStandardMaterial({ color: 0x303744, roughness: .42, metalness: .18 }),
-      metal: new THREE.MeshStandardMaterial({ color: 0x9aa7b8, metalness: .82, roughness: .22 }),
-      red: new THREE.MeshStandardMaterial({ color: 0xff344f, roughness: .3, emissive: 0x7d071c, emissiveIntensity: 1.4 }),
-      screen: new THREE.MeshStandardMaterial({ color: 0x172b45, emissive: 0x1a6b9c, emissiveIntensity: 1.15, roughness: .16, metalness: .08 }),
-      cone: new THREE.MeshStandardMaterial({ color: 0x090d15, roughness: .3, metalness: .18 }),
+      black: new THREE.MeshStandardMaterial({ color: 0x11141b, roughness: .58, metalness: .12 }),
+      charcoal: new THREE.MeshStandardMaterial({ color: 0x303744, roughness: .62, metalness: .10 }),
+      metal: new THREE.MeshStandardMaterial({ color: 0x9aa7b8, metalness: .68, roughness: .34 }),
+      red: new THREE.MeshStandardMaterial({ color: 0xff344f, roughness: .48, emissive: 0x7d071c, emissiveIntensity: .55 }),
+      screen: new THREE.MeshStandardMaterial({ color: 0x172b45, emissive: 0x1a6b9c, emissiveIntensity: .48, roughness: .48, metalness: .08 }),
+      cone: new THREE.MeshStandardMaterial({ color: 0x090d15, roughness: .52, metalness: .08 }),
       white: new THREE.MeshStandardMaterial({ color: 0xf0f3f8, roughness: .28 }),
-      wood: new THREE.MeshStandardMaterial({ color: 0x392a25, roughness: .32, metalness: .08 }),
-      rgbBlue: new THREE.MeshStandardMaterial({ color: 0x20cfff, emissive: 0x0879ff, emissiveIntensity: 2.2 }),
-      rgbPink: new THREE.MeshStandardMaterial({ color: 0xff4ac8, emissive: 0xa00069, emissiveIntensity: 1.8 }),
+      wood: new THREE.MeshStandardMaterial({ color: 0x392a25, roughness: .58, metalness: .04 }),
+      rgbBlue: new THREE.MeshStandardMaterial({ color: 0x20cfff, emissive: 0x0879ff, emissiveIntensity: 1.05 }),
+      rgbPink: new THREE.MeshStandardMaterial({ color: 0xff4ac8, emissive: 0xa00069, emissiveIntensity: .9 }),
       cushion: new THREE.MeshStandardMaterial({ color: 0x171c27, roughness: .88 }),
       cushionRed: new THREE.MeshStandardMaterial({ color: 0x9e2636, roughness: .82 })
     };
@@ -2711,9 +2711,9 @@
     box(room, "Tela de produção musical", [2.94,1.70,.035], [0,2.84,-2.475], mats.screen, true);
     box(room, "Base do monitor", [.28,.48,.28], [0,1.84,-2.58], mats.metal);
     box(room, "Pé da base do monitor", [1.05,.08,.48], [0,1.65,-2.40], mats.black);
-    const uiMat = new THREE.MeshStandardMaterial({ color: 0x35c8ff, emissive: 0x0876b5, emissiveIntensity: 1.8 });
-    const uiPink = new THREE.MeshStandardMaterial({ color: 0xff4ca5, emissive: 0x9c1459, emissiveIntensity: 1.5 });
-    const uiGreen = new THREE.MeshStandardMaterial({ color: 0x65f0ae, emissive: 0x087d48, emissiveIntensity: 1.3 });
+    const uiMat = new THREE.MeshStandardMaterial({ color: 0x35c8ff, emissive: 0x0876b5, emissiveIntensity: .8 });
+    const uiPink = new THREE.MeshStandardMaterial({ color: 0xff4ca5, emissive: 0x9c1459, emissiveIntensity: .7 });
+    const uiGreen = new THREE.MeshStandardMaterial({ color: 0x65f0ae, emissive: 0x087d48, emissiveIntensity: .65 });
     box(room, "Interface da estação de áudio", [2.68,.10,.012], [0,3.48,-2.448], mats.black);
     for (let i=0;i<10;i++) box(room, "Canal de áudio", [.21,.035,.014], [-1.05+i*.235,3.37,-2.444], i%3===0?uiPink:(i%3===1?uiGreen:uiMat));
     for (let i=0;i<6;i++) box(room, "Faixa de áudio", [.34,.035,.014], [-.95+i*.38,2.99+(i%2)*.14,-2.443], i%2?uiGreen:uiPink);

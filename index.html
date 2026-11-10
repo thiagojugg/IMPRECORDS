@@ -2129,12 +2129,12 @@
       <div class="section-heading">
         <div>
           <p class="eyebrow">PRODUTOS DIGITAIS</p>
-          <h2>PRESETS</h2>
+          <h2>PRODUÇÃO DIGITAL</h2>
         </div>
       </div>
 
       <nav class="digital-category-carousel" aria-label="Categorias de produtos digitais">
-        <button class="digital-category is-active" type="button" data-digital-filter="presets" aria-pressed="true">
+        <button class="digital-category" type="button" data-digital-filter="presets" aria-pressed="false">
           <span class="digital-category-orb"><span>FX</span></span>
           <span class="digital-category-label">PRESETS</span>
         </button>
@@ -2157,7 +2157,7 @@
       </nav>
 
       <div class="product-grid presets-vocais-carousel digital-products-grid" aria-label="Produtos digitais">
-        <article class="product-card">
+        <article class="product-card" data-digital-category="presets">
           <a class="product-card-link" href="#preset-detalhes">
             <div class="product-image">
               <img
@@ -4335,11 +4335,13 @@
         card.hidden = !show;
         if (show) visible++;
       });
-      if (heading) heading.textContent = labels[category] || "PRODUTOS DIGITAIS";
+      if (heading) heading.textContent = labels[category] || "PRODUÇÃO DIGITAL";
+      grid.hidden = visible === 0;
       empty.classList.toggle("is-visible",visible === 0);
     }
     buttons.forEach(button => button.addEventListener("click",() => selectCategory(button.dataset.digitalFilter)));
-    selectCategory("presets");
+    cards.forEach(card => { card.hidden = true; });
+    grid.hidden = true;
   })();
   </script>
 

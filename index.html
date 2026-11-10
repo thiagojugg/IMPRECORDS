@@ -348,8 +348,19 @@
       user-select: none;
       will-change: transform;
     }
-    /* Centraliza a roleta de artistas apenas em telas desktop. */
+    /* No desktop, artistas e divisões ocupam a largura total, como a roleta IMP NA RUA. */
     @media (min-width: 651px) {
+      #artists-roulette,
+      #divisions-roulette {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        box-sizing: border-box;
+      }
+
       #artists-roulette .artists-roulette-track {
         margin-inline: auto;
       }

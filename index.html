@@ -1260,6 +1260,90 @@
       .site-header.imp-christmas-header .wordmark-flag { font-size: 31px; }
     }
 
+
+    /* Refinamento final do cabeçalho: preto uniforme e logotipo centralizado. */
+    .site-header.imp-christmas-header,
+    .site-header.imp-christmas-header .header-inner {
+      background-color: #050505 !important;
+    }
+    .site-header.imp-christmas-header {
+      background: #050505 !important;
+      background-image: none !important;
+      border-bottom: 1px solid rgba(255,255,255,.14) !important;
+      color: #f5f5f5 !important;
+    }
+    .site-header.imp-christmas-header::before,
+    .site-header.imp-christmas-header::after {
+      content: none !important;
+      display: none !important;
+    }
+    .site-header.imp-christmas-header .header-inner > .wordmark {
+      grid-column: 2 !important;
+      justify-self: center !important;
+      align-self: center !important;
+      color: #fff !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      overflow: visible !important;
+      font-size: 42px !important;
+      line-height: .9 !important;
+    }
+    .site-header.imp-christmas-header .wordmark-flag-stack {
+      display: inline-block !important;
+      position: relative !important;
+      width: 2.12em !important;
+      height: .9em !important;
+      overflow: visible !important;
+      isolation: isolate !important;
+    }
+    .site-header.imp-christmas-header .wordmark-flag {
+      display: block !important;
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      font: inherit !important;
+      font-size: 42px !important;
+      line-height: .9 !important;
+      letter-spacing: -.09em !important;
+      opacity: 0;
+      -webkit-text-fill-color: transparent !important;
+      color: transparent !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      background-repeat: no-repeat !important;
+      background-size: 145% 145% !important;
+      background-position: 50% 50% !important;
+      animation: impFlagCycle 15s infinite, impFlagWave 1.8s ease-in-out infinite !important;
+    }
+    .site-header.imp-christmas-header .wordmark-flag-ma { background-image: url("./assets/flag-maranhao.svg") !important; animation-delay: 0s,0s !important; }
+    .site-header.imp-christmas-header .wordmark-flag-go { background-image: url("./assets/flag-goias.svg") !important; animation-delay: 5s,0s !important; }
+    .site-header.imp-christmas-header .wordmark-flag-sp { background-image: url("./assets/flag-sao-paulo.svg") !important; animation-delay: 10s,0s !important; }
+    .site-header.imp-christmas-header .wordmark-reg {
+      display: inline-block !important;
+      margin-left: 4px !important;
+      color: #fff !important;
+      font: 10px/1 var(--font-body) !important;
+    }
+    @media (max-width: 900px) {
+      .site-header.imp-christmas-header .header-inner > .wordmark {
+        grid-column: 2 !important;
+        justify-self: center !important;
+        font-size: 36px !important;
+      }
+      .site-header.imp-christmas-header .wordmark-flag { font-size: 36px !important; }
+    }
+    @media (max-width: 360px) {
+      .site-header.imp-christmas-header .header-inner > .wordmark { font-size: 31px !important; }
+      .site-header.imp-christmas-header .wordmark-flag { font-size: 31px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .site-header.imp-christmas-header .wordmark-flag { animation: none !important; }
+      .site-header.imp-christmas-header .wordmark-flag-ma { opacity: 1 !important; }
+      .site-header.imp-christmas-header .wordmark-flag-go,
+      .site-header.imp-christmas-header .wordmark-flag-sp { opacity: 0 !important; }
+    }
+
 </style>
 
   <!-- Abertura cinematográfica da IMP RECORDS (somente na primeira entrada da sessão). -->
@@ -2414,6 +2498,8 @@
       <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
         <span class="wordmark-flag-stack" aria-hidden="true">
           <span class="wordmark-flag wordmark-flag-ma">IMP</span>
+          <span class="wordmark-flag wordmark-flag-go">IMP</span>
+          <span class="wordmark-flag wordmark-flag-sp">IMP</span>
         </span><span class="wordmark-reg">®</span>
       </a>
 

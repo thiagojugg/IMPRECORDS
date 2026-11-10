@@ -4107,3 +4107,42 @@
   }
 }
 </style>
+
+
+<style id="imp-christmas-final-corrections">
+/* Ajustes finais: boneco de neve parado e Papai Noel PNG visível em voo. */
+.site-header.imp-christmas-header .imp-christmas-snowman-photo {
+  animation: none !important;
+}
+.site-header.imp-christmas-header .imp-christmas-santa {
+  display: block !important;
+  position: absolute !important;
+  z-index: 5 !important;
+  top: 0 !important;
+  left: auto !important;
+  right: -300px !important;
+  width: 260px !important;
+  height: 78px !important;
+  object-fit: contain !important;
+  pointer-events: none !important;
+  animation: imp-santa-visible-flight 18s linear infinite !important;
+}
+@keyframes imp-santa-visible-flight {
+  from { right: -300px; }
+  to { right: calc(100% + 300px); }
+}
+@media(max-width:650px) {
+  .site-header.imp-christmas-header .imp-christmas-santa {
+    width: 205px !important;
+    height: 66px !important;
+    right: -230px !important;
+    animation-duration: 15s !important;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-header.imp-christmas-header .imp-christmas-santa {
+    animation: none !important;
+    right: 8px !important;
+  }
+}
+</style>

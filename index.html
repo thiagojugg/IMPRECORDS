@@ -322,6 +322,9 @@
     @media (prefers-reduced-motion: reduce) {
       .artists-roulette-track { animation: none; }
     }
+    .division-roulette-card strong { font-size: 27px; }
+    .division-roulette-card span { color: #e2e2e2; }
+
 
     .manifesto-content {
       max-width: 760px;
@@ -1247,6 +1250,33 @@
         </div>
       </div>
       <p class="artists-roulette-hint">Os artistas passam continuamente. Selecione um card para abrir sua autobiografia.</p>
+    </section>
+
+    <section class="section-wrap artists-roulette divisions-roulette" id="divisions-roulette">
+      <div class="artists-roulette-head">
+        <div>
+          <p class="eyebrow">IMP RECORDS / NOSSOS PROJETOS</p>
+          <h2>CONHEÇA NOSSAS DIVISÕES</h2>
+        </div>
+        <a class="text-link" href="./divisoes.html">VER TODAS ↗</a>
+      </div>
+      <div class="artists-roulette-window">
+        <div class="artists-roulette-track" id="divisions-roulette-track">
+          <a class="artist-roulette-card has-image division-roulette-card" href="./divisoes.html#imp-roots">
+            <img src="./assets/imp-roots.jpg" alt="Identidade visual da IMP Roots" loading="lazy">
+            <strong>IMP ROOTS</strong><span>MÚSICA E CULTURA ↗</span>
+          </a>
+          <a class="artist-roulette-card has-image division-roulette-card" href="./divisoes.html#mundo-tindim">
+            <img src="./assets/mundo-tindim.jpg" alt="Identidade visual do Mundo Tindim" loading="lazy">
+            <strong>MUNDO TINDIM</strong><span>UNIVERSO INFANTIL ↗</span>
+          </a>
+          <a class="artist-roulette-card has-image division-roulette-card" href="./divisoes.html#glorify">
+            <img src="./assets/glorify.jpg" alt="Identidade visual da Glorify" loading="lazy">
+            <strong>GLORIFY</strong><span>FÉ E PROPÓSITO ↗</span>
+          </a>
+        </div>
+      </div>
+      <p class="artists-roulette-hint">Explore os projetos que fazem parte do universo da IMP RECORDS.</p>
     </section>
 
     <section class="section-wrap standard-page" id="galeria" hidden>
@@ -2409,6 +2439,60 @@
 
   showSlide(0);
   window.setInterval(() => showSlide(current + 1), 5000);
+})();
+
+/* Roleta automática das divisões, com o mesmo movimento e arraste dos artistas. */
+(() => {
+  const track = document.getElementById("divisions-roulette-track");
+  const viewport = track?.closest(".artists-roulette-window");
+  if (!track || !viewport || track.children.length < 2) return;
+  let offset = 0, previousTime = 0, dragging = false, lastX = 0, moved = false, pointerId = null;
+  const speed = 35;
+  const gap = () => parseFloat(getComputedStyle(track).gap) || 0;
+  const normalize = () => {
+    let first = track.firstElementChild;
+    let distance = first.getBoundingClientRect().width + gap();
+    while (distance > 0 && offset >= distance) {
+      offset -= distance; track.appendChild(first);
+      first = track.firstElementChild; distance = first.getBoundingClientRect().width + gap();
+    }
+    let last = track.lastElementChild;
+    let previousDistance = last.getBoundingClientRect().width + gap();
+    while (previousDistance > 0 && offset < 0) {
+      track.insertBefore(last, track.firstElementChild);
+      offset += previousDistance; last = track.lastElementChild;
+      previousDistance = last.getBoundingClientRect().width + gap();
+    }
+  };
+  const render = () => { track.style.transform = "translate3d(" + (-offset) + "px, 0, 0)"; };
+  const stopDragging = event => {
+    if (!dragging || (event && event.pointerId !== pointerId)) return;
+    dragging = false; pointerId = null; track.classList.remove("is-dragging");
+  };
+  viewport.addEventListener("pointerdown", event => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    dragging = true; moved = false; lastX = event.clientX; pointerId = event.pointerId;
+    track.classList.add("is-dragging");
+  });
+  window.addEventListener("pointermove", event => {
+    if (!dragging || event.pointerId !== pointerId) return;
+    const deltaX = event.clientX - lastX;
+    if (Math.abs(deltaX) > 3) moved = true;
+    offset -= deltaX; lastX = event.clientX; normalize(); render();
+  });
+  window.addEventListener("pointerup", stopDragging);
+  window.addEventListener("pointercancel", stopDragging);
+  viewport.addEventListener("click", event => {
+    if (!moved) return;
+    event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation(); moved = false;
+  }, true);
+  const animate = time => {
+    if (!previousTime) previousTime = time;
+    const delta = Math.min((time - previousTime) / 1000, .05); previousTime = time;
+    if (!dragging) { offset += speed * delta; normalize(); render(); }
+    requestAnimationFrame(animate);
+  };
+  render(); requestAnimationFrame(animate);
 })();
 
 /* Roleta automática de artistas, com arraste manual nos dois sentidos. */

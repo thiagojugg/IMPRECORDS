@@ -521,7 +521,7 @@
 })();
 </script>
   <script>
-  /* Explosão de confetes nos botões Spotify e YouTube do Mundo Tindim. */
+  /* Confetes primeiro; Spotify/YouTube só abrem quando a explosão termina. */
   (() => {
     const buttons = [
       document.getElementById("mundo-tindim-spotify"),
@@ -534,6 +534,7 @@
     let context;
     let particles = [];
     let frame = 0;
+    let pendingTabs = [];
 
     const createCanvas = () => {
       if (canvas) return;
@@ -553,6 +554,20 @@
       canvas.width = Math.round(window.innerWidth * ratio);
       canvas.height = Math.round(window.innerHeight * ratio);
       context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    };
+
+    const finishAndOpenLinks = () => {
+      context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      frame = 0;
+      const tabsToOpen = pendingTabs;
+      pendingTabs = [];
+      tabsToOpen.forEach(item => {
+        if (item.tab && !item.tab.closed) {
+          item.tab.location.href = item.url;
+        } else if (!item.tab) {
+          window.location.href = item.url;
+        }
+      });
     };
 
     const draw = () => {
@@ -577,15 +592,25 @@
       if (particles.length) {
         frame = requestAnimationFrame(draw);
       } else {
-        context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-        cancelAnimationFrame(frame);
-        frame = 0;
+        finishAndOpenLinks();
       }
     };
 
     buttons.forEach(button => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", event => {
         if (reduceMotion) return;
+
+        event.preventDefault();
+        const destination = button.href;
+        // Abre uma aba vazia durante o clique para evitar o bloqueio de pop-up;
+        // o endereço real só é carregado depois que todos os confetes caem.
+        const destinationTab = window.open("about:blank", "_blank");
+        if (destinationTab) {
+          destinationTab.opener = null;
+          try { destinationTab.document.title = "Preparando sua visita..."; } catch (_) {}
+        }
+        pendingTabs.push({ tab: destinationTab, url: destination });
+
         createCanvas();
         resizeCanvas();
 

@@ -157,7 +157,32 @@
     }
 
 
-    /* Carrossel fotográfico do Drop Gengar — formato editorial, diferente da roleta de artistas. */
+    
+    /* Preço promocional do card de vestuário */
+    #vestuario .product-price-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex: 0 0 auto;
+    }
+    #vestuario .product-price-old {
+      color: rgba(255,255,255,.48);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+    }
+    #vestuario .product-price-wrap .product-price {
+      margin: 0;
+      color: #fff;
+      font-weight: 900;
+    }
+    @media (max-width: 650px) {
+      #vestuario .product-price-old { font-size: 11px; }
+    }
+/* Carrossel fotográfico do Drop Gengar — formato editorial, diferente da roleta de artistas. */
     .drop-gallery-roulette {
       padding: 58px 0 72px;
       overflow: hidden;
@@ -2370,7 +2395,7 @@
                 </h3>
               </div>
 
-              <p class="product-price">R$ 119,90</p>
+              <div class="product-price-wrap"><del class="product-price-old">R$ 149,90</del><p class="product-price">R$ 119,90</p></div>
             </div>
           </a>
 

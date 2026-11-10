@@ -111,6 +111,19 @@
       body.imp-home-scroll-lines::before,
       body.imp-home-scroll-lines::after { transform:none !important; transition:none !important; }
     }
+
+    /* Nesta página, mantém a alternância das três bandeiras mesmo com "reduzir movimento" ativo. */
+    @media (prefers-reduced-motion: reduce) {
+      .site-header .wordmark .wordmark-flag {
+        animation-name: impFlagCycle, impFlagWave !important;
+        animation-duration: 15s, 1.8s !important;
+        animation-timing-function: linear, ease-in-out !important;
+        animation-iteration-count: infinite, infinite !important;
+      }
+      .site-header .wordmark .wordmark-flag-ma { animation-delay: 0s, 0s !important; }
+      .site-header .wordmark .wordmark-flag-go { animation-delay: 5s, 0s !important; }
+      .site-header .wordmark .wordmark-flag-sp { animation-delay: 10s, 0s !important; }
+    }
   </style>
   <style id="imp-header-logo-only">
     /* Mesmo cabeçalho da página principal: apenas a marca centralizada. */

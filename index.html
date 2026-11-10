@@ -3993,3 +3993,23 @@
  .imp-christmas-snowman {animation:none!important;}
 }
 </style>
+
+
+<style id="imp-christmas-snowman-size-fix">
+/* Ajuste de escala para o boneco ficar inteiramente dentro do cabeçalho. */
+.site-header.imp-christmas-header .imp-christmas-snowman {
+  width:53px !important;
+  height:73px !important;
+  bottom:1px !important;
+  transform:scale(.68) !important;
+  transform-origin:bottom left !important;
+}
+@media(max-width:650px) {
+  .site-header.imp-christmas-header .imp-christmas-snowman {
+    left:2px !important;
+    bottom:0 !important;
+    transform:scale(.52) !important;
+    transform-origin:bottom left !important;
+  }
+}
+</style>

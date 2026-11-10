@@ -1363,6 +1363,70 @@
       .imp-christmas-santa,
       .imp-christmas-snowman { animation: none !important; }
     }
+
+    /* Personagens natalinos em CSS 3D: volumes, profundidade e luz sem imagens ou emojis. */
+    .imp-christmas-santa {
+      top: 0; left: -280px; width: 260px; height: 82px;
+      perspective: 650px; transform-style: preserve-3d;
+      animation: imp-santa-flight 19s linear infinite;
+      filter: drop-shadow(0 9px 7px rgba(0,0,0,.55));
+    }
+    .imp-santa-3d {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d; transform: rotateY(-13deg) rotateX(5deg);
+      animation: imp-santa-bounce 2.4s ease-in-out infinite;
+    }
+    .imp-santa-3d i { position:absolute; display:block; box-sizing:border-box; }
+    .imp-sleigh-3d { position:absolute; left:13px; top:38px; width:116px; height:42px; transform-style:preserve-3d; transform:rotateY(-8deg) rotateX(-8deg); }
+    .sleigh-body { left:7px; top:8px; width:92px; height:22px; border-radius:8px 9px 17px 15px; background:linear-gradient(160deg,#ff6262 0%,#c50d22 48%,#650713 100%); border:1px solid #7d101b; box-shadow:inset 0 3px 4px #ffaaaa, inset 0 -6px 7px #57000b, 0 6px 7px #260307; transform:rotateX(-8deg) translateZ(5px); }
+    .sleigh-seat { left:21px; top:0; width:65px; height:14px; border-radius:8px 8px 2px 2px; background:linear-gradient(#f15a55,#8b0717); border:1px solid #e9b86b; transform:skewX(-13deg) translateZ(8px); box-shadow:inset 0 3px 4px #ffb0a0; }
+    .sleigh-runner { left:0; top:30px; width:120px; height:8px; border:3px solid #e7c47c; border-top:0; border-radius:0 0 55% 45%; transform:rotateX(65deg) translateZ(2px); box-shadow:0 3px 4px #5b3617; }
+    .sleigh-gift { left:83px; top:-5px; width:22px; height:17px; border-radius:2px; background:linear-gradient(135deg,#238d55,#07502b); border:1px solid #d9b66b; transform:rotateY(18deg) translateZ(10px); box-shadow:inset -4px -3px 5px #03351d,0 3px 4px #210; }
+    .sleigh-gift::before { content:""; position:absolute; left:8px; top:-1px; width:4px; height:17px; background:#e8c778; }
+    .sleigh-gift::after { content:""; position:absolute; left:5px; top:-6px; width:11px; height:6px; border:2px solid #e8c778; border-radius:100% 100% 0 100%; }
+    .imp-santa-rider { position:absolute; left:54px; top:2px; width:66px; height:55px; transform-style:preserve-3d; transform:translateZ(24px) rotateY(-8deg); }
+    .santa-body { left:9px; top:20px; width:42px; height:31px; border-radius:18px 18px 12px 12px; background:linear-gradient(120deg,#ff5b56,#c20b1d 65%,#720713); box-shadow:inset 5px 2px 5px #ff9a8e,inset -5px -5px 7px #5d0710,0 4px 5px #250306; }
+    .santa-face { left:20px; top:2px; width:27px; height:27px; border-radius:50%; background:radial-gradient(circle at 35% 28%,#ffe0c4,#e7a77d 65%,#9e563d); box-shadow:inset -4px -3px 5px #9a523f,0 3px 4px #290b08; }
+    .santa-beard { left:18px; top:18px; width:31px; height:22px; border-radius:7px 7px 50% 50%; background:linear-gradient(130deg,#fff,#d9d9d9 72%,#8c8c8c); clip-path:polygon(0 0,100% 0,88% 62%,52% 100%,17% 64%); box-shadow:0 3px 3px #333; }
+    .santa-hat { left:16px; top:-4px; width:32px; height:17px; border-radius:80% 15% 0 0; background:linear-gradient(135deg,#ff6961,#b60018 75%); transform:rotate(-12deg); box-shadow:inset -4px -2px 4px #65000d; }
+    .santa-hat::after { content:""; position:absolute; left:-2px; bottom:-4px; width:35px; height:7px; border-radius:8px; background:linear-gradient(#fff,#bdbdbd); box-shadow:0 2px 3px #333; }
+    .santa-hat::before { content:""; position:absolute; right:-5px; top:-2px; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 25%,#fff,#bbb); }
+    .santa-arm { left:0; top:23px; width:27px; height:11px; border-radius:9px; background:linear-gradient(#f04a48,#970b19); transform:rotate(25deg) translateZ(5px); box-shadow:0 3px 3px #300; }
+    .imp-reindeer-3d { position:absolute; left:143px; top:13px; width:104px; height:60px; transform-style:preserve-3d; transform:rotateY(-18deg) translateZ(13px); }
+    .reindeer-body { left:3px; top:21px; width:54px; height:22px; border-radius:55% 45% 45% 50%; background:linear-gradient(145deg,#dca15d,#89501f 65%,#49250f); box-shadow:inset 4px 3px 5px #f3c78b,inset -5px -5px 6px #3f1e0d,0 4px 4px #170d08; }
+    .reindeer-neck { left:43px; top:12px; width:18px; height:28px; border-radius:10px; background:linear-gradient(90deg,#633714,#d69a52 45%,#754018); transform:rotate(-25deg) translateZ(5px); }
+    .reindeer-head { left:53px; top:7px; width:27px; height:25px; border-radius:55% 45% 48% 45%; background:linear-gradient(135deg,#e8b875,#9b5c2a 75%); transform:rotate(-13deg) translateZ(9px); box-shadow:inset -4px -3px 5px #573016,0 3px 4px #211008; }
+    .reindeer-muzzle { left:72px; top:19px; width:15px; height:10px; border-radius:50%; background:linear-gradient(#f0d1a1,#a76a3b); transform:translateZ(12px); }
+    .reindeer-muzzle::after { content:""; position:absolute; right:0; top:2px; width:5px; height:5px; border-radius:50%; background:#b20b1e; box-shadow:0 0 7px #f44; }
+    .reindeer-antlers { left:56px; top:-6px; width:30px; height:20px; border-top:3px solid #e4c28a; border-left:3px solid #e4c28a; transform:rotate(25deg) translateZ(12px); }
+    .reindeer-antlers::before,.reindeer-antlers::after { content:""; position:absolute; width:3px; height:11px; background:#e4c28a; border-radius:3px; }
+    .reindeer-antlers::before { left:5px; top:-9px; transform:rotate(-22deg); }
+    .reindeer-antlers::after { left:18px; top:-8px; transform:rotate(25deg); }
+    .reindeer-leg { top:37px; width:5px; height:19px; border-radius:4px; background:linear-gradient(90deg,#4a260f,#c18a4e,#5b3218); transform-origin:top; box-shadow:1px 2px 2px #160b05; }
+    .leg-one { left:13px; transform:rotate(18deg); }.leg-two { left:27px; transform:rotate(-12deg); }.leg-three { left:44px; transform:rotate(18deg); }.leg-four { left:54px; transform:rotate(-18deg); }
+    .imp-reins-3d { left:111px; top:43px; width:39px; height:14px; border-top:2px dashed #d7b978; border-radius:50%; transform:rotate(-8deg) translateZ(4px); }
+    .imp-christmas-snowman { right:max(18px,calc((100vw - 1180px)/2)); bottom:5px; width:43px; height:61px; font-size:0; perspective:350px; transform-style:preserve-3d; filter:drop-shadow(0 6px 5px rgba(0,0,0,.65)); animation:imp-snowman-bob 3.8s ease-in-out infinite; }
+    .imp-christmas-snowman i { position:absolute; display:block; box-sizing:border-box; }
+    .snowman-bottom { left:5px; bottom:0; width:34px; height:30px; border-radius:50%; background:radial-gradient(circle at 30% 23%,#fff,#dce8ed 58%,#8295a1); box-shadow:inset -5px -5px 8px #71818a,0 3px 5px #111; transform:translateZ(2px); }
+    .snowman-middle { left:9px; bottom:22px; width:27px; height:25px; border-radius:50%; background:radial-gradient(circle at 30% 20%,#fff,#e4eef2 58%,#9aabb3); box-shadow:inset -4px -4px 6px #8999a1,0 2px 4px #222; transform:translateZ(7px); }
+    .snowman-head { left:13px; bottom:42px; width:20px; height:19px; border-radius:50%; background:radial-gradient(circle at 30% 20%,#fff,#e7f0f4 58%,#9aaab2); box-shadow:inset -3px -3px 5px #82929a,0 2px 4px #222; transform:translateZ(12px); }
+    .snowman-hat { left:12px; bottom:57px; width:23px; height:9px; border-radius:3px 3px 1px 1px; background:linear-gradient(90deg,#111,#444,#080808); box-shadow:0 2px 3px #111; transform:translateZ(15px); }
+    .snowman-hat::before { content:""; position:absolute; left:-3px; bottom:-2px; width:29px; height:4px; border-radius:3px; background:linear-gradient(#222,#050505); }
+    .snowman-nose { left:29px; bottom:49px; width:11px; height:4px; border-radius:0 100% 100% 0; background:linear-gradient(#ffb45b,#b64b12); transform:rotate(-8deg) translateZ(18px); }
+    .snowman-eyes { left:19px; bottom:53px; width:3px; height:3px; border-radius:50%; background:#171717; transform:translateZ(19px); box-shadow:7px 0 #171717,3px 8px 0 -1px #333; }
+    .snowman-scarf { left:10px; bottom:37px; width:27px; height:6px; border-radius:3px; background:linear-gradient(#e33,#8c0714); transform:rotate(-4deg) translateZ(13px); box-shadow:0 2px 3px #333; }
+    .snowman-scarf::after { content:""; position:absolute; left:17px; top:2px; width:5px; height:14px; border-radius:2px; background:linear-gradient(90deg,#b00,#f44); transform:rotate(-8deg); }
+    .snowman-arm { left:1px; bottom:30px; width:13px; height:3px; border-radius:3px; background:linear-gradient(#6d4728,#24170d); transform:rotate(-25deg) translateZ(8px); box-shadow:25px -5px 0 -0.5px #4b2d18; }
+    @keyframes imp-santa-bounce { 0%,100%{translate:0 0;} 50%{translate:0 -3px;} }
+    @media(max-width:650px) {
+      .site-header.imp-christmas-header .header-inner { min-height:68px; }
+      .imp-christmas-santa { top:1px; width:205px; height:66px; animation-duration:15s; }
+      .imp-christmas-snowman { right:8px; bottom:4px; transform:scale(.82); transform-origin:bottom right; }
+      .site-header.imp-christmas-header::before { opacity:.65; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .imp-christmas-santa,.imp-christmas-snowman { animation:none!important; }
+    }
 </style>
 
 
@@ -1630,59 +1694,18 @@
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
   <header class="site-header imp-christmas-header">
-    <span class="imp-christmas-santa" aria-hidden="true">
-      <svg class="imp-santa-illustration" viewBox="0 0 250 92" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="imp-santa-red" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ff5555"/>
-            <stop offset="1" stop-color="#a90016"/>
-          </linearGradient>
-          <linearGradient id="imp-sleigh-gold" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#ffe7a0"/>
-            <stop offset="1" stop-color="#b77a22"/>
-          </linearGradient>
-        </defs>
-        <!-- Rena voando à frente -->
-        <g transform="translate(160 13)" stroke="#6b3c24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M28 30 C39 22 52 24 60 31 L70 34 L77 29" fill="none" stroke="#b77a22" stroke-width="7"/>
-          <path d="M39 29 L47 45 L43 59 M57 31 L67 45 L64 58" fill="none" stroke="#b77a22" stroke-width="5"/>
-          <path d="M74 29 L81 19 L89 18 L96 23 L91 31 L82 34" fill="#b77a22"/>
-          <path d="M82 19 L79 8 L73 2 M84 18 L91 7 L91 0 M78 13 L69 11" fill="none" stroke="#d6a45c" stroke-width="3"/>
-          <path d="M78 24 L72 17" fill="none" stroke="#6b3c24" stroke-width="2"/>
-          <circle cx="88" cy="23" r="1.8" fill="#17110d" stroke="none"/>
-          <path d="M31 30 Q20 17 17 7 Q15 2 11 4" fill="none" stroke="#b77a22" stroke-width="3"/>
-          <path d="M42 44 L37 63 M65 44 L70 61" fill="none" stroke="#6b3c24" stroke-width="2"/>
-          <path d="M35 64 L42 64 M67 62 L74 62" fill="none" stroke="#17110d" stroke-width="3"/>
-          <path d="M79 30 Q73 37 69 40" fill="none" stroke="#f1d7b0" stroke-width="2"/>
-        </g>
-        <!-- Rédeas -->
-        <path d="M166 44 Q145 59 123 48 Q111 43 101 46" fill="none" stroke="#d8b879" stroke-width="1.7" stroke-dasharray="3 3"/>
-        <!-- Trenó -->
-        <g transform="translate(14 35)">
-          <path d="M8 34 Q28 46 70 40 Q86 38 91 28" fill="none" stroke="url(#imp-sleigh-gold)" stroke-width="4" stroke-linecap="round"/>
-          <path d="M16 28 L83 28 L73 40 L27 40 Z" fill="url(#imp-santa-red)" stroke="#7d1019" stroke-width="1.5"/>
-          <path d="M13 43 Q42 53 80 44 Q91 42 96 34" fill="none" stroke="#f4d58b" stroke-width="3" stroke-linecap="round"/>
-          <path d="M21 27 L29 13 L72 13 L82 28" fill="#a80f20" stroke="#6d0b16" stroke-width="1.5"/>
-          <path d="M28 14 Q49 4 69 14" fill="none" stroke="#f5f0e7" stroke-width="7" stroke-linecap="round"/>
-          <!-- Papai Noel -->
-          <circle cx="50" cy="5" r="10" fill="#f0bd91"/>
-          <path d="M40 7 Q49 1 60 8 L58 16 Q49 23 41 14 Z" fill="#f4f0e8"/>
-          <path d="M39 3 Q43 -11 58 -7 Q67 -5 65 4 L58 2 L51 -1 L44 6 Z" fill="url(#imp-santa-red)"/>
-          <path d="M59 -5 Q66 -9 67 -2 Q65 2 61 1" fill="#f5f0e7"/>
-          <circle cx="41" cy="2" r="2.3" fill="#f5f0e7"/>
-          <path d="M39 17 Q50 11 61 17 L69 28 L34 28 Z" fill="url(#imp-santa-red)" stroke="#780b17" stroke-width="1.3"/>
-          <path d="M35 27 L69 27" stroke="#f5f0e7" stroke-width="5"/>
-          <circle cx="53" cy="19" r="2" fill="#f4d58b"/>
-          <path d="M33 18 L24 25 M65 18 L75 24" stroke="#f0bd91" stroke-width="4" stroke-linecap="round"/>
-          <!-- Presente -->
-          <rect x="73" y="16" width="13" height="12" rx="1" fill="#176b43" stroke="#e6c47a" stroke-width="1"/>
-          <path d="M79.5 16 V28 M73 21.5 H86" stroke="#e6c47a" stroke-width="2"/>
-          <path d="M79 16 Q72 8 69 14 Q70 19 79 16 Q86 8 89 14 Q88 19 79 16" fill="none" stroke="#e6c47a" stroke-width="1.7"/>
-        </g>
-        <path d="M6 74 Q48 82 97 74" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="2 5"/>
-      </svg>
-    </span>
-    <span class="imp-christmas-snowman" aria-hidden="true">☃️</span>
+    <div class="imp-christmas-santa" aria-hidden="true">
+      <div class="imp-santa-3d">
+        <div class="imp-sleigh-3d"><i class="sleigh-runner"></i><i class="sleigh-body"></i><i class="sleigh-seat"></i><i class="sleigh-gift"></i></div>
+        <div class="imp-santa-rider"><i class="santa-body"></i><i class="santa-face"></i><i class="santa-beard"></i><i class="santa-hat"></i><i class="santa-arm"></i></div>
+        <div class="imp-reindeer-3d"><i class="reindeer-body"></i><i class="reindeer-neck"></i><i class="reindeer-head"></i><i class="reindeer-muzzle"></i><i class="reindeer-antlers"></i><i class="reindeer-leg leg-one"></i><i class="reindeer-leg leg-two"></i><i class="reindeer-leg leg-three"></i><i class="reindeer-leg leg-four"></i></div>
+        <i class="imp-reins-3d"></i>
+      </div>
+    </div>
+    <div class="imp-christmas-snowman" aria-hidden="true">
+      <i class="snowman-bottom"></i><i class="snowman-middle"></i><i class="snowman-head"></i>
+      <i class="snowman-hat"></i><i class="snowman-nose"></i><i class="snowman-eyes"></i><i class="snowman-scarf"></i><i class="snowman-arm"></i>
+    </div>
     <div class="header-inner">
       
 

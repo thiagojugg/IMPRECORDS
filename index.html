@@ -2637,8 +2637,8 @@
   import("https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js").then((THREE) => {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x090b10);
-    const camera = new THREE.PerspectiveCamera(21, 1, 0.1, 100);
-    camera.position.set(0, 4.35, 7.9);
+    const camera = new THREE.PerspectiveCamera(17, 1, 0.1, 100);
+    camera.position.set(0, 4.15, 7.25);
     camera.lookAt(0, 1.82, -1.55);
 
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
@@ -2801,7 +2801,7 @@
       const t=clock.getElapsedTime();
       currentX += (targetX-currentX)*.035;
       currentY += (targetY-currentY)*.035;
-      camera.position.set(0,4.35,7.9);
+      camera.position.set(0,4.15,7.25);
       camera.lookAt(0,1.82,-1.55);
       if(hovered) {
         const pulse=1+Math.sin(t*5)*.025;

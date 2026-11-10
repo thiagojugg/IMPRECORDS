@@ -51,9 +51,27 @@
     .bottom-note{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:#777;font-size:9px;letter-spacing:.16em;text-align:center}
     @media(max-width:760px){.page-shell{padding:16px 15px 54px}.topbar{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}.main-photo img{max-height:none}.thumbnails{gap:7px}.thumb img{aspect-ratio:4/5}.eyebrow{margin-bottom:11px}h1{font-size:clamp(34px,10vw,48px)}.edition{margin-bottom:18px}.price-line{padding-bottom:19px}.field-label{margin-top:20px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+    /* Malha de linhas 3D da identidade visual, também ativa nesta página interna. */
+    body.imp-home-scroll-lines::before,
+    body.imp-home-scroll-lines::after {
+      transform: translate3d(var(--imp-scroll-x, 0px), var(--imp-scroll-shift, 0px), 0);
+      transition: transform .18s ease-out;
+    }
+    body.imp-home-scroll-lines > main,
+    body.imp-home-scroll-lines > .site-footer { position:relative; z-index:1; }
+    body.imp-home-scroll-lines > .site-header { position:relative; z-index:20; }
+    @media(max-width:650px) {
+      body.imp-home-scroll-lines::before { opacity:.25; background-size:76px 76px; }
+      body.imp-home-scroll-lines::after { opacity:.12; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      body.imp-home-scroll-lines::before,
+      body.imp-home-scroll-lines::after { transform:none !important; transition:none !important; }
+    }
   </style>
 </head>
-<body>
+<body class="imp-home-scroll-lines">
 <header class="site-header imp-christmas-header">
     <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
     <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
@@ -64,11 +82,7 @@
       
 
 <a class="wordmark" href="./" aria-label="IMP Records, início">
-  <span class="wordmark-flag-stack" aria-hidden="true">
-    <span class="wordmark-flag wordmark-flag-ma">IMP</span>
-    <span class="wordmark-flag wordmark-flag-go">IMP</span>
-    <span class="wordmark-flag wordmark-flag-sp">IMP</span>
-  </span><span class="wordmark-reg">®</span>
+  <span class="wordmark-flag-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP</span></span><span class="wordmark-reg">®</span>
 </a>
 
 
@@ -174,6 +188,25 @@
 </span>
     </div>
   </footer>
+  <script id="imp-product-depth-lines-controller">
+    (() => {
+      const body = document.body;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (!body || reducedMotion.matches) return;
+      let frame = 0, pointerX = 0;
+      const update = () => {
+        body.style.setProperty("--imp-scroll-shift", (-window.scrollY * 0.12) + "px");
+        body.style.setProperty("--imp-scroll-x", (pointerX * 10) + "px");
+        frame = 0;
+      };
+      const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+      const move = clientX => { pointerX = (clientX / Math.max(window.innerWidth, 1) - .5) * 2; schedule(); };
+      window.addEventListener("scroll", schedule, { passive:true });
+      window.addEventListener("pointermove", event => { if (event.pointerType === "mouse" || event.pointerType === "pen") move(event.clientX); }, { passive:true });
+      window.addEventListener("touchmove", event => { if (event.touches.length) move(event.touches[0].clientX); }, { passive:true });
+      update();
+    })();
+  </script>
   <script>
     const yearNode = document.getElementById("copyright-ano");
     if (yearNode) yearNode.textContent = new Date().getFullYear();

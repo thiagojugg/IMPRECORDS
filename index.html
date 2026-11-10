@@ -1665,6 +1665,73 @@
   }
 </style>
 
+
+<style id="imp-christmas-photo-characters">
+  /* Personagens em PNG: árvore fixa à esquerda e Papai Noel voando da direita para a esquerda. */
+  .site-header.imp-christmas-header { overflow:hidden; }
+  .site-header.imp-christmas-header .imp-christmas-tree {
+    position:absolute !important;
+    z-index:3 !important;
+    display:block !important;
+    left:max(10px,calc((100vw - 1180px)/2)) !important;
+    right:auto !important;
+    bottom:0 !important;
+    width:auto !important;
+    height:76px !important;
+    max-width:78px;
+    object-fit:contain;
+    object-position:left bottom;
+    pointer-events:none;
+    filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));
+  }
+  .site-header.imp-christmas-header .imp-christmas-snowman { display:none !important; }
+  .site-header.imp-christmas-header .imp-christmas-santa {
+    position:absolute !important;
+    z-index:3 !important;
+    display:block !important;
+    top:0 !important;
+    left:auto !important;
+    right:-190px !important;
+    width:180px !important;
+    height:74px !important;
+    object-fit:contain;
+    object-position:center;
+    pointer-events:none;
+    user-select:none;
+    filter:drop-shadow(0 5px 5px rgba(0,0,0,.62));
+    animation:imp-santa-photo-flight 18s linear infinite, imp-santa-photo-sway 2.8s ease-in-out infinite !important;
+    transform-origin:center;
+  }
+  @keyframes imp-santa-photo-flight {
+    0% { right:-190px; }
+    100% { right:calc(100% + 190px); }
+  }
+  @keyframes imp-santa-photo-sway {
+    0%,100% { margin-top:0; rotate:-3deg; }
+    50% { margin-top:7px; rotate:3deg; }
+  }
+  @media(max-width:650px) {
+    .site-header.imp-christmas-header .imp-christmas-tree {
+      left:2px !important;
+      height:66px !important;
+      max-width:66px;
+    }
+    .site-header.imp-christmas-header .imp-christmas-santa {
+      right:-145px !important;
+      width:140px !important;
+      height:64px !important;
+      animation-duration:15s,2.5s !important;
+    }
+    @keyframes imp-santa-photo-flight {
+      0% { right:-145px; }
+      100% { right:calc(100% + 145px); }
+    }
+  }
+  @media(prefers-reduced-motion:reduce) {
+    .site-header.imp-christmas-header .imp-christmas-santa { animation:none !important; right:8px !important; }
+  }
+</style>
+
 </head>
 
 <body>
@@ -1696,14 +1763,8 @@
   <header class="site-header imp-christmas-header">
     <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
     <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
-    <div class="imp-christmas-snowman" aria-hidden="true">
-      <i class="snowman-bottom"></i><i class="snowman-middle"></i><i class="snowman-head"></i>
-      <i class="snowman-hat"></i><i class="snowman-nose"></i><i class="snowman-eyes"></i><i class="snowman-scarf"></i><i class="snowman-arm"></i>
-    </div>
-    <div class="imp-christmas-tree" aria-hidden="true">
-      <i class="tree-star"></i><i class="tree-top"></i><i class="tree-middle"></i><i class="tree-bottom"></i>
-      <i class="tree-trunk"></i><i class="tree-garland"></i><i class="tree-bauble bauble-one"></i><i class="tree-bauble bauble-two"></i><i class="tree-bauble bauble-three"></i><i class="tree-bauble bauble-four"></i>
-    </div>
+    <img class="imp-christmas-tree" src="./assets/—Pngtree—3d green christmas tree featuring_16992922.png" alt="" aria-hidden="true">
+    <img class="imp-christmas-santa" src="./assets/pngwing.com.png" alt="" aria-hidden="true">
     <div class="header-inner">
       
 

@@ -4941,4 +4941,20 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-ch
 @media(prefers-reduced-motion:reduce) {
   .digital-category-orb,.digital-category-orb::before,.digital-category-label { transition:none; }
 }
+
+    /* A moldura do produto acompanha a proporção natural das fotos, sem alterar a largura do card. */
+    #vestuario .camisetas-carousel .product-image {
+      height: auto;
+      aspect-ratio: auto;
+      overflow: hidden;
+    }
+    #vestuario .camisetas-carousel .product-image-track {
+      height: auto;
+      align-items: flex-start;
+    }
+    #vestuario .camisetas-carousel .product-image-track img {
+      height: auto;
+      min-height: 0;
+      object-fit: contain;
+    }
 </style>

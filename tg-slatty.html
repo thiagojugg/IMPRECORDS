@@ -11,9 +11,39 @@
     .tg-slatty-page { min-height: 70vh; padding-top: 90px; padding-bottom: 100px; }
     .tg-slatty-hero { min-height: 420px; margin: 35px 0 65px; padding: 35px; display: flex; flex-direction: column; justify-content: end; background: #111; border: 1px solid var(--line); }
     .tg-slatty-hero h1 { margin: 15px 0 0; color: #fff; font: clamp(54px, 12vw, 150px)/.85 var(--font-display); letter-spacing: -.07em; }
-    .tg-slatty-section { padding: 55px 0; border-top: 1px solid var(--line); }
-    .tg-slatty-section h2 { font: clamp(32px, 6vw, 65px)/.95 var(--font-display); letter-spacing: -.05em; }
+    .tg-slatty-section { padding: 65px 0; border-top: 1px solid var(--line); }
+    .tg-slatty-section .number { color: #888; font-size: 11px; letter-spacing: .2em; }
+    .tg-slatty-section h2 { margin: 20px 0 30px; font: clamp(35px, 6vw, 70px)/.95 var(--font-display); letter-spacing: -.05em; }
     .tg-slatty-section p { max-width: 850px; color: #bbb; font-size: 15px; line-height: 1.95; }
+    .tg-slatty-quote {
+      margin: 50px 0;
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .tg-slatty-quote h2 {
+      max-width: 1050px;
+      margin: 0 auto 24px;
+      color: #fff;
+      font: clamp(30px, 6vw, 65px)/1.05 var(--font-display);
+      letter-spacing: -.04em;
+    }
+    .tg-slatty-quote p {
+      margin: 0;
+      color: #888;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .2em;
+    }
+    .tg-slatty-end { padding: 40px 0 25px; text-align: center; }
+    .tg-slatty-end h2 {
+      margin: 0;
+      color: #fff;
+      font: clamp(40px, 8vw, 90px)/.95 var(--font-display);
+      letter-spacing: -.06em;
+    }
+    .tg-slatty-end p { color: #aaa; font-size: 11px; letter-spacing: .18em; }
     .tg-slatty-photo { margin: 35px 0 42px; width: 100%; }
     .tg-slatty-photo-placeholder {
       width: 100%;
@@ -46,7 +76,9 @@
       .tg-slatty-page { padding-top: 60px; }
       .tg-slatty-hero { min-height: 300px; padding: 24px; }
       .tg-slatty-photo-placeholder { min-height: 180px; }
-      .tg-slatty-section { padding: 42px 0; }
+      .tg-slatty-section { padding: 45px 0; }
+      .tg-slatty-quote { padding: 58px 16px; }
+      .tg-slatty-end h2 { font-size: clamp(38px, 11vw, 68px); }
     }
   </style>
 
@@ -152,7 +184,7 @@
       <h1>TG SLATTY</h1>
     </section>
     <section class="tg-slatty-section">
-      <span class="eyebrow">01 / ORIGENS</span>
+      <span class="number">01 / ORIGENS</span>
       <h2>UMA CONEXÃO COM A MÚSICA.</h2>
 
       <figure class="tg-slatty-photo" aria-label="Espaço reservado para fotografia de TG Slatty">
@@ -179,7 +211,7 @@
     </section>
 
     <section class="tg-slatty-section">
-      <span class="eyebrow">02 / PRODUÇÃO</span>
+      <span class="number">02 / PRODUÇÃO</span>
       <h2>IDEIAS QUE GANHARAM FORMA.</h2>
 
       <p>
@@ -199,7 +231,7 @@
     </section>
 
     <section class="tg-slatty-section">
-      <span class="eyebrow">03 / INFLUÊNCIAS</span>
+      <span class="number">03 / INFLUÊNCIAS</span>
       <h2>A SONORIDADE DOS ANOS 2000.</h2>
 
       <p>
@@ -226,6 +258,17 @@
         Hip-Hop. É desse conjunto de experiências e referências que sigo
         construindo minha relação com a música.
       </p>
+    </section>
+
+    <section class="tg-slatty-quote">
+      <h2>“AS RIMAS ME APROXIMARAM DA MÚSICA. OS SONS DOS ANOS 2000 ME MOSTRARAM NOVOS CAMINHOS.”</h2>
+      <p>— TG SLATTY</p>
+    </section>
+
+    <section class="tg-slatty-end">
+      <h2>ESSA É A<br>MINHA HISTÓRIA.</h2>
+      <p>UMA TRAJETÓRIA QUE CONTINUA EM CONSTRUÇÃO.</p>
+      <p class="eyebrow">IMP RECORDS © 2026</p>
     </section>
   </main>
   <footer class="site-footer">
@@ -260,6 +303,8 @@
           delay += element.matches("figure") ? 120 : 80;
         });
     });
+
+    document.querySelectorAll(".tg-slatty-quote > *, .tg-slatty-end > *").forEach((element, index) => add(element, index * 90));
 
     document.documentElement.classList.add("tg-motion-ready");
 

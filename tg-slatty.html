@@ -13,23 +13,40 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      min-height: 420px;
+      min-height: 0;
       margin: 35px 0 65px;
-      padding: 35px;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      background-color: #080808;
-      background-image: linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.34) 48%, rgba(0,0,0,.12) 100%), url("./assets/216236D9-75F7-4C4D-B182-E8B3AC1B31EB.png");
-      background-position: center, center;
-      background-size: cover, contain;
-      background-repeat: no-repeat;
+      padding: 0;
+      display: block;
+      background: #080808;
       border: 1px solid var(--line);
     }
+    .tg-slatty-hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
     .tg-slatty-hero .eyebrow,
-    .tg-slatty-hero h1 { position: relative; z-index: 1; }
-
-    .tg-slatty-hero h1 { margin: 15px 0 0; color: #fff; font: clamp(54px, 12vw, 150px)/.85 var(--font-display); letter-spacing: -.07em; }
+    .tg-slatty-hero h1 {
+      position: absolute;
+      z-index: 1;
+      left: 35px;
+    }
+    .tg-slatty-hero .eyebrow { bottom: 145px; }
+    .tg-slatty-hero h1 {
+      bottom: 35px;
+      margin: 0;
+      color: #fff;
+      font: clamp(54px, 12vw, 150px)/.85 var(--font-display);
+      letter-spacing: -.07em;
+    }
+    .tg-slatty-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.34) 48%, rgba(0,0,0,.12) 100%);
+    }
     .tg-slatty-section { padding: 65px 0; border-top: 1px solid var(--line); }
     .tg-slatty-section .number { color: #888; font-size: 11px; letter-spacing: .2em; }
     .tg-slatty-section h2 { margin: 20px 0 30px; font: clamp(35px, 6vw, 70px)/.95 var(--font-display); letter-spacing: -.05em; }
@@ -143,7 +160,9 @@
     }
     @media(max-width:650px) {
       .tg-slatty-page { padding-top: 60px; }
-      .tg-slatty-hero { min-height: 300px; padding: 24px; }
+      .tg-slatty-hero { min-height: 0; padding: 0; }
+      .tg-slatty-hero .eyebrow { left: 20px; bottom: 92px; font-size: 9px; }
+      .tg-slatty-hero h1 { left: 20px; bottom: 20px; font-size: clamp(42px, 11vw, 68px); }
       .tg-slatty-photo-placeholder { min-height: 180px; }
       .tg-slatty-section { padding: 45px 0; }
       .tg-slatty-quote { padding: 58px 16px; }
@@ -252,6 +271,7 @@
   <main class="section-wrap tg-slatty-page">
     <a class="text-link artist-back-link" href="./artistas.html">← VOLTAR A ARTISTAS</a>
     <section class="tg-slatty-hero">
+      <img class="tg-slatty-hero-image" src="./assets/216236D9-75F7-4C4D-B182-E8B3AC1B31EB.png" alt="Fotografia de capa de TG Slatty">
       <span class="eyebrow">IMP RECORDS / ARTISTA</span>
       <h1>TG SLATTY</h1>
     </section>

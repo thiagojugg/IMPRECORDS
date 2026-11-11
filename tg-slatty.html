@@ -44,6 +44,48 @@
       letter-spacing: -.06em;
     }
     .tg-slatty-end p { color: #aaa; font-size: 11px; letter-spacing: .18em; }
+
+    .tg-slatty-social {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 25px 0 55px;
+    }
+    .tg-slatty-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      padding: 16px 25px;
+      border: 1px solid #777;
+      color: #fff;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      transition: .3s;
+    }
+    .tg-slatty-social-link:hover {
+      background: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-3px);
+    }
+    .tg-slatty-social-link svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .tg-slatty-social-link.spotify svg {
+      fill: currentColor;
+      stroke: none;
+    }
     .tg-slatty-photo { margin: 35px 0 42px; width: 100%; }
     .tg-slatty-photo-placeholder {
       width: 100%;
@@ -79,6 +121,7 @@
       .tg-slatty-section { padding: 45px 0; }
       .tg-slatty-quote { padding: 58px 16px; }
       .tg-slatty-end h2 { font-size: clamp(38px, 11vw, 68px); }
+      .tg-slatty-social-link { width: 100%; max-width: 310px; }
     }
   </style>
 
@@ -270,6 +313,37 @@
       <p>UMA TRAJETÓRIA QUE CONTINUA EM CONSTRUÇÃO.</p>
       <p class="eyebrow">IMP RECORDS © 2026</p>
     </section>
+
+    <section class="tg-slatty-social" aria-label="Redes e plataformas do artista">
+      <a
+        class="tg-slatty-social-link"
+        href="https://www.instagram.com/tgslatty?cplk=MTZubXdhOTF4bXB3dA=="
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Acessar Instagram de TG Slatty, @tgslatty"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
+        </svg>
+        <span>INSTAGRAM · @TGSLATTY</span>
+      </a>
+
+      <a
+        class="tg-slatty-social-link spotify"
+        href="https://open.spotify.com/artist/2vLxtvXaFZ0oEscRYtmxcw?si=r0W6HgEkSAmmmAbUHxB4vg&utm_source=copy-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Acessar perfil de TG Slatty no Spotify"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M6.5 9.2c3.8-1.1 8.4-.7 11.3 1.1M7.2 12.2c3.2-.9 7-.5 9.6 1M8 15c2.6-.7 5.5-.3 7.8.8" fill="none" stroke="#000" stroke-width="1.7" stroke-linecap="round"></path>
+        </svg>
+        <span>SPOTIFY · TG SLATTY</span>
+      </a>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="footer-brand-row"><a class="footer-logo wordmark" href="./" aria-label="IMP Records"><span class="wordmark-flag-stack footer-flag-stack footer-fullname-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-go">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-sp">IMP RECORDS</span></span><span class="wordmark-reg">®</span></a></div><div class="footer-bottom"><span>© 2020/2026 IMP RECORDS. Todos os direitos reservados.</span></div></footer>
@@ -305,6 +379,7 @@
     });
 
     document.querySelectorAll(".tg-slatty-quote > *, .tg-slatty-end > *").forEach((element, index) => add(element, index * 90));
+    document.querySelectorAll(".tg-slatty-social-link").forEach((element, index) => add(element, index * 90));
 
     document.documentElement.classList.add("tg-motion-ready");
 

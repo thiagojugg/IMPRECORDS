@@ -87,6 +87,14 @@
       stroke: none;
     }
     .tg-slatty-photo { margin: 35px 0 42px; width: 100%; }
+    .tg-slatty-photo-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid var(--line);
+    }
     .tg-slatty-photo-placeholder {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -159,13 +167,15 @@
     .tg-slatty-photo.tg-reveal {
       perspective: 1000px;
     }
-    .tg-slatty-photo.tg-reveal .tg-slatty-photo-placeholder {
+    .tg-slatty-photo.tg-reveal .tg-slatty-photo-placeholder,
+    .tg-slatty-photo.tg-reveal .tg-slatty-photo-image {
       transform: scale(1.06) rotateX(5deg);
       transform-origin: center center;
       transition: transform 1.2s cubic-bezier(.2,.7,.2,1), filter 1.2s ease;
       filter: saturate(.72) brightness(.78);
     }
-    .tg-slatty-photo.tg-reveal.is-visible .tg-slatty-photo-placeholder {
+    .tg-slatty-photo.tg-reveal.is-visible .tg-slatty-photo-placeholder,
+    .tg-slatty-photo.tg-reveal.is-visible .tg-slatty-photo-image {
       transform: scale(1) rotateX(0);
       filter: saturate(1) brightness(1);
     }
@@ -230,11 +240,8 @@
       <span class="number">01 / ORIGENS</span>
       <h2>UMA CONEXÃO COM A MÚSICA.</h2>
 
-      <figure class="tg-slatty-photo" aria-label="Espaço reservado para fotografia de TG Slatty">
-        <div class="tg-slatty-photo-placeholder">
-          <span>IMAGEM DO ARTISTA</span>
-          <strong>TG SLATTY</strong>
-        </div>
+      <figure class="tg-slatty-photo" aria-label="Fotografia de TG Slatty — capítulo 01, Origens">
+        <img class="tg-slatty-photo-image" src="./assets/0c9437c5-8aff-4e6e-aa98-7840ef2814c5.jpeg" alt="TG Slatty" loading="lazy">
       </figure>
 
       <p>

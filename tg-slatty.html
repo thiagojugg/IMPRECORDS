@@ -13,8 +13,41 @@
     .tg-slatty-hero h1 { margin: 15px 0 0; color: #fff; font: clamp(54px, 12vw, 150px)/.85 var(--font-display); letter-spacing: -.07em; }
     .tg-slatty-section { padding: 55px 0; border-top: 1px solid var(--line); }
     .tg-slatty-section h2 { font: clamp(32px, 6vw, 65px)/.95 var(--font-display); letter-spacing: -.05em; }
-    .tg-slatty-section p { max-width: 760px; color: #aaa; line-height: 1.9; }
-    @media(max-width:650px) { .tg-slatty-page { padding-top: 60px; } .tg-slatty-hero { min-height: 300px; padding: 24px; } }
+    .tg-slatty-section p { max-width: 850px; color: #bbb; font-size: 15px; line-height: 1.95; }
+    .tg-slatty-photo { margin: 35px 0 42px; width: 100%; }
+    .tg-slatty-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 50% 35%, rgba(255,255,255,.09), transparent 55%),
+        linear-gradient(135deg, #191919, #080808 70%);
+      color: #777;
+      text-align: center;
+    }
+    .tg-slatty-photo-placeholder span {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .24em;
+    }
+    .tg-slatty-photo-placeholder strong {
+      color: #eee;
+      font: clamp(28px, 6vw, 64px)/.95 var(--font-display);
+      letter-spacing: -.05em;
+    }
+    @media(max-width:650px) {
+      .tg-slatty-page { padding-top: 60px; }
+      .tg-slatty-hero { min-height: 300px; padding: 24px; }
+      .tg-slatty-photo-placeholder { min-height: 180px; }
+      .tg-slatty-section { padding: 42px 0; }
+    }
   </style>
 
   <style id="imp-centered-header-logo">
@@ -64,9 +97,55 @@
       <h1>TG SLATTY</h1>
     </section>
     <section class="tg-slatty-section">
-      <span class="eyebrow">01 / HISTÓRIA</span>
-      <h2>A TRAJETÓRIA DE TG SLATTY.</h2>
-      <p>Autobiografia em construção. Esta página está reservada para apresentarmos a história, a identidade e os trabalhos de TG SLATTY.</p>
+      <span class="eyebrow">01 / ORIGENS</span>
+      <h2>UMA CONEXÃO COM A MÚSICA.</h2>
+
+      <figure class="tg-slatty-photo" aria-label="Espaço reservado para fotografia de TG Slatty">
+        <div class="tg-slatty-photo-placeholder">
+          <span>IMAGEM DO ARTISTA</span>
+          <strong>TG SLATTY</strong>
+        </div>
+      </figure>
+
+      <p>
+        Minha conexão com a música começou aos 12 anos, quando passei a
+        rimar na escola e nas ruas. Desde cedo, o Hip-Hop fazia parte da
+        minha vivência. Eu costumava ouvir discos e CDs de Black Music
+        clássica, desenvolvendo uma relação cada vez mais forte com a
+        cultura e suas diferentes sonoridades.
+      </p>
+    </section>
+
+    <section class="tg-slatty-section">
+      <span class="eyebrow">02 / PRODUÇÃO</span>
+      <h2>IDEIAS QUE GANHARAM FORMA.</h2>
+
+      <p>
+        Aos 19 anos, comecei a produzir ao lado do meu primo, na casa dele.
+        Foi nesse período que surgiram diversas ideias, experimentações e
+        produções que ajudaram a desenvolver minha identidade musical.
+      </p>
+    </section>
+
+    <section class="tg-slatty-section">
+      <span class="eyebrow">03 / INFLUÊNCIAS</span>
+      <h2>A SONORIDADE DOS ANOS 2000.</h2>
+
+      <p>
+        Minha motivação ganhou força quando escrevi minha primeira rima
+        e a coloquei sobre um beat inspirado na sonoridade dos anos 2000.
+        A partir dali, comecei a enxergar a música como um caminho próprio,
+        construindo minha identidade a partir das referências que sempre
+        admirei.
+      </p>
+
+      <p>
+        Minhas principais influências vêm da geração 2000, especialmente
+        de artistas e produtores como <strong>Pharrell Williams</strong>,
+        <strong>Timbaland</strong> e <strong>Kanye West (Ye)</strong>,
+        entre outros nomes que marcaram a história do Hip-Hop e ajudaram
+        a moldar minha visão musical.
+      </p>
     </section>
   </main>
   <footer class="site-footer">

@@ -2930,6 +2930,12 @@
         </button>
       </nav>
 
+      <div class="digital-intro-callout" aria-label="Apresentação dos produtos digitais">
+        <p class="digital-intro-kicker">IMP RECORDS / CENTRAL DO PRODUTOR</p>
+        <h2>TUDO O QUE VOCÊ PRECISA <span>PARA CRIAR.</span></h2>
+        <p>Encontre ferramentas, sons e recursos essenciais para elevar suas produções musicais. De drum kits e presets a plugins, programas e muito mais — <strong>o próximo nível do seu som começa aqui.</strong></p>
+      </div>
+
       <div class="product-grid presets-vocais-carousel digital-products-grid" aria-label="Produtos digitais">
         <article class="product-card" data-digital-category="presets">
           <a class="product-card-link" href="./produto-preset-twiz.html" aria-label="Ver detalhes do Preset Vocal do Twiz">
@@ -5455,5 +5461,41 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-ch
 .site-header.imp-christmas-header .menu-toggle,
 .site-header.imp-christmas-header .mobile-menu {
   display: none !important;
+}
+</style>
+
+
+<style id="imp-digital-intro-callout">
+.digital-intro-callout {
+  position:relative; isolation:isolate; overflow:hidden;
+  width:min(100% - 32px, 1040px); margin:clamp(24px,4vw,42px) auto clamp(24px,3vw,34px);
+  padding:clamp(22px,3.2vw,34px) clamp(18px,4vw,42px);
+  text-align:center; border:1px solid rgba(255,255,255,.13); border-radius:16px;
+  background:linear-gradient(115deg,rgba(255,255,255,.075),rgba(255,255,255,.018) 52%,rgba(255,255,255,.06));
+  box-shadow:0 16px 42px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.digital-intro-callout::before {
+  content:""; position:absolute; z-index:-1; width:260px; height:150px; left:50%; top:-115px;
+  transform:translateX(-50%); border-radius:50%; background:rgba(255,255,255,.13); filter:blur(55px);
+}
+.digital-intro-callout .digital-intro-kicker {
+  margin:0 0 10px; color:rgba(255,255,255,.58); font-size:10px; font-weight:800;
+  letter-spacing:.24em; text-transform:uppercase;
+}
+.digital-intro-callout h2 {
+  margin:0 auto 12px; color:#fff; font-size:clamp(20px,3.3vw,34px); line-height:1.08;
+  font-weight:900; letter-spacing:-.045em; text-transform:uppercase;
+}
+.digital-intro-callout h2 span { display:inline-block; color:#c9c9c9; }
+.digital-intro-callout > p:last-child {
+  max-width:740px; margin:0 auto; color:rgba(255,255,255,.72);
+  font-size:clamp(12px,1.35vw,15px); line-height:1.7; font-weight:400;
+}
+.digital-intro-callout strong { color:#fff; font-weight:800; }
+@media(max-width:600px) {
+  .digital-intro-callout { width:calc(100% - 28px); margin:22px auto 24px; padding:22px 17px; border-radius:13px; }
+  .digital-intro-callout .digital-intro-kicker { font-size:8px; letter-spacing:.19em; }
+  .digital-intro-callout h2 { font-size:clamp(19px,5.6vw,25px); }
+  .digital-intro-callout > p:last-child { font-size:12px; line-height:1.6; }
 }
 </style>

@@ -1,83 +1,151 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080808">
-<link rel="icon" type="image/png" href="./assets/favicon.png">
-<link rel="stylesheet" href="./assets/base.css">
-<link rel="stylesheet" href="./assets/independent.css">
-<link rel="stylesheet" href="./assets/site-search.css">
-<title>Boné Truck IMP RECORDS Underground — IMP RECORDS</title>
-<meta name="description" content="Boné Truck IMP RECORDS Underground. R$ 125,90. Escolha entre dois estilos nas cores preta e branca.">
-<style>
-:root{color-scheme:dark;--line:rgba(255,255,255,.16);--muted:#aaa}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#202020 0,#0b0b0b 42%,#080808 78%);color:#f5f5f5;font-family:var(--font-body,Arial,sans-serif)}
-.page-shell{width:min(1240px,100%);margin:auto;padding:24px clamp(16px,4vw,54px) 80px}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 0 28px;border-bottom:1px solid var(--line)}
-.brand{font-size:14px;font-weight:900;letter-spacing:.24em;text-decoration:none}.back-link{font-size:10px;font-weight:800;letter-spacing:.16em;color:#ccc;text-decoration:none}
-.product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(28px,5vw,76px);align-items:start;padding-top:42px}
-.main-photo{overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#303030,#111 62%,#090909);box-shadow:0 24px 65px #0009}
-.main-photo img{display:block;width:100%;height:auto;max-height:850px;object-fit:contain}
-.details{position:sticky;top:24px;padding-top:8px}.eyebrow{margin:0 0 14px;color:#aaa;font-size:10px;font-weight:800;letter-spacing:.24em}
-h1{margin:0;max-width:650px;font-size:clamp(32px,4vw,58px);font-weight:950;line-height:.94;letter-spacing:-.065em;text-transform:uppercase}
-.edition{margin:13px 0 24px;color:#aaa;font-size:11px;letter-spacing:.16em}
-.price-line{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line)}
-.price{font-size:clamp(28px,3vw,38px);font-weight:950;letter-spacing:-.05em}
-.field-label{display:block;margin:24px 0 12px;font-size:10px;font-weight:800;letter-spacing:.2em}
-.options{display:flex;gap:9px;flex-wrap:wrap}
-.option{min-height:46px;padding:0 16px;border:1px solid #ffffff35;background:#111;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;cursor:pointer}
-.option:hover,.option[aria-pressed="true"]{background:#f1f1f1;color:#080808;border-color:#fff}
-.option:focus-visible{outline:2px solid #fff;outline-offset:3px}
-.selection-note{margin:10px 0 0;color:#888;font-size:10px;line-height:1.5}
-.buy-button{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;margin-top:26px;border:1px solid #eee;background:linear-gradient(135deg,#f4f4f4,#bdbdbd);color:#080808;font-size:11px;font-weight:950;letter-spacing:.18em;opacity:.72;cursor:not-allowed}
-.buy-note{margin:10px 0 0;color:#888;font-size:10px;line-height:1.55}
-.description{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
-.description h2{margin:0 0 14px;font-size:11px;letter-spacing:.2em}
-.description p{margin:0 0 12px;color:#b7b7b7;font-size:13px;line-height:1.8}
-.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
-.feature{padding:13px;border:1px solid var(--line);background:#ffffff06}
-.feature strong{display:block;margin-bottom:5px;font-size:9px;letter-spacing:.16em}.feature span{color:#999;font-size:10px}
-@media(max-width:760px){.page-shell{padding:16px 15px 54px}.topbar{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}h1{font-size:clamp(34px,10vw,48px)}.field-label{margin-top:20px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+  <link rel="stylesheet" href="./assets/site-search.css">
+  <title>Boné Truck IMP RECORDS Underground — IMP RECORDS</title>
+  <meta name="description" content="Boné Truck IMP RECORDS Underground. R$ 125,90. Escolha entre dois estilos nas cores preta e branca.">
+  <style>
+    :root{color-scheme:dark;--bg:#080808;--panel:#111;--line:rgba(255,255,255,.16);--muted:#aaa;--white:#f5f5f5}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 50% 0%,#202020 0,#0b0b0b 42%,var(--bg) 78%);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit}
+    .page-shell{width:min(1240px,100%);margin:auto;padding:24px clamp(16px,4vw,54px) 80px}
+    .product-page-back{padding:8px 0 28px;border-bottom:1px solid var(--line)}
+    .product-page-back .text-link{font-size:10px;font-weight:800;letter-spacing:.16em;text-decoration:none;color:#ccc}
+    .product-page-back .text-link:hover{color:#fff}
+    .product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(28px,5vw,76px);align-items:start;padding-top:42px}
+    .gallery{min-width:0}
+    .main-photo{position:relative;display:grid;place-items:center;min-height:520px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#303030,#111 62%,#090909);box-shadow:0 24px 65px #0009}
+    .placeholder-image span{color:#aaa;font-size:11px;font-weight:900;letter-spacing:.2em;line-height:1.8;text-align:center}
+    .details{position:sticky;top:24px;padding-top:8px}
+    .eyebrow{margin:0 0 14px;color:#aaa;font-size:10px;font-weight:800;letter-spacing:.24em}
+    h1{margin:0;max-width:650px;font-size:clamp(32px,4vw,58px);font-weight:950;line-height:.94;letter-spacing:-.065em;text-transform:uppercase}
+    .edition{margin:13px 0 24px;color:#aaa;font-size:11px;letter-spacing:.16em}
+    .price-line{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .price{font-size:clamp(28px,3vw,38px);font-weight:950;letter-spacing:-.05em}
+    .field-label{display:block;margin:24px 0 12px;font-size:10px;font-weight:800;letter-spacing:.2em}
+    .options{display:flex;gap:9px;flex-wrap:wrap}
+    .option{min-width:82px;height:48px;padding:0 16px;border:1px solid #ffffff35;background:#111;color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+    .option:hover,.option[aria-pressed="true"]{background:#f1f1f1;color:#080808;border-color:#fff}
+    .option:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .selection-note{margin:10px 0 0;color:#888;font-size:10px;line-height:1.5}
+    .buy-button{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;margin-top:26px;border:1px solid #eee;background:linear-gradient(135deg,#f4f4f4,#bdbdbd);color:#080808;font-size:11px;font-weight:950;letter-spacing:.18em;text-decoration:none;cursor:not-allowed;opacity:.72}
+    .buy-note{margin:10px 0 0;color:#888;font-size:10px;line-height:1.55}
+    .description{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+    .description h2{margin:0 0 14px;font-size:11px;letter-spacing:.2em}
+    .description p{margin:0 0 12px;color:#b7b7b7;font-size:13px;line-height:1.8}
+    .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+    .feature{padding:13px;border:1px solid var(--line);background:#ffffff06}
+    .feature strong{display:block;margin-bottom:5px;font-size:9px;letter-spacing:.16em}
+    .feature span{color:#999;font-size:10px}
+    .bottom-note{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:#777;font-size:9px;letter-spacing:.16em;text-align:center}
+    body.imp-home-scroll-lines::before,body.imp-home-scroll-lines::after{transform:translate3d(var(--imp-scroll-x,0px),var(--imp-scroll-shift,0px),0);transition:transform .18s ease-out}
+    body.imp-home-scroll-lines>main,body.imp-home-scroll-lines>.site-footer{position:relative;z-index:1}
+    body.imp-home-scroll-lines>.site-header{position:relative;z-index:20}
+    .site-header.imp-christmas-header .header-inner{display:flex!important;align-items:center!important;justify-content:center!important;grid-template-columns:1fr!important}
+    .site-header.imp-christmas-header .wordmark{grid-column:1!important;justify-self:center!important;margin-inline:auto!important}
+    .site-header.imp-christmas-header .desktop-nav,.site-header.imp-christmas-header .header-actions,.site-header.imp-christmas-header .menu-toggle,.site-header.imp-christmas-header .mobile-menu,.site-header.imp-christmas-header .imp-christmas-snowbank,.site-header.imp-christmas-header .imp-christmas-tree,.site-header.imp-christmas-header .imp-christmas-santa,.site-header.imp-christmas-header .imp-christmas-snowman-photo{display:none!important}
+    @media(max-width:760px){.page-shell{padding:16px 15px 54px}.product-page-back{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}.main-photo{min-height:clamp(300px,88vw,460px)}.eyebrow{margin-bottom:11px}h1{font-size:clamp(34px,10vw,48px)}.edition{margin-bottom:18px}.price-line{padding-bottom:19px}.field-label{margin-top:20px}.options{gap:7px}.option{min-width:0;flex:1;padding:0 10px}}
+    @media(max-width:420px){.feature-list{grid-template-columns:1fr 1fr}.feature{padding:11px 9px}}
+    @media(max-width:650px){body.imp-home-scroll-lines::before{opacity:.25;background-size:76px 76px}body.imp-home-scroll-lines::after{opacity:.12}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}body.imp-home-scroll-lines::before,body.imp-home-scroll-lines::after{transform:none!important;transition:none!important}}
+  </style>
 </head>
 <body class="imp-home-scroll-lines">
-<header class="site-header imp-christmas-header"><div class="header-inner"><a class="wordmark" href="./" aria-label="IMP RECORDS, início"><span class="wordmark-flag-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP</span><span class="wordmark-flag wordmark-flag-go">IMP</span><span class="wordmark-flag wordmark-flag-sp">IMP</span></span><span class="wordmark-reg">®</span></a></div></header>
+<header class="site-header imp-christmas-header">
+  <div class="header-inner">
+    <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
+      <span class="wordmark-flag-stack" aria-hidden="true">
+        <span class="wordmark-flag wordmark-flag-ma">IMP</span>
+        <span class="wordmark-flag wordmark-flag-go">IMP</span>
+        <span class="wordmark-flag wordmark-flag-sp">IMP</span>
+      </span><span class="wordmark-reg">®</span>
+    </a>
+  </div>
+</header>
 <main class="page-shell">
-<div class="topbar"><a class="brand" href="./">IMP RECORDS®</a><a class="back-link" href="./?categoria=bones">← VOLTAR AOS BONÉS</a></div>
-<section class="product-layout" aria-label="Detalhes do produto">
-<div class="gallery"><div class="main-photo placeholder-image" role="img" aria-label="Imagem do boné será adicionada em breve"><span>IMP RECORDS<br>IMAGEM EM BREVE</span></div></div>
-<div class="details">
-<p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
-<h1>Boné Truck IMP RECORDS — Underground</h1>
-<p class="edition">MADE UNDERGROUND. BUILT INDEPENDENT.</p>
-<div class="price-line"><span class="price">R$ 125,90</span></div>
-<span class="field-label" id="style-label">ESCOLHA O ESTILO</span>
-<div class="options" role="group" aria-labelledby="style-label">
-<button class="option" type="button" data-style="Estilo 1" aria-pressed="true">ESTILO 1</button>
-<button class="option" type="button" data-style="Estilo 2" aria-pressed="false">ESTILO 2</button>
-</div>
-<span class="field-label" id="color-label">ESCOLHA A COR</span>
-<div class="options" role="group" aria-labelledby="color-label">
-<button class="option" type="button" data-color="Preto" aria-pressed="true">PRETO</button>
-<button class="option" type="button" data-color="Branco" aria-pressed="false">BRANCO</button>
-</div>
-<p class="selection-note" id="variant-summary" aria-live="polite">Selecionado: Estilo 1 · Preto</p>
-<button class="buy-button" type="button" disabled aria-disabled="true">COMPRA EM CONFIGURAÇÃO</button>
-<p class="buy-note">Você pode selecionar as variações do produto. O carrinho e a finalização de pagamento ainda serão integrados à loja.</p>
-<section class="description">
-<h2>DESCRIÇÃO DO PRODUTO</h2>
-<p><strong>BONÉ TRUCK IMP RECORDS — UNDERGROUND</strong></p>
-<p>Mais que um acessório, uma identidade.</p>
-<p>O Boné Truck IMP RECORDS Underground carrega a essência da cultura underground, unindo atitude, autenticidade e estilo streetwear. Com design exclusivo, estrutura trucker e identidade visual IMP RECORDS, é feito para quem não segue tendências: cria o próprio caminho.</p>
-<p>Inspirado na cultura independente e na estética das ruas, representa a força de quem constrói sua própria história, sem precisar seguir padrões.</p>
-<p><strong>IMP RECORDS — MADE UNDERGROUND. BUILT INDEPENDENT.</strong></p>
-<div class="feature-list"><div class="feature"><strong>MODELO</strong><span>Trucker</span></div><div class="feature"><strong>VARIAÇÕES</strong><span>2 estilos · Preto e branco</span></div></div>
-</section>
-</div></section></main>
-<footer class="site-footer"><div class="footer-bottom"><span>© 2020/<span id="copyright-ano"></span> IMP RECORDS. Todos os direitos reservados.</span></div></footer>
-<script src="./assets/site-search.js" defer></script>
-<script>document.getElementById("copyright-ano").textContent=new Date().getFullYear();
+  <div class="product-page-back">
+    <a class="text-link category-back" href="./?categoria=bones">← VOLTAR AOS BONÉS</a>
+  </div>
+  <section class="product-layout" aria-label="Detalhes do produto">
+    <div class="gallery">
+      <div class="main-photo placeholder-image" role="img" aria-label="Imagem do boné será adicionada em breve">
+        <span>IMP RECORDS<br>IMAGEM EM BREVE</span>
+      </div>
+    </div>
+    <div class="details">
+      <p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
+      <h1>Boné Truck IMP RECORDS — Underground</h1>
+      <p class="edition">MADE UNDERGROUND. BUILT INDEPENDENT.</p>
+      <div class="price-line"><span class="price">R$ 125,90</span></div>
+      <span class="field-label" id="style-label">ESCOLHA O ESTILO</span>
+      <div class="options" role="group" aria-labelledby="style-label">
+        <button class="option" type="button" data-style="Estilo 1" aria-pressed="true">ESTILO 1</button>
+        <button class="option" type="button" data-style="Estilo 2" aria-pressed="false">ESTILO 2</button>
+      </div>
+      <span class="field-label" id="color-label">ESCOLHA A COR</span>
+      <div class="options" role="group" aria-labelledby="color-label">
+        <button class="option" type="button" data-color="Preto" aria-pressed="true">PRETO</button>
+        <button class="option" type="button" data-color="Branco" aria-pressed="false">BRANCO</button>
+      </div>
+      <p class="selection-note" id="variant-summary" aria-live="polite">Selecionado: Estilo 1 · Preto</p>
+      <button class="buy-button" type="button" disabled aria-disabled="true">COMPRA EM CONFIGURAÇÃO</button>
+      <p class="buy-note">A seleção de estilo e cor está disponível para visualização. O carrinho e a finalização de pagamento ainda serão integrados à loja.</p>
+      <section class="description">
+        <h2>DESCRIÇÃO DO PRODUTO</h2>
+        <p><strong>BONÉ TRUCK IMP RECORDS — UNDERGROUND</strong></p>
+        <p>Mais que um acessório, uma identidade.</p>
+        <p>O Boné Truck IMP RECORDS Underground carrega a essência da cultura underground, unindo atitude, autenticidade e estilo streetwear. Com design exclusivo, estrutura trucker e identidade visual IMP RECORDS, é feito para quem não segue tendências: cria o próprio caminho.</p>
+        <p>Inspirado na cultura independente e na estética das ruas, representa a força de quem constrói sua própria história, sem precisar seguir padrões.</p>
+        <p><strong>IMP RECORDS — MADE UNDERGROUND. BUILT INDEPENDENT.</strong></p>
+        <div class="feature-list">
+          <div class="feature"><strong>MODELO</strong><span>Trucker</span></div>
+          <div class="feature"><strong>VARIAÇÕES</strong><span>2 estilos · Preto e branco</span></div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <p class="bottom-note">IMP RECORDS — MADE UNDERGROUND. BUILT INDEPENDENT.</p>
+</main>
+<footer class="site-footer">
+  <div class="footer-top">
+    <div>
+      <a class="footer-logo wordmark" href="./" aria-label="IMP Records"><span class="wordmark-flag-stack footer-flag-stack footer-fullname-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-go">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-sp">IMP RECORDS</span></span><span class="wordmark-reg">®</span></a>
+      <p>Feito para quem vive a própria frequência.</p>
+    </div>
+    <nav class="footer-links" aria-label="Links do rodapé">
+      <a href="./?categoria=vestuario">Vestuário</a>
+      <a href="./?categoria=bones">Bonés</a>
+      <a href="./?categoria=presets">Produtos Digitais</a>
+      <a href="./?categoria=galeria">Galeria</a>
+      <a href="./?categoria=manifesto">Nossa História</a>
+      <a href="./#bag">Carrinho</a>
+    </nav>
+    <div class="newsletter">
+      <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
+      <p>Acompanhe os lançamentos da IMP.</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/imp_records" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a href="https://www.youtube.com/@imp_records" target="_blank" rel="noopener noreferrer">YouTube ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2020/<span id="copyright-ano"></span> IMP RECORDS. Todos os direitos reservados.</span></div>
+</footer>
+<script>
+document.getElementById("copyright-ano").textContent=new Date().getFullYear();
 (()=>{let style="Estilo 1",color="Preto";const summary=document.getElementById("variant-summary");function update(){summary.textContent="Selecionado: "+style+" · "+color;}document.querySelectorAll("[data-style]").forEach(b=>b.addEventListener("click",()=>{style=b.dataset.style;document.querySelectorAll("[data-style]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update();}));document.querySelectorAll("[data-color]").forEach(b=>b.addEventListener("click",()=>{color=b.dataset.color;document.querySelectorAll("[data-color]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update();}));})();
 </script>
-</body></html>
+<script id="imp-product-depth-lines-controller">
+(()=>{const body=document.body;const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");if(!body||reducedMotion.matches)return;let frame=0,pointerX=0;const update=()=>{body.style.setProperty("--imp-scroll-shift",(-window.scrollY*.12)+"px");body.style.setProperty("--imp-scroll-x",(pointerX*10)+"px");frame=0;};const schedule=()=>{if(!frame)frame=requestAnimationFrame(update);};const move=clientX=>{pointerX=(clientX/Math.max(window.innerWidth,1)-.5)*2;schedule();};window.addEventListener("scroll",schedule,{passive:true});window.addEventListener("pointermove",event=>{if(event.pointerType==="mouse"||event.pointerType==="pen")move(event.clientX);},{passive:true});window.addEventListener("touchmove",event=>{if(event.touches.length)move(event.touches[0].clientX);},{passive:true});update();})();
+</script>
+<script src="./assets/site-search.js" defer></script>
+</body>
+</html>

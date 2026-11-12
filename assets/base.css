@@ -746,3 +746,42 @@ html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
   .site-footer .footer-contact-field input,
   .site-footer .footer-contact-field textarea{font-size:12px}
 }
+
+
+/* IMP RECORDS — botão que abre o card de contato no rodapé */
+.site-footer .footer-contact-toggle {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:40px;
+  margin:0 auto 24px;
+  padding:0 22px;
+  border:1px solid rgba(255,255,255,.38);
+  border-radius:0;
+  background:transparent;
+  color:#f2f2f2;
+  font:800 9px/1.2 var(--font-body,inherit);
+  letter-spacing:.16em;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+}
+.site-footer .footer-contact-toggle:hover,
+.site-footer .footer-contact-toggle:focus-visible {
+  border-color:#fff;
+  background:#fff;
+  color:#080808;
+  outline:none;
+}
+.site-footer .footer-contact[hidden] { display:none !important; }
+.site-footer .footer-contact:not([hidden]) { animation:impContactReveal .32s ease both; }
+@keyframes impContactReveal {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@media(max-width:650px) {
+  .site-footer .footer-contact-toggle { min-height:38px; margin-bottom:21px; padding:0 18px; font-size:8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .site-footer .footer-contact:not([hidden]) { animation:none; }
+  .site-footer .footer-contact-toggle { transition:none; }
+}

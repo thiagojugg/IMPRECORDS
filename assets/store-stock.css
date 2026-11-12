@@ -1,0 +1,43 @@
+/* Indicadores de disponibilidade do estoque IMP RECORDS. */
+.store-stock-badge,
+.store-stock-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 10px 0 0;
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.72);
+  background: rgba(255,255,255,.035);
+  font: 800 9px/1.35 var(--font-display, inherit);
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.store-stock-badge.is-available,
+.store-stock-status.is-available {
+  border-color: rgba(255,255,255,.42);
+  color: #fff;
+}
+.store-stock-badge.is-unavailable,
+.store-stock-status.is-unavailable {
+  color: rgba(255,255,255,.48);
+}
+.store-stock-badge.is-loading,
+.store-stock-status.is-loading {
+  opacity: .65;
+}
+.size-option:disabled,
+.product-detail .option:disabled {
+  opacity: .32 !important;
+  cursor: not-allowed !important;
+  filter: grayscale(1);
+  text-decoration: line-through;
+}
+.store-stock-status {
+  display: flex;
+  width: fit-content;
+  margin: 12px 0;
+  font-size: 10px;
+}

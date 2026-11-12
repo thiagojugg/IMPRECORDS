@@ -6,6 +6,10 @@
   trigger.className="imp-site-search-trigger";trigger.type="button";trigger.setAttribute("aria-label","Pesquisar produtos e artistas");trigger.title="Pesquisar";
   trigger.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   header.prepend(trigger);
+  const cart=document.createElement("a");
+  cart.className="imp-site-cart-trigger";cart.href="./?categoria=bag";cart.setAttribute("aria-label","Abrir sacola de compras");cart.title="Sacola de compras";
+  cart.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4.5h2l2.1 10.2a2 2 0 0 0 2 1.6h8.1a2 2 0 0 0 2-1.6L21 8H6.2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20" r="1.2" fill="currentColor"/><circle cx="18" cy="20" r="1.2" fill="currentColor"/></svg>';
+  header.appendChild(cart);
   const overlay=document.createElement("div");overlay.className="imp-search-overlay";overlay.id="imp-site-search";overlay.setAttribute("aria-hidden","true");
   overlay.innerHTML='<section class="imp-search-panel" role="dialog" aria-modal="true" aria-labelledby="imp-search-title"><div class="imp-search-top"><strong id="imp-search-title">PESQUISA IMP RECORDS</strong><button class="imp-search-close" type="button" aria-label="Fechar pesquisa">×</button></div><label class="imp-search-input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><input class="imp-search-input" type="search" placeholder="Pesquise produtos ou artistas..." autocomplete="off"></label><p class="imp-search-hint">PESQUISE POR NOME DE PRODUTO OU ARTISTA</p><div class="imp-search-results"><p class="imp-search-empty">Digite para começar a pesquisar.</p></div></section>';
   document.body.appendChild(overlay);

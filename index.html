@@ -5100,6 +5100,22 @@
       "programas":"PROGRAMAS","livraria":"LIVRARIA"
     };
     function selectCategory(category) {
+      const selectedButton = buttons.find(button => button.dataset.digitalFilter === category);
+      const isAlreadySelected = selectedButton && selectedButton.classList.contains("is-active");
+
+      /* Clicar novamente na categoria ativa recolhe os produtos. */
+      if (isAlreadySelected) {
+        buttons.forEach(button => {
+          button.classList.remove("is-active");
+          button.setAttribute("aria-pressed","false");
+        });
+        cards.forEach(card => { card.hidden = true; });
+        grid.hidden = true;
+        empty.classList.remove("is-visible");
+        if (heading) heading.textContent = "PRODUÇÃO DIGITAL";
+        return;
+      }
+
       buttons.forEach(button => {
         const active = button.dataset.digitalFilter === category;
         button.classList.toggle("is-active",active);

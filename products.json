@@ -75,6 +75,23 @@
         }
       ],
       "allowBackorders": false
+    },
+    {
+      "id": "kingdom-808",
+      "name": "KINGDOM 808",
+      "description": "KINGDOM 808 é um preset de 808 desenvolvido para produtores que buscam adicionar graves marcantes, presença e impacto às suas produções. Criado com recursos e plugins nativos do FL Studio, oferece um ponto de partida prático para trabalhar o peso e a identidade do grave em seus beats. Ajuste os parâmetros de acordo com o estilo e a mixagem de cada projeto. Produto digital nativo; requer FL Studio.",
+      "priceInCents": 2490,
+      "requiresShipping": false,
+      "images": [
+        "assets/assets/preset-gabriel.png"
+      ],
+      "variants": [
+        {
+          "title": "Default Title",
+          "stock": 0
+        }
+      ],
+      "allowBackorders": false
     }
   ]
 }

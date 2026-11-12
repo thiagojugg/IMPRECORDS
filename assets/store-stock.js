@@ -98,7 +98,6 @@
     }
 
     if (productId === "bone-truck-imp-records-underground") {
-      const selected = selector => document.querySelector(selector + '[aria-pressed="true"]')?.getAttribute(selector.slice(1, -1).split("=")[0].replace("data-", "")) || "";
       const styleButtons = [...document.querySelectorAll("[data-style]")];
       const colorButtons = [...document.querySelectorAll("[data-color]")];
 

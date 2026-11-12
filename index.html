@@ -2681,6 +2681,88 @@
 </style>
 
 
+
+  <style id="imp-bones-two-column-cards">
+    /* Bonés: mesma grade compacta de duas colunas usada nos presets no celular. */
+    @media (max-width: 650px) {
+      #bones .bones-products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 10px;
+        width: 100%;
+        align-items: start;
+      }
+      #bones .bones-products-grid .product-card {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex: initial;
+        padding: 6px 6px 9px;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.15),
+          0 5px 12px rgba(0,0,0,.38),
+          0 12px 22px rgba(0,0,0,.24);
+      }
+      #bones .bones-products-grid .product-card-link {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      #bones .bones-products-grid .product-image {
+        width: 100%;
+        flex: 0 0 auto;
+        aspect-ratio: 1 / 1;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      #bones .bones-products-grid .product-image > span:first-child {
+        font-size: 8px;
+        letter-spacing: .12em;
+        text-align: center;
+      }
+      #bones .bones-products-grid .quick-arrow {
+        right: 7px;
+        bottom: 7px;
+        width: 27px;
+        height: 27px;
+      }
+      #bones .bones-products-grid .product-meta {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 3px 1px;
+      }
+      #bones .bones-products-grid .product-meta > div {
+        min-height: 42px;
+      }
+      #bones .bones-products-grid .product-vendor {
+        gap: 5px;
+        margin-bottom: 5px;
+        font-size: 7px;
+        letter-spacing: .13em;
+      }
+      #bones .bones-products-grid .product-vendor::before {
+        width: 10px;
+      }
+      #bones .bones-products-grid .product-title {
+        font-size: clamp(11px, 3.1vw, 14px);
+        line-height: 1.08;
+        letter-spacing: -.025em;
+      }
+      #bones .bones-products-grid .product-price {
+        align-self: flex-start;
+        font-size: clamp(12px, 3.4vw, 15px);
+        padding: 7px 8px;
+        gap: 3px;
+      }
+    }
+  </style>
+
   <style id="imp-digital-product-cards">
     /* Os dois presets recebem o mesmo acabamento premium dos cards de vestuário. */
     #presets .digital-products-grid .product-card {

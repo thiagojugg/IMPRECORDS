@@ -1,5 +1,7 @@
 (() => {
   const zone = "America/Sao_Paulo";
+  // Ativação manual temporária para teste visual do tema natalino.
+  const TEST_MODE = true;
   const updateChristmasSeason = () => {
     const parts = new Intl.DateTimeFormat("en-US", {
       timeZone: zone, month: "numeric", day: "numeric", hour: "numeric", hourCycle: "h23"
@@ -9,7 +11,7 @@
     const hour = Number(parts.find(part => part.type === "hour")?.value);
     const afterStart = month > 11 || (month === 11 && (day > 25 || (day === 25 && hour >= 12)));
     const beforeEnd = month === 1 && day === 1 && hour < 12;
-    document.documentElement.classList.toggle("imp-christmas-season-active", afterStart || beforeEnd);
+    document.documentElement.classList.toggle("imp-christmas-season-active", TEST_MODE || afterStart || beforeEnd);
   };
   updateChristmasSeason();
   window.setInterval(updateChristmasSeason, 15000);

@@ -3678,6 +3678,7 @@
     (() => {
         const categorias = {
     "vestuario": "VESTUÁRIO",
+    "bones": "BONÉS",
     "presets": "PRODUTOS DIGITAIS",
     "galeria": "GALERIA",
     "manifesto": "NOSSA HISTÓRIA",
@@ -3738,7 +3739,7 @@
 
     /* Na página inicial, mantém o catálogo fora da vitrine; ele continua acessível pelas categorias. */
     if (!new URLSearchParams(window.location.search).has("categoria")) {
-      ["vestuario", "presets"].forEach(id => {
+      ["vestuario", "bones", "presets"].forEach(id => {
         const secaoProdutos = document.getElementById(id);
         if (secaoProdutos) secaoProdutos.hidden = true;
       });

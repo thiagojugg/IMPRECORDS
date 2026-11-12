@@ -166,7 +166,8 @@
     </div>
   </div>
   
-    <section class="footer-contact" aria-labelledby="footer-contact-title">
+    <button type="button" class="footer-contact-toggle" aria-expanded="false" aria-controls="footer-contact-card">FALE COM A IMP RECORDS</button>
+    <section class="footer-contact" id="footer-contact-card" hidden aria-labelledby="footer-contact-title">
       <p class="eyebrow">CONTATO</p>
       <h2 id="footer-contact-title">FALE COM A IMP RECORDS</h2>
       <p class="footer-contact-copy">Envie sua mensagem. Nossa equipe receberá no e-mail oficial da IMP.</p>
@@ -180,6 +181,19 @@
         <button type="submit" class="footer-contact-submit">ENVIAR MENSAGEM</button>
       </form>
     </section>
+    <script>
+      (() => {
+        const button = document.querySelector(".footer-contact-toggle");
+        const card = document.getElementById("footer-contact-card");
+        if (!button || !card) return;
+        button.addEventListener("click", () => {
+          const willOpen = card.hidden;
+          card.hidden = !willOpen;
+          button.setAttribute("aria-expanded", String(willOpen));
+          if (willOpen) card.querySelector('input[name="name"]')?.focus({ preventScroll: true });
+        });
+      })();
+    </script>
 
   <div class="footer-bottom"><span>© 2020/<span id="copyright-ano"></span> IMP RECORDS. Todos os direitos reservados.</span></div>
 </footer>

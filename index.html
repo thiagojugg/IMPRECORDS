@@ -5502,3 +5502,101 @@ html:not(.imp-christmas-season-active) .site-header.imp-christmas-header .imp-ch
   .digital-intro-callout > p:last-child { font-size:12px; line-height:1.6; }
 }
 </style>
+
+
+  <style id="imp-clothing-two-column-mobile">
+    /* A grade de camisetas usa no mobile a mesma proporção compacta dos presets. */
+    @media (max-width: 650px) {
+      #vestuario .camisetas-carousel {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 10px;
+        width: 100%;
+        padding: 0 0 18px;
+        overflow: visible;
+        scroll-snap-type: none;
+      }
+      #vestuario .camisetas-carousel .product-card {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex: initial;
+        padding: 6px 6px 9px;
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 3px;
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(255,255,255,.105), transparent 54%),
+          linear-gradient(145deg, #202020 0%, #101010 48%, #080808 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.15),
+          0 5px 12px rgba(0,0,0,.38),
+          0 12px 22px rgba(0,0,0,.24);
+      }
+      #vestuario .camisetas-carousel .product-card-link {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        color: #fff;
+        text-decoration: none;
+      }
+      #vestuario .camisetas-carousel .product-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        overflow: hidden;
+      }
+      #vestuario .camisetas-carousel .product-image-track {
+        width: 100%;
+        height: 100%;
+      }
+      #vestuario .camisetas-carousel .product-image-track img {
+        width: 100%;
+        height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      #vestuario .camisetas-carousel .product-meta {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 8px;
+        padding: 10px 3px 1px;
+      }
+      #vestuario .camisetas-carousel .product-vendor {
+        gap: 5px;
+        margin-bottom: 5px;
+        font-size: 7px;
+        letter-spacing: .13em;
+      }
+      #vestuario .camisetas-carousel .product-vendor::before {
+        width: 10px;
+      }
+      #vestuario .camisetas-carousel .product-title {
+        font-size: clamp(11px, 3.1vw, 14px);
+        line-height: 1.08;
+        letter-spacing: -.025em;
+      }
+      #vestuario .camisetas-carousel .product-price-wrap {
+        align-items: flex-start;
+        gap: 3px;
+      }
+      #vestuario .camisetas-carousel .product-price-old {
+        font-size: 9px;
+      }
+      #vestuario .camisetas-carousel .product-price-wrap .product-price {
+        font-size: clamp(12px, 3.4vw, 15px);
+        padding: 7px 8px;
+      }
+      #vestuario .camisetas-carousel .gallery-hint {
+        display: none;
+      }
+    }
+  </style>

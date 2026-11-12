@@ -1,0 +1,45 @@
+/* IMP RECORDS — tela de carregamento minimalista */
+#imp-loading-screen{
+  position:fixed;inset:0;z-index:100000;
+  display:grid;place-items:center;
+  width:100%;height:100%;height:100dvh;
+  overflow:hidden;background:#090909;
+  opacity:1;visibility:visible;
+  transition:opacity .65s ease,visibility .65s ease;
+}
+#imp-loading-screen.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+#imp-loading-screen .imp-loading-logo{
+  position:relative;display:block;
+  width:max-content;max-width:88vw;
+  font-family:var(--font-display,'Archivo Black',Impact,sans-serif);
+  font-size:clamp(76px,16vw,150px);
+  font-weight:900;line-height:.82;letter-spacing:-.105em;
+  color:#f5f5f2;isolation:isolate;
+}
+#imp-loading-screen .imp-loading-flag{
+  position:absolute;inset:0;display:block;
+  color:transparent;-webkit-text-fill-color:transparent;
+  background-repeat:no-repeat;background-size:230% 100%;background-position:-130% 50%;
+  background-clip:text;-webkit-background-clip:text;
+  opacity:0;will-change:background-position,opacity;
+  animation:impLoadingFlagPass 5s cubic-bezier(.45,0,.25,1) infinite;
+}
+#imp-loading-screen .imp-loading-flag:nth-child(1){background-image:url('./flag-maranhao.svg');animation-delay:0s}
+#imp-loading-screen .imp-loading-flag:nth-child(2){background-image:url('./flag-goias.svg');animation-delay:1.25s}
+#imp-loading-screen .imp-loading-flag:nth-child(3){background-image:url('./flag-sao-paulo.svg');animation-delay:2.5s}
+#imp-loading-screen .imp-loading-flag:nth-child(4){background-image:url('./flag-brasil.svg');animation-delay:3.75s}
+@keyframes impLoadingFlagPass{
+  0%,4%{opacity:0;background-position:-130% 50%}
+  10%{opacity:1}
+  22%{opacity:1;background-position:130% 50%}
+  27%,100%{opacity:0;background-position:230% 50%}
+}
+@media(max-width:650px){
+  #imp-loading-screen .imp-loading-logo{font-size:clamp(68px,20vw,108px)}
+}
+@media(prefers-reduced-motion:reduce){
+  #imp-loading-screen{transition:none}
+  #imp-loading-screen .imp-loading-flag{animation:none!important}
+  #imp-loading-screen .imp-loading-flag:nth-child(1){opacity:1;background-position:50% 50%}
+  #imp-loading-screen .imp-loading-flag:nth-child(n+2){opacity:0}
+}

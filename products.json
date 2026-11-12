@@ -92,6 +92,39 @@
         }
       ],
       "allowBackorders": false
+    },
+    {
+      "id": "bone-truck-imp-records-underground",
+      "name": "Boné Truck IMP RECORDS — Underground",
+      "description": "Mais que um acessório, uma identidade. O Boné Truck IMP RECORDS Underground carrega a essência da cultura underground, unindo atitude, autenticidade e estilo streetwear. Com design exclusivo, estrutura trucker e identidade visual IMP RECORDS, é feito para quem não segue tendências: cria o próprio caminho. Inspirado na cultura independente e na estética das ruas, representa a força de quem constrói sua própria história, sem precisar seguir padrões. IMP RECORDS — MADE UNDERGROUND. BUILT INDEPENDENT.",
+      "priceInCents": 12590,
+      "requiresShipping": true,
+      "images": [
+        "assets/bones-1.png"
+      ],
+      "variants": [
+        {
+          "style": "Estilo 1",
+          "color": "Preto",
+          "stock": 0
+        },
+        {
+          "style": "Estilo 1",
+          "color": "Branco",
+          "stock": 0
+        },
+        {
+          "style": "Estilo 2",
+          "color": "Preto",
+          "stock": 0
+        },
+        {
+          "style": "Estilo 2",
+          "color": "Branco",
+          "stock": 0
+        }
+      ],
+      "allowBackorders": false
     }
   ]
 }

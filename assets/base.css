@@ -656,3 +656,93 @@ html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
   .site-footer .footer-contact-field textarea,
   .site-footer .footer-contact-submit{transition:none}
 }
+
+ 
+/* IMP RECORDS — contato minimalista integrado ao rodapé */
+.site-footer .footer-contact{
+  width:min(100%,470px);
+  margin:0 auto 30px;
+  padding:0;
+  border:0;
+  background:none;
+  text-align:center;
+}
+.site-footer .footer-contact>.eyebrow{
+  margin:0 0 8px;
+  color:rgba(255,255,255,.42);
+  font-size:8px;
+  letter-spacing:.2em;
+}
+.site-footer .footer-contact h2{
+  font-size:clamp(16px,2.4vw,21px);
+  font-weight:700;
+  letter-spacing:.07em;
+}
+.site-footer .footer-contact-copy{
+  margin:8px 0 18px;
+  color:rgba(255,255,255,.45);
+  font-size:11px;
+  line-height:1.6;
+}
+.site-footer .footer-contact-form{
+  gap:10px;
+  text-align:left;
+}
+.site-footer .footer-contact-field{
+  gap:4px;
+  color:rgba(255,255,255,.45);
+  font-size:8px;
+  letter-spacing:.12em;
+}
+.site-footer .footer-contact-field input,
+.site-footer .footer-contact-field textarea{
+  min-height:39px;
+  padding:9px 0;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.18);
+  background:transparent;
+  color:#f5f5f5;
+  font-size:12px;
+  transition:border-color .2s ease;
+}
+.site-footer .footer-contact-field textarea{
+  min-height:76px;
+  resize:vertical;
+}
+.site-footer .footer-contact-field input:focus,
+.site-footer .footer-contact-field textarea:focus{
+  border-bottom-color:rgba(255,255,255,.72);
+  background:transparent;
+}
+.site-footer .footer-contact-field input::placeholder,
+.site-footer .footer-contact-field textarea::placeholder{
+  color:rgba(255,255,255,.28);
+}
+.site-footer .footer-contact-submit{
+  justify-self:center;
+  min-height:38px;
+  margin-top:5px;
+  padding:0 22px;
+  border:1px solid rgba(255,255,255,.36);
+  background:transparent;
+  color:#f2f2f2;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.17em;
+}
+.site-footer .footer-contact-submit:hover{
+  transform:none;
+  border-color:#fff;
+  background:#fff;
+  color:#080808;
+}
+@media(max-width:650px){
+  .site-footer .footer-contact{
+    width:min(100%,470px);
+    margin-bottom:25px;
+    padding:0 2px;
+  }
+  .site-footer .footer-contact-copy{font-size:10px}
+  .site-footer .footer-contact-field input,
+  .site-footer .footer-contact-field textarea{font-size:12px}
+}

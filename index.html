@@ -2654,10 +2654,19 @@
         flex: 0 0 auto;
         aspect-ratio: 1 / 1;
       }
+      #presets .digital-products-grid .product-image {
+        box-sizing: border-box;
+        overflow: hidden;
+      }
       #presets .digital-products-grid .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        max-width: 100%;
+        object-fit: contain !important;
+        object-position: center center !important;
+        transform: none;
       }
       #presets .digital-products-grid .product-badge {
         top: 7px;

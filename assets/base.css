@@ -540,3 +540,119 @@ html.imp-cinematic-scroll-ready .imp-cinematic-scroll-reveal.is-visible {
     will-change: auto !important;
   }
 }
+
+ 
+/* IMP RECORDS — formulário de contato no rodapé */
+.site-footer .footer-contact{
+  position:relative;
+  display:block!important;
+  width:min(100%,560px);
+  margin:0 auto 34px;
+  padding:30px 26px;
+  border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  text-align:left;
+}
+.site-footer .footer-contact>.eyebrow{
+  margin:0 0 10px;
+  color:rgba(255,255,255,.52);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.22em;
+}
+.site-footer .footer-contact h2{
+  margin:0;
+  color:#f5f5f5;
+  font-family:var(--font-display,inherit);
+  font-size:clamp(19px,3vw,27px);
+  font-weight:800;
+  letter-spacing:.035em;
+  line-height:1.2;
+}
+.site-footer .footer-contact-copy{
+  margin:11px 0 22px;
+  color:rgba(255,255,255,.58);
+  font-size:12px;
+  line-height:1.7;
+}
+.site-footer .footer-contact-form{
+  display:grid;
+  gap:14px;
+}
+.site-footer .footer-contact-field{
+  display:grid;
+  gap:7px;
+  color:rgba(255,255,255,.72);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.site-footer .footer-contact-field input,
+.site-footer .footer-contact-field textarea{
+  box-sizing:border-box;
+  width:100%;
+  min-height:45px;
+  padding:12px 13px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:0;
+  outline:none;
+  background:#0b0b0b;
+  color:#f5f5f5;
+  font:500 12px/1.5 inherit;
+  letter-spacing:normal;
+  text-transform:none;
+  transition:border-color .2s ease,background .2s ease;
+}
+.site-footer .footer-contact-field textarea{
+  min-height:112px;
+  resize:vertical;
+}
+.site-footer .footer-contact-field input::placeholder,
+.site-footer .footer-contact-field textarea::placeholder{
+  color:rgba(255,255,255,.32);
+}
+.site-footer .footer-contact-field input:focus,
+.site-footer .footer-contact-field textarea:focus{
+  border-color:rgba(255,255,255,.62);
+  background:#101010;
+}
+.site-footer .footer-contact-submit{
+  min-height:46px;
+  padding:0 18px;
+  border:1px solid #eee;
+  border-radius:0;
+  background:#eee;
+  color:#080808;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.16em;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,transform .2s ease;
+}
+.site-footer .footer-contact-submit:hover{
+  transform:translateY(-2px);
+  background:transparent;
+  color:#fff;
+}
+.site-footer .footer-contact-honey{
+  position:absolute!important;
+  left:-10000px!important;
+  width:1px!important;
+  height:1px!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+@media(max-width:650px){
+  .site-footer .footer-contact{
+    width:100%;
+    margin-bottom:26px;
+    padding:23px 17px;
+  }
+  .site-footer .footer-contact-copy{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-footer .footer-contact-field input,
+  .site-footer .footer-contact-field textarea,
+  .site-footer .footer-contact-submit{transition:none}
+}

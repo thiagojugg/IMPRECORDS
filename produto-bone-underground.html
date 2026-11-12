@@ -23,6 +23,14 @@
     .product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(28px,5vw,76px);align-items:start;padding-top:42px}
     .gallery{min-width:0}
     .main-photo{position:relative;display:grid;place-items:center;min-height:520px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#303030,#111 62%,#090909);box-shadow:0 24px 65px #0009}
+    .main-photo img{display:block;width:100%;height:auto;max-height:760px;aspect-ratio:4/5;object-fit:contain}
+    .photo-count{position:absolute;right:14px;bottom:14px;padding:8px 11px;background:#000b;border:1px solid #ffffff30;font-size:9px;letter-spacing:.14em}
+    .variant-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-top:12px}
+    .variant-tab{position:relative;min-width:0;padding:0;overflow:hidden;border:1px solid var(--line);background:#111;cursor:pointer;opacity:.72;transition:opacity .2s,border-color .2s}
+    .variant-tab[aria-pressed="true"],.variant-tab:hover{opacity:1;border-color:#eee}
+    .variant-tab img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+    .variant-tab span{display:block;padding:8px 3px;color:#ddd;font-size:8px;font-weight:800;letter-spacing:.08em;text-align:center}
+    .variant-tab[aria-pressed="true"] span{color:#fff}
     .placeholder-image span{color:#aaa;font-size:11px;font-weight:900;letter-spacing:.2em;line-height:1.8;text-align:center}
     .details{position:sticky;top:24px;padding-top:8px}
     .eyebrow{margin:0 0 14px;color:#aaa;font-size:10px;font-weight:800;letter-spacing:.24em}
@@ -52,7 +60,7 @@
     .site-header.imp-christmas-header .header-inner{display:flex!important;align-items:center!important;justify-content:center!important;grid-template-columns:1fr!important}
     .site-header.imp-christmas-header .wordmark{grid-column:1!important;justify-self:center!important;margin-inline:auto!important}
     .site-header.imp-christmas-header .desktop-nav,.site-header.imp-christmas-header .header-actions,.site-header.imp-christmas-header .menu-toggle,.site-header.imp-christmas-header .mobile-menu,.site-header.imp-christmas-header .imp-christmas-snowbank,.site-header.imp-christmas-header .imp-christmas-tree,.site-header.imp-christmas-header .imp-christmas-santa,.site-header.imp-christmas-header .imp-christmas-snowman-photo{display:none!important}
-    @media(max-width:760px){.page-shell{padding:16px 15px 54px}.product-page-back{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}.main-photo{min-height:clamp(300px,88vw,460px)}.eyebrow{margin-bottom:11px}h1{font-size:clamp(34px,10vw,48px)}.edition{margin-bottom:18px}.price-line{padding-bottom:19px}.field-label{margin-top:20px}.options{gap:7px}.option{min-width:0;flex:1;padding:0 10px}}
+    @media(max-width:760px){.page-shell{padding:16px 15px 54px}.product-page-back{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}.main-photo{min-height:clamp(300px,88vw,460px)}.main-photo img{max-height:none}.variant-tabs{gap:5px}.variant-tab span{font-size:7px;padding:7px 2px}.eyebrow{margin-bottom:11px}h1{font-size:clamp(34px,10vw,48px)}.edition{margin-bottom:18px}.price-line{padding-bottom:19px}.field-label{margin-top:20px}.options{gap:7px}.option{min-width:0;flex:1;padding:0 10px}}
     @media(max-width:420px){.feature-list{grid-template-columns:1fr 1fr}.feature{padding:11px 9px}}
     @media(max-width:650px){body.imp-home-scroll-lines::before{opacity:.25;background-size:76px 76px}body.imp-home-scroll-lines::after{opacity:.12}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}body.imp-home-scroll-lines::before,body.imp-home-scroll-lines::after{transform:none!important;transition:none!important}}
@@ -141,7 +149,33 @@
 </footer>
 <script>
 document.getElementById("copyright-ano").textContent=new Date().getFullYear();
-(()=>{let style="Estilo 1",color="Preto";const summary=document.getElementById("variant-summary");function update(){summary.textContent="Selecionado: "+style+" · "+color;}document.querySelectorAll("[data-style]").forEach(b=>b.addEventListener("click",()=>{style=b.dataset.style;document.querySelectorAll("[data-style]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update();}));document.querySelectorAll("[data-color]").forEach(b=>b.addEventListener("click",()=>{color=b.dataset.color;document.querySelectorAll("[data-color]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));update();}));})();
+(()=> {
+  const photos=[
+    {src:"./assets/539BAE4C-9B2E-4211-85EE-99C7632B00EB.jpeg",style:"Estilo 1",color:"Preto",alt:"Boné IMP RECORDS estilo 1 preto"},
+    {src:"./assets/8A71309B-59A0-459A-B1AE-873DE2CD0074.jpeg",style:"Estilo 1",color:"Branco",alt:"Boné IMP RECORDS estilo 1 branco"},
+    {src:"./assets/7170124F-E58A-4F04-A815-D27709D1B19E.jpeg",style:"Estilo 2",color:"Branco",alt:"Boné IMP RECORDS estilo 2 branco"},
+    {src:"./assets/assets/8FCF7960-F56E-45C8-AE74-7A2BCCEC1AAB.jpeg",style:"Estilo 2",color:"Preto",alt:"Boné IMP RECORDS estilo 2 preto"},
+    {src:"./assets/assets/B1B54396-E557-4D35-8A52-A49CE14693A9.jpeg",style:null,color:null,alt:"Painel com as variações do boné IMP RECORDS"}
+  ];
+  let style="Estilo 1",color="Preto",activePhoto=0;
+  const summary=document.getElementById("variant-summary"),main=document.getElementById("main-bone-image"),counter=document.getElementById("bone-photo-count");
+  const tabs=[...document.querySelectorAll("[data-photo]")];
+  function setPhoto(index,fromVariant=false){
+    activePhoto=index;const photo=photos[index];main.src=photo.src;main.alt=photo.alt;counter.textContent=String(index+1).padStart(2,"0")+" / 05";
+    tabs.forEach((tab,i)=>tab.setAttribute("aria-pressed",String(i===index)));
+    if(fromVariant&&photo.style){style=photo.style;color=photo.color;syncOptions();}
+  }
+  function syncOptions(){
+    document.querySelectorAll("[data-style]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.style===style)));
+    document.querySelectorAll("[data-color]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.color===color)));
+    summary.textContent="Selecionado: "+style+" · "+color;
+  }
+  function showSelectedPhoto(){const i=photos.findIndex(p=>p.style===style&&p.color===color);if(i>=0)setPhoto(i);}
+  document.querySelectorAll("[data-style]").forEach(b=>b.addEventListener("click",()=>{style=b.dataset.style;syncOptions();showSelectedPhoto();}));
+  document.querySelectorAll("[data-color]").forEach(b=>b.addEventListener("click",()=>{color=b.dataset.color;syncOptions();showSelectedPhoto();}));
+  tabs.forEach(tab=>tab.addEventListener("click",()=>setPhoto(Number(tab.dataset.photo),true)));
+  syncOptions();
+})();
 </script>
 <script id="imp-product-depth-lines-controller">
 (()=>{const body=document.body;const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");if(!body||reducedMotion.matches)return;let frame=0,pointerX=0;const update=()=>{body.style.setProperty("--imp-scroll-shift",(-window.scrollY*.12)+"px");body.style.setProperty("--imp-scroll-x",(pointerX*10)+"px");frame=0;};const schedule=()=>{if(!frame)frame=requestAnimationFrame(update);};const move=clientX=>{pointerX=(clientX/Math.max(window.innerWidth,1)-.5)*2;schedule();};window.addEventListener("scroll",schedule,{passive:true});window.addEventListener("pointermove",event=>{if(event.pointerType==="mouse"||event.pointerType==="pen")move(event.clientX);},{passive:true});window.addEventListener("touchmove",event=>{if(event.touches.length)move(event.touches[0].clientX);},{passive:true});update();})();

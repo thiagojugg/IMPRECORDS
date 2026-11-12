@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./assets/independent.css">
+  <title>KINGDOM 808 — IMP RECORDS</title>
+  <meta name="description" content="KINGDOM 808, desenvolvido com plugins nativos do FL Studio. Conheça os detalhes na IMP RECORDS.">
+  <style>
+    :root{color-scheme:dark;--bg:#080808;--panel:#111;--line:rgba(255,255,255,.16);--muted:#aaa;--white:#f5f5f5}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 50% 0%,#202020 0,#0b0b0b 42%,var(--bg) 78%);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit}
+    .page-shell{width:min(1240px,100%);margin:auto;padding:24px clamp(16px,4vw,54px) 80px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 0 28px;border-bottom:1px solid var(--line)}
+    .brand{font-size:14px;font-weight:900;letter-spacing:.24em;text-decoration:none}
+    .product-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(28px,5vw,76px);align-items:start;padding-top:42px}
+    .gallery{min-width:0}
+    .main-photo{position:relative;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 45%,#303030,#111 62%,#090909);box-shadow:0 24px 65px #0009}
+    .main-photo img{display:block;width:100%;height:auto;max-height:850px;object-fit:contain}
+    .photo-count{position:absolute;right:14px;bottom:14px;padding:8px 11px;background:#000b;border:1px solid #ffffff30;font-size:9px;letter-spacing:.14em}
+    .thumbnails{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+    .thumb{padding:0;border:1px solid var(--line);background:#111;cursor:pointer;overflow:hidden;opacity:.68;transition:opacity .2s,border-color .2s}
+    .thumb[aria-pressed="true"],.thumb:hover{opacity:1;border-color:#eee}
+    .thumb img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:contain}
+    .details{position:sticky;top:24px;padding-top:8px}
+    .eyebrow{margin:0 0 14px;color:#aaa;font-size:10px;font-weight:800;letter-spacing:.24em}
+    h1{margin:0;max-width:650px;font-size:clamp(32px,4vw,58px);font-weight:950;line-height:.94;letter-spacing:-.065em;text-transform:uppercase}
+    .edition{margin:13px 0 24px;color:#aaa;font-size:11px;letter-spacing:.16em}
+    .price-line{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .old-price{color:#777;font-size:15px;text-decoration:line-through}
+    .price{font-size:clamp(28px,3vw,38px);font-weight:950;letter-spacing:-.05em}
+    .price-note{width:100%;color:#929292;font-size:10px;letter-spacing:.08em}
+    .field-label{display:block;margin:24px 0 12px;font-size:10px;font-weight:800;letter-spacing:.2em}
+    .size-options{display:flex;gap:9px;flex-wrap:wrap}
+    .size-option{min-width:54px;height:48px;border:1px solid #ffffff35;background:#111;color:#fff;font-size:12px;font-weight:800;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+    .size-option:hover,.size-option[aria-pressed="true"]{background:#f1f1f1;color:#080808;border-color:#fff}
+    .size-help{margin:10px 0 0;color:#888;font-size:10px;line-height:1.5}
+    .buy-button{display:flex;align-items:center;justify-content:center;width:100%;min-height:58px;margin-top:26px;border:1px solid #eee;background:linear-gradient(135deg,#f4f4f4,#bdbdbd);color:#080808;font-size:11px;font-weight:950;letter-spacing:.18em;text-decoration:none;cursor:not-allowed;opacity:.72}
+    .buy-note{margin:10px 0 0;color:#888;font-size:10px;line-height:1.55}
+    .description{margin-top:34px;padding-top:24px;border-top:1px solid var(--line)}
+    .description h2{margin:0 0 14px;font-size:11px;letter-spacing:.2em}
+    .description p{margin:0;color:#b7b7b7;font-size:13px;line-height:1.8}
+    .feature-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+    .feature{padding:13px;border:1px solid var(--line);background:#ffffff06}
+    .feature strong{display:block;margin-bottom:5px;font-size:9px;letter-spacing:.16em}
+    .feature span{color:#999;font-size:10px}
+    .bottom-note{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);color:#777;font-size:9px;letter-spacing:.16em;text-align:center}
+    @media(max-width:760px){.page-shell{padding:16px 15px 54px}.topbar{padding-bottom:20px}.product-layout{grid-template-columns:1fr;gap:28px;padding-top:22px}.details{position:static;padding-top:0}.main-photo img{max-height:none}.thumbnails{gap:7px}.thumb img{aspect-ratio:4/5}.eyebrow{margin-bottom:11px}h1{font-size:clamp(34px,10vw,48px)}.edition{margin-bottom:18px}.price-line{padding-bottom:19px}.field-label{margin-top:20px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+
+    .photo-expand {
+      position:absolute;top:14px;right:14px;z-index:2;
+      display:inline-flex;align-items:center;gap:8px;
+      min-height:42px;padding:0 13px;border:1px solid #ffffff55;
+      background:#050505d9;color:#fff;font-size:9px;font-weight:800;
+      letter-spacing:.13em;cursor:pointer;backdrop-filter:blur(10px);
+      transition:background .2s,border-color .2s,transform .2s;
+    }
+    .photo-expand:hover { background:#fff;color:#080808;border-color:#fff;transform:translateY(-2px); }
+    .photo-expand svg { width:15px;height:15px; }
+    .photo-lightbox {
+      position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+      padding:clamp(16px,4vw,48px);background:rgba(0,0,0,.96);backdrop-filter:blur(16px);
+    }
+    .photo-lightbox.is-open { display:flex; }
+    .lightbox-image { display:block;max-width:min(100%,1400px);max-height:calc(100vh - 100px);width:auto;height:auto;object-fit:contain;box-shadow:0 25px 90px #000; }
+    .lightbox-close,.lightbox-nav {
+      position:absolute;display:grid;place-items:center;width:46px;height:46px;
+      border:1px solid #ffffff55;background:#101010d9;color:#fff;cursor:pointer;
+      font-size:22px;transition:background .2s,color .2s;
+    }
+    .lightbox-close:hover,.lightbox-nav:hover { background:#fff;color:#080808; }
+    .lightbox-close { top:18px;right:18px;font-size:26px; }
+    .lightbox-nav { top:50%;transform:translateY(-50%); }
+    .lightbox-prev { left:18px; }.lightbox-next { right:18px; }
+    .lightbox-counter { position:absolute;bottom:20px;left:50%;transform:translateX(-50%);padding:8px 12px;background:#080808d9;border:1px solid #ffffff35;color:#ddd;font-size:10px;letter-spacing:.16em; }
+    @media(max-width:600px) {
+      .photo-expand { top:9px;right:9px;min-height:38px;padding:0 10px;font-size:8px; }
+      .photo-lightbox { padding:56px 10px; }
+      .lightbox-image { max-width:100%;max-height:calc(100vh - 130px); }
+      .lightbox-close { top:10px;right:10px;width:40px;height:40px; }
+      .lightbox-prev { left:8px; }.lightbox-next { right:8px; }
+      .lightbox-nav { width:38px;height:38px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .photo-expand,.lightbox-close,.lightbox-nav { transition:none; }
+    }
+
+    /* Malha de linhas 3D da identidade visual, também ativa nesta página interna. */
+    body.imp-home-scroll-lines::before,
+    body.imp-home-scroll-lines::after {
+      transform: translate3d(var(--imp-scroll-x, 0px), var(--imp-scroll-shift, 0px), 0);
+      transition: transform .18s ease-out;
+    }
+    body.imp-home-scroll-lines > main,
+    body.imp-home-scroll-lines > .site-footer { position:relative; z-index:1; }
+    body.imp-home-scroll-lines > .site-header { position:relative; z-index:20; }
+    @media(max-width:650px) {
+      body.imp-home-scroll-lines::before { opacity:.25; background-size:76px 76px; }
+      body.imp-home-scroll-lines::after { opacity:.12; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      body.imp-home-scroll-lines::before,
+      body.imp-home-scroll-lines::after { transform:none !important; transition:none !important; }
+    }
+
+    /* Nesta página, mantém a alternância das três bandeiras mesmo com "reduzir movimento" ativo. */
+    @media (prefers-reduced-motion: reduce) {
+      .site-header .wordmark .wordmark-flag {
+        animation-name: impFlagCycle, impFlagWave !important;
+        animation-duration: 15s, 1.8s !important;
+        animation-timing-function: linear, ease-in-out !important;
+        animation-iteration-count: infinite, infinite !important;
+      }
+      .site-header .wordmark .wordmark-flag-ma { animation-delay: 0s, 0s !important; }
+      .site-header .wordmark .wordmark-flag-go { animation-delay: 5s, 0s !important; }
+      .site-header .wordmark .wordmark-flag-sp { animation-delay: 10s, 0s !important; }
+    }
+  </style>
+  <style id="imp-header-logo-only">
+    /* Mesmo cabeçalho da página principal: apenas a marca centralizada. */
+    .site-header.imp-christmas-header .header-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      grid-template-columns: 1fr !important;
+    }
+    .site-header.imp-christmas-header .wordmark {
+      grid-column: 1 !important;
+      justify-self: center !important;
+      margin-inline: auto !important;
+    }
+    .site-header.imp-christmas-header .desktop-nav,
+    .site-header.imp-christmas-header .header-actions,
+    .site-header.imp-christmas-header .menu-toggle,
+    .site-header.imp-christmas-header .mobile-menu,
+    .site-header.imp-christmas-header .imp-christmas-snowbank,
+    .site-header.imp-christmas-header .imp-christmas-tree,
+    .site-header.imp-christmas-header .imp-christmas-santa,
+    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="imp-home-scroll-lines">
+<header class="site-header imp-christmas-header">
+  <div class="header-inner">
+    <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
+      <span class="wordmark-flag-stack" aria-hidden="true">
+        <span class="wordmark-flag wordmark-flag-ma">IMP</span>
+        <span class="wordmark-flag wordmark-flag-go">IMP</span>
+        <span class="wordmark-flag wordmark-flag-sp">IMP</span>
+      </span><span class="wordmark-reg">®</span>
+    </a>
+  </div>
+</header>
+  <main class="page-shell">
+    <div class="topbar">
+      <a class="text-link category-back" href="./?categoria=presets">← VOLTAR À PRODUÇÃO DIGITAL</a>
+    </div>
+<section class="product-layout" aria-label="Detalhes do produto">
+      <div class="gallery">
+        <div class="main-photo">
+          <img id="main-product-image" src="./assets/assets/assets/preset-gabriel.png" alt="KINGDOM 808, foto 1">
+          <button class="photo-expand" id="photo-expand" type="button" aria-label="Expandir foto do produto" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            AMPLIAR FOTO
+          </button>
+          <span class="photo-count" id="photo-count">01 / 01</span>
+        </div>
+
+      </div>
+
+      <div class="details">
+        <p class="eyebrow">IMP RECORDS / PRODUÇÃO DIGITAL</p>
+        <h1>KINGDOM 808</h1>
+        <p class="edition">GABRIEL LEAL / 808 PRESET</p>
+
+        <div class="price-line">
+          <span class="price">R$ 24,90</span>
+          <span class="price-note">PRODUTO DIGITAL • PAGAMENTO E ENTREGA EM CONFIGURAÇÃO</span>
+        </div>
+
+        <span class="field-label">FORMATO DO PRODUTO</span>
+        <div class="feature-list" style="margin-top:0">
+          <div class="feature"><strong>COMPATIBILIDADE</strong><span>FL Studio</span></div>
+          <div class="feature"><strong>TIPO</strong><span>Preset 808 digital</span></div>
+          <div class="feature"><strong>PLUGINS</strong><span>Nativos do FL Studio</span></div>
+          <div class="feature"><strong>ENTREGA</strong><span>Arquivo digital por e-mail após a confirmação do pagamento</span></div>
+        </div>
+        <button class="buy-button" type="button" disabled aria-disabled="true">DISPONIBILIDADE EM BREVE</button>
+        <p class="buy-note">Este produto está cadastrado na loja, mas o estoque e a finalização do pagamento ainda estão sendo configurados.</p>
+
+        <section class="description">
+          <h2>SOBRE O PRESET</h2>
+          <p>KINGDOM 808 é um preset de 808 desenvolvido para produtores que buscam adicionar graves marcantes, presença e impacto às suas produções. Criado com recursos e plugins nativos do FL Studio, oferece um ponto de partida prático para trabalhar o peso e a identidade do grave em seus beats. Ajuste os parâmetros de acordo com o estilo e a mixagem de cada projeto. Produto digital nativo; requer FL Studio.</p>
+          <p style="margin-top:14px">Compatível com FL Studio. Desenvolvido com recursos e plugins nativos, sem necessidade de plugins de terceiros. Produto digital; o arquivo será disponibilizado após a confirmação do pagamento.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+<footer class="site-footer">
+    <div class="footer-top">
+      <div>
+        <a class="footer-logo wordmark" href="./" aria-label="IMP Records"><span class="wordmark-flag-stack footer-flag-stack footer-fullname-stack" aria-hidden="true"><span class="wordmark-flag wordmark-flag-ma">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-go">IMP RECORDS</span><span class="wordmark-flag wordmark-flag-sp">IMP RECORDS</span></span><span class="wordmark-reg">®</span></a>
+        <p>Feito para quem vive a própria frequência.</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Links do rodapé">
+        <a href="./?categoria=vestuario">Vestuário</a>
+        <a href="./?categoria=presets">Produtos Digitais</a>
+        <a href="./?categoria=galeria">Galeria</a>
+        
+        
+        <a href="./?categoria=manifesto">Nossa História</a>
+        <a href="./#bag">Carrinho</a>
+      </nav>
+
+      <div class="newsletter">
+        <p class="eyebrow">ENTRE NA FREQUÊNCIA</p>
+        <p>Acompanhe os lançamentos da IMP.</p>
+
+        <div class="footer-links">
+          <a
+            href="https://www.instagram.com/imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram ↗
+          </a>
+
+          <a
+            href="https://www.youtube.com/@imp_records"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>
+  © 2020/<span id="copyright-ano"></span> IMP RECORDS.
+  Todos os direitos reservados.
+</span>
+    </div>
+  </footer>
+  <div class="photo-lightbox" id="photo-lightbox" role="dialog" aria-modal="true" aria-label="Imagem ampliada do preset" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Fechar fotos ampliadas">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Foto anterior">‹</button>
+    <img class="lightbox-image" id="lightbox-image" src="./assets/assets/assets/preset-gabriel.png" alt="KINGDOM 808, foto 1">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Próxima foto">›</button>
+    <span class="lightbox-counter" id="lightbox-counter">01 / 01</span>
+  </div>
+  <script id="imp-product-depth-lines-controller">
+    (() => {
+      const body = document.body;
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      if (!body || reducedMotion.matches) return;
+      let frame = 0, pointerX = 0;
+      const update = () => {
+        body.style.setProperty("--imp-scroll-shift", (-window.scrollY * 0.12) + "px");
+        body.style.setProperty("--imp-scroll-x", (pointerX * 10) + "px");
+        frame = 0;
+      };
+      const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+      const move = clientX => { pointerX = (clientX / Math.max(window.innerWidth, 1) - .5) * 2; schedule(); };
+      window.addEventListener("scroll", schedule, { passive:true });
+      window.addEventListener("pointermove", event => { if (event.pointerType === "mouse" || event.pointerType === "pen") move(event.clientX); }, { passive:true });
+      window.addEventListener("touchmove", event => { if (event.touches.length) move(event.touches[0].clientX); }, { passive:true });
+      update();
+    })();
+  </script>
+  <script>
+    const yearNode = document.getElementById("copyright-ano");
+    if (yearNode) yearNode.textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    const mainImage = document.getElementById('main-product-image');
+    const photoCount = document.getElementById('photo-count');
+    const photoSources = [
+      './assets/assets/assets/preset-gabriel.png',
+      './assets/assets/assets/preset-gabriel.png',
+      './assets/assets/assets/preset-gabriel.png'
+    ];
+    const lightbox = document.getElementById('photo-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxCounter = document.getElementById('lightbox-counter');
+    const expandButton = document.getElementById('photo-expand');
+    const closeButton = document.getElementById('lightbox-close');
+    let currentPhoto = 0;
+    const setPhoto = (index) => {
+      currentPhoto = (index + photoSources.length) % photoSources.length;
+      const source = photoSources[currentPhoto];
+      const alt = 'KINGDOM 808, foto ' + String(currentPhoto + 1).padStart(2, '0');
+      mainImage.src = source;
+      mainImage.alt = alt;
+      photoCount.textContent = String(currentPhoto + 1).padStart(2, '0') + ' / 01';
+      lightboxImage.src = source;
+      lightboxImage.alt = alt;
+      lightboxCounter.textContent = String(currentPhoto + 1).padStart(2, '0') + ' / 01';
+    };
+    const openLightbox = () => {
+      setPhoto(currentPhoto);
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton.focus();
+    };
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      expandButton.focus();
+    };
+    expandButton.addEventListener('click', openLightbox);
+    closeButton.addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', () => setPhoto(currentPhoto - 1));
+    document.getElementById('lightbox-next').addEventListener('click', () => setPhoto(currentPhoto + 1));
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', event => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      if (event.key === 'ArrowLeft') setPhoto(currentPhoto - 1);
+      if (event.key === 'ArrowRight') setPhoto(currentPhoto + 1);
+    });
+    document.querySelectorAll('.size-option').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.size-option').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      });
+    });
+  </script>
+</body>
+</html>

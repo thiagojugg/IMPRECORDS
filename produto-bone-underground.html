@@ -74,6 +74,7 @@
 <link rel="stylesheet" href="./assets/imp-header-global.css">
   <link rel="stylesheet" href="./assets/imp-loading-screen.css">
   <script src="./assets/imp-loading-screen.js" defer></script>
+  <link rel="stylesheet" href="./assets/store-stock.css">
 </head>
 <body class="imp-home-scroll-lines">
 <div id="imp-loading-screen" aria-hidden="true">
@@ -214,5 +215,6 @@ document.getElementById("copyright-ano").textContent=new Date().getFullYear();
 (()=>{const body=document.body;const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");if(!body||reducedMotion.matches)return;let frame=0,pointerX=0;const update=()=>{body.style.setProperty("--imp-scroll-shift",(-window.scrollY*.12)+"px");body.style.setProperty("--imp-scroll-x",(pointerX*10)+"px");frame=0;};const schedule=()=>{if(!frame)frame=requestAnimationFrame(update);};const move=clientX=>{pointerX=(clientX/Math.max(window.innerWidth,1)-.5)*2;schedule();};window.addEventListener("scroll",schedule,{passive:true});window.addEventListener("pointermove",event=>{if(event.pointerType==="mouse"||event.pointerType==="pen")move(event.clientX);},{passive:true});window.addEventListener("touchmove",event=>{if(event.touches.length)move(event.touches[0].clientX);},{passive:true});update();})();
 </script>
 <script src="./assets/site-search.js" defer></script>
+  <script src="./assets/store-stock.js" defer></script>
 </body>
 </html>

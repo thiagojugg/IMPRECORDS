@@ -2930,12 +2930,6 @@
         </button>
       </nav>
 
-      <div class="digital-intro-callout" aria-label="Apresentação dos produtos digitais">
-        <p class="digital-intro-kicker">IMP RECORDS / CENTRAL DO PRODUTOR</p>
-        <h2>TUDO O QUE VOCÊ PRECISA <span>PARA CRIAR.</span></h2>
-        <p>Encontre ferramentas, sons e recursos essenciais para elevar suas produções musicais. De drum kits e presets a plugins, programas e muito mais — <strong>o próximo nível do seu som começa aqui.</strong></p>
-      </div>
-
       <div class="product-grid presets-vocais-carousel digital-products-grid" aria-label="Produtos digitais">
         <article class="product-card" data-digital-category="presets">
           <a class="product-card-link" href="./produto-preset-twiz.html" aria-label="Ver detalhes do Preset Vocal do Twiz">
@@ -2988,6 +2982,12 @@
 
 
         </article>
+      </div>
+
+      <div class="digital-intro-callout" aria-label="Apresentação dos produtos digitais" hidden>
+        <p class="digital-intro-kicker">IMP RECORDS / CENTRAL DO PRODUTOR</p>
+        <h2>TUDO O QUE VOCÊ PRECISA <span>PARA CRIAR.</span></h2>
+        <p>Encontre ferramentas, sons e recursos essenciais para elevar suas produções musicais. De drum kits e presets a plugins, programas e muito mais — <strong>o próximo nível do seu som começa aqui.</strong></p>
       </div>
 
     </section>
@@ -5092,6 +5092,7 @@
     if (!section) return;
     const buttons = [...section.querySelectorAll("[data-digital-filter]")];
     const grid = section.querySelector(".digital-products-grid");
+    const intro = section.querySelector(".digital-intro-callout");
     if (!grid || !buttons.length) return;
     const cards = [...grid.querySelectorAll("[data-digital-category]")];
     const empty = document.createElement("p");
@@ -5116,6 +5117,7 @@
         });
         cards.forEach(card => { card.hidden = true; });
         grid.hidden = true;
+        if (intro) intro.hidden = true;
         empty.classList.remove("is-visible");
         if (heading) heading.textContent = "PRODUÇÃO DIGITAL";
         return;
@@ -5134,6 +5136,7 @@
       });
       if (heading) heading.textContent = labels[category] || "PRODUÇÃO DIGITAL";
       grid.hidden = visible === 0;
+      if (intro) intro.hidden = false;
       empty.classList.toggle("is-visible",visible === 0);
     }
     buttons.forEach(button => button.addEventListener("click",() => selectCategory(button.dataset.digitalFilter)));

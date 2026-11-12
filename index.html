@@ -2621,20 +2621,69 @@
       }
     }
     @media (max-width: 650px) {
+      /* No celular, os presets seguem a grade compacta de duas colunas da referência. */
+      #presets .digital-products-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        width: 100%;
+        align-items: start;
+      }
       #presets .digital-products-grid .product-card {
-        flex: 0 0 min(82vw, 330px);
-        padding: 8px 8px 12px;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        flex: initial;
+        padding: 6px 6px 9px;
         box-shadow:
           inset 0 1px 0 rgba(255,255,255,.15),
-          0 8px 18px rgba(0,0,0,.42),
-          0 18px 34px rgba(0,0,0,.3);
+          0 5px 12px rgba(0,0,0,.38),
+          0 12px 22px rgba(0,0,0,.24);
+      }
+      #presets .digital-products-grid .product-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      #presets .digital-products-grid .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      #presets .digital-products-grid .product-badge {
+        top: 7px;
+        left: 7px;
+        padding: 5px 6px;
+        font-size: 6px;
+        letter-spacing: .1em;
+      }
+      #presets .digital-products-grid .quick-arrow {
+        right: 7px;
+        bottom: 7px;
+        width: 27px;
+        height: 27px;
+      }
+      #presets .digital-products-grid .product-meta {
+        gap: 8px;
+        padding: 10px 3px 1px;
+      }
+      #presets .digital-products-grid .product-vendor {
+        gap: 5px;
+        margin-bottom: 5px;
+        font-size: 7px;
+        letter-spacing: .13em;
+      }
+      #presets .digital-products-grid .product-vendor::before {
+        width: 10px;
       }
       #presets .digital-products-grid .product-title {
-        font-size: clamp(17px, 5vw, 21px);
+        font-size: clamp(11px, 3.1vw, 14px);
+        line-height: 1.08;
+        letter-spacing: -.025em;
       }
       #presets .digital-products-grid .product-price {
-        font-size: 20px;
-        padding: 10px 13px;
+        font-size: clamp(12px, 3.4vw, 15px);
+        padding: 7px 8px;
+        gap: 3px;
       }
     }
     @media (prefers-reduced-motion: reduce) {

@@ -7,7 +7,7 @@
   const dismiss = () => {
     if (finished) return;
     finished = true;
-    const wait = Math.max(0, 1450 - (Date.now() - startedAt));
+    const wait = Math.max(0, 5400 - (Date.now() - startedAt));
     window.setTimeout(() => {
       screen.classList.add('is-hidden');
       document.documentElement.classList.remove('imp-loading-active');

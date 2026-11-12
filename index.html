@@ -2749,6 +2749,7 @@
 
   <header class="site-header imp-christmas-header">
     <div class="header-inner">
+      <button class="imp-site-search-trigger" id="imp-site-search-open" type="button" aria-label="Pesquisar produtos e artistas" title="Pesquisar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
       <a class="wordmark" href="./" aria-label="IMP RECORDS, início">
         <span class="wordmark-flag-stack" aria-hidden="true">
           <span class="wordmark-flag wordmark-flag-ma">IMP</span>
@@ -5165,6 +5166,74 @@
     grid.hidden = true;
   })();
   </script>
+
+
+<style id="imp-site-search-style">
+.imp-site-search-trigger{position:absolute;left:clamp(14px,3vw,38px);top:50%;transform:translateY(-50%);display:grid;place-items:center;width:42px;height:42px;padding:0;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:rgba(15,15,15,.72);color:#fff;cursor:pointer;transition:background .2s,border-color .2s,transform .2s;z-index:5}
+.imp-site-search-trigger:hover{background:#242424;border-color:rgba(255,255,255,.65);transform:translateY(-50%) scale(1.05)}
+.imp-site-search-trigger svg{width:19px;height:19px}
+.imp-search-overlay{position:fixed;inset:0;z-index:99999;display:none;align-items:flex-start;justify-content:center;padding: min(15vh,110px) 18px 30px;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.imp-search-overlay.is-open{display:flex}
+.imp-search-panel{width:min(680px,100%);max-height:75vh;overflow:auto;border:1px solid rgba(255,255,255,.18);background:linear-gradient(145deg,#191919,#080808 78%);box-shadow:0 24px 80px rgba(0,0,0,.65);padding:clamp(18px,4vw,30px);color:#fff}
+.imp-search-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+.imp-search-top strong{font-size:11px;letter-spacing:.2em}
+.imp-search-close{width:34px;height:34px;border:1px solid #444;background:transparent;color:#fff;font-size:22px;cursor:pointer}
+.imp-search-input-wrap{display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.55);padding:0 0 12px}
+.imp-search-input-wrap svg{width:20px;height:20px;flex:0 0 auto}
+.imp-search-input{width:100%;border:0;outline:0;background:transparent;color:#fff;font:500 clamp(17px,3vw,22px)/1.3 inherit}
+.imp-search-input::placeholder{color:#777}
+.imp-search-hint{margin:12px 0 16px;color:#888;font-size:10px;letter-spacing:.12em}
+.imp-search-results{display:grid;gap:7px}
+.imp-search-result{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 12px;border:1px solid rgba(255,255,255,.09);color:#fff;text-decoration:none;background:rgba(255,255,255,.025);transition:background .2s,border-color .2s}
+.imp-search-result:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3)}
+.imp-search-result strong{display:block;font-size:13px;letter-spacing:.04em}
+.imp-search-result small{display:block;margin-top:4px;color:#999;font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.imp-search-result span:last-child{color:#aaa}
+.imp-search-empty{padding:18px 4px;color:#999;font-size:13px}
+@media(max-width:650px){.imp-site-search-trigger{width:36px;height:36px;left:12px}.imp-search-overlay{padding:12vh 12px 20px}.imp-search-panel{max-height:78vh}}
+</style>
+<div class="imp-search-overlay" id="imp-site-search" aria-hidden="true">
+ <section class="imp-search-panel" role="dialog" aria-modal="true" aria-labelledby="imp-search-title">
+  <div class="imp-search-top"><strong id="imp-search-title">PESQUISA IMP RECORDS</strong><button class="imp-search-close" id="imp-site-search-close" type="button" aria-label="Fechar pesquisa">×</button></div>
+  <label class="imp-search-input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><input class="imp-search-input" id="imp-site-search-input" type="search" placeholder="Pesquise produtos ou artistas..." autocomplete="off"></label>
+  <p class="imp-search-hint">PESQUISE POR NOME DE PRODUTO OU ARTISTA</p>
+  <div class="imp-search-results" id="imp-site-search-results"><p class="imp-search-empty">Digite para começar a pesquisar.</p></div>
+ </section>
+</div>
+<script id="imp-site-search-script">
+(() => {
+ const overlay=document.getElementById("imp-site-search"),open=document.getElementById("imp-site-search-open"),close=document.getElementById("imp-site-search-close"),input=document.getElementById("imp-site-search-input"),results=document.getElementById("imp-site-search-results");
+ if(!overlay||!open||!close||!input||!results)return;
+ const artists=[
+  {name:"TWIZ",type:"ARTISTA",url:"./twiz.html"},
+  {name:"OLLIVERVN",type:"ARTISTA",url:"./ollivervn.html"},
+  {name:"LOWEST",type:"ARTISTA",url:"./lowest.html"},
+  {name:"GABRIEL LEAL",type:"ARTISTA",url:"./gabriel-leal.html"},
+  {name:"YGD LUKE",type:"ARTISTA",url:"./ygd-luke.html"},
+  {name:"TG SLATTY",type:"ARTISTA",url:"./tg-slatty.html"},
+  {name:"DINGY!",type:"ARTISTA",url:"./artistas.html"}
+ ];
+ const normalize=v=>String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+ const products=Array.from(document.querySelectorAll(".product-card-link[href]")).map(a=>{
+  const card=a.closest(".product-card")||a;
+  const title=card.querySelector(".product-title,h3")?.textContent?.trim()||a.getAttribute("aria-label")||"Produto";
+  const vendor=card.querySelector(".product-vendor")?.textContent?.trim()||"PRODUTO";
+  return {name:title,type:vendor,url:a.getAttribute("href")};
+ });
+ const items=[...products,...artists];
+ function render(){
+  const q=normalize(input.value.trim());
+  if(!q){results.innerHTML='<p class="imp-search-empty">Digite para começar a pesquisar.</p>';return;}
+  const found=items.filter(item=>normalize(item.name+" "+item.type).includes(q)).slice(0,12);
+  results.innerHTML=found.length?found.map(item=>'<a class="imp-search-result" href="'+item.url.replace(/&/g,"&amp;").replace(/"/g,"&quot;")+'"><span><strong>'+item.name.replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</strong><small>'+item.type.replace(/&/g,"&amp;").replace(/</g,"&lt;")+'</small></span><span>↗</span></a>').join(""):'<p class="imp-search-empty">Nenhum produto ou artista encontrado.</p>';
+ }
+ function show(){overlay.classList.add("is-open");overlay.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";input.value="";render();setTimeout(()=>input.focus(),40);}
+ function hide(){overlay.classList.remove("is-open");overlay.setAttribute("aria-hidden","true");document.body.style.overflow="";open.focus();}
+ open.addEventListener("click",show);close.addEventListener("click",hide);input.addEventListener("input",render);
+ overlay.addEventListener("click",e=>{if(e.target===overlay)hide();});
+ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&overlay.classList.contains("is-open"))hide();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();show();}});
+})();
+</script>
 
 </body>
 </html>

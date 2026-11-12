@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./assets/independent.css">
   <script>
     (() => {
-      const salesCategories = ["vestuario", "presets"];
+      const salesCategories = ["vestuario", "presets", "bones"];
       const category = new URLSearchParams(window.location.search).get("categoria");
       document.documentElement.classList.toggle("show-cart", salesCategories.includes(category));
     })();
@@ -2831,7 +2831,7 @@
     <section class="imp-category-shortcuts" aria-label="Categorias de vestuário">
       <a class="imp-category" href="./?categoria=vestuario" aria-label="Ver camisetas"><span class="imp-category-circle"><img src="./assets/WhatsApp Image 2026-11-09 at 21.39.01 (4).jpeg" alt="" loading="lazy"></span><span>CAMISETAS</span></a>
       <button class="imp-category" type="button" data-clothing-filter="jeans" aria-label="Ver categoria Jeans"><span class="imp-category-circle"><img src="./assets/jeans-1.png" alt="" loading="lazy"></span><span>JEANS</span></button>
-      <button class="imp-category" type="button" data-clothing-filter="bones" aria-label="Ver categoria Bonés"><span class="imp-category-circle"><img src="./assets/bones-1.png" alt="" loading="lazy"></span><span>BONÉS</span></button>
+      <a class="imp-category" href="./?categoria=bones" aria-label="Ver categoria Bonés"><span class="imp-category-circle"><img src="./assets/bones-1.png" alt="" loading="lazy"></span><span>BONÉS</span></a>
       <button class="imp-category" type="button" data-clothing-filter="moletons" aria-label="Ver categoria Moletons"><span class="imp-category-circle"><img src="./assets/moletons-1.png" alt="" loading="lazy"></span><span>MOLETONS</span></button>
     </section>
 
@@ -5080,18 +5080,19 @@
     const link = section.querySelector(".section-heading .text-link");
     if (!buttons.length || !grid || !empty || !heading) return;
 
-    const labels = { jeans: "JEANS", bones: "BONÉS", moletons: "MOLETONS" };
+    const labels = { jeans: "JEANS", moletons: "MOLETONS" };
+
+    // A categoria BONÉS funciona como uma aba própria, acessível pelo menu principal.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("categoria") === "bones" && bonesSection) {
+      section.hidden = true;
+      bonesSection.hidden = false;
+    }
+
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         const category = button.dataset.clothingFilter;
         buttons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
-
-        if (category === "bones" && bonesSection) {
-          section.hidden = true;
-          bonesSection.hidden = false;
-          bonesSection.scrollIntoView({ behavior: "smooth", block: "start" });
-          return;
-        }
 
         if (bonesSection) bonesSection.hidden = true;
         section.hidden = false;

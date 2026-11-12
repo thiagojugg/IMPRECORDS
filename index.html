@@ -2835,6 +2835,17 @@
       <button class="imp-category" type="button" data-clothing-filter="moletons" aria-label="Ver categoria Moletons"><span class="imp-category-circle"><img src="./assets/moletons-1.png" alt="" loading="lazy"></span><span>MOLETONS</span></button>
     </section>
 
+    <section class="section-wrap product-section" id="bones" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
+          <h2>BONÉS</h2>
+        </div>
+      </div>
+      <div class="product-grid camisetas-carousel bones-products-grid" aria-label="Produtos da categoria bonés"></div>
+      <p class="clothing-category-empty bones-category-empty" aria-live="polite">NOVOS PRODUTOS DESTA CATEGORIA EM BREVE.</p>
+    </section>
+
     <section class="fl-studio-launch" aria-label="Atalho para a área de produtores">
       <a href="./?categoria=presets" aria-label="Acessar a área de produtores e produtos digitais">
         <img class="fl-studio-fruit" src="./assets/fl-studio.png" alt="Ícone do FL Studio">
@@ -5060,6 +5071,7 @@
   <script id="imp-clothing-category-filter">
   (() => {
     const section = document.querySelector("#vestuario");
+    const bonesSection = document.querySelector("#bones");
     if (!section) return;
     const buttons = [...document.querySelectorAll("[data-clothing-filter]")];
     const grid = section.querySelector(".camisetas-carousel");
@@ -5072,14 +5084,21 @@
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         const category = button.dataset.clothingFilter;
+        buttons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+
+        if (category === "bones" && bonesSection) {
+          section.hidden = true;
+          bonesSection.hidden = false;
+          bonesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+
+        if (bonesSection) bonesSection.hidden = true;
+        section.hidden = false;
         heading.textContent = labels[category] || "VESTUÁRIO";
         grid.hidden = true;
         empty.hidden = false;
         if (link) link.hidden = true;
-        buttons.forEach(item => {
-          const active = item === button;
-          item.setAttribute("aria-pressed", String(active));
-        });
         section.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });

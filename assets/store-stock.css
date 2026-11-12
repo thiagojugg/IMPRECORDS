@@ -29,7 +29,7 @@
   opacity: .65;
 }
 .size-option:disabled,
-.product-detail .option:disabled {
+.option:disabled {
   opacity: .32 !important;
   cursor: not-allowed !important;
   filter: grayscale(1);

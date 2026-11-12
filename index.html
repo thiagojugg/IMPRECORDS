@@ -3027,6 +3027,50 @@
     }
   </style>
 
+
+<style id="imp-christmas-home-header-fix">
+/* Ativação visual efetiva do tema no cabeçalho principal. */
+html.imp-christmas-season-active .site-header.imp-christmas-header {
+  background-color:#06130d !important;
+  background-image:radial-gradient(ellipse at 50% 100%,rgba(22,92,55,.38),transparent 70%),linear-gradient(180deg,#10251a,#030806 92%) !important;
+  border-bottom:1px solid rgba(220,240,225,.34) !important;
+}
+html.imp-christmas-season-active .site-header.imp-christmas-header::before {
+  display:block !important;
+  content:"" !important;
+  opacity:.92 !important;
+}
+html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-tree,
+html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-snowman-photo,
+html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-snowbank,
+html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-santa {
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+}
+html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-santa {
+  position:absolute !important; z-index:20 !important; top:0 !important; left:auto !important;
+  right:8px !important; width:52px !important; height:58px !important;
+  font-size:42px !important; line-height:1 !important; text-align:center !important;
+  animation:imp-home-santa-flight 12s linear infinite !important;
+}
+@keyframes imp-home-santa-flight {
+  0% { transform:translateX(0); }
+  100% { transform:translateX(calc(-100vw + 70px)); }
+}
+@media(max-width:650px) {
+  html.imp-christmas-season-active .site-header.imp-christmas-header .header-inner {
+    min-height:78px !important; height:78px !important;
+  }
+  html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-tree {
+    right:4px !important; left:auto !important; transform:scale(.72); transform-origin:bottom right;
+  }
+  html.imp-christmas-season-active .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+    left:2px !important; right:auto !important; width:50px !important; height:55px !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -3067,6 +3111,17 @@
         </span><span class="wordmark-reg">®</span>
       </a>
     </div>
+
+    <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
+    <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
+    <div class="imp-christmas-tree" aria-hidden="true">
+      <i class="tree-trunk"></i><i class="tree-bottom"></i><i class="tree-middle"></i><i class="tree-top"></i>
+      <i class="tree-star"></i><i class="tree-garland"></i><i class="tree-bauble bauble-one"></i>
+      <i class="tree-bauble bauble-two"></i><i class="tree-bauble bauble-three"></i><i class="tree-bauble bauble-four"></i>
+    </div>
+    <img class="imp-christmas-snowman-photo" src="./assets/—Pngtree—christmas snowman with santa hat_5667812.png" alt="" aria-hidden="true">
+    <span class="imp-christmas-santa" aria-hidden="true">🎅</span>
+
   </header>
 
   <main id="main">

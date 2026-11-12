@@ -261,16 +261,16 @@
 
   <style id="imp-lookbook-christmas-header-fix">
     /* Mantém a decoração natalina confinada ao cabeçalho nesta página. */
-    .site-header.imp-christmas-header {
+    .site-header. {
       height: 78px !important;
       min-height: 78px !important;
       max-height: 78px !important;
       overflow: hidden !important;
       contain: layout paint !important;
     }
-    .site-header.imp-christmas-header .imp-christmas-tree,
-    .site-header.imp-christmas-header .imp-christmas-santa,
-    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+    .site-header. .imp-christmas-tree,
+    .site-header. .imp-christmas-santa,
+    .site-header. .imp-christmas-snowman-photo {
       position: absolute !important;
       display: block !important;
       max-width: none !important;
@@ -278,21 +278,21 @@
       object-fit: contain !important;
       box-sizing: border-box !important;
     }
-    .site-header.imp-christmas-header .imp-christmas-tree {
+    .site-header. .imp-christmas-tree {
       width: 62px !important;
       height: 76px !important;
     }
-    .site-header.imp-christmas-header .imp-christmas-santa {
+    .site-header. .imp-christmas-santa {
       width: 180px !important;
       height: 60px !important;
       top: 0 !important;
     }
-    .site-header.imp-christmas-header .imp-christmas-snowman-photo {
+    .site-header. .imp-christmas-snowman-photo {
       width: 58px !important;
       height: 68px !important;
     }
     @media (max-width: 650px) {
-      .site-header.imp-christmas-header .imp-christmas-santa {
+      .site-header. .imp-christmas-santa {
         width: 150px !important;
         height: 54px !important;
       }
@@ -324,31 +324,9 @@
 <body>
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-  <header class="site-header imp-christmas-header">
-    <div class="imp-christmas-snowbank imp-snowbank-left" aria-hidden="true"></div>
-    <div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
-    <img class="imp-christmas-tree" src="./assets/—Pngtree—3d green christmas tree featuring_16992922.png" alt="" aria-hidden="true">
-    <img class="imp-christmas-santa" src="./assets/pngwing.com.png" alt="" aria-hidden="true">
-    <img class="imp-christmas-snowman-photo" src="./assets/—Pngtree—christmas snowman with santa hat_5667812.png" alt="" aria-hidden="true">
-
-    <div class="header-inner">
-      
-
-      <a class="wordmark" href="./" aria-label="IMP Records, início">
-        <span class="wordmark-flag-stack" aria-hidden="true">
-          <span class="wordmark-flag wordmark-flag-ma">IMP</span>
-          <span class="wordmark-flag wordmark-flag-go">IMP</span>
-          <span class="wordmark-flag wordmark-flag-sp">IMP</span>
-        </span><span class="wordmark-reg">®</span>
-      </a>
-
-      
-
-      
-    </div>
-
-    
-  </header>
+  <header class="site-header ">
+<div class="imp-christmas-snowbank imp-snowbank-right" aria-hidden="true"></div>
+</header>
 
   <main id="main" class="section-wrap standard-page">
     <a class="text-link lookbook-back" href="./?categoria=galeria">
@@ -1376,8 +1354,7 @@
   </script>
 
   <script src="./assets/navigation-transition.js" defer></script>
-  <script src="./assets/christmas-season.js" defer></script>
-  <script src="./assets/scroll-lines.js" defer></script>
+<script src="./assets/scroll-lines.js" defer></script>
   <script src="./assets/site-search.js" defer></script>
 </body>
 </html>

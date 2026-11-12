@@ -1,0 +1,85 @@
+/* IMP RECORDS — cabeçalho unificado e bandeiras do wordmark */
+.site-header .header-inner{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:78px!important;
+  height:78px!important;
+  padding:0 5vw!important;
+  max-width:1600px!important;
+  margin:0 auto!important;
+}
+.site-header .header-inner > a.wordmark{
+  display:inline-flex!important;
+  align-items:flex-start!important;
+  justify-self:auto!important;
+  grid-column:auto!important;
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  margin:0 auto!important;
+  width:max-content!important;
+  z-index:2!important;
+  font-size:36px!important;
+}
+.site-header .wordmark .wordmark-flag-stack{
+  display:inline-block!important;
+  position:relative!important;
+  width:2.12em!important;
+  height:.9em!important;
+  line-height:.9!important;
+  overflow:visible!important;
+}
+.site-header .wordmark .wordmark-flag{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  font:inherit!important;
+  letter-spacing:inherit!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  background-size:145% 145%!important;
+  background-position:50% 50%!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+  background-repeat:no-repeat!important;
+  opacity:0;
+  animation:impFlagCycle4 20s linear infinite!important;
+}
+.site-header .wordmark .wordmark-flag-ma{background-image:url("./flag-maranhao.svg")!important;animation-delay:0s!important}
+.site-header .wordmark .wordmark-flag-go{background-image:url("./flag-goias.svg")!important;animation-delay:5s!important}
+.site-header .wordmark .wordmark-flag-sp{background-image:url("./flag-sao-paulo.svg")!important;animation-delay:10s!important}
+.site-header .wordmark .wordmark-flag-br{background-image:url("./flag-brasil.svg")!important;animation-delay:15s!important}
+.site-header .wordmark .wordmark-reg{font:10px var(--font-body)!important;margin:0 0 0 4px!important;color:var(--white)!important}
+@keyframes impFlagCycle4{
+  0%,20%{opacity:1}
+  21%,99%{opacity:0}
+  100%{opacity:1}
+}
+.site-header .header-inner > .imp-site-search-trigger{
+  position:absolute!important;
+  left:5vw!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+}
+.site-header .header-inner > .imp-site-cart-trigger{
+  position:absolute!important;
+  right:5vw!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+}
+@media(max-width:650px){
+  .site-header .header-inner{height:65px!important;min-height:65px!important;padding:0 5vw!important}
+  .site-header .header-inner > a.wordmark{font-size:30px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .site-header .wordmark .wordmark-flag{animation:none!important}
+  .site-header .wordmark .wordmark-flag-ma{opacity:1!important}
+  .site-header .wordmark .wordmark-flag-go,
+  .site-header .wordmark .wordmark-flag-sp,
+  .site-header .wordmark .wordmark-flag-br{opacity:0!important}
+}

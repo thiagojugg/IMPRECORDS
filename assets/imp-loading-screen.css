@@ -10,15 +10,22 @@
 #imp-loading-screen.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
 #imp-loading-screen .imp-loading-logo{
   position:relative;display:block;
-  width:max-content;max-width:88vw;
+  /* Largura e altura explícitas: os spans são absolutos e não definem largura intrínseca. */
+  width:2.55em;height:.86em;max-width:88vw;
   font-family:var(--font-display,'Archivo Black',Impact,sans-serif);
   font-size:clamp(76px,16vw,150px);
   font-weight:900;line-height:.82;letter-spacing:-.105em;
-  color:#f5f5f2;isolation:isolate;
+  color:transparent;isolation:isolate;
+}
+#imp-loading-screen .imp-loading-logo::before{
+  content:"IMP";position:absolute;inset:0;z-index:0;
+  color:#f5f5f2;-webkit-text-fill-color:#f5f5f2;
+  white-space:nowrap;pointer-events:none;
 }
 #imp-loading-screen .imp-loading-flag{
-  position:absolute;inset:0;display:block;
+  position:absolute;inset:0;z-index:1;display:block;
   color:transparent;-webkit-text-fill-color:transparent;
+  white-space:nowrap;
   background-repeat:no-repeat;background-size:230% 100%;background-position:-130% 50%;
   background-clip:text;-webkit-background-clip:text;
   opacity:0;will-change:background-position,opacity;
@@ -42,4 +49,5 @@
   #imp-loading-screen .imp-loading-flag{animation:none!important}
   #imp-loading-screen .imp-loading-flag:nth-child(1){opacity:1;background-position:50% 50%}
   #imp-loading-screen .imp-loading-flag:nth-child(n+2){opacity:0}
+  #imp-loading-screen .imp-loading-logo::before{color:transparent;-webkit-text-fill-color:transparent}
 }

@@ -19,6 +19,99 @@
   </script>
 
   <style>
+
+    /* Chamada editorial para o vestuário da IMP COMPANY. */
+    .imp-clothing-cta {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(20px, 4vw, 42px);
+      width: 100%;
+      min-height: 170px;
+      box-sizing: border-box;
+      padding: 34px 6vw;
+      overflow: hidden;
+      color: #fff;
+      text-decoration: none;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.075), transparent 62%),
+        linear-gradient(180deg, #101010, #080808);
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      isolation: isolate;
+    }
+    .imp-clothing-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.055) 48%, transparent 72%);
+      transform: translateX(-100%);
+      transition: transform .9s ease;
+    }
+    .imp-clothing-cta:hover::before { transform: translateX(100%); }
+    .imp-clothing-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      text-align: left;
+    }
+    .imp-clothing-kicker {
+      color: rgba(255,255,255,.52);
+      font: 9px/1.2 var(--font-body);
+      letter-spacing: .28em;
+    }
+    .imp-clothing-title {
+      margin: 0;
+      color: #fff;
+      font: 500 clamp(23px, 3.6vw, 43px)/1.05 "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      letter-spacing: .035em;
+      text-transform: uppercase;
+    }
+    .imp-clothing-arrow {
+      display: inline-block;
+      margin-left: 8px;
+      font: 16px/1 Arial, sans-serif;
+      transition: transform .3s ease;
+    }
+    .imp-clothing-cta:hover .imp-clothing-arrow { transform: translate(5px,-3px); }
+    .imp-bag-stage {
+      width: 94px;
+      height: 100px;
+      flex: 0 0 94px;
+      display: grid;
+      place-items: center;
+      perspective: 500px;
+    }
+    .imp-bag-3d {
+      width: 82px;
+      height: 90px;
+      overflow: visible;
+      transform-origin: 50% 75%;
+      animation: impBagFloat 3.8s ease-in-out infinite, impBagTurn 7s ease-in-out infinite;
+      filter: drop-shadow(0 13px 10px rgba(0,0,0,.72));
+    }
+    @keyframes impBagFloat {
+      0%,100% { translate: 0 0; }
+      50% { translate: 0 -9px; }
+    }
+    @keyframes impBagTurn {
+      0%,100% { rotate: -4deg; }
+      50% { rotate: 5deg; }
+    }
+    @media (max-width: 650px) {
+      .imp-clothing-cta { min-height: 145px; gap: 17px; padding: 26px 6vw; }
+      .imp-clothing-title { font-size: clamp(19px, 5.2vw, 28px); }
+      .imp-bag-stage { width: 72px; height: 82px; flex-basis: 72px; }
+      .imp-bag-3d { width: 68px; height: 76px; }
+      .imp-clothing-kicker { font-size: 8px; letter-spacing: .2em; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .imp-bag-3d { animation: none; }
+      .imp-clothing-cta::before { display: none; }
+    }
+
     [hidden] {
       display: none !important;
     }
@@ -3068,6 +3161,30 @@ html.imp-christmas-season-active .site-header. .imp-christmas-santa {
           </div>
         </section>
 
+
+    <a id="imp-clothing-cta" class="imp-clothing-cta" href="https://thiagojugg.github.io/IMP-COMPANY/index.html" aria-label="Conheça o nosso vestuário — acessar IMP COMPANY">
+      <span class="imp-clothing-copy">
+        <span class="imp-clothing-kicker">IMP COMPANY / STREETWEAR</span>
+        <span class="imp-clothing-title">CONHEÇA O NOSSO<br>VESTUÁRIO<span class="imp-clothing-arrow" aria-hidden="true">↗</span></span>
+      </span>
+      <span class="imp-bag-stage" aria-hidden="true">
+        <svg class="imp-bag-3d" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="impBagFront" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".42" stop-color="#d9d9d9"/><stop offset="1" stop-color="#777"/></linearGradient>
+            <linearGradient id="impBagSide" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#777"/><stop offset="1" stop-color="#292929"/></linearGradient>
+            <linearGradient id="impBagHandle" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8f8f8"/><stop offset="1" stop-color="#777"/></linearGradient>
+          </defs>
+          <path d="M31 34V25C31 12 39 5 50 5s19 7 19 20v9" fill="none" stroke="url(#impBagHandle)" stroke-width="7" stroke-linecap="round"/>
+          <path d="M18 33L78 33L88 94Q89 101 81 103L24 103Q16 102 17 94Z" fill="url(#impBagSide)" stroke="#aaa" stroke-width="1.2"/>
+          <path d="M18 33L70 33L76 101L24 103Q16 102 17 94Z" fill="url(#impBagFront)"/>
+          <path d="M70 33L78 33L88 94Q89 101 81 103L76 101Z" fill="url(#impBagSide)" opacity=".95"/>
+          <path d="M24 42L69 42" stroke="#fff" stroke-opacity=".65" stroke-width="1.5"/>
+          <path d="M26 49L30 91" stroke="#fff" stroke-opacity=".34" stroke-width="2"/>
+          <text x="47" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="bold" letter-spacing="1.5" fill="#171717">IMP</text>
+          <path d="M19 34L78 34" stroke="#fff" stroke-opacity=".9" stroke-width="2"/>
+        </svg>
+      </span>
+    </a>
 
     <section class="fl-studio-launch" aria-label="Atalho para a área de produtores">
       <a href="./?categoria=presets" aria-label="Acessar a área de produtores e produtos digitais">

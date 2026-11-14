@@ -3069,91 +3069,11 @@ html.imp-christmas-season-active .site-header. .imp-christmas-santa {
         </section>
 
 
-<section class="section-wrap product-section" id="bones" hidden>
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
-
-        </div>
-      </div>
-      <div class="product-grid camisetas-carousel bones-products-grid" aria-label="Produtos da categoria bonés">
-        <article class="product-card" id="bone-truck-underground">
-          <a class="product-card-link" href="./produto-bone-underground.html">
-            <div class="product-image">
-              <img src="./assets/539BAE4C-9B2E-4211-85EE-99C7632B00EB.jpeg" alt="Boné Truck IMP RECORDS Underground, estilo 1 na cor preta" loading="lazy">
-              <span class="quick-arrow" aria-hidden="true">↗</span>
-            </div>
-            <div class="product-meta">
-              <div>
-                <p class="product-vendor">IMP RECORDS</p>
-                <h3 class="product-title">BONÉ TRUCK IMP RECORDS — UNDERGROUND</h3>
-              </div>
-              <div class="product-price-wrap"><p class="product-price">R$ 125,90</p></div>
-            </div>
-          </a>
-        </article>
-      </div>
-    </section>
-
     <section class="fl-studio-launch" aria-label="Atalho para a área de produtores">
       <a href="./?categoria=presets" aria-label="Acessar a área de produtores e produtos digitais">
         <img class="fl-studio-fruit" src="./assets/fl-studio.png" alt="Ícone do FL Studio">
         <span class="fl-studio-caption">CLIQUE NO FL STUDIO PARA PRODUZIR</span>
       </a>
-    </section>
-
-    <section class="section-wrap product-section" id="vestuario">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">IMP RECORDS / VESTUÁRIO</p>
-          <h2>CAMISETAS</h2>
-        </div>
-
-        <a class="text-link" href="./produto-gengar.html">
-          VER CAMISETA ↗
-        </a>
-      </div>
-
-      <div class="product-grid camisetas-carousel" aria-label="Carrossel de camisetas">
-        <article class="product-card" id="gengar">
-          <a class="product-card-link" href="./produto-gengar.html">
-            <div class="product-image" aria-label="Galeria de fotos da Camiseta IMP Gengar Oversized - Black Edition">
-              <div class="product-image-track" tabindex="0" aria-label="Deslize horizontalmente para ver as três fotos do produto">
-                <img
-                  src="./assets/camiseta-1.png"
-                  alt="Camiseta IMP Gengar Oversized - foto 1 de 3"
-                  loading="eager"
-                >
-                <img
-                  src="./assets/camiseta-2.png"
-                  alt="Camiseta IMP Gengar Oversized - foto 2 de 3"
-                  loading="lazy"
-                >
-                <img
-                  src="./assets/camiseta-3.png"
-                  alt="Camiseta IMP Gengar Oversized - foto 3 de 3"
-                  loading="lazy"
-                >
-              </div>
-              <span class="quick-arrow" aria-hidden="true">↗</span>
-              <span class="gallery-hint" aria-hidden="true">DESLIZE PARA VER MAIS <span>→</span></span>
-            </div>
-
-            <div class="product-meta">
-              <div>
-                <p class="product-vendor">IMP RECORDS</p>
-                <h3 class="product-title">
-                  Camiseta IMP Gengar Oversized - Black Edition
-                </h3>
-              </div>
-
-              <div class="product-price-wrap"><del class="product-price-old">R$ 149,90</del><p class="product-price">R$ 119,90</p></div>
-            </div>
-          </a>
-        </article>
-
-      </div>
-      <p class="clothing-category-empty" hidden aria-live="polite">NOVOS PRODUTOS DESTA CATEGORIA EM BREVE.</p>
     </section>
 
     <section class="section-wrap product-section" id="presets">
@@ -3956,8 +3876,6 @@ html.imp-christmas-season-active .site-header. .imp-christmas-santa {
     /* Navegação das categorias. */
     (() => {
         const categorias = {
-    "vestuario": "VESTUÁRIO",
-    "bones": "BONÉS",
     "presets": "PRODUTOS DIGITAIS",
     "galeria": "GALERIA",
     "manifesto": "NOSSA HISTÓRIA",
@@ -4018,7 +3936,7 @@ html.imp-christmas-season-active .site-header. .imp-christmas-santa {
 
     /* Na página inicial, mantém o catálogo fora da vitrine; ele continua acessível pelas categorias. */
     if (!new URLSearchParams(window.location.search).has("categoria")) {
-      ["vestuario", "bones", "presets"].forEach(id => {
+      ["presets"].forEach(id => {
         const secaoProdutos = document.getElementById(id);
         if (secaoProdutos) secaoProdutos.hidden = true;
       });
@@ -4039,10 +3957,6 @@ html.imp-christmas-season-active .site-header. .imp-christmas-santa {
       });
     });
   </script>
-  <a class="button button-light"
-   href="./?categoria=vestuario#gengar-detalhes">
-  EXPLORAR DROP <span>↗</span>
-</a>
   <style>
   .imp-produto {
     max-width: 1400px;
